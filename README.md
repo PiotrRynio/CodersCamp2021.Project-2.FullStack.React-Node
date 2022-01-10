@@ -1,5 +1,7 @@
 # BoardMap
 
+-----
+
 ## Our Crew
 
 Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
@@ -11,7 +13,7 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 - [Kuba Jarosz](https://github.com/kubajaro)
 - [Jarosław Kaczor](https://github.com/jaroslawkaczor)
 
-
+-----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
