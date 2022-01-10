@@ -1,4 +1,17 @@
-# Getting Started with Create React App
+# BoardMap
+
+## Our Crew
+
+Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
+
+- [Agnieszka Przybyłowska](https://github.com/APrzybylowska)
+- [Patryk Święcicki](https://github.com/PSwiecicki)
+- [Radosław Dulisz](https://github.com/RadekDulisz)
+- [Bartosz Dombrow](https://github.com/BartoszDombrow)
+- [Kuba Jarosz](https://github.com/kubajaro)
+- [Jarosław Kaczor](https://github.com/jaroslawkaczor)
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
