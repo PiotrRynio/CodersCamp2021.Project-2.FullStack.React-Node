@@ -3,27 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "cd frontend && npm install",
+    "prepare": "husky install && cd frontend && npm install",
     "start-fe": "cd frontend && npm start",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "husky": "^7.0.4"
   }
 }
