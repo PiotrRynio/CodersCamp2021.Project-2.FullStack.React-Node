@@ -1,5 +1,10 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
   "plugins": [],
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -16,7 +21,12 @@
   "rules": {
     "import/prefer-default-export": 0,
     "no-restricted-syntax": "off",
-    "no-param-reassign": [2, { "props": false }],
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
+      }
+    ],
     "prettier/prettier": "warn"
   }
 }
