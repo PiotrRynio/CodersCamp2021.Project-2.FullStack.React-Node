@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `
 
 export const StyledBoard = styled.div`
-  width: 320px;
+  width: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,7 @@ export const StyledBoard = styled.div`
   align-items: center;
   background: #e3e3e3;
   color: #2c2c2c;
+  cursor: pointer;
 `
 
 export const StyledHeader = styled.div`
