@@ -1,40 +1,34 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import './Board.css';
+import { Wrapper, StyledBoard, StyledHeader, HeaderFlex, StyledImage, StyledUser, StyledName, StyledAvatar} from "./Board.styled";
+import ButtonMenu from "./ButtonMenu";
+import Dropdown from './Dropdown';
 
-const Board = (props) => {
+const Board = () => {
   return (
-    <div className='board'>
-      <div className='board__header'>
-        <div className='board__header__title'>
-          <div className='board__header__title__image'>
-            {props.image}
-          </div>
-          <div className='board__header__title__text'>
-            <h1>{props.title}</h1>
-          </div>
-          <div className='board__header__title__menu'>
-            <span className='menu__dot'></span>
-            <span className='menu__dot'></span>
-            <span className='menu__dot'></span>
-          </div>
-        </div>
-        <div className='board__header__author'>
-          <span className='board__header__author__name'>
-            {props.name}
-          </span>
-          <div className='board__header__author__avatar'>
-            {props.avatar}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Wrapper>
+      <StyledBoard>
+        <StyledHeader>
+          <HeaderFlex>
+            <StyledImage />
+            <h2>
+              nazwa_tablicy
+            </h2>
+            <ButtonMenu>
+              <Dropdown>
+              </Dropdown>
+            </ButtonMenu>
+          </HeaderFlex>
+          <StyledUser>
+            <StyledName>
+              nazwa_uzytkownika
+            </StyledName>
+            <StyledAvatar>
+            </StyledAvatar>
+          </StyledUser>
+        </StyledHeader>
+      </StyledBoard>
+    </Wrapper>
   );
 }
-
-ReactDOM.render(
-  <Board />,
-  document.getElementById('root')
-)
 
 export default Board;
