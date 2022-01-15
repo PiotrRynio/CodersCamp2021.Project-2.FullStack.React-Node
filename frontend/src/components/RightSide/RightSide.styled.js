@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Aside = styled.div`
-  position: fixed;
-  min-width: 20%;
-  height: calc(100vh - 80px);
-  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  background-color: #f5f5f5;
 `;
 
 export const AsideNav = styled.h1`
