@@ -1,20 +1,34 @@
-import { CommentContainer } from './CommentContainer.styled';
-import { ImageContainer } from './ImageContainer.styled';
-import { CommentContentContainer } from './CommentContentContainer.styled';
+import { StyledCommentContainer } from './CommentContainer.styled';
+import { StyledLeftSection } from './LeftSection.styled.js';
+import { StyledRightSection } from './StyledRightSection';
 import { useState } from 'react';
-import { RestoreMergeStatusError } from 'lint-staged/lib/symbols';
+import { UserAvatar } from '../UserAvatar/UserAvatar';
 
-const UserComment = () => {
-  const [comment, setComment] = useState('');
-  const [userImageUrl, setUserImageUrl] = useState('');
-  const [authorID, setAuthorID] = useState('');
+export const UserComment = ({ commentObject }) => {
+  const [comment, setComment] = useState(commentObject);
+  /*const [userImageUrl, setUserImageUrl] = useState('');
+  const [authorID, setAuthorID] = useState('');*/
 
   return (
-    <CommentContainer>
-      <ImageContainer>
-        <img src={userImageUrl} alt="user " />
-      </ImageContainer>
-      <CommentContentContainer></CommentContentContainer>
-    </CommentContainer>
+    <StyledCommentContainer>
+      <StyledLeftSection>
+        <UserAvatar userId={1} />
+      </StyledLeftSection>
+      <StyledRightSection>
+        <div className="userName">
+          {comment.author.firstName} {comment.author.lastName}
+        </div>
+        <div className="date">
+          {new Date(commentObject.createDate).toLocaleString([], {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+          })}
+        </div>
+        <div className="content">{comment.content}</div>
+      </StyledRightSection>
+    </StyledCommentContainer>
   );
 };
