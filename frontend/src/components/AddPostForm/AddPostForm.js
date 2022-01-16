@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, Icon, TitleInput, MessageInput, SubmitInput } from './AddPostForm.styled';
+import { Wrapper, Header, Icon, TitleInput, MessageInput, SubmitInput } from './AddPostForm.styled';
 
 const AddPostForm = () => {
   const handleSubmit = (event) => {
@@ -10,9 +10,10 @@ const AddPostForm = () => {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
+        <Header>Add new post</Header>
         <Icon>Icon</Icon>
-        <TitleInput type="text" deafultValue="Enter your title here..." />
-        <MessageInput type="text" defaultValue="Enter your message here..." />
+        <TitleInput type="text" defaultValue="Enter title..." />
+        <MessageInput type="text" defaultValue="Enter message..." />
         <SubmitInput type="submit" value="submit" />
       </form>
     </Wrapper>
