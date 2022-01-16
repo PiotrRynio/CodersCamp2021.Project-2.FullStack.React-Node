@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`  
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body{
-    font-family: Roboto, "Comic Sans MS";
+    font-family: 'Roboto', sans-serif;
   }
   
 `;
