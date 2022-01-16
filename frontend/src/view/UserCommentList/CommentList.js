@@ -6,7 +6,7 @@ export const CommentList = ({ comments }) => {
   const [commentsList, setCommentList] = useState(comments);
 
   return (
-    <StyledCommentList>
+    <StyledCommentList data-testid={'userComment'}>
       <StyledCommentListTitle>Comments</StyledCommentListTitle>
       <div>
         {commentsList.map((commentItem) => {

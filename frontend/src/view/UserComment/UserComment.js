@@ -13,15 +13,15 @@ export const UserComment = ({ comment }) => {
   const [userComment, setComment] = useState(comment);
 
   return (
-    <StyledCommentContainer>
+    <StyledCommentContainer data-testid="userComment">
       <StyledLeftSection>
-        <UserAvatar userAvatarImage={userComment.author.avatarUrl} />
+        <UserAvatar data-testid="userAvatar" userAvatarImage={userComment.author.avatarUrl} />
       </StyledLeftSection>
       <StyledRightSection>
-        <StyledUserName>
+        <StyledUserName data-testid="userName">
           {userComment.author.firstName} {userComment.author.lastName}
         </StyledUserName>
-        <StyledDate>
+        <StyledDate data-testid="date">
           {new Date(userComment.createDate).toLocaleString([], {
             day: '2-digit',
             month: '2-digit',
@@ -30,7 +30,7 @@ export const UserComment = ({ comment }) => {
             minute: '2-digit',
           })}
         </StyledDate>
-        <StyledContent>{userComment.content}</StyledContent>
+        <StyledContent data-testid="content">{userComment.content}</StyledContent>
       </StyledRightSection>
     </StyledCommentContainer>
   );
