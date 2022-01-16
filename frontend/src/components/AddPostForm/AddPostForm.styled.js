@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a9a9a9;
+
+  width: 100%;
   padding: 12px;
+
+  background-color: #a9a9a9;
 `;
 
-export const Header = styled.h2`
+export const Label = styled.h2`
   color: gray;
 `;
 
