@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const Aside = styled.div`
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 20%;
+  padding: 10px 20px;
   background-color: #f5f5f5;
 `;
 

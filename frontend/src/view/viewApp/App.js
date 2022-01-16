@@ -13,7 +13,7 @@ function App() {
       <GlobalStyle />
       <TopBar />
       <Navigation />
-      <MainContent />
+      {/*<MainContent />*/}
       <RightSide />
       {/*<MainTemplate>*/}
       {/*  <MainContent />*/}
