@@ -1,9 +1,14 @@
-import { Wrapper, ReadMore, Image, Comments } from './Announcement.styled';
-import { useState } from 'react';
+import {
+  Wrapper,
+  ReadMore,
+  Image,
+  Comments,
+  Board,
+  Title,
+  Description,
+} from './Announcement.styled';
 
-const Announcement = ({ title, photo, boardName, content, commentsNumber }) => {
-  const [open, setOpen] = useState(() => false);
-
+const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen }) => {
   const getShortDescription = (desc) => {
     if (desc.length > 50) {
       return desc.slice(0, 47) + '...  ';
@@ -26,15 +31,16 @@ const Announcement = ({ title, photo, boardName, content, commentsNumber }) => {
     <Wrapper>
       <Image src={photo} alt="Board logo" />
       <div>
-        <h2>{boardName}</h2>
-        <h3>{title}</h3>
-        {open ? (
-          <p>{content}</p>
+        <Board>{boardName}</Board>
+        <Title>{title}</Title>
+        {isOpen ? (
+          <Description>{content}</Description>
         ) : (
           <>
             <p>
               {getShortDescription(content)}
-              <ReadMore onClick={() => setOpen((prev) => !prev)}>[read more]</ReadMore>
+              {/*TODO: Jak będzie zrobiony react router, dodać Link w ReadMore, żeby po kliknięciu przechodzić na pełny widok ogłoszenia */}
+              <ReadMore>[read more]</ReadMore>
             </p>
             <Comments>{commentsString()}</Comments>
           </>

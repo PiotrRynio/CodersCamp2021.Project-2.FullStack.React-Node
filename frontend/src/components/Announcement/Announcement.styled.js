@@ -4,17 +4,23 @@ export const Wrapper = styled.div`
   display: flex;
   align-content: center;
   margin: 10px;
-  padding: 15px;
+  padding: 20px;
   background: white;
   border-radius: 10px;
+`;
 
-  h2 {
-    font-weight: 300;
-  }
+export const Board = styled.h2`
+  font-weight: 300;
+`;
 
-  h3 {
-    margin: 8px 0;
-  }
+export const Title = styled.h3`
+  margin: 8px 0;
+`;
+
+export const Description = styled.p`
+  text-align: justify;
+  white-space: pre-wrap;
+  margin-right: 20px;
 `;
 
 export const Image = styled.img`
@@ -38,4 +44,10 @@ export const ReadMore = styled.span`
 export const Comments = styled.p`
   margin-top: 4px;
   color: #666;
+  cursor: pointer;
+  transition: all 300ms;
+
+  &:hover {
+    color: black;
+  }
 `;
