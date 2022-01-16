@@ -1,9 +1,11 @@
-import { CommentSection } from './UserCommentList/CommentSection';
+import { CommentList } from './UserCommentList/CommentList';
+import { sampleCommentList } from '../mocks/UserCommentList';
 
 function App() {
   return (
     <div className="App">
-      <CommentSection />
+      <p></p>
+      <CommentList comments={sampleCommentList} />
     </div>
   );
 }

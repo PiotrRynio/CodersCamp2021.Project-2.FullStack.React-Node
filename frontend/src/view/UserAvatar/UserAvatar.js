@@ -1,13 +1,9 @@
 import { useState } from 'react';
-import { StyledUserAvatarContainer } from './UserAvatar.styled';
+import { StyledUserAvatar } from './UserAvatar.styled';
 
 //TODO: Just a mockup, needed change to real data
-export const UserAvatar = ({ userAvatarUrl }) => {
-  const [avatarUrl, setAvatarUrl] = useState(userAvatarUrl);
+export const UserAvatar = ({ userAvatarImage }) => {
+  const [avatarUrl, setAvatarUrl] = useState(userAvatarImage);
 
-  return (
-    <StyledUserAvatarContainer>
-      <img className="avatar" src={userAvatarUrl} alt="User avatar" />
-    </StyledUserAvatarContainer>
-  );
+  return <StyledUserAvatar className="avatar" src={avatarUrl} alt="User avatar" />;
 };

@@ -2,6 +2,9 @@ import {
   StyledCommentContainer,
   StyledLeftSection,
   StyledRightSection,
+  StyledUserName,
+  StyledContent,
+  StyledDate,
 } from './UserComment.styled';
 import { useState } from 'react';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
@@ -12,13 +15,13 @@ export const UserComment = ({ comment }) => {
   return (
     <StyledCommentContainer>
       <StyledLeftSection>
-        <UserAvatar userAvatarUrl={userComment.author.avatarUrl} />
+        <UserAvatar userAvatarImage={userComment.author.avatarUrl} />
       </StyledLeftSection>
       <StyledRightSection>
-        <div className="userName">
+        <StyledUserName>
           {userComment.author.firstName} {userComment.author.lastName}
-        </div>
-        <div className="date">
+        </StyledUserName>
+        <StyledDate>
           {new Date(userComment.createDate).toLocaleString([], {
             day: '2-digit',
             month: '2-digit',
@@ -26,8 +29,8 @@ export const UserComment = ({ comment }) => {
             hour: '2-digit',
             minute: '2-digit',
           })}
-        </div>
-        <div className="content">{userComment.content}</div>
+        </StyledDate>
+        <StyledContent>{userComment.content}</StyledContent>
       </StyledRightSection>
     </StyledCommentContainer>
   );
