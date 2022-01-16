@@ -1,20 +1,14 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.main`
-  height: 100%;
-  width: 60%;
+export const Container = styled.main`
+  position: relative;
+  min-height: 200vh;
+  width: 55%;
+  margin-top: 56px;
   background-color: #f5f5f5;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  border-radius: 10px;
 `;
 
 export const Main = styled.h1`
   font-size: 36px;
-  height: 200vh;
 `;

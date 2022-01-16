@@ -1,5 +1,4 @@
 import React from 'react';
-import MainTemplate from '../viewTemplate/MainTemplate';
 import MainContent from '../../components/MainContent/MainContent';
 import RightSide from '../../components/RightSide/RightSide';
 import TopBar from '../../components/Topbar/TopBar';
@@ -13,12 +12,8 @@ function App() {
       <GlobalStyle />
       <TopBar />
       <Navigation />
-      {/*<MainContent />*/}
+      <MainContent />
       <RightSide />
-      {/*<MainTemplate>*/}
-      {/*  <MainContent />*/}
-      {/*  <RightSide />*/}
-      {/*</MainTemplate>*/}
     </Container>
   );
 }

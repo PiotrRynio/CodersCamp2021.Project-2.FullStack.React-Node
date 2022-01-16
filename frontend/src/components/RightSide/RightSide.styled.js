@@ -10,6 +10,7 @@ export const Aside = styled.div`
   align-items: center;
   width: 20%;
   padding: 10px 20px;
+  border-radius: 10px;
   background-color: #f5f5f5;
 `;
 

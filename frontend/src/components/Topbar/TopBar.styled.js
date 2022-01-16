@@ -9,6 +9,7 @@ export const TopBarContainer = styled.div`
   align-items: center;
   padding: 15px 55px 15px 30px;
   background-color: white;
+  z-index: 1;
 `;
 
 export const TopBarLogo = styled.h1`

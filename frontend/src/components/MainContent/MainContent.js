@@ -1,12 +1,8 @@
 import React from 'react';
-import { MainContainer, Main } from './MainContent.styled';
+import { Container } from './MainContent.styled';
 
 const MainContent = () => {
-  return (
-    <MainContainer>
-      <Main>Main</Main>
-    </MainContainer>
-  );
+  return <Container>Witam!</Container>;
 };
 
 export default MainContent;
