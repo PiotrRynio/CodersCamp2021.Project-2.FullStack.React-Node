@@ -9,6 +9,6 @@ export const Container = styled.main`
   border-radius: 10px;
 `;
 
-export const Main = styled.h1`
+export const Main = styled.h4`
   font-size: 36px;
 `;

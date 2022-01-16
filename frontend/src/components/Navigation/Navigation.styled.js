@@ -14,6 +14,6 @@ export const Container = styled.div`
   border-radius: 10px;
 `;
 
-export const NavElements = styled.h1`
+export const Nav = styled.h4`
   font-size: 36px;
 `;

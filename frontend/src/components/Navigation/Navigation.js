@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, NavElements } from './Navigation.styled';
+import { Container, Nav } from './Navigation.styled';
 
 const Navigation = () => {
   return (
     <Container>
-      <NavElements>LeftAside</NavElements>
+      <Nav>Navigation</Nav>
     </Container>
   );
 };

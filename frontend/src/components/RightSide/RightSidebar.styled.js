@@ -14,6 +14,6 @@ export const Sidebar = styled.div`
   background-color: #f5f5f5;
 `;
 
-export const Subscriptions = styled.h1`
+export const Subscriptions = styled.h4`
   font-size: 36px;
 `;

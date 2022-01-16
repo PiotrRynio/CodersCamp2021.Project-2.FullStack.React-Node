@@ -4,7 +4,7 @@ import { Sidebar, Subscriptions } from './RightSidebar.styled';
 const RightSidebar = () => {
   return (
     <Sidebar>
-      <Subscriptions>RightAside</Subscriptions>
+      <Subscriptions>Subscriptions</Subscriptions>
     </Sidebar>
   );
 };

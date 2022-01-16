@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from './MainContent.styled';
 
 const MainContent = () => {
-  return <Container>Witam!</Container>;
+  return <Container>Main</Container>;
 };
 
 export default MainContent;
