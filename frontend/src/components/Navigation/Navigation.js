@@ -1,11 +1,11 @@
 import React from 'react';
-import { Nav, NavElements } from './Navigation.styled';
+import { Container, NavElements } from './Navigation.styled';
 
 const Navigation = () => {
   return (
-    <Nav>
+    <Container>
       <NavElements>LeftAside</NavElements>
-    </Nav>
+    </Container>
   );
 };
 

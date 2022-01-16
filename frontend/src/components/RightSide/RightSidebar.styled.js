@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Aside = styled.div`
+export const Sidebar = styled.div`
   position: fixed;
   top: 56px;
   bottom: 0;
@@ -14,6 +14,6 @@ export const Aside = styled.div`
   background-color: #f5f5f5;
 `;
 
-export const AsideNav = styled.h1`
+export const Subscriptions = styled.h1`
   font-size: 36px;
 `;
