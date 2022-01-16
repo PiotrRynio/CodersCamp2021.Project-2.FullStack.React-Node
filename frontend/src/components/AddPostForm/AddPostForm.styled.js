@@ -7,8 +7,10 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const PostIcon = styled.div``;
+export const Icon = styled.div``;
 
-export const PostContent = styled.h2``;
+export const TitleInput = styled.input``;
 
-export const SubmitButton = styled.button``;
+export const MessageInput = styled.input``;
+
+export const SubmitInput = styled.input``;

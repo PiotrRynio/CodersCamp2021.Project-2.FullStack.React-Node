@@ -1,12 +1,20 @@
 import React from 'react';
-import { Wrapper, PostIcon, PostContent, SubmitButton } from './AddPostForm.styled';
+import { Wrapper, Icon, TitleInput, MessageInput, SubmitInput } from './AddPostForm.styled';
 
 const AddPostForm = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(event);
+  };
+
   return (
     <Wrapper>
-      <PostIcon>Icon</PostIcon>
-      <PostContent>Post content</PostContent>
-      <SubmitButton>Add post</SubmitButton>
+      <form onSubmit={handleSubmit}>
+        <Icon>Icon</Icon>
+        <TitleInput type="text" deafultValue="Enter your title here..." />
+        <MessageInput type="text" defaultValue="Enter your message here..." />
+        <SubmitInput type="submit" value="submit" />
+      </form>
     </Wrapper>
   );
 };
