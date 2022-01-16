@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   body{
-    font-family: Arial, sans-serif;
+    font-family: Roboto, "Comic Sans MS";
   }
   
 `;
