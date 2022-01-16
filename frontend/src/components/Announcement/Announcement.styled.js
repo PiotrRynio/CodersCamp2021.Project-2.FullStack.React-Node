@@ -7,6 +7,14 @@ export const Wrapper = styled.div`
   padding: 15px;
   background: white;
   border-radius: 10px;
+
+  h2 {
+    font-weight: 300;
+  }
+
+  h3 {
+    margin: 8px 0;
+  }
 `;
 
 export const Image = styled.img`
@@ -25,4 +33,9 @@ export const ReadMore = styled.span`
     color: white;
     background: #1a8cd8;
   }
+`;
+
+export const Comments = styled.p`
+  margin-top: 4px;
+  color: #666;
 `;
