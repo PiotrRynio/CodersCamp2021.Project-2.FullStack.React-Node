@@ -3,7 +3,6 @@ import { Container } from './MainContent.styled';
 import Announcement from '../Announcement/Announcement';
 
 const MainContent = () => {
-  console.log('lol');
   const imageSrc =
     'https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/POL_gmina_Sobotka_COA.svg/640px-POL_gmina_Sobotka_COA.svg.png';
   const board = 'Sobótka';
@@ -15,7 +14,7 @@ const MainContent = () => {
 
   return (
     <Container>
-      <Announcement title={title} photo={imageSrc} boardName={board} description={description} />
+      <Announcement title={title} photo={imageSrc} boardName={board} content={description} />
     </Container>
   );
 };
