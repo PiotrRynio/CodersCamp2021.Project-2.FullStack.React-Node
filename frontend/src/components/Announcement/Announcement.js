@@ -3,10 +3,11 @@ import {
   ReadMore,
   Image,
   Comments,
-  Board,
   Title,
   Description,
+  Board,
 } from './Announcement.styled';
+import PropTypes from 'prop-types';
 
 const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen }) => {
   const getShortDescription = (desc) => {
@@ -48,6 +49,15 @@ const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen
       </div>
     </Wrapper>
   );
+};
+
+Announcement.propTypes = {
+  title: PropTypes.string.isRequired,
+  photo: PropTypes.string,
+  boardName: PropTypes.string,
+  content: PropTypes.string.isRequired,
+  commentsNumber: PropTypes.number,
+  isOpen: PropTypes.bool,
 };
 
 export default Announcement;
