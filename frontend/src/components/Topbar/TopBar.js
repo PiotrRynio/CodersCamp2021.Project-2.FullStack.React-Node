@@ -1,11 +1,11 @@
 import React from 'react';
-import { TopBarContainer, TopBarLogo, TopBarLogoSpan, TopBarSearch } from './TopBar.styled.js';
+import { TopBarContainer, TopBarLogo, TopBarLogoMarked, TopBarSearch } from './TopBar.styled.js';
 
 const TopBar = () => {
   return (
     <TopBarContainer>
       <TopBarLogo>
-        Board<TopBarLogoSpan>MAP</TopBarLogoSpan>
+        Board<TopBarLogoMarked>MAP</TopBarLogoMarked>
       </TopBarLogo>
       <TopBarSearch />
     </TopBarContainer>
