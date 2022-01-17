@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { UserComment } from '../UserComment/UserComment';
+import { UserComment } from './UserComment';
 import { act } from 'react-dom/test-utils';
-import avatar1 from '../../mocks/images/avatars/sample-avatar1.jpg';
+import avatar1 from '../../../mocks/images/avatars/sample-avatar1.jpg';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 
 describe('UserComment', () => {

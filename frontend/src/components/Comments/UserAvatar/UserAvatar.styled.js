@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const StyledUserAvatar = styled.img`
+export const Avatar = styled.img`
   border-radius: 50%;
 `;
