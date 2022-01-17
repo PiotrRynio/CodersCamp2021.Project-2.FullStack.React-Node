@@ -29,6 +29,17 @@ export const Image = styled.img`
   margin-right: 10px;
 `;
 
+export const Icon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #1a8cd8;
+`;
+
 export const ReadMore = styled.span`
   font-weight: bold;
   color: #1a8cd8;

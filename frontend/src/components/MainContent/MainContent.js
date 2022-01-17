@@ -16,7 +16,7 @@ const MainContent = () => {
     <Container>
       <Announcement
         title={title}
-        photo={imageSrc}
+        //photo={imageSrc}
         boardName={board}
         content={description}
         commentsNumber={commentsNumber}

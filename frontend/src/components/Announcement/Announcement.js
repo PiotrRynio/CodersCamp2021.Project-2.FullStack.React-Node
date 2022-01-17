@@ -6,8 +6,12 @@ import {
   Title,
   Description,
   Board,
+  Icon,
 } from './Announcement.styled';
 import PropTypes from 'prop-types';
+
+import { FaHashtag } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
 
 const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen }) => {
   const getShortDescription = (desc) => {
@@ -30,7 +34,15 @@ const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen
 
   return (
     <Wrapper>
-      <Image src={photo} alt="Board logo" />
+      {photo ? (
+        <Image src={photo} alt="Board logo" />
+      ) : (
+        <IconContext.Provider value={{ color: 'white', size: '45px' }}>
+          <Icon>
+            <FaHashtag />
+          </Icon>
+        </IconContext.Provider>
+      )}
       <div>
         <Board>{boardName}</Board>
         <Title>{title}</Title>
