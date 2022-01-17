@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   background-color: #a9a9a9;
 `;
 
-export const Label = styled.h2`
+export const FormTitle = styled.h2`
   color: gray;
 `;
 
