@@ -1,9 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { CommentList } from './CommentList';
-import { UserComment } from '../UserComment/UserComment';
 import { avatar1 } from '../../../mocks/images/avatars/sample-avatar1.jpg';
-import '@testing-library/jest-dom';
-import { shallow } from 'enzyme';
 import '../../../../src/setupTests';
 
 const fakeList = [
@@ -21,7 +18,7 @@ const fakeList = [
   {
     commentId: 20,
     content: 'I agree.',
-    createDate: '2021-06-20T15:48:21.000',
+    createDate: '2021-12-10T10:43:21.000',
     author: {
       userId: 20,
       avatarUrl: avatar1,
@@ -31,22 +28,16 @@ const fakeList = [
   },
 ];
 
-afterEach(() => cleanup());
-
 describe('User comment list', () => {
   it('Should properly render component', async () => {
     render(<CommentList comments={fakeList} />);
-    const commentElement = screen.getByTestId('userCommentList');
-    expect(commentElement).toBeInTheDocument();
-  });
-
-  it('Should contain expected elements', async () => {
-    render(<CommentList comments={fakeList} />);
-    const commentListElement = screen.getByTestId('userCommentList');
+    const title = screen.getByText('Comments');
+    expect(title).toBeInTheDocument();
   });
 
   it('Should contain expected number of comments', () => {
-    const wrapper = shallow(<CommentList comments={fakeList} />);
-    expect(wrapper.find(UserComment)).toHaveLength(fakeList.length);
+    render(<CommentList comments={fakeList} />);
+    const userComments = screen.getAllByTestId('userComment');
+    expect(userComments).toHaveLength(fakeList.length);
   });
 });

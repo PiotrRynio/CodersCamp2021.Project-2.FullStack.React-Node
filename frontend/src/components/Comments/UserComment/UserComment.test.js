@@ -1,8 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { UserComment } from './UserComment';
 import avatar1 from '../../../mocks/images/avatars/sample-avatar1.jpg';
-
-afterEach(() => cleanup());
 
 describe('UserComment', () => {
   const fakeComment = {
@@ -16,20 +14,22 @@ describe('UserComment', () => {
       lastName: 'Kowalski',
     },
   };
+  const fakeDate = new Date(fakeComment.createDate).toLocaleString([], {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
   it('Should properly render component', async () => {
     render(<UserComment comment={fakeComment} />);
-    const commentElement = screen.getByTestId('userComment');
-    expect(commentElement).toBeInTheDocument();
-  });
-  it('Should contain expected elements', async () => {
-    render(<UserComment comment={fakeComment} />);
-    const commentElement = screen.getByTestId('userComment');
-    const avatar = screen.getByTestId('userAvatar');
-    const date = screen.getByTestId('date');
-    const content = screen.getByTestId('content');
+    const avatar = screen.getByAltText('User avatar');
+    const date = screen.getByText(fakeDate);
+    const content = screen.getByRole('article');
 
-    expect(commentElement).toContainElement(avatar);
-    expect(commentElement).toContainElement(date);
-    expect(commentElement).toContainElement(content);
+    expect(avatar).toBeInTheDocument();
+    expect(date).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
   });
 });
