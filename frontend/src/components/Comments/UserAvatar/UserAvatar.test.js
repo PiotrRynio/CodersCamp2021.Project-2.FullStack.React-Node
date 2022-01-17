@@ -1,7 +1,5 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import { UserAvatar } from './UserAvatar';
-import { sampleCommentList } from '../../../mocks/UserCommentList';
-import { act } from 'react-dom/test-utils';
 
 afterEach(() => cleanup());
 
