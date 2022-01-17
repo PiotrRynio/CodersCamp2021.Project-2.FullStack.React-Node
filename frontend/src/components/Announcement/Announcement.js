@@ -14,23 +14,10 @@ import { FaHashtag } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 
 const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen }) => {
-  const getShortDescription = (desc) => {
-    if (desc.length > 50) {
-      return desc.slice(0, 47) + '...  ';
-    } else {
-      return desc;
-    }
-  };
+  const shortDescription = () => (content.length > 50 ? content.slice(0, 47) + '...  ' : content);
 
-  const commentsString = () => {
-    if (commentsNumber === 1) {
-      return '[1 comment]';
-    } else if (commentsNumber > 1) {
-      return `[${commentsNumber} comments]`;
-    } else {
-      return null;
-    }
-  };
+  const commentsString = () =>
+    commentsNumber && (commentsNumber === 1 ? '[1 comment]' : `[${commentsNumber} comments]`);
 
   return (
     <Wrapper>
@@ -51,7 +38,7 @@ const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen
         ) : (
           <>
             <p>
-              {getShortDescription(content)}
+              {shortDescription()}
               {/*TODO: Jak będzie zrobiony react router, dodać Link w ReadMore, żeby po kliknięciu przechodzić na pełny widok ogłoszenia */}
               <ReadMore>[read more]</ReadMore>
             </p>
