@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { UserComment } from './UserComment';
-import avatar1 from '../../../mocks/images/avatars/sample-avatar1.jpg';
+import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 
 describe('UserComment', () => {
   const fakeComment = {

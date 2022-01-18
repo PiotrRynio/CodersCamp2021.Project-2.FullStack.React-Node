@@ -1,5 +1,5 @@
-import avatar1 from '../mocks/images/avatars/sample-avatar1.jpg';
-import avatar2 from '../mocks/images/avatars/sample-avatar2.jpg';
+import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
+import avatar2 from 'mocks/images/avatars/sample-avatar2.jpg';
 
 export const sampleUser1 = {
   userId: 1,
