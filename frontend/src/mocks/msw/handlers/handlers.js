@@ -1,9 +1,3 @@
-// src/mocks/handlers.js
-import { rest } from 'msw';
-import { sampleCommentList } from '../../objects/UserCommentList';
+import { commentListsHandler } from './commentListsHandler.js';
 
-export const handlers = [
-  rest.get('/commentLists', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(sampleCommentList));
-  }),
-];
+export const handlers = [commentListsHandler];
