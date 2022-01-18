@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Form = styled.form`
+  padding: 1em;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  text-align: center;
 
-  width: 100%;
-  padding: 12px;
-
-  background-color: #a9a9a9;
+  background-color: #bbb;
 `;
 
 export const FormTitle = styled.h2`
