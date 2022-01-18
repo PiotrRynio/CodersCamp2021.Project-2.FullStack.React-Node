@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from './MainContent.styled';
+import { CommentList } from '../../components/Comments/UserCommentList/CommentList';
 import Announcement from '../Announcement/Announcement';
 
 const MainContent = () => {
@@ -12,6 +13,7 @@ const MainContent = () => {
   const comments = ['a', 'b', 'c'];
   return (
     <Container>
+      Main
       <Announcement
         announcement={{
           title,
@@ -21,6 +23,7 @@ const MainContent = () => {
           comments,
         }}
       />
+      <CommentList />
     </Container>
   );
 };
