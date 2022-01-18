@@ -29,4 +29,4 @@ const sampleComment2 = {
   author: sampleUser2,
 };
 
-export const commentListsResponse = {};
+export const commentListsResponse = { commentList: [sampleComment1, sampleComment2] };
