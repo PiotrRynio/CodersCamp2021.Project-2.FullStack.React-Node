@@ -23,23 +23,6 @@ export const Description = styled.p`
   margin-right: 20px;
 `;
 
-export const Image = styled.img`
-  height: 70px;
-  border-radius: 50%;
-  margin-right: 10px;
-`;
-
-export const Icon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: #1a8cd8;
-`;
-
 export const ReadMore = styled.span`
   font-weight: bold;
   color: #1a8cd8;
@@ -53,7 +36,7 @@ export const ReadMore = styled.span`
 `;
 
 export const Comments = styled.p`
-  margin-top: 4px;
+  margin-top: 8px;
   color: #666;
   cursor: pointer;
   transition: all 300ms;

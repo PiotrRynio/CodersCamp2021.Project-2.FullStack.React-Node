@@ -1,19 +1,9 @@
-import {
-  Wrapper,
-  ReadMore,
-  Image,
-  Comments,
-  Title,
-  Description,
-  Board,
-  Icon,
-} from './Announcement.styled';
+import { Wrapper, ReadMore, Comments, Title, Description, Board } from './Announcement.styled';
 import PropTypes from 'prop-types';
-
-import { FaHashtag } from 'react-icons/fa';
-import { IconContext } from 'react-icons';
+import AnnouncementIcon from '../AnnouncementIcon/AnnouncementIcon';
 
 const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen }) => {
+  //const {  } = announcement;
   const shortDescription = () => (content.length > 50 ? content.slice(0, 47) + '...  ' : content);
 
   const commentsString = () =>
@@ -21,15 +11,7 @@ const Announcement = ({ title, photo, boardName, content, commentsNumber, isOpen
 
   return (
     <Wrapper>
-      {photo ? (
-        <Image src={photo} alt="Board logo" />
-      ) : (
-        <IconContext.Provider value={{ color: 'white', size: '45px' }}>
-          <Icon>
-            <FaHashtag />
-          </Icon>
-        </IconContext.Provider>
-      )}
+      <AnnouncementIcon iconType={'default'} />
       <div>
         <Board>{boardName}</Board>
         <Title>{title}</Title>
