@@ -19,7 +19,7 @@ const AnnouncementIcon = ({ iconType }) => {
 };
 
 AnnouncementIcon.propTypes = {
-  iconType: PropTypes.oneOf(['electricity', 'water', 'pets', 'default']).isRequired,
+  iconType: PropTypes.oneOf(['electricity', 'water', 'pets']),
 };
 
 export default AnnouncementIcon;
