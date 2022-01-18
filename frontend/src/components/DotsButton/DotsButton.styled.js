@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import {device} from "../../RWD/device";
+import {breakpoints} from "../../RWD/breakpoints";
 
 export const StyledDotsButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #bbb;
   cursor: pointer;
 `
@@ -15,16 +15,20 @@ export const StyledDotsButton = styled.div`
 export const ButtonContainer = styled.div`
   color: #bbb;
   transition: color 0.15s ease-out;
+  
     &:hover {
       color: #6b6b6b;
     }
-    @media ${device.tablet} {
+  
+    @media ${breakpoints.md} {
       font-size: 2rem;
     }
-    @media ${device.laptop} {
+  
+    @media ${breakpoints.lg} {
       font-size: 2.5rem;
     }
-    @media ${device.desktop} {
+  
+    @media ${breakpoints.xl} {
       font-size: 3.125rem;
     }
 `

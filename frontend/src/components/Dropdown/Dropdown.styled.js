@@ -1,31 +1,34 @@
 import styled from "styled-components";
-import {device} from "../../RWD/device";
+import {breakpoints} from "../../RWD/breakpoints";
 
 export const StyledDropdown = styled.div`
-  min-width: 160px;
-  padding: 0.5rem;
   position: absolute;
-  top: calc(0% + .7rem);
+  top: calc(0% + 11px);
   right: 0;
+  padding: 0.5rem;
+  min-width: 160px;
   background-color: #fff;
   border: 1px solid #e1e1e1;
   border-radius: 5px;
   overflow: hidden;
-    @media ${device.tablet} {
+  
+    @media ${breakpoints.md} {
       min-width: 240px;
-      top: calc(0% + 1.4rem);
+      top: calc(0% + 22px);
     }
-    @media ${device.laptop} {
+  
+    @media ${breakpoints.lg} {
       min-width: 300px;
-      top: calc(0% + 1.75rem);
+      top: calc(0% + 27px);
     }
-    @media ${device.desktop} {
+  
+    @media ${breakpoints.xl} {
       min-width: 400px;
-      top: calc(0% + 2.2rem);
+      top: calc(0% + 35px);
     }
 `
 
-export const StyledDropdownItem = styled.div`
+export const DropdownItem = styled.div`
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -34,30 +37,35 @@ export const StyledDropdownItem = styled.div`
   color: #2c2c2c;
   cursor: pointer;
   transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+  
     &:hover {
       background: #F8F8F8FF;
     }
+  
     &:hover > :first-child {
       color: #2c2c2c;
     }
-    @media ${device.tablet} {
+  
+    @media ${breakpoints.md} {
       min-height: 67.5px;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
-    @media ${device.laptop} {
+  
+    @media ${breakpoints.lg} {
       min-height: 85px;
-      font-size: 1.75rem;
+      font-size: 1.4rem;
     }
-    @media ${device.desktop} {
+  
+    @media ${breakpoints.xl} {
       min-height: 102.5px;
-      font-size: 1.9rem;
+      font-size: 1.7rem;
     }
 `
 
-export const StyledImage = styled.div`
+export const Image = styled.div`
   min-height: 40px;
   min-width: 40px;
-  margin: 5px;
+  margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,15 +73,18 @@ export const StyledImage = styled.div`
   color: #bbb;
   border-radius: 50%;
   transition: color 0.15s ease-in-out;
-    @media ${device.tablet} {
+  
+    @media ${breakpoints.md} {
       min-height: 53px;
       min-width: 53px;
     }
-    @media ${device.laptop} {
+  
+    @media ${breakpoints.lg} {
       min-height: 66px;
       min-width: 66px;
     }
-    @media ${device.desktop} {
+  
+    @media ${breakpoints.xl} {
       min-height: 80px;
       min-width: 80px;
     }

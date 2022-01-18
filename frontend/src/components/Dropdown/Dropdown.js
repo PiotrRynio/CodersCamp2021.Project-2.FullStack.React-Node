@@ -1,28 +1,28 @@
 import React from 'react';
-import {StyledDropdown, StyledDropdownItem, StyledImage} from "./Dropdown.styled";
+import {StyledDropdown, DropdownItem, Image} from "./Dropdown.styled";
 import { FaBell, FaFlag, FaEyeSlash } from "react-icons/fa";
 
 const Dropdown = () => {
   return (
     <StyledDropdown>
-      <StyledDropdownItem>
-        <StyledImage>
+      <DropdownItem>
+        <Image>
           <FaBell />
-        </StyledImage>
+        </Image>
         <span>Notify me</span>
-      </StyledDropdownItem>
-      <StyledDropdownItem>
-        <StyledImage>
+      </DropdownItem>
+      <DropdownItem>
+        <Image>
           <FaFlag />
-        </StyledImage>
+        </Image>
         <span>Report this post</span>
-      </StyledDropdownItem>
-      <StyledDropdownItem>
-        <StyledImage>
+      </DropdownItem>
+      <DropdownItem>
+        <Image>
           <FaEyeSlash />
-        </StyledImage>
+        </Image>
         <span>Don't show me this post</span>
-      </StyledDropdownItem>
+      </DropdownItem>
     </StyledDropdown>
     )
 }

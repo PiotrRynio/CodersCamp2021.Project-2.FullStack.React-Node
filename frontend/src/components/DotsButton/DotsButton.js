@@ -4,7 +4,7 @@ import { FaEllipsisH } from 'react-icons/fa';
 
 import PropTypes from 'prop-types';
 
-const DotsButton = (props) => {
+const DotsButton = ({children = this.props.children}) => {
   const [isOpened, setOpened] = useState(false);
 
   return (
@@ -13,12 +13,12 @@ const DotsButton = (props) => {
         <FaEllipsisH />
       </ButtonContainer>
 
-      {isOpened && props.children}
+      {isOpened && children}
     </StyledDotsButton>
   )
-  DotsButton.propTypes = {
-    props: PropTypes.bool
-  }
 }
 
+DotsButton.propTypes = {
+  children: PropTypes.node
+}
 export default DotsButton;

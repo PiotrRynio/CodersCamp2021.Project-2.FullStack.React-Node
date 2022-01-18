@@ -1,5 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import { BoardContainer, BoardInfoContainer, BoardInfo, BoardImage, BoardTitle, AuthorInfoContainer, AuthorName, AuthorAvatar } from "./Board.styled";
+import {
+  BoardContainer,
+  BoardInfoContainer,
+  BoardInfo,
+  BoardImage,
+  BoardTitle,
+  AuthorInfoContainer,
+  AuthorName,
+  AuthorAvatar
+} from "./Board.styled";
 import DotsButton from "../DotsButton/DotsButton";
 import Dropdown from '../Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
