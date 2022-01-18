@@ -1,5 +1,5 @@
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
-import { Icon } from './AnnouncementIcon.styled.js';
+import { IconContainer } from './AnnouncementIcon.styled.js';
 import PropTypes from 'prop-types';
 
 const AnnouncementIcon = ({ iconType }) => {
@@ -15,7 +15,7 @@ const AnnouncementIcon = ({ iconType }) => {
     }
   };
 
-  return <Icon>{properIcon()}</Icon>;
+  return <IconContainer>{properIcon()}</IconContainer>;
 };
 
 AnnouncementIcon.propTypes = {

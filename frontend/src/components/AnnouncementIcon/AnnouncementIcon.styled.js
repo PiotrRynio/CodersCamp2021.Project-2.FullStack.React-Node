@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../RWD/breakpoints';
 
-export const Icon = styled.div`
+export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
