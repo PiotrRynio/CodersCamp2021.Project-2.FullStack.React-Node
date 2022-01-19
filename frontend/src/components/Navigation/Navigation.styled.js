@@ -22,6 +22,9 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top: 1px solid #f5f5f5;
+    border-radius: 0;
+    background-color: white;
     z-index: 10;
   }
 `;
@@ -36,6 +39,8 @@ export const NavMenu = styled.ul`
   cursor: pointer;
 
   @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -60,15 +65,18 @@ export const NavLink = styled(Link)`
   @media (max-width: 768px) {
     height: 100%;
     align-items: stretch;
+    width: 100%;
   }
 `;
 
 export const NavIcon = styled.div`
   padding-right: 20px;
   color: #1a8cd8;
-`;
 
-export const NavButton = styled.button``;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+`;
 
 export const NavText = styled.p`
   @media (max-width: 1400px) {

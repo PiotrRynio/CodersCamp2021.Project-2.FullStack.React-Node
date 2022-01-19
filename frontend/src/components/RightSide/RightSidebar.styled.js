@@ -12,6 +12,10 @@ export const Sidebar = styled.div`
   padding: 10px 20px;
   border-radius: 10px;
   background-color: #f5f5f5;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Subscriptions = styled.h4`

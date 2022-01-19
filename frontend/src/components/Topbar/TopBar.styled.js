@@ -11,6 +11,13 @@ export const TopBarContainer = styled.div`
   align-items: center;
   background-color: white;
   z-index: 100000;
+
+  @media (max-width: 768px) {
+    position: relative;
+    padding-top: 10px;
+    flex-direction: column;
+    height: 100px;
+  }
 `;
 
 export const TopBarLogo = styled(Link)`
@@ -18,6 +25,9 @@ export const TopBarLogo = styled(Link)`
   text-decoration: none;
   color: black;
   cursor: pointer;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const TopBarLogoMarked = styled.span`
@@ -27,9 +37,14 @@ export const TopBarLogoMarked = styled.span`
 export const TopBarSearch = styled.input`
   padding: 5px 10px;
   border-radius: 10px;
-  transition: width 3s;
 
   &:focus {
     width: 300px;
+  }
+
+  @media (max-width: 768px) {
+    &:focus {
+      width: 250px;
+    }
   }
 `;
