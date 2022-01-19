@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Container>
       <CommentList />
-      <AnnouncementsList boardsIds={[1, 2]} announcementsNumber={4} showBoardNames={false} />
+      <AnnouncementsList boardsIds={[1, 2]} announcementsNumber={4} showBoardNames={true} />
     </Container>
   );
 };
