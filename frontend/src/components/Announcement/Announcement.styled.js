@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../RWD/breakpoints';
+import { breakpoints } from '../../rwd/breakpoints';
 
 export const Wrapper = styled.div`
   margin: 10px;
