@@ -5,7 +5,6 @@ import { CommentList } from '../../components/Comments/UserCommentList/CommentLi
 const Home = () => {
   return (
     <Container>
-      Main
       <CommentList />
     </Container>
   );
