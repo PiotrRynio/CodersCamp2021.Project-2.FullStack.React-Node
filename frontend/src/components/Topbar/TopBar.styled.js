@@ -14,7 +14,7 @@ export const TopBarContainer = styled.div`
 
   @media (max-width: 768px) {
     position: relative;
-    padding-top: 10px;
+    padding: 10px 0 0 0;
     flex-direction: column;
     height: 100px;
   }
