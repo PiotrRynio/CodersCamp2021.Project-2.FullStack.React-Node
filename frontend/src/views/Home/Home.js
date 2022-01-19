@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container } from './MainContent.styled';
+import { Container } from './Home.styled';
 import { CommentList } from '../../components/Comments/UserCommentList/CommentList';
 import Announcement from '../Announcement/Announcement';
 
-const MainContent = () => {
+const Home = () => {
   return (
     <Container>
       <CommentList />
@@ -11,4 +11,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default Home;
