@@ -7,9 +7,9 @@ export const Container = styled.div`
   top: 56px;
   bottom: 0;
   width: 20%;
-  background-color: #f5f5f5;
   padding: 30px 20px;
   border-radius: 10px;
+  background-color: #f5f5f5;
 `;
 
 export const NavMenu = styled.ul`
@@ -17,22 +17,23 @@ export const NavMenu = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  cursor: pointer;
-  list-style: none;
   text-align: center;
+  list-style: none;
+  cursor: pointer;
 `;
 
 export const NavItem = styled.li``;
 
 export const NavLinks = styled(Link)`
-  color: black;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  height: 100px;
   font-size: 36px;
+  color: black;
   cursor: pointer;
+
   &.active {
     border-bottom: 2px solid #1a8cd8;
   }

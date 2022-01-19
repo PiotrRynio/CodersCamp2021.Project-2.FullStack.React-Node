@@ -3,7 +3,7 @@ import Home from '../Home/Home';
 import RightSide from '../../components/RightSide/RightSidebar';
 import TopBar from '../../components/Topbar/TopBar';
 import Navigation from '../../components/Navigation/Navigation';
-import { Container } from './App.styled';
+import { Container, MainSection } from './App.styled';
 import { GlobalStyle } from '../../assets/styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -23,13 +23,15 @@ function App() {
           <TopBar />
           <Navigation />
           <RightSide />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="Notifications" element={<Notifications />} />
-            <Route path="Subscribed" element={<Subscribed />} />
-            <Route path="addPost" element={<AddPost />} />
-            <Route path="singUp" element={<SingUp />} />
-          </Routes>
+          <MainSection>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="Notifications" element={<Notifications />} />
+              <Route path="Subscribed" element={<Subscribed />} />
+              <Route path="addPost" element={<AddPost />} />
+              <Route path="singUp" element={<SingUp />} />
+            </Routes>
+          </MainSection>
         </Container>
       </QueryClientProvider>
     </Router>
