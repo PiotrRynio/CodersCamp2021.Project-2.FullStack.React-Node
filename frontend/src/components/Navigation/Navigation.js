@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHome, FaBell, FaUserAlt, FaHeart } from 'react-icons/fa';
+import { FaHome, FaBell, FaUserAlt, FaHeart, FaPlusSquare } from 'react-icons/fa';
 
 import {
   Container,
@@ -14,8 +14,10 @@ import {
 const Navigation = () => {
   const navItems = [
     { path: '/', icon: <FaHome />, title: 'Home' },
-    { path: 'Notifications', icon: <FaBell />, title: 'Notifications' },
-    { path: 'Subscribed', icon: <FaHeart />, title: 'Subscribed' },
+    { path: 'subscribed', icon: <FaHeart />, title: 'Subscribed' },
+    { path: 'addPost', icon: <FaPlusSquare />, title: 'Add post' },
+    { path: 'notifications', icon: <FaBell />, title: 'Notifications' },
+    { path: 'singUp', icon: <FaUserAlt />, title: 'Sing Up!' },
   ];
   return (
     <Container>

@@ -9,6 +9,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Notifications from '../Notifications/Notifications';
 import Subscribed from '../Subscribed/Subscribed';
+import AddPost from '../AddPost/AddPost';
+import SingUp from '../SingUp/SingUp';
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="Notifications" element={<Notifications />} />
             <Route path="Subscribed" element={<Subscribed />} />
+            <Route path="addPost" element={<AddPost />} />
+            <Route path="singUp" element={<SingUp />} />
           </Routes>
         </Container>
       </QueryClientProvider>

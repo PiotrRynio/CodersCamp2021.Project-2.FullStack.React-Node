@@ -40,12 +40,13 @@ export const NavLinks = styled(Link)`
 
 export const NavIcon = styled.div`
   padding-right: 20px;
+  color: #1a8cd8;
 `;
 
 export const NavButton = styled.button``;
 
 export const NavText = styled.p`
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     display: none;
   }
 `;
