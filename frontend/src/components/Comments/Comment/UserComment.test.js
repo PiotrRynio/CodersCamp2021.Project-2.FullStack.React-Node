@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { UserComment } from './UserComment';
+import { Comment } from './Comment';
 import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 
 describe('UserComment', () => {
@@ -23,7 +23,7 @@ describe('UserComment', () => {
   });
 
   it('Should properly render component', async () => {
-    render(<UserComment comment={fakeComment} />);
+    render(<Comment comment={fakeComment} />);
     const avatar = screen.getByAltText('User avatar');
     const date = screen.getByText(fakeDate);
     const content = screen.getByRole('article');

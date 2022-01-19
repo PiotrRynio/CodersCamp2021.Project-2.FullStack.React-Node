@@ -37,7 +37,7 @@ describe('User comment list', () => {
 
   it('Should contain expected number of comments', () => {
     render(<CommentList comments={fakeList} />);
-    const userComments = screen.getAllByTestId('userComment');
+    const userComments = screen.getAllByTestId('comment');
     expect(userComments).toHaveLength(fakeList.length);
   });
 });

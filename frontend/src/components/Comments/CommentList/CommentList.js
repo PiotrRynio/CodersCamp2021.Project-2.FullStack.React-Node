@@ -1,5 +1,5 @@
-import { UserComment } from 'components/Comments/UserComment/UserComment';
-import { Title } from 'components/Comments/UserCommentList/CommentList.styled';
+import { Comment } from 'components/Comments/Comment/Comment';
+import { Title } from 'components/Comments/CommentList/CommentList.styled';
 import { useQuery } from 'react-query';
 
 export const CommentList = () => {
@@ -11,11 +11,11 @@ export const CommentList = () => {
   if (isError) return <div>Error</div>;
 
   return (
-    <div data-testid={'userCommentList'}>
+    <div data-testid={'commentList'}>
       <Title>Comments</Title>
       <div>
         {data.commentList.map((commentItem) => {
-          return <UserComment key={commentItem.commentId} comment={commentItem} />;
+          return <Comment key={commentItem.commentId} comment={commentItem} />;
         })}
       </div>
     </div>

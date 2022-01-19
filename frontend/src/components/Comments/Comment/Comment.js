@@ -8,7 +8,7 @@ import {
   CreateDate,
 } from './UserComment.styled';
 
-export const UserComment = ({ comment }) => {
+export const Comment = ({ comment }) => {
   const date = new Date(comment.createDate).toLocaleString([], {
     day: '2-digit',
     month: '2-digit',
@@ -17,7 +17,7 @@ export const UserComment = ({ comment }) => {
     minute: '2-digit',
   });
   return (
-    <CommentContainer data-testid="userComment">
+    <CommentContainer data-testid="comment">
       <LeftSection>
         <UserAvatar userAvatarImage={comment.author.avatarUrl} />
       </LeftSection>
