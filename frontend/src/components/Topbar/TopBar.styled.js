@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const TopBarContainer = styled.div`
   position: fixed;
@@ -12,9 +13,11 @@ export const TopBarContainer = styled.div`
   z-index: 1;
 `;
 
-export const TopBarLogo = styled.h1`
+export const TopBarLogo = styled(Link)`
   font-size: 48px;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 `;
 
 export const TopBarLogoMarked = styled.span`

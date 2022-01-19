@@ -4,7 +4,7 @@ import { TopBarContainer, TopBarLogo, TopBarLogoMarked, TopBarSearch } from './T
 const TopBar = () => {
   return (
     <TopBarContainer>
-      <TopBarLogo>
+      <TopBarLogo to="/">
         Board<TopBarLogoMarked>MAP</TopBarLogoMarked>
       </TopBarLogo>
       <TopBarSearch />
