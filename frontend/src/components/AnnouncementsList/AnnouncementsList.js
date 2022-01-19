@@ -22,16 +22,18 @@ const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) =
 
   useEffect(() => {
     if (!!data && !!data.boards) {
-      console.log(data.boards.filter(({ boardId }) => boardsIds.includes(boardId)));
       const announcementsToShow = data.boards
         .filter(({ boardId }) => boardsIds.includes(boardId))
         .reduce((acc, { announcements }) => {
           acc.push(...announcements);
           return acc;
         }, [])
-        .sort((a, b) => b.date - a.date)
+        .sort(({ date: a }, { date: b }) => {
+          const dateA = new Date(a);
+          const dateB = new Date(b);
+          return dateB.getTime() - dateA.getTime();
+        })
         .slice(0, announcementsNumber);
-      console.log(announcementsToShow);
       setAnnouncemensts(announcementsToShow);
     }
   }, [data]);
