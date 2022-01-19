@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container } from './MainContent.styled';
+import { Container } from './Home.styled';
 import { CommentList } from '../../components/Comments/UserCommentList/CommentList';
 
-const MainContent = () => {
+const Home = () => {
   return (
     <Container>
       Main
@@ -11,4 +11,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default Home;
