@@ -22,9 +22,7 @@ export const NavMenu = styled.ul`
   text-align: center;
 `;
 
-export const NavItem = styled.li`
-  height: 100px;
-`;
+export const NavItem = styled.li``;
 
 export const NavLinks = styled(Link)`
   color: black;
@@ -32,7 +30,7 @@ export const NavLinks = styled(Link)`
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  height: 100%;
+  height: 100px;
   font-size: 36px;
   cursor: pointer;
   &.active {
@@ -42,4 +40,12 @@ export const NavLinks = styled(Link)`
 
 export const NavIcon = styled.div`
   padding-right: 20px;
+`;
+
+export const NavButton = styled.button``;
+
+export const NavText = styled.p`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;

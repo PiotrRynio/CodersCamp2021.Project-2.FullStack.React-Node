@@ -1,19 +1,7 @@
 import React from 'react';
-import {
-  Container,
-  ChooseNotifications,
-  LatestNotifications,
-  SubscribedNotifications,
-} from './Notifications.styled';
+import { Container } from './Notifications.styled';
 
 const Notifications = () => {
-  return (
-    <Container>
-      <ChooseNotifications>
-        <LatestNotifications>Latest Notifications</LatestNotifications>
-        <SubscribedNotifications>Subscribed Notifications</SubscribedNotifications>
-      </ChooseNotifications>
-    </Container>
-  );
+  return <Container></Container>;
 };
 export default Notifications;

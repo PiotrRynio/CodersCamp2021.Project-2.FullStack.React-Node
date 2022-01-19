@@ -1,16 +1,23 @@
 import React from 'react';
-import { FaHome, FaBell, FaUserAlt } from 'react-icons/fa';
+import { FaHome, FaBell, FaUserAlt, FaHeart } from 'react-icons/fa';
 
-import { Container, NavMenu, NavItem, NavLinks, NavIcon } from './Navigation.styled';
-import Home from '../../views/Home/Home';
-import Notifications from '../../views/Notifications/Notifications';
+import {
+  Container,
+  NavMenu,
+  NavItem,
+  NavLinks,
+  NavIcon,
+  NavButton,
+  NavText,
+} from './Navigation.styled';
 
 const Navigation = () => {
+  const navItems = [{ path: '/' }];
   return (
     <Container>
       <NavMenu>
         <NavItem>
-          <NavLinks to="/" element={<Home />}>
+          <NavLinks to={navItems}>
             <NavIcon>
               <FaHome />
             </NavIcon>
@@ -18,20 +25,23 @@ const Navigation = () => {
           </NavLinks>
         </NavItem>
         <NavItem>
-          <NavLinks to="Notifications" element={<Notifications />}>
+          <NavLinks to="Notifications">
             <NavIcon>
               <FaBell />
             </NavIcon>
-            Notifications
+            <NavText>Notifications</NavText>
           </NavLinks>
         </NavItem>
         <NavItem>
-          <NavLinks to="/singup">
+          <NavLinks to="Subscribed">
             <NavIcon>
-              <FaUserAlt />
+              <FaHeart />
             </NavIcon>
-            Sing Up!
+            Subscribed
           </NavLinks>
+        </NavItem>
+        <NavItem>
+          <NavButton>Sing Up</NavButton>
         </NavItem>
       </NavMenu>
     </Container>

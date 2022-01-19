@@ -7,6 +7,8 @@ import { Container } from './App.styled';
 import { GlobalStyle } from '../../assets/styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Notifications from '../Notifications/Notifications';
+import Subscribed from '../Subscribed/Subscribed';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,8 @@ function App() {
           <RightSide />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="Notifications" element={<Notifications />} />
+            <Route path="Subscribed" element={<Subscribed />} />
           </Routes>
         </Container>
       </QueryClientProvider>
