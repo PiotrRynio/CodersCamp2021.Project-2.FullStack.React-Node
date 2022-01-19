@@ -5,7 +5,7 @@ import {
   Container,
   NavMenu,
   NavItem,
-  NavLinks,
+  NavLink,
   NavIcon,
   NavButton,
   NavText,
@@ -25,10 +25,10 @@ const Navigation = () => {
         {navItems.map((navItem) => {
           return (
             <NavItem>
-              <NavLinks to={navItem.path}>
+              <NavLink to={navItem.path}>
                 <NavIcon>{navItem.icon}</NavIcon>
                 <NavText>{navItem.title}</NavText>
-              </NavLinks>
+              </NavLink>
             </NavItem>
           );
         })}
