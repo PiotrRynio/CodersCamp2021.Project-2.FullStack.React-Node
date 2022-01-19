@@ -12,37 +12,24 @@ import {
 } from './Navigation.styled';
 
 const Navigation = () => {
-  const navItems = [{ path: '/' }];
+  const navItems = [
+    { path: '/', icon: <FaHome />, title: 'Home' },
+    { path: 'Notifications', icon: <FaBell />, title: 'Notifications' },
+    { path: 'Subscribed', icon: <FaHeart />, title: 'Subscribed' },
+  ];
   return (
     <Container>
       <NavMenu>
-        <NavItem>
-          <NavLinks to={navItems}>
-            <NavIcon>
-              <FaHome />
-            </NavIcon>
-            Home
-          </NavLinks>
-        </NavItem>
-        <NavItem>
-          <NavLinks to="Notifications">
-            <NavIcon>
-              <FaBell />
-            </NavIcon>
-            <NavText>Notifications</NavText>
-          </NavLinks>
-        </NavItem>
-        <NavItem>
-          <NavLinks to="Subscribed">
-            <NavIcon>
-              <FaHeart />
-            </NavIcon>
-            Subscribed
-          </NavLinks>
-        </NavItem>
-        <NavItem>
-          <NavButton>Sing Up</NavButton>
-        </NavItem>
+        {navItems.map((navItem) => {
+          return (
+            <NavItem>
+              <NavLinks to={navItem.path}>
+                <NavIcon>{navItem.icon}</NavIcon>
+                <NavText>{navItem.title}</NavText>
+              </NavLinks>
+            </NavItem>
+          );
+        })}
       </NavMenu>
     </Container>
   );

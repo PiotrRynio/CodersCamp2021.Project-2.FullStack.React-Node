@@ -45,7 +45,7 @@ export const NavIcon = styled.div`
 export const NavButton = styled.button``;
 
 export const NavText = styled.p`
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
