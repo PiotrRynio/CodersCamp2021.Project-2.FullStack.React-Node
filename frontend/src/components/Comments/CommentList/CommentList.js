@@ -1,4 +1,4 @@
-import { Comment } from 'components/Comments/Comment/Comment';
+import { Comment } from 'components/Comments/SingleComment/Comment';
 import { Title } from 'components/Comments/CommentList/CommentList.styled';
 import { useQuery } from 'react-query';
 

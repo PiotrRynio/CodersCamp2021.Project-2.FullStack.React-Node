@@ -1,4 +1,4 @@
-import { UserAvatar } from 'components/Comments/UserAvatar/UserAvatar';
+import { UserAvatar } from '../../UserAvatar/UserAvatar';
 import {
   CommentContainer,
   LeftSection,
