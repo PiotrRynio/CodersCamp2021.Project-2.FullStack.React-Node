@@ -1,61 +1,52 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import Announcement from '../Announcement/Announcement';
 import PropTypes from 'prop-types';
+import Announcement from '../Announcement/Announcement';
 
 const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) => {
   const { data, isLoading, isError } = useQuery('boardsList', async () => {
     return await fetch('/boards').then((response) => response.json());
   });
 
-  const [announcements, setAnnouncemensts] = useState([]);
-  const [windowSize, setWindowSize] = useState('');
-
-  useEffect(() => {
-    const resizeHandler = () => setWindowSize(window.innerWidth);
-    window.addEventListener('resize', resizeHandler);
-
-    return () => {
-      window.removeEventListener(resizeHandler);
-    };
-  }, []);
+  const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
     if (!!data && !!data.boards) {
       const announcementsToShow = data.boards
-        .filter(({ boardId }) => boardsIds.includes(boardId))
-        .reduce((acc, { announcements }) => {
-          acc.push(...announcements);
-          return acc;
+        .filter(({ id }) => boardsIds.includes(id))
+        .reduce((allAnnouncements, { announcements }) => {
+          allAnnouncements.push(...announcements);
+          return allAnnouncements;
         }, [])
-        .sort(({ date: a }, { date: b }) => {
-          const dateA = new Date(a);
-          const dateB = new Date(b);
-          return dateB.getTime() - dateA.getTime();
+        .sort(({ date: prevElement }, { date: nextElement }) => {
+          const prevDate = new Date(prevElement);
+          const nextDate = new Date(nextElement);
+          return nextDate.getTime() - prevDate.getTime();
         })
         .slice(0, announcementsNumber);
-      setAnnouncemensts(announcementsToShow);
+      setAnnouncements(announcementsToShow);
     }
   }, [data]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return (
-    <div data-testid={'announcementsList'}>
-      <div>
-        {announcements.map((announcement) => {
-          return (
-            <Announcement
-              key={announcement.announcementId}
-              announcement={announcement}
-              descriptionLength={windowSize > 470 ? 150 : 50}
-              showBoard={showBoardNames}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <>
+      {announcements.map((announcement) => {
+        return (
+          <Announcement
+            key={announcement.id}
+            announcement={announcement}
+            showBoard={showBoardNames}
+          />
+        );
+      })}
+    </>
   );
 };
 

@@ -1,11 +1,18 @@
-import { Wrapper, ReadMore, Comments, Title, Content, Board } from './Announcement.styled';
+import {
+  Wrapper,
+  ReadMore,
+  Comments,
+  Title,
+  Content,
+  Board,
+  ShortContent,
+  TextWrapper,
+} from './Announcement.styled';
 import PropTypes from 'prop-types';
 import AnnouncementIcon from '../AnnouncementIcon/AnnouncementIcon';
 
-const Announcement = ({ announcement, isOpen, descriptionLength = 50, showBoard }) => {
+const Announcement = ({ announcement, isOpen, showBoard }) => {
   const { title, iconType, boardName, content, comments } = announcement;
-  const shortDescription =
-    content.length > descriptionLength ? content.slice(0, descriptionLength) + '...  ' : content;
 
   const commentsText =
     comments && (comments.length === 1 ? '[1 comment]' : `[${comments.length} comments]`);
@@ -13,18 +20,19 @@ const Announcement = ({ announcement, isOpen, descriptionLength = 50, showBoard 
   return (
     <Wrapper>
       <AnnouncementIcon iconType={iconType} />
-      <div>
-        <Board>{showBoard ? boardName : undefined}</Board>
+      <TextWrapper>
+        <Board>{showBoard && boardName}</Board>
         <Title>{title}</Title>
-        <Content>
-          {isOpen ? content : shortDescription}
-          {/*TODO: Jak będzie zrobiony react router, dodać Link w ReadMore, żeby po kliknięciu przechodzić na pełny widok ogłoszenia */}
-          {isOpen || content === shortDescription ? undefined : (
+        {isOpen ? (
+          <Content>{content}</Content>
+        ) : (
+          <>
+            <ShortContent>{content}</ShortContent>
             <ReadMore>[read&nbsp;more]</ReadMore>
-          )}
-        </Content>
+          </>
+        )}
         <Comments>{commentsText}</Comments>
-      </div>
+      </TextWrapper>
     </Wrapper>
   );
 };
@@ -38,7 +46,6 @@ Announcement.propTypes = {
     comments: PropTypes.array,
   }),
   isOpen: PropTypes.bool,
-  descriptionLength: PropTypes.number,
   showBoard: PropTypes.bool,
 };
 

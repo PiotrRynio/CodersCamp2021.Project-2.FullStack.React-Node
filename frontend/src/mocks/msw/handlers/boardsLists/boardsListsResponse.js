@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const sampleAnnouncement1 = {
-  announcementId: 1,
+  id: 1,
   title: 'Skradziono rower!',
   boardName: 'Sobótka',
   content:
@@ -13,7 +13,7 @@ const sampleAnnouncement1 = {
 };
 
 const sampleAnnouncement2 = {
-  announcementId: 2,
+  id: 2,
   title: 'Awaria prądu!',
   boardName: 'Sobótka',
   iconType: 'electricity',
@@ -26,7 +26,7 @@ const sampleAnnouncement2 = {
 };
 
 const sampleAnnouncement3 = {
-  announcementId: 3,
+  id: 3,
   title: 'Brak wody.',
   boardName: 'Sobótka',
   iconType: 'water',
@@ -38,7 +38,7 @@ const sampleAnnouncement3 = {
 };
 
 const sampleAnnouncement4 = {
-  announcementId: 4,
+  id: 4,
   title: 'Znaleziono psa.',
   boardName: 'Chrząszczyżewoszyce',
   iconType: 'pets',
@@ -51,7 +51,7 @@ const sampleAnnouncement4 = {
 };
 
 const sampleAnnouncement5 = {
-  announcementId: 5,
+  id: 5,
   title: 'Co to za imprezka?!',
   boardName: 'Chrząszczyżewoszyce',
   content:
@@ -61,13 +61,13 @@ const sampleAnnouncement5 = {
 };
 
 const sampleBoard1 = {
-  boardId: 1,
+  id: 1,
   boardName: 'Sobótka',
   announcements: [sampleAnnouncement1, sampleAnnouncement2, sampleAnnouncement3],
 };
 
 const sampleBoard2 = {
-  boardId: 2,
+  id: 2,
   boardName: 'Chrząszczyżewoszyce',
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
 };
