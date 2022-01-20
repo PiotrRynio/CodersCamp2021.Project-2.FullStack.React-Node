@@ -8,19 +8,24 @@ export const Wrapper = styled.div`
   align-content: center;
   background: white;
   border-radius: 10px;
+  max-width: 100%;
 
   @media ${breakpoints.sm} {
     padding: 20px;
   }
 `;
 
+export const TextWrapper = styled.div`
+  max-width: calc(100% - 55px);
+
+  @media ${breakpoints.sm} {
+    max-width: calc(100% - 80px);
+  }
+`;
+
 export const Board = styled.h2`
   font-weight: 300;
   font-size: 16px;
-
-  @media ${breakpoints.sm} {
-    font-size: 24px;
-  }
 `;
 
 export const Title = styled.h3`
@@ -28,7 +33,6 @@ export const Title = styled.h3`
   font-size: 14px;
 
   @media ${breakpoints.sm} {
-    font-size: 19px;
   }
 `;
 
@@ -40,12 +44,26 @@ export const Content = styled.p`
 
   @media ${breakpoints.sm} {
     margin-right: 20px;
-    font-size: 16px;
+  }
+`;
+
+export const ShortContent = styled.p`
+  margin-right: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+
+  @media ${breakpoints.sm} {
+    margin-right: 20px;
   }
 `;
 
 export const ReadMore = styled.span`
   font-weight: bold;
+  font-size: 14px;
   color: #1a8cd8;
   cursor: pointer;
   transition: all 300ms;
@@ -65,9 +83,5 @@ export const Comments = styled.p`
 
   &:hover {
     color: black;
-  }
-
-  @media ${breakpoints.sm} {
-    font-size: 16px;
   }
 `;
