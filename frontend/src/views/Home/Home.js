@@ -1,13 +1,11 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import { CommentList } from '../../components/Comments/CommentList/CommentList';
-import { CommentForm } from '../../components/Comments/CommentInputForm/CommentForm';
+import { CommentsSection } from '../../components/Comments/CommentsSection/CommentsSection';
 
 const Home = () => {
   return (
     <Container>
-      <CommentForm />
-      <CommentList />
+      <CommentsSection />
     </Container>
   );
 };
