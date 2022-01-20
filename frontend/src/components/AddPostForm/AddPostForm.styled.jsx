@@ -6,8 +6,9 @@ export const Form = styled.form`
   text-align: center;
 
   padding: 1em;
+  background-color: #9af;
+  border: 1px solid #68f;
   border-radius: 20px;
-  background-color: #bbc;
 
   * {
     margin: 3px 0px;
@@ -18,10 +19,10 @@ export const FormTitle = styled.h2`
   height: 30px;
   margin: 10px;
 
-  color: gray;
-  font-family: 'Roboto', sans-serif;
+  color: #cdf;
+  text-shadow: 0 0 3px #456, 0 0 5px #34f;
   font-size: 1.5em;
-  font-weight: 300;
+  font-weight: 400;
 `;
 
 export const TitleInput = styled.input`

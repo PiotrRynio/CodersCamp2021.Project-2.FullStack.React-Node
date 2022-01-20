@@ -4,9 +4,9 @@ import { Form, FormTitle, Icon, TitleInput, MessageInput, SubmitInput } from './
 const AddPostForm = () => {
   const [postState, setPostState] = useState({});
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  const handleChange = ({ target }) => {
+    const name = target.name;
+    const value = target.value;
     setPostState((prevState) => ({ ...prevState, [name]: value }));
   };
 
