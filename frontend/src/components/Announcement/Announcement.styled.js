@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { breakpoints } from '../../rwd/breakpoints';
+import { Link } from 'react-router-dom';
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 export const Wrapper = styled.div`
   margin: 10px;
@@ -67,6 +72,7 @@ export const ReadMore = styled.span`
   color: #1a8cd8;
   cursor: pointer;
   transition: all 300ms;
+  text-decoration: none;
 
   &:hover {
     color: white;

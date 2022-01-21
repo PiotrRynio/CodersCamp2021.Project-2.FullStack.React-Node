@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { CommentList } from './CommentList';
-import { avatar1 } from '../../../mocks/images/avatars/sample-avatar1.jpg';
-import '../../../setupTests';
+import { CommentsList } from './CommentsList';
+import { avatar1 } from '../../mocks/images/avatars/sample-avatar1.jpg';
+import '../../setupTests';
 
 const fakeList = [
   {
@@ -30,13 +30,13 @@ const fakeList = [
 
 describe('User comment list', () => {
   it('Should properly render component', async () => {
-    render(<CommentList comments={fakeList} />);
+    render(<CommentsList comments={fakeList} />);
     const title = screen.getByText('Comments');
     expect(title).toBeInTheDocument();
   });
 
   it('Should contain expected number of comments', () => {
-    render(<CommentList comments={fakeList} />);
+    render(<CommentsList comments={fakeList} />);
     const userComments = screen.getAllByTestId('userComment');
     expect(userComments).toHaveLength(fakeList.length);
   });

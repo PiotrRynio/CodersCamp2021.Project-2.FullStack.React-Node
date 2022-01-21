@@ -11,6 +11,7 @@ import Notifications from '../Notifications/Notifications';
 import Subscribed from '../Subscribed/Subscribed';
 import AddPost from '../AddPost/AddPost';
 import SignIn from '../SignIn/SignIn';
+import AnnouncementsDetails from '../AnnouncementDetails/AnnouncementDetails';
 
 const queryClient = new QueryClient();
 
@@ -26,10 +27,11 @@ function App() {
           <MainSection>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="Notifications" element={<Notifications />} />
-              <Route path="Subscribed" element={<Subscribed />} />
-              <Route path="addPost" element={<AddPost />} />
-              <Route path="signIn" element={<SignIn />} />
+              <Route path="/announcements/:id" element={<AnnouncementsDetails />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/subscribed" element={<Subscribed />} />
+              <Route path="/addPost" element={<AddPost />} />
+              <Route path="/signIn" element={<SignIn />} />
             </Routes>
           </MainSection>
         </Container>
