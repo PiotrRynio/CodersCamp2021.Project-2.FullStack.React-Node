@@ -12,7 +12,14 @@ const AddPostForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(postState);
+    if (postState.title === undefined || postState.title.length === 0) {
+      alert('You need to provide a valid title!');
+    } else if (postState.message === undefined || postState.message.length === 0) {
+      alert('You need to provide a valid message!');
+    } else {
+      console.log(postState);
+      //TODO to implement - create a comment from the post data
+    }
   };
 
   return (
