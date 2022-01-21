@@ -2,24 +2,23 @@ import styled from "styled-components";
 import { breakpoints } from "../../RWD/breakpoints";
 
 export const BoardContainer = styled.header`
-  box-sizing: border-box;
   min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const BoardInfoContainer = styled.div`
+  position: relative;
   padding: 10px;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #e3e3e3;
   color: #2c2c2c;
-`
-
-export const BoardInfoContainer = styled.div`
-  position: relative;
-  min-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `
 
 export const BoardInfo = styled.div`

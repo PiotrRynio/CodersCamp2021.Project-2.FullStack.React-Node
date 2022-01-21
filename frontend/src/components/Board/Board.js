@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  BoardContainer,
   BoardInfoContainer,
   BoardInfo,
   BoardImage,
@@ -17,7 +16,6 @@ const Board = () => {
   const [clickHandler, setClickHandler] = useState(false)
 
   return (
-    <BoardContainer>
       <BoardInfoContainer>
         <BoardInfo>
           <BoardImage />
@@ -38,7 +36,6 @@ const Board = () => {
           </AuthorAvatar>
         </AuthorInfoContainer>
       </BoardInfoContainer>
-    </BoardContainer>
   );
 }
 

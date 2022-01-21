@@ -4,16 +4,16 @@ import { FaEllipsisH } from 'react-icons/fa';
 
 import PropTypes from 'prop-types';
 
-const DotsButton = ({children = this.props.children}) => {
-  const [isOpened, setOpened] = useState(false);
+const DotsButton = ({children}) => {
+  const [isOpen, setOpen] = useState(false);
 
   return (
-    <StyledDotsButton onClick={() => setOpened(!isOpened)}>
+    <StyledDotsButton onClick={() => setOpen((prevState) => !prevState)}>
       <ButtonContainer>
         <FaEllipsisH />
       </ButtonContainer>
 
-      {isOpened && children}
+      {isOpen && children}
     </StyledDotsButton>
   )
 }
