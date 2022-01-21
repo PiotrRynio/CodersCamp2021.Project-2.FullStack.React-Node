@@ -5,6 +5,7 @@ export const StyledDotsButton = styled.div`
   position: absolute;
   top: 0;
   right: 0;
+  bottom: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,14 +22,14 @@ export const ButtonContainer = styled.div`
     }
   
     @media ${breakpoints.md} {
-      font-size: 2rem;
+      font-size: 30px;
     }
   
     @media ${breakpoints.lg} {
-      font-size: 2.5rem;
+      font-size: 40px;
     }
   
     @media ${breakpoints.xl} {
-      font-size: 3.125rem;
+      font-size: 50px;
     }
 `

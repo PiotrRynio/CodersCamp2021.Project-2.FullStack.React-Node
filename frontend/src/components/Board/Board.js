@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   BoardContainer,
   BoardInfoContainer,
@@ -16,17 +16,13 @@ import { FaUserCircle } from 'react-icons/fa';
 const Board = () => {
   const [clickHandler, setClickHandler] = useState(false)
 
-  useEffect(() => {
-    console.log('callback')
-  }, [clickHandler])
-
   return (
     <BoardContainer>
       <BoardInfoContainer>
         <BoardInfo>
           <BoardImage />
           <BoardTitle onClick={() => setClickHandler(!clickHandler)}>
-              nazwa_tablicy
+            nazwa_tablicy
           </BoardTitle>
           <DotsButton>
             <Dropdown>

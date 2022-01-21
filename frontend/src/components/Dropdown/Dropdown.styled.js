@@ -3,7 +3,7 @@ import {breakpoints} from "../../RWD/breakpoints";
 
 export const StyledDropdown = styled.div`
   position: absolute;
-  top: calc(0% + 11px);
+  top: calc(0% + 15px);
   right: 0;
   padding: 0.5rem;
   min-width: 160px;
@@ -14,12 +14,12 @@ export const StyledDropdown = styled.div`
   
     @media ${breakpoints.md} {
       min-width: 240px;
-      top: calc(0% + 22px);
+      top: calc(0% + 21px);
     }
   
     @media ${breakpoints.lg} {
       min-width: 300px;
-      top: calc(0% + 27px);
+      top: calc(0% + 28px);
     }
   
     @media ${breakpoints.xl} {
@@ -48,17 +48,17 @@ export const DropdownItem = styled.div`
   
     @media ${breakpoints.md} {
       min-height: 67.5px;
-      font-size: 1.2rem;
+      font-size: 20px;
     }
   
     @media ${breakpoints.lg} {
       min-height: 85px;
-      font-size: 1.4rem;
+      font-size: 25px;
     }
   
     @media ${breakpoints.xl} {
       min-height: 102.5px;
-      font-size: 1.7rem;
+      font-size: 30px;
     }
 `
 
