@@ -4,6 +4,20 @@ import { LeftSection, Form, CommentFormContainer } from './CommentForm.styled';
 import { useState } from 'react';
 
 export const CommentForm = ({ handleSubmit }) => {
+  const sampleUser1 = {
+    userId: 1,
+    avatarUrl: avatar1,
+    firstName: 'Andrzej',
+    lastName: 'Nowak',
+  };
+
+  const sampleComment1 = {
+    commentId: 1,
+    content: 'Great idea!',
+    createDate: '2021-06-20T15:48:21.000',
+    author: sampleUser1,
+  };
+
   const [commentText, setCommentText] = useState('');
   const [errorText, setErrorText] = useState('');
 
@@ -26,7 +40,8 @@ export const CommentForm = ({ handleSubmit }) => {
     event.preventDefault();
     if (validateForm()) {
       console.log('Form ok');
-      //handleSubmit();
+      sampleComment1.commentText = commentText;
+      handleSubmit(sampleComment1);
     } else console.log('Invalid form');
   };
 
