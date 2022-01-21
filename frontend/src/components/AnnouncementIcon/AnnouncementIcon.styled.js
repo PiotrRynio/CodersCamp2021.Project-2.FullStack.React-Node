@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../rwd/breakpoints';
+import { breakpoints } from '../../assets/styles/breakpoints';
 
 export const IconContainer = styled.div`
   margin-right: 10px;

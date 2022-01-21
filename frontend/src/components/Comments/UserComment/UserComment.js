@@ -16,6 +16,7 @@ export const UserComment = ({ comment }) => {
     hour: '2-digit',
     minute: '2-digit',
   });
+
   return (
     <CommentContainer data-testid="userComment">
       <LeftSection>

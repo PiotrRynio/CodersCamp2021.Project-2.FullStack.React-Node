@@ -3,8 +3,8 @@ import { Title } from 'components/Comments/UserCommentList/CommentList.styled';
 import { useQuery } from 'react-query';
 
 export const CommentList = () => {
-  const { data, isLoading, isError } = useQuery('commentList', async () => {
-    return await fetch('/commentLists').then((response) => response.json());
+  const { data, isLoading, isError } = useQuery('comments', async () => {
+    return await fetch('/comments').then((response) => response.json());
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -14,8 +14,8 @@ export const CommentList = () => {
     <div data-testid={'userCommentList'}>
       <Title>Comments</Title>
       <div>
-        {data.commentList.map((commentItem) => {
-          return <UserComment key={commentItem.commentId} comment={commentItem} />;
+        {data.map((commentItem) => {
+          return <UserComment key={commentItem.id} comment={commentItem} />;
         })}
       </div>
     </div>
