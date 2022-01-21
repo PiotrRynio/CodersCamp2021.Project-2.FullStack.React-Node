@@ -3,6 +3,7 @@ import { Title } from 'components/Comments/CommentList/CommentList.styled';
 import { useQuery } from 'react-query';
 
 export const CommentList = ({ comments }) => {
+  console.log('render commentList');
   return (
     <div data-testid={'commentList'}>
       <Title>Comments</Title>

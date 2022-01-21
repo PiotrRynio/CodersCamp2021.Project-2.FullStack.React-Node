@@ -1,6 +1,13 @@
 import { UserAvatar } from '../../UserAvatar/UserAvatar';
 import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
-import { LeftSection, Form, CommentFormContainer } from './CommentForm.styled';
+import {
+  LeftSection,
+  Form,
+  CommentFormContainer,
+  BottomLine,
+  TextArea,
+  BottomFormSection,
+} from './CommentForm.styled';
 import { useState } from 'react';
 
 export const CommentForm = ({ handleSubmit }) => {
@@ -12,7 +19,7 @@ export const CommentForm = ({ handleSubmit }) => {
   };
 
   const sampleComment1 = {
-    commentId: 1,
+    commentId: Math.random(0, 100),
     content: 'Great idea!',
     createDate: '2021-06-20T15:48:21.000',
     author: sampleUser1,
@@ -23,6 +30,7 @@ export const CommentForm = ({ handleSubmit }) => {
 
   const validateForm = () => {
     let isFormValid = true;
+    setErrorText('');
 
     if (!commentText) {
       isFormValid = false;
@@ -40,27 +48,37 @@ export const CommentForm = ({ handleSubmit }) => {
     event.preventDefault();
     if (validateForm()) {
       console.log('Form ok');
-      sampleComment1.commentText = commentText;
+      sampleComment1.content = commentText;
+      sampleComment1.createDate = new Date();
+      setCommentText('');
       handleSubmit(sampleComment1);
     } else console.log('Invalid form');
   };
 
   return (
-    <CommentFormContainer>
-      <LeftSection>
-        <UserAvatar userAvatarImage={avatar1} />
-      </LeftSection>
-      <Form onSubmit={onSubmit}>
-        <textarea
-          placeholder="Add comment"
-          //           required
-          onChange={(e) => {
-            setCommentText(e.target.value);
-          }}
-        />
-        <span>{errorText}</span>
-        <button type="submit">Add comment</button>
-      </Form>
-    </CommentFormContainer>
+    <>
+      <CommentFormContainer>
+        <LeftSection>
+          <UserAvatar userAvatarImage={avatar1} />
+        </LeftSection>
+        <Form onSubmit={onSubmit}>
+          <TextArea
+            placeholder="Add comment..."
+            //           required
+            onChange={(e) => {
+              setCommentText(e.target.value);
+            }}
+            rows="4"
+            cols="70"
+            value={commentText}
+          />
+          <BottomFormSection>
+            <span>{errorText}</span>
+            <button type="submit">Add comment</button>
+          </BottomFormSection>
+        </Form>
+      </CommentFormContainer>
+      <BottomLine />
+    </>
   );
 };

@@ -2,6 +2,7 @@ import { CommentForm } from '../CommentInputForm/CommentForm';
 import { CommentList } from '../CommentList/CommentList';
 import { useQuery } from 'react-query';
 import { useState, useEffect } from 'react';
+import { Section } from 'components/Comments/CommentsSection/CommentsSection.styled';
 
 export const CommentsSection = () => {
   const [comments, setComments] = useState([]);
@@ -16,17 +17,17 @@ export const CommentsSection = () => {
   }, [data]);
 
   const handleCommentSubmit = (comment) => {
-    console.log(comment.commentText);
-    //setComments(comments.push(comment));
+    console.log('comment content:' + comment.content);
+    setComments([...comments, comment]);
   };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error</div>;
 
   return (
-    <div>
+    <Section>
       <CommentForm handleSubmit={handleCommentSubmit} />
-      <CommentList comments={data.commentList} />
-    </div>
+      <CommentList comments={comments} />
+    </Section>
   );
 };
