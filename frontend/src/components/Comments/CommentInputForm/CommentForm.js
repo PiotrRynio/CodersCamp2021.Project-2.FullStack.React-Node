@@ -29,27 +29,31 @@ export const CommentForm = ({ handleSubmit }) => {
   const [errorText, setErrorText] = useState('');
 
   const validateForm = () => {
-    let isFormValid = true;
     setErrorText('');
 
     if (!commentText) {
-      isFormValid = false;
       setErrorText('Cannot be empty!');
+      return false;
     }
 
     if (!commentText.length > 500) {
-      isFormValid = false;
       setErrorText('Too long! Comment must be shorter than 500 chars.');
+      return false;
     }
-    return isFormValid;
+    return true;
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
       console.log('Form ok');
-      sampleComment1.content = commentText;
-      sampleComment1.createDate = new Date();
+
+      const newComment = {
+        content: commentText,
+        createDate: new Date(),
+        author: sampleUser1,
+      };
+
       setCommentText('');
       handleSubmit(sampleComment1);
     } else console.log('Invalid form');
