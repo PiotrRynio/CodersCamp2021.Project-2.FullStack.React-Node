@@ -27,9 +27,25 @@ export const TextArea = styled.textarea`
   border-radius: 10px;
   padding: 5px;
   border-color: rgba(0, 0, 0, 0.52);
+
+  :focus::-webkit-input-placeholder {
+    color: transparent;
+  }
 `;
 
 export const BottomFormSection = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const Button = styled.button`
+  border-color: rgba(0, 0, 0, 0.52);
+  border-radius: 5px;
+  height: 25px;
+  width: 15%;
+  margin-top: 2px;
+`;
+
+export const ErrorText = styled.span`
+  color: #f44336;
 `;

@@ -1,6 +1,5 @@
 import { Comment } from 'components/Comments/SingleComment/Comment';
 import { Title } from 'components/Comments/CommentList/CommentList.styled';
-import { useQuery } from 'react-query';
 
 export const CommentList = ({ comments }) => {
   console.log('render commentList');

@@ -8,6 +8,5 @@ export const commentListsHandler = rest.get('/commentLists', (req, res, ctx) => 
 
 export const postCommentListHandler = rest.post('/commentLists', (req, res, ctx) => {
   commentListsResponse.commentList.push(req.body);
-  console.log(commentListsResponse);
   return res(ctx.status(200), ctx.json(commentListsResponse));
 });

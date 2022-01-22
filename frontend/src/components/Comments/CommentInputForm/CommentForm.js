@@ -7,6 +7,8 @@ import {
   BottomLine,
   TextArea,
   BottomFormSection,
+  Button,
+  ErrorText,
 } from './CommentForm.styled';
 import { useState } from 'react';
 
@@ -16,13 +18,6 @@ export const CommentForm = ({ handleSubmit }) => {
     avatarUrl: avatar1,
     firstName: 'Andrzej',
     lastName: 'Nowak',
-  };
-
-  const sampleComment1 = {
-    commentId: Math.random(0, 100),
-    content: 'Great idea!',
-    createDate: '2021-06-20T15:48:21.000',
-    author: sampleUser1,
   };
 
   const [commentText, setCommentText] = useState('');
@@ -46,17 +41,15 @@ export const CommentForm = ({ handleSubmit }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      console.log('Form ok');
-
       const newComment = {
+        commentId: Math.random(0, 1000) * 1000,
         content: commentText,
         createDate: new Date(),
         author: sampleUser1,
       };
-
       setCommentText('');
-      handleSubmit(sampleComment1);
-    } else console.log('Invalid form');
+      handleSubmit(newComment);
+    }
   };
 
   return (
@@ -68,7 +61,6 @@ export const CommentForm = ({ handleSubmit }) => {
         <Form onSubmit={onSubmit}>
           <TextArea
             placeholder="Add comment..."
-            //           required
             onChange={(e) => {
               setCommentText(e.target.value);
             }}
@@ -77,8 +69,8 @@ export const CommentForm = ({ handleSubmit }) => {
             value={commentText}
           />
           <BottomFormSection>
-            <span>{errorText}</span>
-            <button type="submit">Add comment</button>
+            <ErrorText>{errorText}</ErrorText>
+            <Button type="submit">Add comment</Button>
           </BottomFormSection>
         </Form>
       </CommentFormContainer>
