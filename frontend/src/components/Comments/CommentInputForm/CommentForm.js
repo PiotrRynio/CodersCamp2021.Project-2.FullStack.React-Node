@@ -27,12 +27,12 @@ export const CommentForm = ({ handleSubmit }) => {
     setErrorText('');
 
     if (!commentText) {
-      setErrorText('Cannot be empty!');
+      setErrorText('Can not be empty!');
       return false;
     }
 
     if (!commentText.length > 500) {
-      setErrorText('Too long! Comment must be shorter than 500 chars.');
+      setErrorText('Too long! Comment must be shorter than 500 characters.');
       return false;
     }
     return true;
