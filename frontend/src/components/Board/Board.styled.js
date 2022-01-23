@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { breakpoints } from "../../rwd/breakpoints";
 
-export const BoardContainer = styled.header`
-  min-width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
 
 export const BoardInfoContainer = styled.div`
   position: relative;
