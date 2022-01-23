@@ -1,7 +1,7 @@
-import { UserAvatar } from '../../UserAvatar/UserAvatar';
+import { UserAvatar } from '../UserAvatar/UserAvatar';
 import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 import {
-  LeftSection,
+  AvatarContainer,
   Form,
   CommentFormContainer,
   BottomLine,
@@ -55,9 +55,9 @@ export const CommentForm = ({ handleSubmit }) => {
   return (
     <>
       <CommentFormContainer>
-        <LeftSection>
+        <AvatarContainer>
           <UserAvatar userAvatarImage={avatar1} />
-        </LeftSection>
+        </AvatarContainer>
         <Form onSubmit={onSubmit}>
           <TextArea
             placeholder="Add comment..."

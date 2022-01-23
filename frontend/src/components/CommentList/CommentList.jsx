@@ -1,5 +1,5 @@
-import { Comment } from 'components/Comments/SingleComment/Comment';
-import { Title } from 'components/Comments/CommentList/CommentList.styled';
+import { Comment } from 'components/Comment/Comment';
+import { Title } from 'components/CommentList/CommentList.styled';
 
 export const CommentList = ({ comments }) => {
   return (

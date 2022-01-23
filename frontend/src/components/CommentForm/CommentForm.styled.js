@@ -4,8 +4,8 @@ export const CommentFormContainer = styled.div`
   display: flex;
 `;
 
-export const LeftSection = styled.div`
-  img {
+export const AvatarContainer = styled.div`
+  > :first-child {
     width: 65px;
     height: 65px;
   }
@@ -41,8 +41,8 @@ export const BottomFormSection = styled.div`
 export const Button = styled.button`
   border-color: rgba(0, 0, 0, 0.52);
   border-radius: 5px;
-  height: 25px;
-  width: 15%;
+  height: 30px;
+  width: 100px;
   margin-top: 2px;
 `;
 

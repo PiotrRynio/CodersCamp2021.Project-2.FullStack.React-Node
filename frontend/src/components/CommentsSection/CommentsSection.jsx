@@ -1,7 +1,7 @@
-import { CommentForm } from '../CommentInputForm/CommentForm';
-import { CommentList } from '../CommentList/CommentList';
 import { useQuery, useMutation } from 'react-query';
-import { Section } from 'components/Comments/CommentsSection/CommentsSection.styled';
+import { Section } from 'components/CommentsSection/CommentsSection.styled';
+import { CommentForm } from '../CommentForm/CommentForm';
+import { CommentList } from '../CommentList/CommentList';
 
 export const CommentsSection = () => {
   const {
@@ -18,7 +18,6 @@ export const CommentsSection = () => {
     error: isMutationError,
     isLoading: isLoadingMutation,
   } = useMutation((newComment) => {
-    console.log(newComment);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -31,8 +30,12 @@ export const CommentsSection = () => {
     mutate(comment);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return (
     <Section>

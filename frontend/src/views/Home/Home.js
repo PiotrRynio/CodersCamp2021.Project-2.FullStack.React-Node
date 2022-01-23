@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import { CommentsSection } from '../../components/Comments/CommentsSection/CommentsSection';
+import { CommentsSection } from '../../components/CommentsSection/CommentsSection';
 
 const Home = () => {
   return (
