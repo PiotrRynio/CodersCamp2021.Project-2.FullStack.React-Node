@@ -10,7 +10,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Notifications from '../Notifications/Notifications';
 import Subscribed from '../Subscribed/Subscribed';
 import AddPost from '../AddPost/AddPost';
-import SignIn from '../SignIn/SignIn';
+import Profile from '../Profile/Profile';
+import LandingPage from '../LandingPage/LandingPage';
+import Layout from '../Layout';
 
 const queryClient = new QueryClient();
 
@@ -20,18 +22,17 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Container>
           <GlobalStyle />
-          <TopBar />
-          <Navigation />
-          <RightSide />
-          <MainSection>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="Notifications" element={<Notifications />} />
-              <Route path="Subscribed" element={<Subscribed />} />
-              <Route path="addPost" element={<AddPost />} />
-              <Route path="signIn" element={<SignIn />} />
-            </Routes>
-          </MainSection>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<Layout />}>
+              <Route index element={<Home />} />
+
+              <Route path="notifications" element={<Notifications />} />
+              <Route path="subscribed" element={<Subscribed />} />
+              <Route path="add-post" element={<AddPost />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
+          </Routes>
         </Container>
       </QueryClientProvider>
     </Router>

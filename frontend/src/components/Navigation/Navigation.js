@@ -17,7 +17,7 @@ const Navigation = () => {
     { path: 'subscribed', icon: <FaHeart />, title: 'Subscribed' },
     { path: 'addPost', icon: <FaPlusSquare />, title: 'Add post' },
     { path: 'notifications', icon: <FaBell />, title: 'Notifications' },
-    { path: 'singUp', icon: <FaUserAlt />, title: 'Sing Up!' },
+    { path: 'profile', icon: <FaUserAlt />, title: 'Profile' },
   ];
   return (
     <Container>
