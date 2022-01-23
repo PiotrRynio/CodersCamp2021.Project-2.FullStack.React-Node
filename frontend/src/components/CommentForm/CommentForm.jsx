@@ -3,7 +3,7 @@ import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 import {
   AvatarContainer,
   Form,
-  CommentFormContainer,
+  FormContainer,
   BottomLine,
   TextArea,
   BottomFormSection,
@@ -54,7 +54,7 @@ export const CommentForm = ({ handleSubmit }) => {
 
   return (
     <>
-      <CommentFormContainer>
+      <FormContainer>
         <AvatarContainer>
           <UserAvatar userAvatarImage={avatar1} />
         </AvatarContainer>
@@ -73,7 +73,7 @@ export const CommentForm = ({ handleSubmit }) => {
             <Button type="submit">Add comment</Button>
           </BottomFormSection>
         </Form>
-      </CommentFormContainer>
+      </FormContainer>
       <BottomLine />
     </>
   );
