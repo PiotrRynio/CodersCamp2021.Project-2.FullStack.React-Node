@@ -30,19 +30,19 @@ const fakeList = [
 
 describe('User comment list', () => {
   it('Should properly render component', async () => {
-    //given
-    render(<CommentList comments={fakeList} />);
     //when
+    render(<CommentList comments={fakeList} />);
     const title = screen.getByText('Comments');
+
     //then
     expect(title).toBeInTheDocument();
   });
 
   it('Should contain expected number of comments', () => {
-    //given
-    render(<CommentList comments={fakeList} />);
     //when
+    render(<CommentList comments={fakeList} />);
     const userComments = screen.getAllByTestId('comment');
+
     //then
     expect(userComments).toHaveLength(fakeList.length);
   });

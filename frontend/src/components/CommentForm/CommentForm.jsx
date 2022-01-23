@@ -11,10 +11,11 @@ import {
   ErrorText,
 } from './CommentForm.styled';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export const CommentForm = ({ handleSubmit }) => {
   const sampleUser1 = {
-    userId: 1,
+    userId: uuidv4(),
     avatarUrl: avatar1,
     firstName: 'Andrzej',
     lastName: 'Nowak',
@@ -42,7 +43,7 @@ export const CommentForm = ({ handleSubmit }) => {
     event.preventDefault();
     if (validateForm()) {
       const newComment = {
-        commentId: Math.random(0, 1000) * 1000,
+        commentId: uuidv4(),
         content: commentText,
         createDate: new Date(),
         author: sampleUser1,

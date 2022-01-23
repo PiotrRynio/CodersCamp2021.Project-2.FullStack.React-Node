@@ -8,17 +8,17 @@ export const CreateDate = styled.div`
   font-size: 10px;
 `;
 export const Content = styled.div`
-  color: black;
   padding-top: 5px;
+  color: black;
 `;
 
 export const UserName = styled.div`
-  font-size: 15px;
   padding-top: 1px;
+  font-size: 15px;
 `;
 
-export const LeftSection = styled.div`
-  img {
+export const AvatarContainer = styled.div`
+  :first-child {
     width: 65px;
     height: 65px;
   }

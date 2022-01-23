@@ -9,7 +9,7 @@ export const CommentsSection = () => {
     isLoading,
     isError,
   } = useQuery('commentList', async () => {
-    return await fetch('/commentLists').then((response) => response.json());
+    return await fetch('/announcements/1/comments').then((response) => response.json());
   });
 
   const {
@@ -23,7 +23,7 @@ export const CommentsSection = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newComment),
     };
-    return fetch('/commentLists', requestOptions).then((response) => response.json());
+    return fetch('/announcements/1/comments', requestOptions).then((response) => response.json());
   });
 
   const handleCommentSubmit = (comment) => {

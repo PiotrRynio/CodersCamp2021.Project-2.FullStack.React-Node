@@ -5,16 +5,15 @@ export const FormContainer = styled.div`
 `;
 
 export const AvatarContainer = styled.div`
-  > :first-child {
+  :first-child {
     width: 65px;
     height: 65px;
   }
 `;
 export const Form = styled.form`
+  width: 100%;
   padding-left: 10px;
   color: rgba(0, 0, 0, 0.52);
-
-  width: 100%;
 `;
 
 export const BottomLine = styled.hr`
@@ -39,11 +38,11 @@ export const BottomFormSection = styled.div`
 `;
 
 export const Button = styled.button`
-  border-color: rgba(0, 0, 0, 0.52);
-  border-radius: 5px;
   height: 30px;
   width: 100px;
+  border-radius: 5px;
   margin-top: 2px;
+  border-color: rgba(0, 0, 0, 0.52);
 `;
 
 export const ErrorText = styled.span`
