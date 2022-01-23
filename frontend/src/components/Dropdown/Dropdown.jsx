@@ -17,14 +17,12 @@ const Dropdown = () => {
       text: "Don't show me this post"
     }
   ]
-  const displayDropdownItems = dropdownItems.map((dropdownItem, index) =>
-    <DropdownItem key={index}>
+  const displayDropdownItems = dropdownItems.map((dropdownItem) =>
+    <DropdownItem key={dropdownItem.text}>
       <Image>
         {dropdownItem.icon}
       </Image>
-      <span>
         {dropdownItem.text}
-      </span>
     </DropdownItem>
   )
 
