@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -51,18 +52,6 @@ export const FormID = styled.div`
   margin-top: 10px;
 `;
 
-export const FormFirstName = styled.input`
-  margin-right: 20px;
-  padding: 10px 15px;
-  border-radius: 15px;
-`;
-
-export const FormLastName = styled.input`
-  margin-left: 20px;
-  padding: 10px 15px;
-  border-radius: 15px;
-`;
-
 export const FormPassword = styled.input`
   margin-top: 10px;
   width: 434px;
@@ -87,17 +76,13 @@ export const FormLink = styled(Link)``;
 export const FormSubmit = styled.button`
   padding: 10px 20px;
   margin-right: 20px;
-  background-color: white;
-  border: 1px solid black;
+  background-color: #1a8cd8;
+  border: 1px solid #1a8cd8;
   border-radius: 15px;
   font-size: 26px;
   cursor: pointer;
+  color: white;
   transition: 0.2s ease-in-out;
-  &:hover {
-    color: white;
-    border: 1px solid #1a8cd8;
-    background-color: #1a8cd8;
-  }
 `;
 
 export const FormLogIn = styled.button`
@@ -111,7 +96,6 @@ export const FormLogIn = styled.button`
   transition: 0.2s ease-in-out;
   &:hover {
     color: white;
-    border: 1px solid #1a8cd8;
-    background-color: #1a8cd8;
+    background-color: black;
   }
 `;

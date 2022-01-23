@@ -15,7 +15,7 @@ const Navigation = () => {
   const navItems = [
     { path: '/', icon: <FaHome />, title: 'Home' },
     { path: 'subscribed', icon: <FaHeart />, title: 'Subscribed' },
-    { path: 'addPost', icon: <FaPlusSquare />, title: 'Add post' },
+    { path: 'add-post', icon: <FaPlusSquare />, title: 'Add post' },
     { path: 'notifications', icon: <FaBell />, title: 'Notifications' },
     { path: 'profile', icon: <FaUserAlt />, title: 'Profile' },
   ];

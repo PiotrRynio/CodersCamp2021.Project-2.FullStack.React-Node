@@ -16,9 +16,9 @@ import {
   FormLink,
   FormLogIn,
   FormSubmit,
-} from './LandingPage.styled';
+} from './SignIn.styled';
 
-const LandingPage = () => {
+const SignIn = () => {
   return (
     <Container>
       <LogoSection>
@@ -36,8 +36,11 @@ const LandingPage = () => {
         <FormPassword type="text" name="password1" placeholder="Enter your password" />
         <FormPassword2 type="text" name="password2" placeholder="Confirm your password" />
         <FormButtons>
-          <FormSubmit>Submit!</FormSubmit>
-          <FormLink to="home">
+          <FormLink to="/">
+            <FormSubmit>Submit!</FormSubmit>
+          </FormLink>
+
+          <FormLink to="/log-in">
             <FormLogIn>Log In</FormLogIn>
           </FormLink>
         </FormButtons>
@@ -46,4 +49,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default SignIn;
