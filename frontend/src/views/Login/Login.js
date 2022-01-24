@@ -24,7 +24,7 @@ const LogIn = () => {
   return (
     <Container>
       <LogoSection>
-        <Logo>
+        <Logo to="/">
           Board<LogoSpan>MAP</LogoSpan>
         </Logo>
       </LogoSection>
