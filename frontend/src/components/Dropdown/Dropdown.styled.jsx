@@ -7,6 +7,8 @@ export const StyledDropdown = styled.div`
   right: 0;
   padding: 0.5rem;
   min-width: 160px;
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   border: 1px solid #e1e1e1;
   border-radius: 5px;
@@ -29,6 +31,7 @@ export const StyledDropdown = styled.div`
 `
 
 export const DropdownItem = styled.div`
+  padding: 0px 6px;
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -52,6 +55,7 @@ export const DropdownItem = styled.div`
     }
   
     @media ${breakpoints.lg} {
+      padding: 0 10px;
       min-height: 85px;
       font-size: 25px;
     }

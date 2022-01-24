@@ -12,7 +12,6 @@ const DotsButton = ({children}) => {
       <ButtonContainer>
         <FaEllipsisH />
       </ButtonContainer>
-
       {isOpen && children}
     </StyledDotsButton>
   )

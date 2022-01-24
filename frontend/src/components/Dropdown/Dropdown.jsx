@@ -14,7 +14,7 @@ const Dropdown = () => {
     },
     {
       icon: <FaEyeSlash />,
-      text: "Don't show me this post"
+      text: 'Don\'t show me this post'
     }
   ]
   const displayDropdownItems = dropdownItems.map((dropdownItem) =>
@@ -25,7 +25,6 @@ const Dropdown = () => {
         {dropdownItem.text}
     </DropdownItem>
   )
-
 
   return (
     <StyledDropdown>
