@@ -3,13 +3,15 @@ import { Section } from 'components/CommentsSection/CommentsSection.styled';
 import { CommentForm } from '../CommentForm/CommentForm';
 import { CommentList } from '../CommentList/CommentList';
 
-export const CommentsSection = (announcementId) => {
+export const CommentsSection = ({ announcementId }) => {
   const {
     data: dataQuery,
     isLoading,
     isError,
   } = useQuery('commentList', async () => {
-    return await fetch('/announcements/${announcementId}/comments').then((response) => response.json());
+    return await fetch(`/announcements/${announcementId}/comments`).then((response) =>
+      response.json(),
+    );
   });
 
   const {
@@ -23,7 +25,9 @@ export const CommentsSection = (announcementId) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newComment),
     };
-    return fetch('/announcements/${announcementId}/comments'', requestOptions).then((response) => response.json());
+    return fetch(`/announcements/${announcementId}/comments`, requestOptions).then((response) =>
+      response.json(),
+    );
   });
 
   const handleCommentSubmit = (comment) => {

@@ -11,4 +11,4 @@ const postCommentListHandler = rest.post('/announcements/1/comments', (req, res,
   return res(ctx.status(200), ctx.json(commentListsResponse));
 });
 
-export const CommentListHandlers = [getCommentListsHandler, postCommentListHandler];
+export const commentListHandlers = [getCommentListsHandler, postCommentListHandler];
