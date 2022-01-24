@@ -35,7 +35,7 @@ const LogIn = () => {
         </FormText>
 
         <FormEmail type="text" name="email" placeholder="Enter your email" />
-        <FormPassword type="text" name="password1" placeholder="Enter your password" />
+        <FormPassword type="password" name="password1" placeholder="Enter your password" />
 
         <FormButtons>
           <FormSubmit

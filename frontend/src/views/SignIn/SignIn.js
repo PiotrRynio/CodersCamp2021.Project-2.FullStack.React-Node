@@ -36,8 +36,8 @@ const SignIn = () => {
           <FormLastName type="text" name="lastName" placeholder="Enter your last name" />
         </FormID>
         <FormEmail type="text" name="email" placeholder="Enter your email" />
-        <FormPassword type="text" name="password1" placeholder="Enter your password" />
-        <FormPassword2 type="text" name="password2" placeholder="Confirm your password" />
+        <FormPassword type="password" name="password1" placeholder="Enter your password" />
+        <FormPassword2 type="password" name="password2" placeholder="Confirm your password" />
         <FormButtons>
           <FormLink to="/">
             <FormSubmit>Submit!</FormSubmit>
