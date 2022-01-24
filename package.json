@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "husky": "^7.0.4"
+  },
+  "dependencies": {
+    "react-router": "^6.2.1"
   }
 }

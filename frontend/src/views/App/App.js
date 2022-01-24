@@ -1,4 +1,5 @@
 import React from 'react';
+import { createContext, useState } from 'react';
 import Home from '../Home/Home';
 import { Container } from './App.styled';
 import { GlobalStyle } from '../../assets/styles/GlobalStyles';
@@ -11,29 +12,35 @@ import Profile from '../Profile/Profile';
 import SignIn from '../SignIn/SignIn';
 import Layout from '../Layout';
 import Login from '../Login/Login';
+import ProtectedRoute from '../ProtectedRoute';
 
 const queryClient = new QueryClient();
+export const UserContext = createContext();
 
 function App() {
+  const [user, setUser] = useState({ loggedIn: false });
   return (
     <Router>
-      <QueryClientProvider client={queryClient}>
-        <Container>
-          <GlobalStyle />
-          <Routes>
-            <Route path="/log-in" element={<Login />} />
-            <Route path="/sign-up" element={<SignIn />} />
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-
-              <Route path="notifications" element={<Notifications />} />
-              <Route path="subscribed" element={<Subscribed />} />
-              <Route path="add-post" element={<AddPost />} />
-              <Route path="profile" element={<Profile />} />
-            </Route>
-          </Routes>
-        </Container>
-      </QueryClientProvider>
+      <UserContext.Provider value={{ user, setUser }}>
+        <QueryClientProvider client={queryClient}>
+          <Container>
+            <GlobalStyle />
+            <Routes>
+              <Route path="/log-in" element={<Login />} />
+              <Route path="/sign-up" element={<SignIn />} />
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="notifications" element={<Notifications />} />
+                  <Route path="subscribed" element={<Subscribed />} />
+                  <Route path="add-post" element={<AddPost />} />
+                  <Route path="profile" element={<Profile />} />
+                </Route>
+              </Route>
+            </Routes>
+          </Container>
+        </QueryClientProvider>
+      </UserContext.Provider>
     </Router>
   );
 }
