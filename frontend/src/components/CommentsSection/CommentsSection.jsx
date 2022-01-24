@@ -23,7 +23,7 @@ export const CommentsSection = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newComment),
     };
-    return fetch('/announcements/1/comments', requestOptions).then((response) => response.json());
+    return fetch('/announcements/${announcementId}/comments'', requestOptions).then((response) => response.json());
   });
 
   const handleCommentSubmit = (comment) => {
