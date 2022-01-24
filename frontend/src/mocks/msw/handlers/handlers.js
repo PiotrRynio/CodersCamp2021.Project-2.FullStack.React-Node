@@ -1,5 +1,4 @@
-import { CommentListHandlers } from './commentLists/commentListsHandler.js';
+import { commentListHandlers } from './commentLists/commentListsHandler';
 import boardsListsHandler from './boardsLists/boardsListsHandler';
 
-export const handlers = [commentListsHandler, boardsListsHandler];
-
+export const handlers = [...commentListHandlers, boardsListsHandler];

@@ -6,7 +6,7 @@ import AnnouncementsList from '../../components/AnnouncementsList/AnnouncementsL
 const Home = () => {
   return (
     <Container>
-      <CommentsSection />
+      <CommentsSection announcementId={1} />
       <AnnouncementsList boardsIds={[1, 2]} announcementsNumber={4} showBoardNames={true} />
     </Container>
   );

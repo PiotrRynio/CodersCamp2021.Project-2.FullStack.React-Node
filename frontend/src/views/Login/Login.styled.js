@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -26,9 +27,9 @@ export const Form = styled.div`
 `;
 
 export const Logo = styled(Link)`
-  text-decoration: none;
   color: black;
   font-size: 96px;
+  text-decoration: none;
 `;
 
 export const LogoSpan = styled.span`
@@ -50,18 +51,6 @@ export const FormEmail = styled.input`
 export const FormID = styled.div`
   display: flex;
   margin-top: 10px;
-`;
-
-export const FormFirstName = styled.input`
-  margin-right: 20px;
-  padding: 10px 15px;
-  border-radius: 15px;
-`;
-
-export const FormLastName = styled.input`
-  margin-left: 20px;
-  padding: 10px 15px;
-  border-radius: 15px;
 `;
 
 export const FormPassword = styled.input`
@@ -94,6 +83,7 @@ export const FormSubmit = styled.button`
   font-size: 26px;
   cursor: pointer;
   color: white;
+  transition: 0.2s ease-in-out;
 `;
 
 export const FormLogIn = styled.button`

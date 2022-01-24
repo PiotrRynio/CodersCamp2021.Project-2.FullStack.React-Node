@@ -1,39 +1,45 @@
-import React from 'react';
-import Home from '../Home/Home';
-import RightSide from '../../components/RightSide/RightSidebar';
-import TopBar from '../../components/Topbar/TopBar';
-import Navigation from '../../components/Navigation/Navigation';
-import { Container, MainSection } from './App.styled';
-import { GlobalStyle } from '../../assets/styles/GlobalStyles';
+import { createContext, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from '../Home/Home';
 import Notifications from '../Notifications/Notifications';
 import Subscribed from '../Subscribed/Subscribed';
 import AddPost from '../AddPost/AddPost';
+import Profile from '../Profile/Profile';
 import SignIn from '../SignIn/SignIn';
+import Layout from '../Layout';
+import Login from '../Login/Login';
+import ProtectedRoute from '../ProtectedRoute';
+import { Container } from './App.styled';
+import { GlobalStyle } from '../../assets/styles/GlobalStyles';
 
 const queryClient = new QueryClient();
+export const UserContext = createContext();
 
 function App() {
+  const [user, setUser] = useState({ loggedIn: true });
   return (
     <Router>
-      <QueryClientProvider client={queryClient}>
-        <Container>
-          <GlobalStyle />
-          <TopBar />
-          <Navigation />
-          <RightSide />
-          <MainSection>
+      <UserContext.Provider value={{ user, setUser }}>
+        <QueryClientProvider client={queryClient}>
+          <Container>
+            <GlobalStyle />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="Notifications" element={<Notifications />} />
-              <Route path="Subscribed" element={<Subscribed />} />
-              <Route path="addPost" element={<AddPost />} />
-              <Route path="signIn" element={<SignIn />} />
+              <Route path="/log-in" element={<Login />} />
+              <Route path="/sign-up" element={<SignIn />} />
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="notifications" element={<Notifications />} />
+                  <Route path="subscribed" element={<Subscribed />} />
+                  <Route path="add-post" element={<AddPost />} />
+                  <Route path="profile" element={<Profile />} />
+                </Route>
+              </Route>
             </Routes>
-          </MainSection>
-        </Container>
-      </QueryClientProvider>
+          </Container>
+        </QueryClientProvider>
+      </UserContext.Provider>
     </Router>
   );
 }
