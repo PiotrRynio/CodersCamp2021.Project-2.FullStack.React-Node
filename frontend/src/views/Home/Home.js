@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import { CommentList } from '../../components/Comments/UserCommentList/CommentList';
+import { CommentsSection } from '../../components/CommentsSection/CommentsSection';
 import AnnouncementsList from '../../components/AnnouncementsList/AnnouncementsList';
 
 const Home = () => {
   return (
     <Container>
-      <CommentList />
+      <CommentsSection />
       <AnnouncementsList boardsIds={[1, 2]} announcementsNumber={4} showBoardNames={true} />
     </Container>
   );
