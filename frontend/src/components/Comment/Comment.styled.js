@@ -26,4 +26,8 @@ export const AvatarContainer = styled.div`
 
 export const CommentContainer = styled.article`
   display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 10px;
 `;

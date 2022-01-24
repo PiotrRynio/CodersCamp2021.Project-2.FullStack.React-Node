@@ -29,12 +29,12 @@ const Announcement = ({ announcement, isOpen, showBoard }) => {
         ) : (
           <>
             <ShortContent>{content}</ShortContent>
-            <StyledLink to={`announcement/${id}`}>
+            <StyledLink to={`/announcement/${id}`}>
               <ReadMore>[read&nbsp;more]</ReadMore>
             </StyledLink>
           </>
         )}
-        <StyledLink to={`announcement/${id}`}>
+        <StyledLink to={`/announcement/${id}`}>
           <Comments>{commentsText}</Comments>
         </StyledLink>
       </TextWrapper>
