@@ -25,7 +25,8 @@ export const Form = styled.div`
   height: 100%;
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled(Link)`
+  text-decoration: none;
   color: black;
   font-size: 96px;
 `;

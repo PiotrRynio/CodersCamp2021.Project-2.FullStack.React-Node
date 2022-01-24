@@ -22,12 +22,15 @@ const SignIn = () => {
   return (
     <Container>
       <LogoSection>
-        <Logo>
+        <Logo to="/">
           Board<LogoSpan>MAP</LogoSpan>
         </Logo>
       </LogoSection>
       <Form>
-        <FormText>Get started with us today! Create your account!</FormText>
+        <FormText>
+          Get started with us today!
+          <br /> Create your account!
+        </FormText>
         <FormID>
           <FormFirstName type="text" name="firstName" placeholder="Enter your first name" />
           <FormLastName type="text" name="lastName" placeholder="Enter your last name" />
