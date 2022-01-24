@@ -3,7 +3,7 @@ import { Section } from 'components/CommentsSection/CommentsSection.styled';
 import { CommentForm } from '../CommentForm/CommentForm';
 import { CommentList } from '../CommentList/CommentList';
 
-export const CommentsSection = () => {
+export const CommentsSection = (announcementId) => {
   const {
     data: dataQuery,
     isLoading,
