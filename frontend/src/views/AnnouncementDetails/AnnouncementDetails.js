@@ -16,6 +16,7 @@ const AnnouncementsDetails = () => {
 
   return (
     <>
+      {console.log(data)}
       <Announcement announcement={data} isOpen={true} />
       <CommentsSection announcementId={id} />
     </>

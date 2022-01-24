@@ -12,6 +12,7 @@ import Login from '../Login/Login';
 import ProtectedRoute from '../ProtectedRoute';
 import { Container } from './App.styled';
 import { GlobalStyle } from '../../assets/styles/GlobalStyles';
+import AnnouncementsDetails from '../AnnouncementDetails/AnnouncementDetails';
 
 const queryClient = new QueryClient();
 export const UserContext = createContext();
@@ -34,6 +35,7 @@ function App() {
                   <Route path="subscribed" element={<Subscribed />} />
                   <Route path="add-post" element={<AddPost />} />
                   <Route path="profile" element={<Profile />} />
+                  <Route path="announcement/:id" element={<AnnouncementsDetails />} />
                 </Route>
               </Route>
             </Routes>

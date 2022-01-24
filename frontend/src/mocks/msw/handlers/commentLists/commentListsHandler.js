@@ -5,7 +5,7 @@ import { announcementsResponse } from '../announcements/announcementResponse';
 
 const getCommentListsHandler = rest.get('/announcements/:id/comments', (req, res, ctx) => {
   const { id } = req.params;
-  const comments = announcementsResponse[id].comments;
+  const comments = announcementsResponse.announcements[id].comments;
   const response = { commentList: comments };
 
   return res(ctx.status(200), ctx.json(response));
@@ -13,7 +13,7 @@ const getCommentListsHandler = rest.get('/announcements/:id/comments', (req, res
 
 const postCommentListHandler = rest.post('/announcements/:id/comments', (req, res, ctx) => {
   const { id } = req.params;
-  const comments = announcementsResponse[id].comments;
+  const comments = announcementsResponse.announcements[id].comments;
   comments.push(req.body);
   const response = { commentList: comments };
 
