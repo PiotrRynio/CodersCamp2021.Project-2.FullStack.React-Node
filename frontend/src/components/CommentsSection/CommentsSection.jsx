@@ -9,7 +9,7 @@ export const CommentsSection = () => {
     isLoading,
     isError,
   } = useQuery('commentList', async () => {
-    return await fetch('/announcements/1/comments').then((response) => response.json());
+    return await fetch('/announcements/${announcementId}/comments').then((response) => response.json());
   });
 
   const {
