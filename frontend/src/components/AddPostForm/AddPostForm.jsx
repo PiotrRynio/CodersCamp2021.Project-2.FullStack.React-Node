@@ -1,9 +1,36 @@
 import React, { useState } from 'react';
-import { Form, FormTitle, Icon, TitleInput, MessageInput, SubmitInput } from './AddPostForm.styled';
+import { Form, FormTitle, Icon, TitleInput, TextArea } from './AddPostForm.styled';
+import { BottomFormSection, Button, ErrorText } from '../CommentForm/CommentForm.styled';
+import { Title } from '../CommentList/CommentList.styled';
 
 const AddPostForm = () => {
   const [postState, setPostState] = useState({});
+  const [errorArray, setErrorArray] = useState([]);
 
+  const validateForm = () => {
+    setErrorArray([]);
+
+    if (!postState.title) {
+      setErrorArray(...errorArray, 'Title can not be empty!');
+      return false;
+    } else if (postState.title.length > 100) {
+      //TODO ograniczenie z bazy danych gdy bedzie back
+      //TODO wyswietlic uzytkownikowi ile ma liter
+      setErrorArray(...errorArray, 'Title too long, max 100 characters!}');
+      return false;
+    }
+
+    if (!postState.message) {
+      setErrorArray(...errorArray, 'Title can not be empty!');
+      return false;
+    }
+
+    if (!postState.message.length > 500) {
+      setErrorArray(...errorArray, '!');
+      return false;
+    }
+    return true;
+  };
   const handleChange = ({ target }) => {
     const name = target.name;
     const value = target.value;
@@ -24,7 +51,7 @@ const AddPostForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormTitle>Add new post</FormTitle>
+      <Title>Comments</Title>
       <div>
         <TitleInput
           type="text"
@@ -35,14 +62,17 @@ const AddPostForm = () => {
         />
         <Icon>🌨</Icon>
       </div>
-      <MessageInput
+      <TextArea
         type="text"
         name="message"
         placeholder="Enter message..."
         value={postState.message || ''}
         onChange={handleChange}
       />
-      <SubmitInput type="submit" value="submit" />
+      <BottomFormSection>
+        <ErrorText>Temp error</ErrorText>
+        <Button type="submit">Add post</Button>
+      </BottomFormSection>
     </Form>
   );
 };

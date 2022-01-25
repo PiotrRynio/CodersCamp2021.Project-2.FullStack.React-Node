@@ -44,20 +44,13 @@ export const Icon = styled.div`
   
 `;
 
-export const MessageInput = styled.input`
-  height: 6em;
-
-  border-radius: 12px;
-  border: 1px solid #aab;
-
-  &:hover {
-    border: 1px solid #47f;
-  }
-`;
-
-export const SubmitInput = styled.input`
+export const TextArea = styled.textarea`
+  width: 100%;
   border-radius: 10px;
-  border: 1px solid #aab;
-  color: gray;
-  #TODO waiting for the button component
+  padding: 5px;
+  border-color: rgba(0, 0, 0, 0.52);
+
+  :focus::-webkit-input-placeholder {
+    color: transparent;
+  }
 `;
