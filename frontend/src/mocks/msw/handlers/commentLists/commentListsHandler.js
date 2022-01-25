@@ -1,14 +1,21 @@
-// src/mocks/handlers.js
 import { rest } from 'msw';
-import { commentListsResponse } from './commentListsResponse';
+import { announcementsResponse } from 'mocks/msw/handlers/announcements/announcementResponse';
 
-const getCommentListsHandler = rest.get('/announcements/1/comments', (req, res, ctx) => {
-  return res(ctx.status(200), ctx.json(commentListsResponse));
+const getCommentListsHandler = rest.get('/announcements/:id/comments', (req, res, ctx) => {
+  const { id } = req.params;
+  const comments = announcementsResponse.announcements[id].comments;
+  const response = { commentList: comments };
+
+  return res(ctx.status(200), ctx.json(response));
 });
 
-const postCommentListHandler = rest.post('/announcements/1/comments', (req, res, ctx) => {
-  commentListsResponse.commentList.push(req.body);
-  return res(ctx.status(200), ctx.json(commentListsResponse));
+const postCommentListHandler = rest.post('/announcements/:id/comments', (req, res, ctx) => {
+  const { id } = req.params;
+  const comments = announcementsResponse.announcements[id].comments;
+  comments.push(req.body);
+  const response = { commentList: comments };
+
+  return res(ctx.status(200), ctx.json(response));
 });
 
 export const commentListHandlers = [getCommentListsHandler, postCommentListHandler];
