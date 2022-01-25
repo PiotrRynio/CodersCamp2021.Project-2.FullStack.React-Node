@@ -12,4 +12,5 @@ export const StyledButton = styled.button`
   color: #ffffff;
   background-color: #1a8cd8;
   box-shadow: 0px 4px 4px 0px #00000040;
+  cursor: pointer;
 `;
