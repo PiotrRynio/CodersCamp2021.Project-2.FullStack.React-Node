@@ -30,7 +30,7 @@ const Announcement = ({ announcement, isOpen, showBoard }) => {
           <>
             <ShortContent>{content}</ShortContent>
             <StyledLink to={`/announcement/${id}`}>
-              <ReadMore>[read&nbsp;more]</ReadMore>
+              <ReadMore>[read more]</ReadMore>
               <Comments>{commentsText}</Comments>
             </StyledLink>
           </>

@@ -10,7 +10,7 @@ import SignIn from 'views/SignIn/SignIn';
 import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
-import AnnouncementsDetails from 'views/AnnouncementDetails/AnnouncementDetails';
+import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';
 
@@ -35,7 +35,7 @@ function App() {
                   <Route path="subscribed" element={<Subscribed />} />
                   <Route path="add-post" element={<AddPost />} />
                   <Route path="profile" element={<Profile />} />
-                  <Route path="announcement/:id" element={<AnnouncementsDetails />} />
+                  <Route path="announcement/:id" element={<AnnouncementDetails />} />
                 </Route>
               </Route>
             </Routes>

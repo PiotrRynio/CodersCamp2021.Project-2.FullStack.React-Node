@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Announcement from 'components/Announcement/Announcement';
 import { CommentsSection } from 'components/CommentsSection/CommentsSection';
 
-const AnnouncementsDetails = () => {
+const AnnouncementDetails = () => {
   const { id } = useParams();
 
   const { data, isLoading, isError } = useQuery('boardsList', async () => {
@@ -11,7 +11,7 @@ const AnnouncementsDetails = () => {
   });
 
   if (isLoading || isError) {
-    return <div />;
+    return <></>;
   }
 
   return (
@@ -22,4 +22,4 @@ const AnnouncementsDetails = () => {
   );
 };
 
-export default AnnouncementsDetails;
+export default AnnouncementDetails;
