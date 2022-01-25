@@ -1,11 +1,10 @@
-import { AiOutlineSend } from 'react-icons/ai';
 import { StyledButton } from 'components/Button/Button.styled';
 
-export const Button = ({ callback, buttonName }) => {
+export const Button = ({ callback, buttonName, icon }) => {
   return (
     <StyledButton onClick={callback}>
       {buttonName}
-      <AiOutlineSend />
+      {icon}
     </StyledButton>
   );
 };
