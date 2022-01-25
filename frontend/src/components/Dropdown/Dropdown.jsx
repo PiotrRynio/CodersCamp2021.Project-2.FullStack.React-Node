@@ -10,11 +10,11 @@ const Dropdown = () => {
     },
     {
       icon: <FaFlag />,
-      text: 'Report this post'
+      text: 'Report this board'
     },
     {
       icon: <FaEyeSlash />,
-      text: 'Don\'t show me this post'
+      text: 'Don\'t show me this board'
     }
   ]
   const displayDropdownItems = dropdownItems.map((dropdownItem) =>

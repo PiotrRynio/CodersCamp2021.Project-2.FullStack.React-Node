@@ -6,7 +6,7 @@ export const StyledDropdown = styled.div`
   top: calc(0% + 15px);
   right: 0;
   padding: 0.5rem;
-  min-width: 160px;
+  min-width: 160px; 
   display: flex;
   flex-direction: column;
   background-color: #fff;

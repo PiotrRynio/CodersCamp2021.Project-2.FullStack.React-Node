@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {
   BoardInfoContainer,
   BoardInfo,
@@ -17,7 +16,7 @@ const Board = ({user, boardTitle}) => {
       <BoardInfoContainer>
         <BoardInfo>
           <BoardImage />
-          // TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a 
+          {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a  */}
           <BoardTitle>
             {boardTitle}
           </BoardTitle>
@@ -30,7 +29,7 @@ const Board = ({user, boardTitle}) => {
           <AuthorName>
             {user}
           </AuthorName>
-          <AuthorAvatar>
+          <AuthorAvatar >
             <FaUserCircle />
           </AuthorAvatar>
         </AuthorInfoContainer>

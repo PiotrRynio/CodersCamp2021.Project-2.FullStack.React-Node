@@ -5,10 +5,10 @@ import { FaEllipsisH } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const DotsButton = ({children}) => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <StyledDotsButton onClick={() => setOpen((prevState) => !prevState)}>
+    <StyledDotsButton onClick={() => setIsOpen((prevState) => !prevState)}>
       <ButtonContainer>
         <FaEllipsisH />
       </ButtonContainer>
@@ -20,4 +20,5 @@ const DotsButton = ({children}) => {
 DotsButton.propTypes = {
   children: PropTypes.node
 }
+
 export default DotsButton;
