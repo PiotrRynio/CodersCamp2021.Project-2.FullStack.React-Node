@@ -12,15 +12,14 @@ import DotsButton from "../DotsButton/DotsButton";
 import Dropdown from '../Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
 
-const Board = () => {
-  const [clickHandler, setClickHandler] = useState(false)
-
+const Board = ({user, boardTitle}) => {
   return (
       <BoardInfoContainer>
         <BoardInfo>
           <BoardImage />
-          <BoardTitle onClick={() => setClickHandler(!clickHandler)}>
-            nazwa_tablicy
+          // TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a 
+          <BoardTitle>
+            {boardTitle}
           </BoardTitle>
           <DotsButton>
             <Dropdown>
@@ -29,7 +28,7 @@ const Board = () => {
         </BoardInfo>
         <AuthorInfoContainer>
           <AuthorName>
-            nazwa_uzytkownika
+            {user}
           </AuthorName>
           <AuthorAvatar>
             <FaUserCircle />
