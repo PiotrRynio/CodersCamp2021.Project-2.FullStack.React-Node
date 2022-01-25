@@ -1,7 +1,5 @@
-// src/mocks/handlers.js
 import { rest } from 'msw';
-import { commentListsResponse } from './commentListsResponse';
-import { announcementsResponse } from '../announcements/announcementResponse';
+import { announcementsResponse } from 'mocks/msw/handlers/announcements/announcementResponse';
 
 const getCommentListsHandler = rest.get('/announcements/:id/comments', (req, res, ctx) => {
   const { id } = req.params;

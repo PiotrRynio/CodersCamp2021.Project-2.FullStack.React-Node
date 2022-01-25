@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Announcement from 'components/Announcement/Announcement';
-import { CommentsSection } from '../../components/CommentsSection/CommentsSection';
+import { CommentsSection } from 'components/CommentsSection/CommentsSection';
 
 const AnnouncementsDetails = () => {
   const { id } = useParams();
@@ -16,7 +16,6 @@ const AnnouncementsDetails = () => {
 
   return (
     <>
-      {console.log(data)}
       <Announcement announcement={data} isOpen={true} />
       <CommentsSection announcementId={id} />
     </>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Wrapper,
   ReadMore,
@@ -9,7 +10,6 @@ import {
   TextWrapper,
   StyledLink,
 } from './Announcement.styled';
-import PropTypes from 'prop-types';
 import AnnouncementIcon from '../AnnouncementIcon/AnnouncementIcon';
 
 const Announcement = ({ announcement, isOpen, showBoard }) => {
@@ -31,12 +31,10 @@ const Announcement = ({ announcement, isOpen, showBoard }) => {
             <ShortContent>{content}</ShortContent>
             <StyledLink to={`/announcement/${id}`}>
               <ReadMore>[read&nbsp;more]</ReadMore>
+              <Comments>{commentsText}</Comments>
             </StyledLink>
           </>
         )}
-        <StyledLink to={`/announcement/${id}`}>
-          <Comments>{commentsText}</Comments>
-        </StyledLink>
       </TextWrapper>
     </Wrapper>
   );
