@@ -10,6 +10,7 @@ import {
   NavButton,
   NavText,
 } from './Navigation.styled';
+import { Button } from 'components/Button/Button';
 
 const Navigation = () => {
   const navItems = [
@@ -22,6 +23,7 @@ const Navigation = () => {
   return (
     <Container>
       <NavMenu>
+        <Button text={'WATCH'} />
         {navItems.map((navItem) => {
           return (
             <NavItem>

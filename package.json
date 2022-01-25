@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "husky": "^7.0.4"
+  },
+  "dependencies": {
+    "react-icons": "^4.3.1"
   }
 }
