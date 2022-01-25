@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { StyledDotsButton, ButtonContainer } from './DotsButton.styled';
 import { FaEllipsisH } from 'react-icons/fa';
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {breakpoints} from "../../rwd/breakpoints";
+import {breakpoints} from "components/../rwd/breakpoints";
 
 export const StyledDotsButton = styled.div`
   position: absolute;

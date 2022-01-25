@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {breakpoints} from "../../rwd/breakpoints";
+import {breakpoints} from "components/../rwd/breakpoints";
 
 export const StyledDropdown = styled.div`
   position: absolute;
@@ -67,9 +67,9 @@ export const DropdownItem = styled.div`
 `
 
 export const Image = styled.div`
+  margin-right: 10px;
   min-height: 40px;
   min-width: 40px;
-  margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;

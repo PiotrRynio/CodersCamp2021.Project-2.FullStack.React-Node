@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../rwd/breakpoints";
+import { breakpoints } from "components/../rwd/breakpoints";
 
 
 export const BoardInfoContainer = styled.div`
@@ -23,10 +23,10 @@ export const BoardInfo = styled.div`
 `
 
 export const BoardImage = styled.div`
+  margin-right: 10px;
   display: inline-block;
   min-height: 60px;
   min-width: 60px;
-  margin-right: 10px;
   background-color: #bbb;
   border-radius: 50%;
   
