@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  position: relative;
-  min-height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
 export const MainSection = styled.div`
   position: relative;
   width: 55%;
