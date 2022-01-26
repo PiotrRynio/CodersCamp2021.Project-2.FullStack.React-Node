@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
-import { Form, FormTitle, Icon, TitleInput, TextArea } from './AddPostForm.styled';
+import {
+  Form,
+  Line,
+  Icon,
+  TitleInput,
+  TextArea,
+  Title,
+  FirstFormRow,
+  IconOptions,
+} from 'components/AddAnnouncement/AddPostForm.styled';
 import { BottomFormSection, Button, ErrorText } from '../CommentForm/CommentForm.styled';
-import { Title } from '../CommentList/CommentList.styled';
+import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
+import Select from 'react-select';
 
-const AddPostForm = () => {
+const AddPostForm = ({ callback }) => {
   const [postState, setPostState] = useState({});
   const [errorArray, setErrorArray] = useState([]);
-
+  const options = [
+    { value: 'water', label: <FaTint /> },
+    { value: 'electricity', label: <FaBolt /> },
+    { value: 'pets', label: <FaDog /> },
+    { value: '', label: <FaBullhorn /> },
+  ];
   const validateForm = () => {
     setErrorArray([]);
 
@@ -51,8 +66,9 @@ const AddPostForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Title>Comments</Title>
-      <div>
+      <Title>Add new announcement</Title>
+      <Line />
+      <FirstFormRow>
         <TitleInput
           type="text"
           name="title"
@@ -60,12 +76,18 @@ const AddPostForm = () => {
           value={postState.title || ''}
           onChange={handleChange}
         />
-        <Icon>🌨</Icon>
-      </div>
+        <Select
+          styles={IconOptions}
+          options={options}
+          isSearchable={false}
+          maxMenuHeight={190}
+          defaultValue={options[3]}
+        />
+      </FirstFormRow>
       <TextArea
         type="text"
         name="message"
-        placeholder="Enter message..."
+        placeholder="Enter description..."
         value={postState.message || ''}
         onChange={handleChange}
       />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from './AddPost.styled';
-import AddPostForm from '../../components/AddPostForm/AddPostForm';
-import { CommentForm } from '../../components/CommentForm/CommentForm';
+import AddPostForm from '../../components/AddAnnouncement/AddPostForm';
 
 const AddPost = () => {
   return (
