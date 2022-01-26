@@ -9,7 +9,6 @@ export const BoardInfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #e3e3e3;
   color: #2c2c2c;
 `;
 

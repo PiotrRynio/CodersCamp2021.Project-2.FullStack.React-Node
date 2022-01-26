@@ -6,17 +6,17 @@ import {
   AuthorInfoContainer,
   AuthorName,
   AuthorAvatar,
-} from './Board.styled';
+} from './BoardTitleSection.styled';
 import DotsButton from './DotsButton/DotsButton';
 import Dropdown from './Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
 
-const Board = ({ user, boardTitle }) => {
+const BoardTitleSection = ({ user, boardTitle }) => {
   return (
     <BoardInfoContainer>
       <BoardInfo>
         <BoardImage />
-        {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a  */}
+        {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok BoardTitleSection'a  */}
         <BoardTitle>{boardTitle}</BoardTitle>
         <DotsButton>
           <Dropdown></Dropdown>
@@ -32,4 +32,4 @@ const Board = ({ user, boardTitle }) => {
   );
 };
 
-export default Board;
+export default BoardTitleSection;
