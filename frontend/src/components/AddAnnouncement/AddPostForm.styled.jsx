@@ -53,21 +53,14 @@ export const FirstFormRow = styled.div`
   margin-bottom: 30px;
 =`;
 
-export const IconOptions = {
-  width: 30,
-
+export const customStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px dotted pink',
-    color: state.isSelected ? 'blue' : 'black',
+    background: state.isSelected ? '#1a8cd8' : 'white',
+    margin: 0,
   }),
 
-  singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
-
-    return { ...provided, opacity, transition };
-  },
   control: (provided, state) => ({
     ...provided,
     background: '#fff',
@@ -75,28 +68,16 @@ export const IconOptions = {
     height: '40px',
     padding: 0,
     margin: 0,
-    boxShadow: state.isFocused ? null : null,
-  }),
-
-  input: (provider, state) => ({
-    ...provider,
-    padding: 0,
-    margin: 0,
-  }),
-
-  indicatorContainer: (provider, state) => ({
-    ...provider,
-    padding: 0,
-    margin: 0,
   }),
 
   indicatorsContainer: (provider, state) => ({
     ...provider,
-    padding: 0,
     margin: 0,
-  }),
-  valueContainer: (provider, state) => ({
-    ...provider,
     padding: 0,
+  }),
+
+  indicatorSeparator: (provider) => ({
+    ...provider,
+    height: 25,
   }),
 };
