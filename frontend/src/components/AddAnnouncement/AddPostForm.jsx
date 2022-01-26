@@ -1,26 +1,42 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Form,
   Line,
-  Icon,
-  TitleInput,
-  TextArea,
-  Title,
-  FirstFormRow,
+  FormTitle,
+  SecondFormRow,
   IconOptions,
+  MarkedTitle,
+  TitleInput,
+  ContentInput,
+  BoardOptions,
+  Button,
 } from 'components/AddAnnouncement/AddPostForm.styled';
-import { BottomFormSection, Button, ErrorText } from '../CommentForm/CommentForm.styled';
+import { BottomFormSection, ErrorText } from '../CommentForm/CommentForm.styled';
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
+import { useForm } from 'react-hook-form';
 
 const AddPostForm = ({ callback }) => {
   const [postState, setPostState] = useState({});
   const [errorArray, setErrorArray] = useState([]);
-  const options = [
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const iconOptions = [
     { value: 'water', label: <FaTint /> },
     { value: 'electricity', label: <FaBolt /> },
     { value: 'pets', label: <FaDog /> },
     { value: '', label: <FaBullhorn /> },
+  ];
+  const availableBoards = [
+    { value: 'Board 1', label: 'Board 1' },
+    { value: 'Board 2', label: 'Board 2' },
+    { value: 'Board 3', label: 'Board 3' },
+    { value: 'Board 4', label: 'Board 4' },
   ];
   const validateForm = () => {
     setErrorArray([]);
@@ -52,7 +68,8 @@ const AddPostForm = ({ callback }) => {
     setPostState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const onSubmit = '';
+  /*  const handleSubmit = (event) => {
     event.preventDefault();
     if (postState.title === undefined || postState.title.length === 0) {
       alert('You need to provide a valid title!');
@@ -62,38 +79,44 @@ const AddPostForm = ({ callback }) => {
       console.log(postState);
       //TODO to implement - create a comment from the post data
     }
-  };
+  };*/
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Title>Add new announcement</Title>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormTitle>
+        Add new <MarkedTitle>Announcement</MarkedTitle>
+      </FormTitle>
       <Line />
-      <FirstFormRow>
+      <Select
+        styles={BoardOptions}
+        options={availableBoards}
+        isSearchable={false}
+        maxMenuHeight={190}
+        defaultValue={BoardOptions[0]}
+      />
+      <SecondFormRow>
         <TitleInput
           type="text"
-          name="title"
           placeholder="Enter title..."
-          value={postState.title || ''}
-          onChange={handleChange}
+          {...register('title', { required: true })}
         />
+
         <Select
           styles={IconOptions}
-          options={options}
+          options={iconOptions}
           isSearchable={false}
           maxMenuHeight={190}
-          defaultValue={options[3]}
+          defaultValue={iconOptions[3]}
         />
-      </FirstFormRow>
-      <TextArea
+      </SecondFormRow>
+      <ContentInput
         type="text"
-        name="message"
         placeholder="Enter description..."
-        value={postState.message || ''}
-        onChange={handleChange}
+        {...register('description', { required: true })}
       />
       <BottomFormSection>
         <ErrorText>Temp error</ErrorText>
-        <Button type="submit">Add post</Button>
+        <Button type="submit">Add</Button>
       </BottomFormSection>
     </Form>
   );

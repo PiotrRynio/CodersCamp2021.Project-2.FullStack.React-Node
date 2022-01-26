@@ -7,7 +7,7 @@ export const Form = styled.form`
 
   padding: 1em;
   background-color: white;
-  border: 0.5px solid #68f;
+  border: 0.5px solid #1a8cd8;
   border-radius: 20px;
 
   * {
@@ -18,16 +18,17 @@ export const Form = styled.form`
 export const TitleInput = styled.input`
   width: 80%;
   height: 40px;
-  float: left;
-`;
+  padding: 5px;
+  border-color: rgba(0, 0, 0, 0.52);
+  font-weight: bold;
 
-export const Icon = styled.div`
-  #TODO waiting for icon picker
-  
+  :focus::-webkit-input-placeholder {
+    color: transparent;
+  }
 `;
-
-export const TextArea = styled.textarea`
+export const ContentInput = styled.input`
   width: 100%;
+  height: 80px;
   padding: 5px;
   border-color: rgba(0, 0, 0, 0.52);
 
@@ -35,25 +36,35 @@ export const TextArea = styled.textarea`
     color: transparent;
   }
 `;
+export const Button = styled.button`
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  margin-top: 2px;
+  border-color: #1a8cd8;
+`;
+
 export const Line = styled.hr`
   width: 250px;
   border-color: rgba(0, 0, 0, 0.52);
 `;
 
-export const Title = styled.h1`
+export const FormTitle = styled.h1`
   font-size: 20px;
 `;
 
-export const Label = styled.label``;
+export const MarkedTitle = styled.span`
+  color: #1a8cd8;
+`;
 
-export const FirstFormRow = styled.div`
+export const SecondFormRow = styled.div`
   display: flex;
   justify-content: space-between;
   height: 30px;
   margin-bottom: 30px;
 =`;
 
-export const iconOptions = {
+export const IconOptions = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px dotted pink',
@@ -81,3 +92,5 @@ export const iconOptions = {
     height: 25,
   }),
 };
+
+export const BoardOptions = {};
