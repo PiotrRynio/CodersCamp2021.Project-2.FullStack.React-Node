@@ -53,7 +53,7 @@ export const FirstFormRow = styled.div`
   margin-bottom: 30px;
 =`;
 
-export const customStyles = {
+export const iconOptions = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px dotted pink',
