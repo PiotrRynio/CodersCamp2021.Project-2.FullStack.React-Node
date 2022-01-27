@@ -1,22 +1,22 @@
-import { useState } from 'react';
 import {
   Form,
   Line,
   FormTitle,
   SecondFormRow,
-  IconOptions,
   MarkedTitle,
   TitleInput,
   ContentInput,
-  BoardOptions,
+  StyledOptions,
   Button,
+  LeftColumn,
+  RightColumn,
+  BottomFormSection,
 } from 'components/AddAnnouncement/AddPostForm.styled';
-import { BottomFormSection, ErrorText } from '../CommentForm/CommentForm.styled';
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
 
-const AddPostForm = ({ callback }) => {
+const AddPostForm = ({ formSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -30,6 +30,8 @@ const AddPostForm = ({ callback }) => {
     { value: 'pets', label: <FaDog /> },
     { value: '', label: <FaBullhorn /> },
   ];
+
+  //TODO - zaciagnac z bazy available boards dla uzytkownika
   const availableBoards = [
     { value: 'Board 1', label: 'Board 1' },
     { value: 'Board 2', label: 'Board 2' },
@@ -37,7 +39,9 @@ const AddPostForm = ({ callback }) => {
     { value: 'Board 4', label: 'Board 4' },
   ];
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -45,41 +49,61 @@ const AddPostForm = ({ callback }) => {
         Add new <MarkedTitle>Announcement</MarkedTitle>
       </FormTitle>
       <Line />
+
+      <label>Select your board</label>
       <Controller
-        name="boards"
+        name="boardName"
         control={control}
         render={({ field }) => (
           <Select
             {...field}
-            styles={BoardOptions}
+            styles={StyledOptions}
             options={availableBoards}
-            defaultValue={BoardOptions[0]}
+            defaultValue={availableBoards[0]}
           />
         )}
       />
       <SecondFormRow>
-        <TitleInput
-          type="text"
-          placeholder="Enter title..."
-          {...register('title', { required: true })}
-        />
-        <Controller
-          name="icons"
-          control={control}
-          render={({ field }) => <Select {...field} styles={IconOptions} options={iconOptions} />}
-        />
+        <LeftColumn>
+          <label htmlFor="titleInput">Title</label>
+          <TitleInput
+            id="titleInput"
+            type="text"
+            placeholder="Enter title..."
+            {...register('Title', { required: true })}
+          />
+        </LeftColumn>
+        <RightColumn>
+          {' '}
+          <label htmlFor="iconInput">Icon</label>
+          <Controller
+            id="iconInput"
+            name="iconType"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                styles={StyledOptions}
+                options={iconOptions}
+                defaultValue={iconOptions[0]}
+              />
+            )}
+          />
+        </RightColumn>
       </SecondFormRow>
+      <label htmlFor="content">Announcement text</label>
       <ContentInput
         type="text"
         placeholder="Enter description..."
         {...register('content', { required: true })}
       />
       <BottomFormSection>
-        <ErrorText>Temp error</ErrorText>
         <Button type="submit">Add</Button>
       </BottomFormSection>
     </Form>
   );
 };
+
+AddPostForm.propTypes = {};
 
 export default AddPostForm;
