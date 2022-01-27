@@ -22,6 +22,7 @@ export const Icon = styled.span`
 
 export const BoardsEntry = styled.div`
   background-color: darkgray;
+  padding: 15px;
 `;
 
 export const BoardName = styled.span`

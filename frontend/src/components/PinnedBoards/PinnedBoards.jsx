@@ -1,11 +1,5 @@
-import {
-  Container,
-  Title,
-  TitleMainColor,
-  Icon,
-  BoardsEntry,
-  BoardName,
-} from './PinnedBoards.styled';
+import { Container, Title, TitleMainColor, Icon, BoardName } from './PinnedBoards.styled';
+import BoardEntry from './BoardEntry';
 import { HiClipboardList } from 'react-icons/hi';
 
 const PinnedBoards = () => {
@@ -17,14 +11,8 @@ const PinnedBoards = () => {
       <Title>
         Pinned<TitleMainColor>Boards</TitleMainColor>
       </Title>
-      <BoardsEntry>
-        <HiClipboardList />
-        <BoardName> Board 1 </BoardName>
-      </BoardsEntry>
-      <BoardsEntry>
-        <HiClipboardList />
-        <BoardName> Board 2 </BoardName>
-      </BoardsEntry>
+      <BoardEntry boardName="Board 11" boardIcon="todo" />
+      <BoardEntry boardName="Board 22" boardIcon="todo" />
     </Container>
   );
 };
