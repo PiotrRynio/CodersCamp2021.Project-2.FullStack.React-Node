@@ -14,15 +14,13 @@ import {
 import { BottomFormSection, ErrorText } from '../CommentForm/CommentForm.styled';
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 const AddPostForm = ({ callback }) => {
-  const [postState, setPostState] = useState({});
-  const [errorArray, setErrorArray] = useState([]);
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -38,48 +36,8 @@ const AddPostForm = ({ callback }) => {
     { value: 'Board 3', label: 'Board 3' },
     { value: 'Board 4', label: 'Board 4' },
   ];
-  const validateForm = () => {
-    setErrorArray([]);
 
-    if (!postState.title) {
-      setErrorArray(...errorArray, 'Title can not be empty!');
-      return false;
-    } else if (postState.title.length > 100) {
-      //TODO ograniczenie z bazy danych gdy bedzie back
-      //TODO wyswietlic uzytkownikowi ile ma liter
-      setErrorArray(...errorArray, 'Title too long, max 100 characters!}');
-      return false;
-    }
-
-    if (!postState.message) {
-      setErrorArray(...errorArray, 'Title can not be empty!');
-      return false;
-    }
-
-    if (!postState.message.length > 500) {
-      setErrorArray(...errorArray, '!');
-      return false;
-    }
-    return true;
-  };
-  const handleChange = ({ target }) => {
-    const name = target.name;
-    const value = target.value;
-    setPostState((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const onSubmit = '';
-  /*  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (postState.title === undefined || postState.title.length === 0) {
-      alert('You need to provide a valid title!');
-    } else if (postState.message === undefined || postState.message.length === 0) {
-      alert('You need to provide a valid message!');
-    } else {
-      console.log(postState);
-      //TODO to implement - create a comment from the post data
-    }
-  };*/
+  const onSubmit = (data) => console.log(data);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -87,12 +45,17 @@ const AddPostForm = ({ callback }) => {
         Add new <MarkedTitle>Announcement</MarkedTitle>
       </FormTitle>
       <Line />
-      <Select
-        styles={BoardOptions}
-        options={availableBoards}
-        isSearchable={false}
-        maxMenuHeight={190}
-        defaultValue={BoardOptions[0]}
+      <Controller
+        name="boards"
+        control={control}
+        render={({ field }) => (
+          <Select
+            {...field}
+            styles={BoardOptions}
+            options={availableBoards}
+            defaultValue={BoardOptions[0]}
+          />
+        )}
       />
       <SecondFormRow>
         <TitleInput
@@ -100,19 +63,16 @@ const AddPostForm = ({ callback }) => {
           placeholder="Enter title..."
           {...register('title', { required: true })}
         />
-
-        <Select
-          styles={IconOptions}
-          options={iconOptions}
-          isSearchable={false}
-          maxMenuHeight={190}
-          defaultValue={iconOptions[3]}
+        <Controller
+          name="icons"
+          control={control}
+          render={({ field }) => <Select {...field} styles={IconOptions} options={iconOptions} />}
         />
       </SecondFormRow>
       <ContentInput
         type="text"
         placeholder="Enter description..."
-        {...register('description', { required: true })}
+        {...register('content', { required: true })}
       />
       <BottomFormSection>
         <ErrorText>Temp error</ErrorText>

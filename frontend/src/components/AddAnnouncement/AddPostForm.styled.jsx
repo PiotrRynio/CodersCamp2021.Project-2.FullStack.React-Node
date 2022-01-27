@@ -8,7 +8,7 @@ export const Form = styled.form`
   padding: 1em;
   background-color: white;
   border: 0.5px solid #1a8cd8;
-  border-radius: 20px;
+  border-radius: 2px;
 
   * {
     margin: 3px 0px;
@@ -19,21 +19,31 @@ export const TitleInput = styled.input`
   width: 80%;
   height: 40px;
   padding: 5px;
-  border-color: rgba(0, 0, 0, 0.52);
+  border: 1px solid hsl(0, 0%, 80%);
+  border-color: hsl(0, 0%, 80%);
   font-weight: bold;
 
   :focus::-webkit-input-placeholder {
     color: transparent;
   }
+  :focus {
+    outline: none !important;
+    border: 2px solid #1a8cd8;
+  }
 `;
-export const ContentInput = styled.input`
+export const ContentInput = styled.textarea`
   width: 100%;
   height: 80px;
-  padding: 5px;
-  border-color: rgba(0, 0, 0, 0.52);
+  text-align: left;
+  padding-bottom: 50px;
 
-  :focus::-webkit-input-placeholder {
+  border-color: hsl(0, 0%, 80%);
+  c :focus::-webkit-input-placeholder {
     color: transparent;
+  }
+  :focus {
+    outline: none !important;
+    border: 2px solid #1a8cd8;
   }
 `;
 export const Button = styled.button`
@@ -67,6 +77,7 @@ export const SecondFormRow = styled.div`
 export const IconOptions = {
   option: (provided, state) => ({
     ...provided,
+    borderRadius: 0,
     borderBottom: '1px dotted pink',
     background: state.isSelected ? '#1a8cd8' : 'white',
     margin: 0,
@@ -75,7 +86,6 @@ export const IconOptions = {
   control: (provided, state) => ({
     ...provided,
     background: '#fff',
-    borderColor: '#9e9e9e',
     height: '40px',
     padding: 0,
     margin: 0,
@@ -93,4 +103,31 @@ export const IconOptions = {
   }),
 };
 
-export const BoardOptions = {};
+export const BoardOptions = {
+  option: (provided, state) => ({
+    ...provided,
+    borderRadius: 0,
+    borderBottom: '1px dotted pink',
+    background: state.isSelected ? '#1a8cd8' : 'white',
+    margin: 0,
+  }),
+
+  control: (provided, state) => ({
+    ...provided,
+    background: '#fff',
+    height: '40px',
+    padding: 0,
+    margin: 0,
+  }),
+
+  indicatorsContainer: (provider, state) => ({
+    ...provider,
+    margin: 0,
+    padding: 0,
+  }),
+
+  indicatorSeparator: (provider) => ({
+    ...provider,
+    height: 25,
+  }),
+};
