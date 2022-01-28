@@ -21,12 +21,18 @@ import { v4 as uuidv4 } from 'uuid';
 const AddPostForm = ({ formSubmit }) => {
   const { register, handleSubmit, control } = useForm();
 
+  const { data: dataAnnouncementsList } = useQuery('announcementsList', async () => {
+    return await fetch('/boards/1/announcements').then((response) => response.json());
+  });
+
+  //TODO url zmienic (bez changeable) wykorzystac pole prywatna/publiczna do wyswietlania
   const {
-    data: dataQuery,
+    data: dataAvailableUserBoards,
     isLoading,
     isError,
-  } = useQuery('announcementsList', async () => {
-    return await fetch('/boards/1/announcements').then((response) => response.json());
+  } = useQuery('AvailableUserBoards', async () => {
+    //TODO tu zrobic mape
+    return await fetch('/user/1/boards/changeable').then((response) => response.json());
   });
 
   const {
@@ -50,16 +56,7 @@ const AddPostForm = ({ formSubmit }) => {
     { value: '', label: <FaBullhorn /> },
   ];
 
-  //TODO - zaciagnac z bazy available boards dla uzytkownika
-  const availableBoards = [
-    { value: 'Board 1', label: 'Board 1' },
-    { value: 'Board 2', label: 'Board 2' },
-    { value: 'Board 3', label: 'Board 3' },
-    { value: 'Board 4', label: 'Board 4' },
-  ];
-
   const onSubmit = (data) => {
-    console.log(data);
     let newAnnouncement = {
       id: uuidv4(),
       title: data.title,
@@ -70,6 +67,19 @@ const AddPostForm = ({ formSubmit }) => {
     };
     mutate(newAnnouncement);
   };
+
+  const availableBoards = dataAvailableUserBoards?.boards.map((board) => {
+    return { value: board.boardName, label: board.boardName };
+  });
+  console.log('TABLICA:');
+  console.log(availableBoards);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -106,7 +116,7 @@ const AddPostForm = ({ formSubmit }) => {
             control={control}
             defaultValue={iconOptions[0]}
             render={({ field }) => (
-              <Select {...field}  styles={StyledOptions} options={iconOptions} />
+              <Select {...field} styles={StyledOptions} options={iconOptions} />
             )}
           />
         </RightColumn>

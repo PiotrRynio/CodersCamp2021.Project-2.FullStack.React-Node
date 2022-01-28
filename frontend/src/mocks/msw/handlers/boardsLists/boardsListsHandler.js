@@ -1,8 +1,12 @@
 import { rest } from 'msw';
-import { boardsListsResponse } from './boardsListsResponse';
+import { boardsListResponse } from './BoardsListResponse';
 
-const boardsListsHandler = rest.get('/boards', (req, res, ctx) => {
-  return res(ctx.status(200), ctx.json(boardsListsResponse));
+const getAllBoardsHandler = rest.get('/boards', (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(boardsListResponse));
 });
 
-export default boardsListsHandler;
+const getAvailableUserBoards = rest.get('/user/1/boards/changeable', (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(boardsListResponse));
+});
+
+export default [getAllBoardsHandler, getAvailableUserBoards];
