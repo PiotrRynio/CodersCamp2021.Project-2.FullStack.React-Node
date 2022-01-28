@@ -1,5 +1,14 @@
+import { Container, Item, Name, Icon } from './BoardEntry.styled';
+
 const BoardEntry = (props) => {
-  return props.boardName;
+  return (
+    <Container>
+      <Item>
+        <Icon>{props.boardIcon}</Icon>
+        <Name>{props.boardName}</Name>
+      </Item>
+    </Container>
+  );
 };
 
 export default BoardEntry;
