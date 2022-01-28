@@ -19,12 +19,7 @@ import { useMutation, useQuery } from 'react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 const AddPostForm = ({ formSubmit }) => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const {
     data: dataQuery,
@@ -64,11 +59,12 @@ const AddPostForm = ({ formSubmit }) => {
   ];
 
   const onSubmit = (data) => {
+    console.log(data);
     let newAnnouncement = {
       id: uuidv4(),
       title: data.title,
-      boardName: data.boardName,
-      iconType: 'electricity',
+      boardName: data.boardName.value,
+      iconType: data.iconType.value,
       content: data.content,
       date: new Date(),
     };
@@ -86,13 +82,9 @@ const AddPostForm = ({ formSubmit }) => {
       <Controller
         name="boardName"
         control={control}
+        defaultValue={availableBoards[0]}
         render={({ field }) => (
-          <Select
-            {...field}
-            styles={StyledOptions}
-            options={availableBoards}
-            defaultValue={availableBoards[0]}
-          />
+          <Select {...field} styles={StyledOptions} options={availableBoards} />
         )}
       />
       <SecondFormRow>
@@ -102,7 +94,7 @@ const AddPostForm = ({ formSubmit }) => {
             id="titleInput"
             type="text"
             placeholder="Enter title..."
-            {...register('Title', { required: true })}
+            {...register('title', { required: true })}
           />
         </LeftColumn>
         <RightColumn>
@@ -112,13 +104,9 @@ const AddPostForm = ({ formSubmit }) => {
             id="iconInput"
             name="iconType"
             control={control}
+            defaultValue={iconOptions[0]}
             render={({ field }) => (
-              <Select
-                {...field}
-                styles={StyledOptions}
-                options={iconOptions}
-                defaultValue={iconOptions[0]}
-              />
+              <Select {...field}  styles={StyledOptions} options={iconOptions} />
             )}
           />
         </RightColumn>
