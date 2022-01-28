@@ -15,6 +15,8 @@ import {
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
+import { useMutation, useQuery } from 'react-query';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddPostForm = ({ formSubmit }) => {
   const {
@@ -23,6 +25,28 @@ const AddPostForm = ({ formSubmit }) => {
     control,
     formState: { errors },
   } = useForm();
+
+  const {
+    data: dataQuery,
+    isLoading,
+    isError,
+  } = useQuery('announcementsList', async () => {
+    return await fetch('/boards/1/announcements').then((response) => response.json());
+  });
+
+  const {
+    mutate,
+    data: mutationData,
+    error: isMutationError,
+    isLoading: isLoadingMutation,
+  } = useMutation((newComment) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newComment),
+    };
+    return fetch('/boards/1/announcements', requestOptions).then((response) => response.json());
+  });
 
   const iconOptions = [
     { value: 'water', label: <FaTint /> },
@@ -40,7 +64,15 @@ const AddPostForm = ({ formSubmit }) => {
   ];
 
   const onSubmit = (data) => {
-    console.log(data);
+    let newAnnouncement = {
+      id: uuidv4(),
+      title: data.title,
+      boardName: data.boardName,
+      iconType: 'electricity',
+      content: data.content,
+      date: new Date(),
+    };
+    mutate(newAnnouncement);
   };
 
   return (
