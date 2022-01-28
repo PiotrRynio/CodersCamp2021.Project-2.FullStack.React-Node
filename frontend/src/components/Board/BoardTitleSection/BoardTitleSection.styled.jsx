@@ -23,19 +23,19 @@ export const BoardInfo = styled.div`
 export const BoardImage = styled.div`
   margin-right: 10px;
   display: inline-block;
-  min-height: 60px;
-  min-width: 60px;
+  min-height: 50px;
+  min-width: 50px;
   background-color: #bbb;
   border-radius: 50%;
 
   @media ${breakpoints.md} {
-    min-height: 90px;
-    min-width: 90px;
+    min-height: 70px;
+    min-width: 70px;
   }
 
   @media ${breakpoints.lg} {
-    min-height: 120px;
-    min-width: 120px;
+    min-height: 100px;
+    min-width: 100px;
   }
 
   @media ${breakpoints.xl} {

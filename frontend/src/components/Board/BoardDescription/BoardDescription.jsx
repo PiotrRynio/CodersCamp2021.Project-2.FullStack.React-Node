@@ -9,12 +9,18 @@ import {
 import { FaEye, FaBell } from 'react-icons/fa';
 
 const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance }) => {
+  // To jest tylko do wizualizacji potem usunąć
+  const descText =
+    'Morbi cursus libero magna, in tincidunt justo accumsan at. Vestibulum dapibus fermentum nibh. Phasellus neque nunc, varius ac porta at, tristique nec mauris. Maecenas et tincidunt neque. Ut non justo ac velit maximus placerat vel id massa. In consequat velit vitae ante vestibulum, id aliquam justo lacinia. Sed convallis lobortis mauris in tempor.';
+  const truncate = () => {
+    return descText.length > 150 ? descText.substr(0, 150 - 1) + '...' : descText;
+  };
+
   return (
     <DescriptionContainer>
       <DescriptionText>
-        In auctor nec arcu vitae consequat. Nullam vehicula justo vitae turpis gravida, a pretium
-        tortor tempus. Mauris nec tortor nisl. Maecenas pharetra est sit amet ex malesuada semper.
-        Donec hendrerit at lorem ut convallis.&nbsp; <a>Read more...</a>
+        {truncate(descText)}
+        <a href={'#'}>Read more</a>
         {descriptionText}
       </DescriptionText>
       <PostInfo>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from 'rwd/breakpoints';
 
 export const DescriptionContainer = styled.div`
   width: 100%;
@@ -7,9 +8,14 @@ export const DescriptionContainer = styled.div`
   letter-spacing: 0.5px;
 `;
 
-export const DescriptionText = styled.div``;
+export const DescriptionText = styled.div`
+  a {
+    color: #1a8cd8;
+  }
+`;
 
 export const PostInfo = styled.div`
+  font-size: 12px;
   span {
     color: #1a8cd8;
   }
