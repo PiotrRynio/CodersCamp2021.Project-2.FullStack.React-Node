@@ -31,8 +31,13 @@ const AddPostForm = ({ formSubmit }) => {
     isLoading,
     isError,
   } = useQuery('AvailableUserBoards', async () => {
-    //TODO tu zrobic mape
-    return await fetch('/user/1/boards/changeable').then((response) => response.json());
+    return await fetch('/user/1/boards/changeable').then((response) =>
+      response.json().then((response) =>
+        response.boards.map((board) => {
+          return { value: board.boardName, label: board.boardName };
+        }),
+      ),
+    );
   });
 
   const {
@@ -68,12 +73,6 @@ const AddPostForm = ({ formSubmit }) => {
     mutate(newAnnouncement);
   };
 
-  const availableBoards = dataAvailableUserBoards?.boards.map((board) => {
-    return { value: board.boardName, label: board.boardName };
-  });
-  console.log('TABLICA:');
-  console.log(availableBoards);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -92,9 +91,9 @@ const AddPostForm = ({ formSubmit }) => {
       <Controller
         name="boardName"
         control={control}
-        defaultValue={availableBoards[0]}
+        defaultValue={dataAvailableUserBoards[0]}
         render={({ field }) => (
-          <Select {...field} styles={StyledOptions} options={availableBoards} />
+          <Select {...field} styles={StyledOptions} options={dataAvailableUserBoards} />
         )}
       />
       <SecondFormRow>
@@ -127,9 +126,9 @@ const AddPostForm = ({ formSubmit }) => {
         placeholder="Enter description..."
         {...register('content', { required: true })}
       />
-      <BottomFormSection>
+      <div>
         <Button type="submit">Add</Button>
-      </BottomFormSection>
+      </div>
     </Form>
   );
 };
