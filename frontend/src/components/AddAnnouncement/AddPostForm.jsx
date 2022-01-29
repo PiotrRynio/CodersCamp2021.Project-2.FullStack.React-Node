@@ -25,13 +25,12 @@ const AddPostForm = ({ formSubmit }) => {
     return await fetch('/boards/1/announcements').then((response) => response.json());
   });
 
-  //TODO url zmienic (bez changeable) wykorzystac pole prywatna/publiczna do wyswietlania
   const {
     data: dataAvailableUserBoards,
     isLoading,
     isError,
   } = useQuery('AvailableUserBoards', async () => {
-    return await fetch('/user/1/boards/changeable').then((response) =>
+    return await fetch('/users/1/boards?isPostAddingAllowed=true').then((response) =>
       response.json().then((response) =>
         response.boards.map((board) => {
           return { value: board.boardName, label: board.boardName };
