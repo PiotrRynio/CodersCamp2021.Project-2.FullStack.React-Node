@@ -1,15 +1,6 @@
 import React from 'react';
 import { FaHome, FaBell, FaUserAlt, FaHeart, FaPlusSquare } from 'react-icons/fa';
-
-import {
-  Container,
-  NavMenu,
-  NavItem,
-  NavLink,
-  NavIcon,
-  NavButton,
-  NavText,
-} from './Navigation.styled';
+import { Container, NavMenu, NavItem, NavLink, NavIcon, NavText } from './Navigation.styled';
 
 const Navigation = () => {
   const navItems = [
@@ -19,12 +10,13 @@ const Navigation = () => {
     { path: 'notifications', icon: <FaBell />, title: 'Notifications' },
     { path: 'profile', icon: <FaUserAlt />, title: 'Profile' },
   ];
+
   return (
     <Container>
       <NavMenu>
         {navItems.map((navItem) => {
           return (
-            <NavItem>
+            <NavItem key={navItem.title}>
               <NavLink to={navItem.path}>
                 <NavIcon>{navItem.icon}</NavIcon>
                 <NavText>{navItem.title}</NavText>
