@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   DescriptionContainer,
   DescriptionText,
@@ -5,39 +7,51 @@ import {
   Distance,
   IconsContainer,
   Icon,
+  BlueLink,
+  BlueText,
 } from './BoardDescription.styled';
-import { FaEye, FaBell } from 'react-icons/fa';
+import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
+import { Button } from '../../Button/Button';
 
-const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance }) => {
-  // To jest tylko do wizualizacji potem usunąć
-  const descText =
-    'Morbi cursus libero magna, in tincidunt justo accumsan at. Vestibulum dapibus fermentum nibh. Phasellus neque nunc, varius ac porta at, tristique nec mauris. Maecenas et tincidunt neque. Ut non justo ac velit maximus placerat vel id massa. In consequat velit vitae ante vestibulum, id aliquam justo lacinia. Sed convallis lobortis mauris in tempor.';
-  const truncate = () => {
-    return descText.length > 150 ? descText.substr(0, 150 - 1) + '...' : descText;
-  };
+const BoardDescription = ({
+  descriptionText = 'Sed sed enim a turpis imperdiet bibendum. Sed dignissim lacus eget suscipit ultricies. Sed facilisis eget mauris eu laoreet. Aenean mattis viverra nisi, a sagittis arcu.',
+  postsNumber = '8',
+  lastPostDate = '12.02.2020',
+  distance,
+}) => {
+  const [watch, setWatch] = useState(false);
+  const [notify, setNotify] = useState(false);
+
+  const truncatedText =
+    descriptionText.length > 150 ? descriptionText.substr(0, 149) + '...' : descriptionText;
 
   return (
     <DescriptionContainer>
       <DescriptionText>
-        {truncate(descText)}
-        <a href={'#'}>Read more</a>
-        {descriptionText}
+        {truncatedText}
+        {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
       </DescriptionText>
       <PostInfo>
-        Posts in last month: <span>8{postsNumber}</span>, last:{' '}
-        <span>12.02.2020{lastPostDate}</span>
+        Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
+        <BlueText>{lastPostDate}</BlueText>
       </PostInfo>
       <Distance>1,2{distance} km from you</Distance>
+      <Button buttonName="Watch" icon={<FaPaperPlane />} />
       <IconsContainer>
-        <Icon>
+        <Icon isActive={watch} onClick={() => setWatch((prevState) => !prevState)}>
           <FaEye />
         </Icon>
-        <Icon>
+        <Icon isActive={notify} onClick={() => setNotify((prevState) => !prevState)}>
           <FaBell />
         </Icon>
       </IconsContainer>
     </DescriptionContainer>
   );
+};
+
+BoardDescription.propTypes = {
+  descriptionText: PropTypes.string,
+  postsNumber: PropTypes.string,
 };
 
 export default BoardDescription;

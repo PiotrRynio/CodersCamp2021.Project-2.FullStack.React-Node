@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from 'rwd/breakpoints';
 
 export const DescriptionContainer = styled.div`
   width: 100%;
@@ -9,16 +8,19 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const DescriptionText = styled.div`
-  a {
-    color: #1a8cd8;
-  }
+  overflow-wrap: break-word;
+`;
+
+export const BlueLink = styled.a`
+  color: #1a8cd8;
 `;
 
 export const PostInfo = styled.div`
   font-size: 12px;
-  span {
-    color: #1a8cd8;
-  }
+`;
+
+export const BlueText = styled.span`
+  color: #1a8cd8;
 `;
 
 export const Distance = styled.div`
@@ -40,7 +42,7 @@ export const Icon = styled.li`
   margin-left: 10px;
   font-size: 20px;
   transition: color 0.2s ease-out;
-
+  color: ${(props) => (props.isActive === true ? '#1a8cd8' : '#bbb')};
   &:hover {
     color: #1a8cd8;
     cursor: pointer;
