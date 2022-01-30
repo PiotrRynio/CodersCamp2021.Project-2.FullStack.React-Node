@@ -6,7 +6,12 @@ const Board = () => {
   return (
     <BoardContainer>
       <BoardTitleSection />
-      <BoardDescription />
+      <BoardDescription
+        descriptionText="Sed sed enim a turpis imperdiet bibendum. Sed dignissim lacus eget suscipit ultricies. Sed facilisis eget mauris eu laoreet. Aenean mattis viverra nisi, a sagittis arcu."
+        postsNumber={8}
+        lastPostDate="12.02.2020"
+        distance={1.2}
+      />
     </BoardContainer>
   );
 };

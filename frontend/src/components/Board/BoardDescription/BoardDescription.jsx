@@ -13,12 +13,7 @@ import {
 import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
 import { Button } from '../../Button/Button';
 
-const BoardDescription = ({
-  descriptionText = 'Sed sed enim a turpis imperdiet bibendum. Sed dignissim lacus eget suscipit ultricies. Sed facilisis eget mauris eu laoreet. Aenean mattis viverra nisi, a sagittis arcu.',
-  postsNumber = '8',
-  lastPostDate = '12.02.2020',
-  distance,
-}) => {
+const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance }) => {
   const [watch, setWatch] = useState(false);
   const [notify, setNotify] = useState(false);
 
@@ -35,7 +30,7 @@ const BoardDescription = ({
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
         <BlueText>{lastPostDate}</BlueText>
       </PostInfo>
-      <Distance>1,2{distance} km from you</Distance>
+      <Distance>{distance} km from you</Distance>
       <Button buttonName="Watch" icon={<FaPaperPlane />} />
       <IconsContainer>
         <Icon isActive={watch} onClick={() => setWatch((prevState) => !prevState)}>
@@ -51,7 +46,9 @@ const BoardDescription = ({
 
 BoardDescription.propTypes = {
   descriptionText: PropTypes.string,
-  postsNumber: PropTypes.string,
+  postsNumber: PropTypes.number,
+  lastPostDate: PropTypes.string,
+  distance: PropTypes.number,
 };
 
 export default BoardDescription;

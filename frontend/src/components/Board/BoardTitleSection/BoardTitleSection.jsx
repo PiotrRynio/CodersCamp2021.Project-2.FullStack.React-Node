@@ -11,7 +11,7 @@ import DotsButton from './DotsButton/DotsButton';
 import Dropdown from './Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
 
-const BoardTitleSection = ({ user, boardTitle }) => {
+const BoardTitleSection = ({ boardTitle = 'board_title', user = 'user_name' }) => {
   return (
     <BoardInfoContainer>
       <BoardInfo>
