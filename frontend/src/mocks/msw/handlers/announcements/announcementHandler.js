@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { announcementsResponse } from 'mocks/msw/handlers/announcements/announcementResponse';
+import { announcementsResponse } from './announcementResponse';
 
 const announcementsHandler = rest.get('/announcements/:id', (req, res, ctx) => {
   const { id } = req.params;

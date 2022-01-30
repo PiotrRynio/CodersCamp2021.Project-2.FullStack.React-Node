@@ -32,6 +32,8 @@ export const BoardTitleInput = styled.input`
 `;
 
 export const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
 `;
 
