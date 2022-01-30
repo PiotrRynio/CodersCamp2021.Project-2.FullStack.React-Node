@@ -3,18 +3,18 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  text-align: left;
   padding: 1em;
-  background-color: white;
   border: 1px solid #1a8cd8;
   border-radius: 2px;
+  background-color: white;
+  text-align: left;
 `;
 
 export const FormTitle = styled.h1`
-  padding-left: 5px;
   width: 250px;
-  font-size: 20px;
+  padding-left: 5px;
   border-bottom: 2px solid #1a8cd8;
+  font-size: 20px;
 `;
 
 export const MarkedTitle = styled.span`
@@ -25,7 +25,6 @@ export const BoardTitleInput = styled.input`
   padding: 5px;
   border: 2px solid #1a8cd8;
   border-radius: 5px;
-  max-width: 600px;
 
   &:focus {
     outline: 1px solid #1a8cd8;
@@ -41,11 +40,11 @@ export const HiddenInput = styled.input`
 `;
 
 export const StyledIconPicker = styled.div`
+  padding: 5px;
   border: 2px solid #1a8cd8;
   border-radius: 5px;
-  padding: 5px;
-  font-size: 13px;
   color: #555;
+  font-size: 13px;
 
   &:hover {
     background-color: #1a8cd8;
@@ -55,11 +54,11 @@ export const StyledIconPicker = styled.div`
 
 export const ContentInput = styled.textarea`
   width: 100%;
-  height: 80px;
-  text-align: justify;
+  height: 100px;
   padding: 5px;
   border: 2px solid #1a8cd8;
   border-radius: 4px;
+  text-align: justify;
   resize: none;
 
   &:focus {
@@ -80,9 +79,9 @@ export const StyledSelect = styled.select`
 export const StyledButton = styled.button`
   margin-top: 10px;
   padding: 5px;
-  background-color: white;
   border: 2px solid #1a8cd8;
   border-radius: 4px;
+  background-color: white;
 
   &:hover {
     background-color: #1a8cd8;

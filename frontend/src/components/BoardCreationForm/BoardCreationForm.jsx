@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { useMutation } from 'react-query';
@@ -18,7 +18,7 @@ import {
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board logo...');
   const { register, handleSubmit } = useForm();
-  const fileInput = React.useRef(null);
+  const fileInput = useRef(null);
   const handleButtonClick = () => {
     fileInput.current.click();
   };
