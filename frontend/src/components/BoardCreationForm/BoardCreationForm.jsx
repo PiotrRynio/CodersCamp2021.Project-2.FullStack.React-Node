@@ -13,10 +13,11 @@ import {
   StyledSelect,
   HiddenInput,
   StyledButton,
+  ButtonWrapper,
 } from './BoardCreationForm.styled';
 
 const BoardCreationForm = () => {
-  const [inputFileText, setInputFileText] = useState('Add board logo...');
+  const [inputFileText, setInputFileText] = useState('Add board avatar...');
   const { register, handleSubmit } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
@@ -60,9 +61,8 @@ const BoardCreationForm = () => {
         />
       </StyledLabel>
       <StyledLabel>
-        Icon:
+        Avatar:
         <HiddenInput
-          id="icon"
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
@@ -73,7 +73,7 @@ const BoardCreationForm = () => {
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
       <StyledLabel>
         Access type:
-        <StyledSelect id="accessType" name="accessType" {...register('accessType')}>
+        <StyledSelect {...register('accessType')}>
           <option default value="private">
             Private
           </option>
@@ -82,7 +82,7 @@ const BoardCreationForm = () => {
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <ContentInput id="description" {...register('description')} />
+        <ContentInput {...register('description')} />
       </StyledLabel>
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>

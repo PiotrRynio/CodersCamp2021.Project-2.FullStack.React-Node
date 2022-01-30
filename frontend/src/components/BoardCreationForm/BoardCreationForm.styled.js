@@ -80,8 +80,9 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledButton = styled.button`
+  align-self: center;
   margin-top: 10px;
-  padding: 5px;
+  padding: 5px 50px;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.primary};
