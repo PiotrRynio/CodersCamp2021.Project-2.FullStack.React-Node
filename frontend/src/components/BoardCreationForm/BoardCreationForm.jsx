@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
+import { useMutation } from 'react-query';
 import {
   StyledForm,
   FormTitle,
@@ -7,19 +10,36 @@ import {
   ContentInput,
   StyledLabel,
   BoardTitleInput,
-  StyledIconPickerLabel,
+  StyledSelect,
+  HiddenInput,
+  StyledButton,
 } from './BoardCreationForm.styled';
 
 const BoardCreationForm = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const [inputFileText, setInputFileText] = useState('Add board logo...');
+  const { register, handleSubmit } = useForm();
 
   const submitHandler = (data) => {
-    console.log(data);
+    const newBoard = {
+      id: uuidv4(),
+      announcements: [],
+      ...data,
+    };
+    mutate(newBoard);
+    // TODO: Dodać przeniesienie na widok nowo utworzonego boarda.
+  };
+
+  const { mutate } = useMutation((newBoard) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newBoard),
+    };
+    return fetch('/boards', requestOptions).then((response) => response.json());
+  });
+
+  const handleFileChange = ({ target }) => {
+    setInputFileText(target.files[0].name);
   };
 
   return (
@@ -33,36 +53,28 @@ const BoardCreationForm = () => {
         placeholder="Enter board name..."
         {...register('boardName', { required: true })}
       />
-      <StyledIconPickerLabel htmlFor="icon">Icon: </StyledIconPickerLabel>
-      <StyledIconPicker
-        id="icon"
-        type="file"
-        accept="image/png, image/jpeg"
-        {...register('icon')}
-      />
-      <StyledLabel>Access type: </StyledLabel>
-      <label htmlFor="private">
-        <input
-          type="radio"
-          id="private"
-          name="accessType"
-          value="private"
-          {...register('accessType')}
+      <StyledLabel htmlFor="icon">Icon: </StyledLabel>
+      <StyledIconPicker>
+        <p>{inputFileText}</p>
+        <HiddenInput
+          id="icon"
+          type="file"
+          accept="image/png, image/jpeg"
+          onInput={handleFileChange}
+          {...register('icon')}
         />
-        Private
-      </label>
-      <label htmlFor="public">
-        <input
-          type="radio"
-          id="public"
-          name="accessType"
-          value="public"
-          {...register('accessType')}
-        />
-        Public
-      </label>
+      </StyledIconPicker>
+      <StyledLabel htmlFor="accessType">Access type: </StyledLabel>
+      <StyledSelect id="accessType" name="accessType" {...register('accessType')}>
+        <option default value="private">
+          Private
+        </option>
+        <option value="public">Public</option>
+      </StyledSelect>
       <StyledLabel htmlFor="description">Description: </StyledLabel>
       <ContentInput id="description" {...register('description')} />
+
+      <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
 };

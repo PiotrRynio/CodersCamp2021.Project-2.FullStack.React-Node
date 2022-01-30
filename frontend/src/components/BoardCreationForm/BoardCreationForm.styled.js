@@ -36,27 +36,56 @@ export const StyledLabel = styled.label`
   margin-top: 10px;
 `;
 
-export const StyledIconPickerLabel = styled.label`
-  border: 2px solid #1a8cd8;
-  border-radius: 5px;
+export const HiddenInput = styled.input`
+  display: none;
 `;
 
-export const StyledIconPicker = styled.input`
-  display: none;
+export const StyledIconPicker = styled.label`
+  border: 2px solid #1a8cd8;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 13px;
+  color: #555;
+
+  &:hover {
+    background-color: #1a8cd8;
+    color: white;
+  }
 `;
 
 export const ContentInput = styled.textarea`
   width: 100%;
   height: 80px;
-  text-align: left;
+  text-align: justify;
   padding: 5px;
+  border: 2px solid #1a8cd8;
   border-radius: 4px;
-  border-color: hsl(0, 0%, 80%);
-  :focus::-webkit-input-placeholder {
-    color: transparent;
+  resize: none;
+
+  &:focus {
+    outline: 1px solid #1a8cd8;
   }
-  :focus {
-    outline: none !important;
-    border: 2px solid #1a8cd8;
+`;
+
+export const StyledSelect = styled.select`
+  padding: 5px;
+  border: 2px solid #1a8cd8;
+  border-radius: 4px;
+
+  &:focus {
+    outline: 1px solid #1a8cd8;
+  }
+`;
+
+export const StyledButton = styled.button`
+  margin-top: 10px;
+  padding: 5px;
+  background-color: white;
+  border: 2px solid #1a8cd8;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #1a8cd8;
+    color: white;
   }
 `;
