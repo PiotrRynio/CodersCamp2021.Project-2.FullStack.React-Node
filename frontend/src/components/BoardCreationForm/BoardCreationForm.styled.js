@@ -40,7 +40,7 @@ export const HiddenInput = styled.input`
   display: none;
 `;
 
-export const StyledIconPicker = styled.label`
+export const StyledIconPicker = styled.div`
   border: 2px solid #1a8cd8;
   border-radius: 5px;
   padding: 5px;

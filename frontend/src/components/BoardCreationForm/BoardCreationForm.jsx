@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { useMutation } from 'react-query';
@@ -18,6 +18,10 @@ import {
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board logo...');
   const { register, handleSubmit } = useForm();
+  const fileInput = React.useRef(null);
+  const handleButtonClick = () => {
+    fileInput.current.click();
+  };
 
   const submitHandler = (data) => {
     const newBoard = {
@@ -54,16 +58,15 @@ const BoardCreationForm = () => {
         {...register('boardName', { required: true })}
       />
       <StyledLabel htmlFor="icon">Icon: </StyledLabel>
-      <StyledIconPicker>
-        <p>{inputFileText}</p>
-        <HiddenInput
-          id="icon"
-          type="file"
-          accept="image/png, image/jpeg"
-          onInput={handleFileChange}
-          {...register('icon')}
-        />
-      </StyledIconPicker>
+      <HiddenInput
+        id="icon"
+        type="file"
+        accept="image/png, image/jpeg"
+        onInput={handleFileChange}
+        {...register('icon')}
+        ref={fileInput}
+      />
+      <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
       <StyledLabel htmlFor="accessType">Access type: </StyledLabel>
       <StyledSelect id="accessType" name="accessType" {...register('accessType')}>
         <option default value="private">
