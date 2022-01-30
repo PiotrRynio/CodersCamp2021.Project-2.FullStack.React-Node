@@ -13,7 +13,6 @@ import {
   StyledSelect,
   HiddenInput,
   StyledButton,
-  ButtonWrapper,
 } from './BoardCreationForm.styled';
 
 const BoardCreationForm = () => {
@@ -74,9 +73,7 @@ const BoardCreationForm = () => {
       <StyledLabel>
         Access type:
         <StyledSelect {...register('accessType')}>
-          <option default value="private">
-            Private
-          </option>
+          <option value="private">Private</option>
           <option value="public">Public</option>
         </StyledSelect>
       </StyledLabel>
