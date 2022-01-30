@@ -9,6 +9,14 @@ export const Form = styled.form`
   background-color: white;
   text-align: left;
 `;
+export const FormTitle = styled.h1`
+  width: 230px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #1a8cd8;
+  font-size: 20px;
+`;
 
 export const TitleInput = styled.input`
   height: 40px;
@@ -19,9 +27,8 @@ export const TitleInput = styled.input`
   :focus::-webkit-input-placeholder {
     color: transparent;
   }
-  :focus {
-    outline: none !important;
-    border: 2px solid #1a8cd8;
+  &:focus {
+    outline: 1px solid #1a8cd8;
   }
 `;
 export const ContentInput = styled.textarea`
@@ -32,12 +39,11 @@ export const ContentInput = styled.textarea`
   text-align: left;
 
   border-color: hsl(0, 0%, 80%);
-  c :focus::-webkit-input-placeholder {
+  :focus::-webkit-input-placeholder {
     color: transparent;
   }
-  :focus {
-    outline: none !important;
-    border: 2px solid #1a8cd8;
+  &:focus {
+    outline: 1px solid #1a8cd8;
   }
 `;
 export const Button = styled.button`
@@ -47,17 +53,6 @@ export const Button = styled.button`
   float: right;
   margin-top: 2px;
   border-color: #1a8cd8;
-`;
-
-export const Line = styled.hr`
-  width: 250px;
-  margin-bottom: 20px;
-  margin-top: 0px;
-  border-color: rgba(0, 0, 0, 0.52);
-`;
-
-export const FormTitle = styled.h1`
-  font-size: 20px;
 `;
 
 export const MarkedTitle = styled.span`

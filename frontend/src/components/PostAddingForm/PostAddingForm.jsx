@@ -1,6 +1,10 @@
+import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
+import Select from 'react-select';
+import { useForm, Controller } from 'react-hook-form';
+import { useMutation, useQuery } from 'react-query';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Form,
-  Line,
   FormTitle,
   SecondFormRow,
   MarkedTitle,
@@ -10,15 +14,9 @@ import {
   Button,
   LeftColumn,
   RightColumn,
-  BottomFormSection,
-} from 'components/AddAnnouncement/AddPostForm.styled';
-import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
-import Select from 'react-select';
-import { useForm, Controller } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
-import { v4 as uuidv4 } from 'uuid';
+} from './PostAddingForm.styled';
 
-const AddPostForm = ({ formSubmit }) => {
+const PostAddingForm = ({ formSubmit }) => {
   const { register, handleSubmit, control } = useForm();
 
   const { data: dataAnnouncementsList } = useQuery('announcementsList', async () => {
@@ -84,8 +82,6 @@ const AddPostForm = ({ formSubmit }) => {
       <FormTitle>
         Add new <MarkedTitle>Announcement</MarkedTitle>
       </FormTitle>
-      <Line />
-
       <label>Select your board</label>
       <Controller
         name="boardName"
@@ -122,7 +118,7 @@ const AddPostForm = ({ formSubmit }) => {
       <label htmlFor="content">Announcement text</label>
       <ContentInput
         type="text"
-        placeholder="Enter description..."
+        placeholder="Enter announcement message..."
         {...register('content', { required: true })}
       />
       <div>
@@ -132,6 +128,4 @@ const AddPostForm = ({ formSubmit }) => {
   );
 };
 
-AddPostForm.propTypes = {};
-
-export default AddPostForm;
+export default PostAddingForm;

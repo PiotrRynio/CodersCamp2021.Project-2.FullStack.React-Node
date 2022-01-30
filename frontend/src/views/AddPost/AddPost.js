@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from './AddPost.styled';
-import AddPostForm from '../../components/AddAnnouncement/AddPostForm';
+import PostAddingForm from '../../components/PostAddingForm/PostAddingForm';
 
 const AddPost = () => {
   return (
     <Container>
-      <AddPostForm />
+      <PostAddingForm />
     </Container>
   );
 };
