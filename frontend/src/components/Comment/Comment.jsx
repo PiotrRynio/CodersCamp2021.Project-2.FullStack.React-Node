@@ -1,14 +1,7 @@
-import { UserAvatar } from 'components/Comments/UserAvatar/UserAvatar';
-import {
-  CommentContainer,
-  LeftSection,
-  RightSection,
-  UserName,
-  Content,
-  CreateDate,
-} from './UserComment.styled';
+import { UserAvatar } from 'components/UserAvatar/UserAvatar';
+import { CommentContainer, RightSection, UserName, Content, CreateDate } from './Comment.styled';
 
-export const UserComment = ({ comment }) => {
+export const Comment = ({ comment }) => {
   const date = new Date(comment.createDate).toLocaleString([], {
     day: '2-digit',
     month: '2-digit',
@@ -17,10 +10,8 @@ export const UserComment = ({ comment }) => {
     minute: '2-digit',
   });
   return (
-    <CommentContainer data-testid="userComment">
-      <LeftSection>
-        <UserAvatar userAvatarImage={comment.author.avatarUrl} />
-      </LeftSection>
+    <CommentContainer data-testid="comment">
+      <UserAvatar userAvatarImage={comment.author.avatarUrl} />
       <RightSection>
         <UserName>
           {comment.author.firstName} {comment.author.lastName}

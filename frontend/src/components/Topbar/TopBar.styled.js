@@ -37,7 +37,8 @@ export const TopBarLogoMarked = styled.span`
 export const TopBarSearch = styled.input`
   padding: 5px 10px;
   border-radius: 10px;
-
+  width: 200px;
+  transition: 0.2s ease-in-out;
   &:focus {
     width: 300px;
   }
