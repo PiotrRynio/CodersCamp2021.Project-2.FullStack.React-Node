@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Form, FormTitle, Icon, TitleInput, MessageInput, SubmitInput } from './AddPostForm.styled';
 
 const AddPostForm = () => {
