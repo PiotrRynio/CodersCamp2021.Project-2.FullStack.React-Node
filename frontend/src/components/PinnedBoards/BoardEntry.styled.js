@@ -9,18 +9,22 @@ export const Container = styled.div`
 export const Item = styled.div`
   display: flex;
   width: 100%;
-  border-radius: 5px;
-  background-color: #6699ee;
+  height: 2.5em;
+  border-radius: 16px;
+  background-color: white;
   margin-top: 8px;
 `;
 
 export const Icon = styled.div`
-  margin-right: 12px;
   font-size: 2em;
+  margin-right: 12px;
+  padding-top: 4px;
+  padding-left: 12px;
 `;
 
 export const Name = styled.span`
   color: black;
-  font-size: 1.5em;
-  font-weight: 500;
+  font-size: 1.3em;
+  font-weight: 300;
+  padding-top: 8px;
 `;
