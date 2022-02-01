@@ -2,10 +2,14 @@ import styled from 'styled-components';
 export const StyledOptions = {
   option: (provided, state) => ({
     ...provided,
+    border: 'none',
+    boxShadow: 'none',
+    background: 'white',
   }),
   menu: (provided) => ({
     ...provided,
-    marginTop: 0,
+    padding: 0,
+    marginTop: '10px',
     border: 'none',
     background: 'none',
   }),
@@ -16,20 +20,24 @@ export const StyledOptions = {
     marginTop: '10px',
     border: 'none',
     background: 'none',
+    boxShadow: 'none',
   }),
   valueContainer: (provided) => ({
     ...provided,
     height: '40px',
-    borderRadius: '8px',
+    borderRadius: '14px',
     marginRight: '5px',
     background: 'rgba(0, 0, 0, 0.33)',
   }),
   indicatorsContainer: (provided) => ({
     ...provided,
+    textAlign: 'center',
     height: '40px',
-    borderRadius: '8px',
+    width: '40px',
+    borderRadius: '14px',
     background: 'white',
     border: 'none',
+    padding: 0,
   }),
   indicatorSeparator: (provided) => ({
     ...provided,

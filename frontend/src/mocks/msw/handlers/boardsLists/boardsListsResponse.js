@@ -72,4 +72,22 @@ const sampleBoard2 = {
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
 };
 
-export const boardsListsResponse = { boards: [sampleBoard1, sampleBoard2] };
+const sampleBoard3 = {
+  id: 3,
+  boardName: 'Opole',
+  announcements: [sampleAnnouncement4, sampleAnnouncement5],
+};
+
+const sampleBoard4 = {
+  id: 4,
+  boardName: 'Wroclaw',
+  announcements: [sampleAnnouncement4, sampleAnnouncement5],
+};
+
+export const boardsListsResponse = {
+  boards: [sampleBoard1, sampleBoard2, sampleBoard3, sampleBoard4],
+};
+
+export const userBoards = {
+  boards: [sampleBoard1, sampleBoard2],
+};
