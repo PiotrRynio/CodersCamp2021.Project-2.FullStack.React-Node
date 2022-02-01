@@ -34,8 +34,8 @@ export const LogoSpan = styled.span`
   color: #1a8cd8;
 `;
 
-export const FormText = styled.h2`
-  font-size: 48px;
+export const FormText = styled.label`
+  font-size: 24px;
 `;
 
 export const EmailPlaceholder = styled.input`
