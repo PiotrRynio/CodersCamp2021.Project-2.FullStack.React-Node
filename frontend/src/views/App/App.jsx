@@ -11,7 +11,7 @@ import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
-import RecoverPassword from '../RecoverPassword/RecoverPassword';
+import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';
 
