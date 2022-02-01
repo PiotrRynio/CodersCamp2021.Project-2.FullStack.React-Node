@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './AddPost.styled';
-import PostAddingForm from '../../components/PostAddingForm/PostAddingForm';
+import PostAddingForm from 'components/PostAddingForm/PostAddingForm';
 
 const AddPost = () => {
   return (
