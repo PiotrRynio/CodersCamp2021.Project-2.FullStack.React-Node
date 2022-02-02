@@ -1,11 +1,20 @@
+const breakpointsSizes = {
+  xs: '370px',
+  sm: '480px',
+  md: '750px',
+  lg: '1200px',
+  xl: '1600px',
+};
+
 export const theme = {
   breakpoints: {
-    xs: '370px',
-    sm: '480px',
-    md: '750px',
-    lg: '1200px',
-    xl: '1600px',
+    xs: `(min-width: ${breakpointsSizes.xs})`,
+    sm: `(min-width: ${breakpointsSizes.sm})`,
+    md: `(min-width: ${breakpointsSizes.md})`,
+    lg: `(min-width: ${breakpointsSizes.lg})`,
+    xl: `(min-width: ${breakpointsSizes.xl})`,
   },
+
   colors: {
     primary: '#1a8cd8',
     secondary: '#fff',
