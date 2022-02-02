@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import { CommentsSection } from '../../components/CommentsSection/CommentsSection';
-import AnnouncementsList from '../../components/AnnouncementsList/AnnouncementsList';
+import AnnouncementsList from 'components/AnnouncementsList/AnnouncementsList';
 
 const Home = () => {
   return (
