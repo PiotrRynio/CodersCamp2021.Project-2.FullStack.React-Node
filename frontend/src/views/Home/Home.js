@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import BoardPreview from '../../components/BoardPreview/BoardPreview';
+import BoardPreview from 'components/BoardPreview/BoardPreview';
 
 const Home = () => {
   return (

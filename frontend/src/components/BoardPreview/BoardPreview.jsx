@@ -8,12 +8,12 @@ const BoardPreview = ({ id }) => {
   });
 
   if (isLoading || isError) {
-    return <>lol</>;
+    return <>Error</>;
   }
 
   return (
     <>
-      <Board boardTitle={data.boardName} user={data.user} />
+      <Board boardTitle={data.boardName} user={data.author} />
       <AnnouncementsList boardsIds={[id]} announcementsNumber={2} showBoardNames={false} />
     </>
   );
