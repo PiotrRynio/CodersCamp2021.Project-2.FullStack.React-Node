@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import Board from 'components/Board/Board';
-import AnnouncementsList from '../AnnouncementsList/AnnouncementsList';
+import AnnouncementsList from 'components/AnnouncementsList/AnnouncementsList';
 
 const BoardPreview = ({ id }) => {
   const { data, isLoading, isError } = useQuery('board', async () => {
@@ -14,7 +14,7 @@ const BoardPreview = ({ id }) => {
   return (
     <>
       <Board boardTitle={data.boardName} user={data.author} />
-      <AnnouncementsList boardsIds={[id]} announcementsNumber={2} showBoardNames={false} />
+      <AnnouncementsList boardsIds={[id]} announcementsNumber={10} showBoardNames={false} />
     </>
   );
 };
