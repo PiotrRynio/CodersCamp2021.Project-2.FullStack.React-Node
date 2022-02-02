@@ -30,8 +30,10 @@ const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
         <BlueText>{lastPostDate}</BlueText>
       </PostInfo>
-      <Distance>{distance} km from you</Distance>
-      <Button buttonName="Watch" icon={<FaPaperPlane />} />
+      <Distance>
+        {distance} km from you
+        <Button buttonName="Watch" icon={<FaPaperPlane />} />
+      </Distance>
       <IconsContainer>
         <Icon isActive={watch} onClick={() => setWatch((prevState) => !prevState)}>
           <FaEye />

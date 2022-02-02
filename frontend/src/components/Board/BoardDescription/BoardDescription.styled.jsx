@@ -24,10 +24,11 @@ export const BlueText = styled.span`
 `;
 
 export const Distance = styled.div`
-  width: 100%;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   color: #1a8cd8;
-  text-align: center;
 `;
 
 export const IconsContainer = styled.ul`
