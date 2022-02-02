@@ -1,13 +1,11 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import { CommentsSection } from '../../components/CommentsSection/CommentsSection';
-import AnnouncementsList from '../../components/AnnouncementsList/AnnouncementsList';
+import AnnouncementsList from 'components/AnnouncementsList/AnnouncementsList';
 
 const Home = () => {
   return (
     <Container>
-      <CommentsSection announcementId={1} />
-      <AnnouncementsList boardsIds={[1, 2]} announcementsNumber={4} showBoardNames={true} />
+      <AnnouncementsList boardsIds={[0, 1]} announcementsNumber={5} showBoardNames={true} />
     </Container>
   );
 };

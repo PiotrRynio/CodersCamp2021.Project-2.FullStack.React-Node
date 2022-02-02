@@ -16,7 +16,7 @@ const Navigation = () => {
       <NavMenu>
         {navItems.map((navItem) => {
           return (
-            <NavItem>
+            <NavItem key={navItem.title}>
               <NavLink to={navItem.path}>
                 <NavIcon>{navItem.icon}</NavIcon>
                 <NavText>{navItem.title}</NavText>
