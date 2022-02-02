@@ -19,7 +19,7 @@ const Board = ({ user, boardTitle }) => {
         {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a  */}
         <BoardTitle>{boardTitle}</BoardTitle>
         <DotsButton>
-          <Dropdown></Dropdown>
+          <Dropdown />
         </DotsButton>
       </BoardInfo>
       <AuthorInfoContainer>
