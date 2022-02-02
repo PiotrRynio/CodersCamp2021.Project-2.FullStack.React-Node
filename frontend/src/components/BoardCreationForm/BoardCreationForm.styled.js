@@ -4,8 +4,8 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 1em;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 2px;
+  margin: 10px;
+  border-radius: 5px;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
