@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import PostAddingForm from './PostAddingForm';
+import AddPostForm from './AddPostForm';
 
-describe('PostAddingForm', () => {
-  render(<PostAddingForm />);
+describe('AddPostForm', () => {
+  render(<AddPostForm />);
   it('Should render basic form components', async () => {
     // GIVEN
     const inputs = screen.getAllByRole('textbox');

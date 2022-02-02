@@ -19,4 +19,4 @@ const sampleBoard2 = {
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
 };
 
-export const boardsResponse = { boards: [sampleBoard1, sampleBoard2] };
+export const boardsListsResponse = { boards: [sampleBoard1, sampleBoard2] };
