@@ -35,6 +35,8 @@ export const LogoSpan = styled.span`
 `;
 
 export const FormText = styled.label`
+  display: flex;
+  flex-direction: column;
   font-size: 24px;
 `;
 

@@ -13,6 +13,7 @@ import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
+import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';
 
@@ -31,6 +32,7 @@ function App() {
               <Routes>
                 <Route path="/log-in" element={<Login />} />
                 <Route path="/sign-up" element={<SignIn />} />
+                <Route path="/recover-password" element={<RecoverPassword />} />
                 <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
                   <Route element={<ProtectedRoute />}>

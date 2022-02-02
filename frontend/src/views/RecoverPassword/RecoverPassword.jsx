@@ -18,8 +18,10 @@ const RecoverPassword = () => {
         </Logo>
       </LogoContainer>
       <RecoverPasswordForm>
-        <FormText>Enter Your E-mail to recover password!</FormText>
-        <EmailPlaceholder placeholder="Enter your email" />
+        <FormText>
+          Enter Your E-mail to recover password!
+          <EmailPlaceholder placeholder="Enter your email" />
+        </FormText>
         <SubmitButton>Submit!</SubmitButton>
       </RecoverPasswordForm>
     </Container>
