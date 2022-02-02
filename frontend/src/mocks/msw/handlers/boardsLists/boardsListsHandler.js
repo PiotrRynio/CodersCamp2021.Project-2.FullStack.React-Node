@@ -14,4 +14,10 @@ const postBoardsListsHandler = rest.post('/boards', (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(req.body));
 });
 
-export const boardsHandlers = [getBoardsListsHandler, postBoardsListsHandler];
+const getBoardHandler = rest.get('/boards/:id', (req, res, ctx) => {
+  const { id } = req.params;
+
+  return res(ctx.status(200), ctx.json(boardsListsResponse.boards[id]));
+});
+
+export const boardsHandlers = [getBoardsListsHandler, postBoardsListsHandler, getBoardHandler];
