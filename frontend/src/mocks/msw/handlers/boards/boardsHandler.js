@@ -24,7 +24,6 @@ const getAvailableUserBoards = rest.get(
 
 const getBoardHandler = rest.get('/boards/:id', (req, res, ctx) => {
   const { id } = req.params;
-
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id]));
 });
 

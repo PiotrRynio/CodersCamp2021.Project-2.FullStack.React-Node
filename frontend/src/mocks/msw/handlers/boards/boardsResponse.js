@@ -20,4 +20,5 @@ const sampleBoard2 = {
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
   author: 'Krzysztof',
 };
+
 export const boardsResponse = { boards: [sampleBoard1, sampleBoard2] };
