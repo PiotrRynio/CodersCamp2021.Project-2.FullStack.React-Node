@@ -28,6 +28,6 @@ export const CommentContainer = styled.article`
   display: flex;
   padding: 10px;
   margin-bottom: 10px;
-  background: white;
+  background: ${({ theme }) => theme.colors.secondary};
   border-radius: 10px;
 `;

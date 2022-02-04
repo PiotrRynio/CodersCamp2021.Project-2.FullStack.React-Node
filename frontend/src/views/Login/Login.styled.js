@@ -32,7 +32,7 @@ export const Logo = styled(Link)`
 `;
 
 export const LogoSpan = styled.span`
-  color: #1a8cd8;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const FormText = styled.p`
@@ -76,26 +76,26 @@ export const FormLink = styled(Link)``;
 export const FormSubmit = styled.button`
   padding: 10px 20px;
   margin-right: 20px;
-  background-color: #1a8cd8;
-  border: 1px solid #1a8cd8;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 15px;
   font-size: 26px;
   cursor: pointer;
-  color: white;
+  color: ${({ theme }) => theme.colors.secondary};
   transition: 0.2s ease-in-out;
 `;
 
 export const FormLogIn = styled.button`
   padding: 10px 20px;
   margin-right: 20px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.secondary};
   border: 1px solid black;
   border-radius: 15px;
   font-size: 26px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.colors.secondary};
     background-color: black;
   }
 `;
