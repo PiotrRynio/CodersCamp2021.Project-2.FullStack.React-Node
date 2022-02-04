@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -99,4 +98,18 @@ export const FormLogIn = styled.button`
     color: white;
     background-color: black;
   }
+`;
+
+export const RecoverPassword = styled.div`
+  margin-top: 30px;
+  font-size: 16px;
+`;
+
+export const RecoverPasswordText = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
+export const RecoverSpan = styled.span`
+  color: #1a8cd8;
 `;
