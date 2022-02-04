@@ -7,8 +7,8 @@ import {
   AuthorName,
   AuthorAvatar,
 } from './Board.styled';
-import DotsButton from '../DotsButton/DotsButton';
-import Dropdown from '../Dropdown/Dropdown';
+import DotsButton from 'components/DotsButton/DotsButton';
+import Dropdown from 'components/Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Board = ({ user, boardTitle }) => {
@@ -19,7 +19,7 @@ const Board = ({ user, boardTitle }) => {
         {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a  */}
         <BoardTitle>{boardTitle}</BoardTitle>
         <DotsButton>
-          <Dropdown />
+          <Dropdown></Dropdown>
         </DotsButton>
       </BoardInfo>
       <AuthorInfoContainer>
