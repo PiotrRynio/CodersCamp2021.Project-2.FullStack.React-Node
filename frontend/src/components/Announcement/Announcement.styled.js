@@ -61,13 +61,13 @@ export const ShortContent = styled.p`
 export const ReadMore = styled.span`
   font-weight: bold;
   font-size: 14px;
-  color: #1a8cd8;
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   transition: all 300ms;
 
   &:hover {
     color: white;
-    background: #1a8cd8;
+    background: ${({ theme }) => theme.colors.primary};
   }
 `;
 

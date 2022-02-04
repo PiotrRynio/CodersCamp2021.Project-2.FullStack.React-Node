@@ -23,7 +23,7 @@ export const FormTitle = styled.h2`
   text-shadow: 0 0 3px #456, 0 0 5px #34f;
   font-size: 1.5em;
   font-weight: 400;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${({ theme }) => theme.fontFamily.primary};
 `;
 
 export const TitleInput = styled.input`

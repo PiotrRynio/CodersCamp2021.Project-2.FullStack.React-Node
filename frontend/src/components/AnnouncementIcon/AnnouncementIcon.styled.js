@@ -8,8 +8,8 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: #1a8cd8;
-  color: white;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 18px;
 
   @media ${({ theme }) => theme.breakpoints.sm} {
