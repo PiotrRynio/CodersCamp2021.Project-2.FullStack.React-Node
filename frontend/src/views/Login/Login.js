@@ -62,7 +62,7 @@ const LogIn = () => {
         <RecoverPassword>
           <RecoverPasswordText to="/recover-password">
             Have you forgotten your password?
-            <RecoverSpan>Get them back!</RecoverSpan>
+            <RecoverSpan>Get it back!</RecoverSpan>
           </RecoverPasswordText>
         </RecoverPassword>
       </Form>
