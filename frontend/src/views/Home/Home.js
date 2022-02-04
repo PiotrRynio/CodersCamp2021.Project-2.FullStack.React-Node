@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from './Home.styled';
-import BoardPreview from 'components/BoardPreview/BoardPreview';
+import BoardPreviewList from '../../components/BoardPreviewList/BoardPreviewList';
 
 const Home = () => {
   return (
     <Container>
-      <BoardPreview id={0} />
+      <BoardPreviewList boardsIds={[0, 1]} />
     </Container>
   );
 };
