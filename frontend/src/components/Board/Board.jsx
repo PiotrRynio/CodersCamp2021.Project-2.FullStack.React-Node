@@ -7,8 +7,8 @@ import {
   AuthorName,
   AuthorAvatar,
 } from './Board.styled';
-import DotsButton from '../DotsButton/DotsButton';
-import Dropdown from '../Dropdown/Dropdown';
+import DotsButton from 'components/DotsButton/DotsButton';
+import Dropdown from 'components/Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Board = ({ user, boardTitle }) => {

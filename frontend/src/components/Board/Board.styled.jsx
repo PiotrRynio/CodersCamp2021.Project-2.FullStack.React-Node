@@ -9,39 +9,41 @@ export const BoardInfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   background: #e3e3e3;
   color: #2c2c2c;
 `;
 
 export const BoardInfo = styled.div`
-  position: relative;
-  min-width: 100%;
   display: flex;
   align-items: center;
+  position: relative;
+  min-width: 100%;
   overflow-wrap: break-word;
 `;
 
 export const BoardImage = styled.div`
-  margin-right: 10px;
   display: inline-block;
   min-height: 60px;
   min-width: 60px;
-  background-color: #bbb;
+  margin-right: 10px;
   border-radius: 50%;
+  background-color: #bbb;
 
   @media ${breakpoints.md} {
-    min-height: 90px;
-    min-width: 90px;
+    min-height: 80px;
+    min-width: 80px;
   }
 
   @media ${breakpoints.lg} {
-    min-height: 120px;
-    min-width: 120px;
+    min-height: 100px;
+    min-width: 100px;
   }
 
   @media ${breakpoints.xl} {
-    min-height: 150px;
-    min-width: 150px;
+    min-height: 110px;
+    min-width: 110px;
   }
 `;
 
@@ -60,10 +62,10 @@ export const BoardTitle = styled.h2`
 `;
 
 export const AuthorInfoContainer = styled.div`
-  min-width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  min-width: 100%;
   color: #6b6b6b;
   overflow-wrap: break-word;
 `;
