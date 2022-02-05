@@ -1,9 +1,17 @@
 import Select, { components } from 'react-select';
-import { RowInOptions, StyledOptions, Title } from './SearchTool.styled';
+import {
+  BoardName,
+  CheckIcon,
+  LeftSideOfOptionRow,
+  OptionRow,
+  RightSideOfOptionRow,
+  StyledOptions,
+  Title,
+  Container,
+} from './SearchTool.styled';
 import { FaSearch } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import { FaCheck } from 'react-icons/fa';
-import avatar1 from '../../mocks/images/avatars/sample-avatar1.jpg';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 
 export const SearchTool = (callback) => {
@@ -15,7 +23,12 @@ export const SearchTool = (callback) => {
     return await fetch('/board?isNearUser=true').then((response) =>
       response.json().then((data) =>
         data.boards.map((board) => {
-          return { id: board.id, value: board.boardName, label: board.boardName };
+          return {
+            id: board.id,
+            value: board.boardName,
+            label: board.boardName,
+            boardIcon: board.icon,
+          };
         }),
       ),
     );
@@ -35,11 +48,9 @@ export const SearchTool = (callback) => {
     );
   });
 
-  const options = [
-    { value: '1', label: 'temp1', icon: <FaCheck /> },
-    { value: '2', label: 'temp2', icon: <FaCheck /> },
-    { value: '3', label: 'temp3', icon: '' },
-  ];
+  const handleBoardSelected = (e) => {
+    callback(e.value);
+  };
 
   const DropdownIndicator = (props) => {
     return (
@@ -51,11 +62,15 @@ export const SearchTool = (callback) => {
   const { Option } = components;
   const IconOption = (props) => (
     <Option {...props}>
-      <RowInOptions>
-        <UserAvatar userAvatarImage={avatar1} />
-        {props.data.label}
-        {props.data.icon}
-      </RowInOptions>
+      <OptionRow>
+        <LeftSideOfOptionRow>
+          <UserAvatar userAvatarImage={props.data.boardIcon} />
+          <BoardName>{props.data.label}</BoardName>
+        </LeftSideOfOptionRow>
+        <RightSideOfOptionRow>
+          <CheckIcon>{props.data.icon}</CheckIcon>
+        </RightSideOfOptionRow>
+      </OptionRow>
     </Option>
   );
 
@@ -75,14 +90,16 @@ export const SearchTool = (callback) => {
     }
   }
   return (
-    <>
+    <Container>
       <Title>Explore!</Title>
       <Select
+        searchable={true}
+        onChange={handleBoardSelected}
         styles={StyledOptions}
         options={dataAvailableForUserBoards}
         components={{ DropdownIndicator, Option: IconOption }}
         placeholder={'Search...'}
       />
-    </>
+    </Container>
   );
 };

@@ -1,19 +1,24 @@
 import styled from 'styled-components';
 export const StyledOptions = {
-  option: (provided, state) => ({
+  container: (provided) => ({
     ...provided,
-    border: 'none',
-    boxShadow: 'none',
-    background: 'none',
+    width: '100%',
+  }),
+  option: (provided) => ({
+    ...provided,
     padding: 0,
+    border: 'none',
+    background: 'none',
+    boxShadow: 'none',
   }),
   menu: (provided) => ({
     ...provided,
+    width: '100%',
     padding: 0,
     border: 'none',
+    borderRadius: '14px',
     background: 'none',
     boxShadow: 'none',
-    width: '100%',
   }),
   menuList: (provided) => ({
     padding: '0',
@@ -22,7 +27,7 @@ export const StyledOptions = {
   control: (provided) => ({
     ...provided,
     height: '60px',
-    width: '400px',
+    width: '100%',
     marginTop: '5px',
     marginBottom: '5px',
     border: 'none',
@@ -31,6 +36,7 @@ export const StyledOptions = {
   }),
   valueContainer: (provided) => ({
     ...provided,
+    width: '80%',
     height: '60px',
     borderRadius: '14px',
     marginRight: '5px',
@@ -39,28 +45,29 @@ export const StyledOptions = {
   indicatorsContainer: (provided) => ({
     ...provided,
     display: 'flex',
+    height: '60px',
+    width: '20%',
+    minWidth: '40px',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    height: '60px',
-    width: '60px',
     borderRadius: '14px',
-    background: 'white',
     border: 'none',
     padding: 0,
+    background: 'white',
   }),
   indicatorContainer: (provided) => ({
     ...provided,
     display: 'flex',
+    width: '60px',
+    height: '60px',
+    padding: 0,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    height: '60px',
-    width: '60px',
     borderRadius: '14px',
     background: 'white',
     border: 'none',
-    padding: 0,
   }),
 
   indicatorSeparator: (provided) => ({
@@ -69,22 +76,43 @@ export const StyledOptions = {
   }),
 };
 
-export const RowInOptions = styled.div`
-  margin: 5px;
-  height: 80px;
-  width: 400px;
-  padding: 5px;
+export const OptionRow = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
-
   align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  margin-top: 5px;
   background: white;
+  font-size: 20px;
+`;
+
+export const LeftSideOfOptionRow = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+`;
+export const RightSideOfOptionRow = styled.div`
+  display: flex;
+  padding: 10px;
+`;
+export const BoardName = styled.span`
+  margin: 10px;
 `;
 
 export const Title = styled.h3`
-  margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: start;
+  margin-top: 50px;
+`;
+
+export const CheckIcon = styled.span`
+  color: #689f38;
+`;
+
+export const Container = styled.div`
+  width: 100%;
 `;
