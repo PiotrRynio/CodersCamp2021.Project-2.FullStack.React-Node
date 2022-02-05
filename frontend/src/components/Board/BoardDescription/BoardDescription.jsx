@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   DescriptionContainer,
   DescriptionText,
-  PostInfo,
+  PostsInfo,
   Distance,
   IconsContainer,
   Icon,
@@ -11,9 +11,9 @@ import {
   BlueText,
 } from './BoardDescription.styled';
 import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
-import { Button } from '../../Button/Button';
+import { Button } from 'components/Button/Button';
 
-const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance }) => {
+const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distanceFromUser }) => {
   const [watch, setWatch] = useState(false);
   const [notify, setNotify] = useState(false);
 
@@ -26,12 +26,12 @@ const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance
         {truncatedText}
         {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
       </DescriptionText>
-      <PostInfo>
+      <PostsInfo>
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
         <BlueText>{lastPostDate}</BlueText>
-      </PostInfo>
+      </PostsInfo>
       <Distance>
-        {distance} km from you
+        {distanceFromUser} km from you
         <Button buttonName="Watch" icon={<FaPaperPlane />} />
       </Distance>
       <IconsContainer>

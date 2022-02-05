@@ -7,8 +7,8 @@ import {
   AuthorName,
   AuthorAvatar,
 } from './BoardTitleSection.styled';
-import DotsButton from './DotsButton/DotsButton';
-import Dropdown from './Dropdown/Dropdown';
+import DotsButton from 'components/Board/BoardTitleSection/DotsButton/DotsButton';
+import Dropdown from 'components/Board/BoardTitleSection/Dropdown/Dropdown';
 import { FaUserCircle } from 'react-icons/fa';
 
 const BoardTitleSection = ({ boardTitle = 'board_title', user = 'user_name' }) => {

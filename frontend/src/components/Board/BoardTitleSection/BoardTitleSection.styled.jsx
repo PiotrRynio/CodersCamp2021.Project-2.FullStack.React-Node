@@ -3,44 +3,43 @@ import { breakpoints } from 'rwd/breakpoints';
 
 export const BoardInfoContainer = styled.div`
   position: relative;
-  padding: 10px;
-  min-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 15px 15px 0px 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   color: #2c2c2c;
 `;
 
 export const BoardInfo = styled.div`
   position: relative;
-  min-width: 100%;
   display: flex;
   align-items: center;
   overflow-wrap: break-word;
+  min-width: 100%;
 `;
 
 export const BoardImage = styled.div`
-  margin-right: 10px;
   display: inline-block;
-  min-height: 50px;
-  min-width: 50px;
-  background-color: #bbb;
+  min-height: 60px;
+  min-width: 60px;
+  margin-right: 10px;
   border-radius: 50%;
+  background-color: #bbb;
 
   @media ${breakpoints.md} {
-    min-height: 70px;
-    min-width: 70px;
+    min-height: 80px;
+    min-width: 80px;
   }
-
   @media ${breakpoints.lg} {
     min-height: 100px;
     min-width: 100px;
   }
-
   @media ${breakpoints.xl} {
-    min-height: 150px;
-    min-width: 150px;
+    min-height: 110px;
+    min-width: 110px;
   }
 `;
 
@@ -59,10 +58,10 @@ export const BoardTitle = styled.h2`
 `;
 
 export const AuthorInfoContainer = styled.div`
-  min-width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  min-width: 100%;
   color: #6b6b6b;
   overflow-wrap: break-word;
 `;
@@ -91,12 +90,12 @@ export const AuthorName = styled.span`
 `;
 
 export const AuthorAvatar = styled.div`
-  margin-left: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  margin-left: 5px;
   color: #bbb;
+  font-size: 25px;
   transition: color 0.15s ease-in-out;
 
   &:hover {
