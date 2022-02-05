@@ -54,7 +54,7 @@ export const SearchTool = (callback) => {
       <RowInOptions>
         <UserAvatar userAvatarImage={avatar1} />
         {props.data.label}
-        <FaCheck />
+        {props.data.icon}
       </RowInOptions>
     </Option>
   );
@@ -69,18 +69,11 @@ export const SearchTool = (callback) => {
   const indexBoardsAssigned = dataBoardsUserAlreadyAssigned?.map((el) => {
     return el.id;
   });
-
-  console.log('XXXXXXXX');
-  console.log(dataAvailableForUserBoards);
-
-  /*  for (let i = 0; i < dataAvailableForUserBoards.length; i++) {
-    /!*    if (indexBoardsAssigned.includes(dataAvailableForUserBoards[0].id)) {
+  for (let i = 0; i < dataAvailableForUserBoards?.length; i++) {
+    if (indexBoardsAssigned?.includes(dataAvailableForUserBoards[i].id)) {
       dataAvailableForUserBoards[i].icon = <FaCheck />;
-    }*!/
-    console.log('XXXXXXXX');
-  }*/
-
-  // console.log(typeof dataBoardsUserAlreadyAssigned);
+    }
+  }
   return (
     <>
       <Title>Explore!</Title>
