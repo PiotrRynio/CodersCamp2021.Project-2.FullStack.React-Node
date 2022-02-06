@@ -1,40 +1,18 @@
-import {
-  BoardInfoContainer,
-  BoardInfo,
-  BoardImage,
-  BoardTitle,
-  AuthorInfoContainer,
-  AuthorName,
-  AuthorAvatar
-} from "./Board.styled";
-import DotsButton from "../DotsButton/DotsButton";
-import Dropdown from '../Dropdown/Dropdown';
-import { FaUserCircle } from 'react-icons/fa';
+import BoardTitleSection from '../BoardTitleSection/BoardTitleSection';
+import BoardDescription from '../BoardDescription/BoardDescription';
 
-const Board = ({user, boardTitle}) => {
+const Board = () => {
   return (
-      <BoardInfoContainer>
-        <BoardInfo>
-          <BoardImage />
-          {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok Board'a  */}
-          <BoardTitle>
-            {boardTitle}
-          </BoardTitle>
-          <DotsButton>
-            <Dropdown>
-            </Dropdown>
-          </DotsButton>
-        </BoardInfo>
-        <AuthorInfoContainer>
-          <AuthorName>
-            {user}
-          </AuthorName>
-          <AuthorAvatar >
-            <FaUserCircle />
-          </AuthorAvatar>
-        </AuthorInfoContainer>
-      </BoardInfoContainer>
+    <>
+      <BoardTitleSection />
+      <BoardDescription
+        descriptionText="Sed sed enim a turpis imperdiet bibendum. Sed dignissim lacus eget suscipit ultricies. Sed facilisis eget mauris eu laoreet. Aenean mattis viverra nisi, a sagittis arcu."
+        postsNumber={8}
+        lastPostDate="12.02.2020"
+        distanceFromUser={1.2}
+      />
+    </>
   );
-}
+};
 
 export default Board;

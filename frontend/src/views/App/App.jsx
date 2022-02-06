@@ -13,6 +13,8 @@ import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
+import AddBoard from 'views/AddBoard/AddBoard';
+import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';
 
@@ -31,12 +33,14 @@ function App() {
               <Routes>
                 <Route path="/log-in" element={<Login />} />
                 <Route path="/sign-up" element={<SignIn />} />
+                <Route path="/recover-password" element={<RecoverPassword />} />
                 <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
                   <Route element={<ProtectedRoute />}>
                     <Route path="notifications" element={<Notifications />} />
                     <Route path="subscribed" element={<Subscribed />} />
                     <Route path="add-post" element={<AddPost />} />
+                    <Route path="board/:id" element={<Home />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="announcement/:id" element={<AnnouncementDetails />} />
                   </Route>

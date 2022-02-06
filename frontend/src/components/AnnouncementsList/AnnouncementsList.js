@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import PropTypes from 'prop-types';
-import Announcement from '../Announcement/Announcement';
+import Announcement from 'components/Announcement/Announcement';
 
 const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) => {
   const { data, isLoading, isError } = useQuery('boardsList', async () => {

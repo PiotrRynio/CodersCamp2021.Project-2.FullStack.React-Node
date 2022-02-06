@@ -32,7 +32,7 @@ export const CommentForm = ({ handleSubmit }) => {
       return false;
     }
 
-    if (!commentText.length > 500) {
+    if (commentText.length > 500) {
       setErrorText('Too long! Comment must be shorter than 500 characters.');
       return false;
     }
