@@ -5,8 +5,10 @@ name: CodersCamp2021 |  BoardMAP - React CI
 
 on:
   push:
-    paths-ignore:
-      - '**/*.md'
+    paths:
+      - '.github/workflows/node.js.yml'
+      - 'frontend/**'
+      - '!**/README.md'
 
 jobs:
   build:
