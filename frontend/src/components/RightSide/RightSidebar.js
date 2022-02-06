@@ -1,8 +1,7 @@
-import React from 'react';
 import { Sidebar, Subscriptions } from './RightSidebar.styled';
 import { SearchTool } from 'components/SearchTool/SearchTool';
 
-export const RightSidebar = () => {
+const RightSidebar = () => {
   return (
     <Sidebar>
       <Subscriptions>Subscriptions</Subscriptions>
@@ -10,3 +9,4 @@ export const RightSidebar = () => {
     </Sidebar>
   );
 };
+export default RightSidebar;

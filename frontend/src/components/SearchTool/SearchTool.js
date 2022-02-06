@@ -1,4 +1,6 @@
+import { FaSearch, FaCheck } from 'react-icons/fa';
 import Select, { components } from 'react-select';
+import { useQuery } from 'react-query';
 import {
   BoardName,
   CheckIcon,
@@ -9,10 +11,7 @@ import {
   Title,
   Container,
 } from './SearchTool.styled';
-import { FaSearch } from 'react-icons/fa';
-import { useQuery } from 'react-query';
-import { FaCheck } from 'react-icons/fa';
-import { UserAvatar } from '../UserAvatar/UserAvatar';
+import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 
 export const SearchTool = (callback) => {
   const {
@@ -20,8 +19,9 @@ export const SearchTool = (callback) => {
     isLoadingAvailableBoards,
     isErrorAvailableBoards,
   } = useQuery('AvailableBoardsSearchTool', async () => {
-    return await fetch('/board?isNearUser=true').then((response) =>
-      response.json().then((data) =>
+    return await fetch('/board?isNearUser=true')
+      .then((response) => response.json())
+      .then((data) =>
         data.boards.map((board) => {
           return {
             id: board.id,
@@ -30,8 +30,7 @@ export const SearchTool = (callback) => {
             boardIcon: board.icon,
           };
         }),
-      ),
-    );
+      );
   });
 
   const {
@@ -39,13 +38,13 @@ export const SearchTool = (callback) => {
     isLoadingBoardsAlreadyAssigned,
     isErrorBoardsAlreadyAssigned,
   } = useQuery('UserBoards', async () => {
-    return await fetch('/user/1/boards').then((response) =>
-      response.json().then((data) =>
+    return await fetch('/user/1/boards')
+      .then((response) => response.json())
+      .then((data) =>
         data.boards.map((board) => {
           return { id: board.id, value: board.boardName, label: board.boardName };
         }),
-      ),
-    );
+      );
   });
 
   const handleBoardSelected = (e) => {
