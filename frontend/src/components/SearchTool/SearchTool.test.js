@@ -1,15 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { SearchTool } from './SearchTool';
+import { Providers } from '../Providers/Providers';
 
 describe('Search Tool', () => {
-  render(<SearchTool />);
   it('Should properly render components', async () => {
+    render(
+      <Providers>
+        <SearchTool />
+      </Providers>,
+    );
     // GIVEN
-    const select = screen.getByRole('select');
+    const title = screen.getByText('Explore!');
 
     // THEN
-    expect(select.length).toBe(1);
-
-    expect(select).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
   });
 });
