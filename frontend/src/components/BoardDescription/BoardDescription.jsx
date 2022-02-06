@@ -20,7 +20,7 @@ const BoardDescription = ({
   lastPostDate,
   distanceFromUser,
   boardId,
-  isButtonAndDistanceHidden = false,
+  isOpen = false,
 }) => {
   const [watch, setWatch] = useState(false);
   const [notify, setNotify] = useState(false);
@@ -31,16 +31,22 @@ const BoardDescription = ({
   return (
     <DescriptionContainer>
       <DescriptionText>
-        {truncatedText}
-        <StyledLink to={`/board/${boardId}`}>
-          {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
-        </StyledLink>
+        {isOpen ? (
+          descriptionText
+        ) : (
+          <>
+            {truncatedText}
+            <StyledLink to={`/board/${boardId}`}>
+              {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
+            </StyledLink>
+          </>
+        )}
       </DescriptionText>
       <PostsInfo>
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
         <BlueText>{lastPostDate}</BlueText>
       </PostsInfo>
-      {isButtonAndDistanceHidden ? (
+      {isOpen ? (
         <></>
       ) : (
         <Distance>
