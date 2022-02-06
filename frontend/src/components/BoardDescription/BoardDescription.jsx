@@ -20,6 +20,7 @@ const BoardDescription = ({
   lastPostDate,
   distanceFromUser,
   boardId,
+  isButtonAndDistanceHidden = false,
 }) => {
   const [watch, setWatch] = useState(false);
   const [notify, setNotify] = useState(false);
@@ -39,10 +40,15 @@ const BoardDescription = ({
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
         <BlueText>{lastPostDate}</BlueText>
       </PostsInfo>
-      <Distance>
-        {distanceFromUser} km from you
-        <Button buttonName="Watch" icon={<FaPaperPlane />} />
-      </Distance>
+      {isButtonAndDistanceHidden ? (
+        <></>
+      ) : (
+        <Distance>
+          {distanceFromUser} km from you
+          <Button buttonName="Watch" icon={<FaPaperPlane />} />
+        </Distance>
+      )}
+
       <IconsContainer>
         <Icon isActive={watch} onClick={() => setWatch((prevState) => !prevState)}>
           <FaEye />

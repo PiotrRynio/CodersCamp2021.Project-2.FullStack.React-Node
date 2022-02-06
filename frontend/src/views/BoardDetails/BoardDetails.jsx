@@ -16,7 +16,7 @@ const BoardDetails = () => {
 
   return (
     <>
-      <Board boardData={data} />
+      <Board boardData={data} isButtonAndDistanceHidden={true} />
       <AnnouncementsList
         boardsIds={[+id]}
         announcementsNumber={data.announcements.length}

@@ -19,7 +19,7 @@ const BoardPreview = ({ boardId }) => {
 
   return (
     <>
-      <BoardTitleSection boardTitle={boardName} user={author} boardImg={avatar} id={boardId} />
+      <BoardTitleSection boardTitle={boardName} user={author} boardImg={avatar} boardId={boardId} />
       <AnnouncementsList boardsIds={[boardId]} announcementsNumber={2} showBoardNames={false} />
     </>
   );

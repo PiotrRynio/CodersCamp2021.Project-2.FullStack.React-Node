@@ -1,7 +1,7 @@
 import BoardTitleSection from '../BoardTitleSection/BoardTitleSection';
 import BoardDescription from '../BoardDescription/BoardDescription';
 
-const Board = ({ boardData }) => {
+const Board = ({ boardData, isButtonAndDistanceHidden = false }) => {
   const { boardName, author, avatar, description, announcements, id } = boardData;
 
   return (
@@ -13,6 +13,7 @@ const Board = ({ boardData }) => {
         lastPostDate={new Date(announcements[announcements.length - 1].date).toDateString()}
         distanceFromUser={1.2}
         boardId={id}
+        isButtonAndDistanceHidden={isButtonAndDistanceHidden}
       />
     </>
   );
