@@ -24,8 +24,16 @@ const getAvailableUserBoards = rest.get(
 
 const getBoardHandler = rest.get('/boards/:id', (req, res, ctx) => {
   const { id } = req.params;
-
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id]));
+});
+
+const postBoardsListsHandler = rest.post('/boards', (req, res, ctx) => {
+  const { boards } = boardsResponse;
+  const newId = boards.length;
+  req.body.id = newId;
+  boards.push(req.body);
+
+  return res(ctx.status(200), ctx.json(req.body));
 });
 
 export default [
@@ -34,4 +42,5 @@ export default [
   postAnnouncementListResponse,
   getAvailableUserBoards,
   getBoardHandler,
+  postBoardsListsHandler,
 ];

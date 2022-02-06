@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../rwd/breakpoints';
 
 export const IconContainer = styled.div`
   margin-right: 10px;
@@ -9,11 +8,11 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: #1a8cd8;
-  color: white;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: 18px;
 
-  @media ${breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     height: 70px;
     min-width: 70px;
     font-size: 30px;

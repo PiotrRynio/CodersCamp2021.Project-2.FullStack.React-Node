@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from 'rwd/breakpoints';
 
 export const StyledDotsButton = styled.div`
   position: absolute;
@@ -21,15 +20,15 @@ export const ButtonContainer = styled.div`
     color: #6b6b6b;
   }
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 30px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: 40px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     font-size: 50px;
   }
 `;
