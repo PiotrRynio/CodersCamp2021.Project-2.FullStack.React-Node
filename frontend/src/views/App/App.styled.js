@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: relative;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
 
@@ -24,7 +24,7 @@ export const MainSection = styled.div`
     padding-top: 20px;
     width: 100%;
     height: 100vh;
-    background-color: white;
+    background-color: #f5f5f5;
     border-top: 1px solid #f5f5f5;
     border-radius: 0;
   }

@@ -1,36 +1,29 @@
-import React from 'react';
-import {StyledDropdown, DropdownItem, Image} from "./Dropdown.styled";
-import { FaBell, FaFlag, FaEyeSlash } from "react-icons/fa";
+import { FaBell, FaFlag, FaEyeSlash } from 'react-icons/fa';
+import { StyledDropdown, DropdownItem, Image } from './Dropdown.styled';
 
 const Dropdown = () => {
   const dropdownItems = [
     {
       icon: <FaBell />,
-      text: 'Notify me'
+      text: 'Notify me',
     },
     {
       icon: <FaFlag />,
-      text: 'Report this board'
+      text: 'Report this board',
     },
     {
       icon: <FaEyeSlash />,
-      text: 'Don\'t show me this board'
-    }
-  ]
-  const displayDropdownItems = dropdownItems.map((dropdownItem) =>
+      text: "Don't show me this board",
+    },
+  ];
+  const displayDropdownItems = dropdownItems.map((dropdownItem) => (
     <DropdownItem key={dropdownItem.text}>
-      <Image>
-        {dropdownItem.icon}
-      </Image>
-        {dropdownItem.text}
+      <Image>{dropdownItem.icon}</Image>
+      {dropdownItem.text}
     </DropdownItem>
-  )
+  ));
 
-  return (
-    <StyledDropdown>
-      {displayDropdownItems}
-    </StyledDropdown>
-    )
-}
+  return <StyledDropdown>{displayDropdownItems}</StyledDropdown>;
+};
 
 export default Dropdown;

@@ -2,9 +2,9 @@ import { useQuery } from 'react-query';
 import Board from 'components/Board/Board';
 import AnnouncementsList from 'components/AnnouncementsList/AnnouncementsList';
 
-const BoardPreview = ({ id }) => {
+const BoardPreview = ({ boardId }) => {
   const { data, isLoading, isError } = useQuery('board', async () => {
-    return await fetch(`/boards/${id}`).then((response) => response.json());
+    return await fetch(`/boards`).then((response) => response.json());
   });
 
   if (isLoading || isError) {
@@ -13,8 +13,8 @@ const BoardPreview = ({ id }) => {
 
   return (
     <>
-      <Board boardTitle={data.boardName} user={data.author} />
-      <AnnouncementsList boardsIds={[id]} announcementsNumber={10} showBoardNames={false} />
+      <Board boardTitle={data.boards[boardId].boardName} user={data.boards[boardId].author} />
+      <AnnouncementsList boardsIds={[boardId]} announcementsNumber={5} showBoardNames={false} />
     </>
   );
 };
