@@ -5,7 +5,7 @@ const RightSidebar = () => {
   return (
     <Sidebar>
       <Subscriptions>Subscriptions</Subscriptions>
-      <SearchTool />
+      <SearchTool userID={1} />
     </Sidebar>
   );
 };

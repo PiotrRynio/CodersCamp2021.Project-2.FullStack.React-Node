@@ -13,7 +13,7 @@ import {
 } from './SearchTool.styled';
 import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 
-export const SearchTool = (callback) => {
+export const SearchTool = (callback, userID) => {
   const {
     data: dataAvailableForUserBoards,
     isLoadingAvailableBoards,
@@ -38,11 +38,16 @@ export const SearchTool = (callback) => {
     isLoadingBoardsAlreadyAssigned,
     isErrorBoardsAlreadyAssigned,
   } = useQuery('UserBoards', async () => {
-    return await fetch('/user/1/boards')
+    return await fetch('/user/${userID}/boards')
       .then((response) => response.json())
       .then((data) =>
         data.boards.map((board) => {
-          return { id: board.id, value: board.boardName, label: board.boardName };
+          return {
+            id: board.id,
+            value: board.boardName,
+            label: board.boardName,
+            boardIcon: board.boardIcon,
+          };
         }),
       );
   });
@@ -59,8 +64,8 @@ export const SearchTool = (callback) => {
     );
   };
   const { Option } = components;
-  const IconOption = (props) => (
-    <Option {...props}>
+  const OptionInSelect = (props) => (
+    <Option {...props} data-testid="select">
       <OptionRow>
         <LeftSideOfOptionRow>
           <UserAvatar userAvatarImage={props.data.boardIcon} />
@@ -92,11 +97,12 @@ export const SearchTool = (callback) => {
     <Container>
       <Title>Explore!</Title>
       <Select
+        closeMenuOnSelect={true}
         searchable={true}
         onChange={handleBoardSelected}
         styles={StyledOptions}
         options={dataAvailableForUserBoards}
-        components={{ DropdownIndicator, Option: IconOption }}
+        components={{ DropdownIndicator, Option: OptionInSelect }}
         placeholder={'Search...'}
       />
     </Container>
