@@ -6,7 +6,7 @@ name: CodersCamp2021 |  BoardMAP - React CI
 on:
   push:
     paths:
-      - '.github/workflows/node.js.yml'
+      - '.github/workflows/frontend.yml'
       - 'frontend/**'
       - '!**/README.md'
 
@@ -14,6 +14,8 @@ jobs:
   build:
     name: 'BoardMAP application'
     runs-on: ubuntu-latest
+    env:
+      CI: false
     defaults:
       run:
         working-directory: frontend
