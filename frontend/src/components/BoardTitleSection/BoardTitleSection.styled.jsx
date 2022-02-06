@@ -1,25 +1,23 @@
 import styled from 'styled-components';
 
 export const BoardInfoContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  min-width: 100%;
-  padding: 10px;
+  padding: 15px 15px 0px 15px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background: #e3e3e3;
   color: #2c2c2c;
 `;
 
 export const BoardInfo = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
-  min-width: 100%;
   overflow-wrap: break-word;
+  min-width: 100%;
 `;
 
 export const BoardImage = styled.div`
@@ -34,12 +32,10 @@ export const BoardImage = styled.div`
     min-height: 80px;
     min-width: 80px;
   }
-
   @media ${({ theme }) => theme.breakpoints.lg} {
     min-height: 100px;
     min-width: 100px;
   }
-
   @media ${({ theme }) => theme.breakpoints.xl} {
     min-height: 110px;
     min-width: 110px;
@@ -93,12 +89,12 @@ export const AuthorName = styled.span`
 `;
 
 export const AuthorAvatar = styled.div`
-  margin-left: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  margin-left: 5px;
   color: #bbb;
+  font-size: 25px;
   transition: color 0.15s ease-in-out;
 
   &:hover {
