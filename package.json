@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky install && cd frontend && npm install",
     "start-fe": "cd frontend && npm start",
-    "build": "cd frontend && react-scripts build",
+    "build": "cd frontend && npm run build",
     "test": "cd frontend && npm run test"
   },
   "devDependencies": {
