@@ -12,12 +12,11 @@ import SignIn from 'views/SignIn/SignIn';
 import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
+import BoardDetails from 'views/BoardDetails/BoardDetails';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
-import AddBoard from 'views/AddBoard/AddBoard';
 import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';
-import BoardDetails from '../BoardDetails/BoardDetails';
 
 const queryClient = new QueryClient();
 export const UserContext = createContext({});

@@ -1,6 +1,7 @@
 import { FaUserCircle } from 'react-icons/fa';
 import DotsButton from 'components/DotsButton/DotsButton';
 import Dropdown from 'components/Dropdown/Dropdown';
+import StyledLink from 'components/StyledLink/StyledLink';
 import {
   BoardInfoContainer,
   BoardInfo,
@@ -10,7 +11,6 @@ import {
   AuthorName,
   AuthorAvatar,
 } from './BoardTitleSection.styled';
-import StyledLink from 'components/StyledLink/StyledLink';
 
 const BoardTitleSection = ({
   boardTitle = 'board_title',

@@ -1,5 +1,5 @@
-import BoardTitleSection from '../BoardTitleSection/BoardTitleSection';
-import BoardDescription from '../BoardDescription/BoardDescription';
+import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
+import BoardDescription from 'components/BoardDescription/BoardDescription';
 
 const Board = ({ boardData, isOpen = false }) => {
   const { boardName, author, avatar, description, announcements, id } = boardData;
