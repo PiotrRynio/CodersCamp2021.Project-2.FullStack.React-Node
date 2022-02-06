@@ -17,6 +17,7 @@ import AddBoard from 'views/AddBoard/AddBoard';
 import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';
+import BoardDetails from '../BoardDetails/BoardDetails';
 
 const queryClient = new QueryClient();
 export const UserContext = createContext({});
@@ -43,6 +44,7 @@ function App() {
                     <Route path="board/:id" element={<Home />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="announcement/:id" element={<AnnouncementDetails />} />
+                    <Route path="board/:id" element={<BoardDetails />} />
                   </Route>
                 </Route>
               </Routes>
