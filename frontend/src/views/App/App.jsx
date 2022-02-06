@@ -13,7 +13,6 @@ import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
-import AddBoard from 'views/AddBoard/AddBoard';
 import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { Container } from './App.styled';

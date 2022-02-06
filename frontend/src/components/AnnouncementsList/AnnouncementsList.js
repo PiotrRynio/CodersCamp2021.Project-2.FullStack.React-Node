@@ -26,7 +26,7 @@ const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) =
         .slice(0, announcementsNumber);
       setAnnouncements(announcementsToShow);
     }
-  }, [data]);
+  }, [data, announcementsNumber, boardsIds]);
 
   if (isLoading) {
     return <div>Loading...</div>;

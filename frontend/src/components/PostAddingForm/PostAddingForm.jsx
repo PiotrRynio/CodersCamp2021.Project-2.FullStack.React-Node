@@ -19,10 +19,6 @@ import {
 const PostAddingForm = ({ formSubmit }) => {
   const { register, handleSubmit, control } = useForm();
 
-  const { data: dataAnnouncementsList } = useQuery('announcementsList', async () => {
-    return await fetch('/boards/1/announcements').then((response) => response.json());
-  });
-
   const {
     data: dataAvailableUserBoards,
     isLoading,
@@ -37,12 +33,7 @@ const PostAddingForm = ({ formSubmit }) => {
     );
   });
 
-  const {
-    mutate,
-    data: mutationData,
-    error: isMutationError,
-    isLoading: isLoadingMutation,
-  } = useMutation((newComment) => {
+  const { mutate } = useMutation((newComment) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
