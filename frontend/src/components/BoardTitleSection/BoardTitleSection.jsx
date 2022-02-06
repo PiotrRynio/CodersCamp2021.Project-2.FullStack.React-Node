@@ -8,8 +8,8 @@ import {
   AuthorName,
   AuthorAvatar,
 } from './BoardTitleSection.styled';
-import DotsButton from 'components/Board/BoardTitleSection/DotsButton/DotsButton';
-import Dropdown from 'components/Board/BoardTitleSection/Dropdown/Dropdown';
+import DotsButton from 'components/DotsButton/DotsButton';
+import Dropdown from 'components/Dropdown/Dropdown';
 
 const BoardTitleSection = ({ boardTitle = 'board_title', user = 'user_name' }) => {
   return (

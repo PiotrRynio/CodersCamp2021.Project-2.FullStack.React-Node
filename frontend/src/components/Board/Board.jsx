@@ -1,5 +1,5 @@
-import BoardTitleSection from './BoardTitleSection/BoardTitleSection';
-import BoardDescription from './BoardDescription/BoardDescription';
+import BoardTitleSection from '../BoardTitleSection/BoardTitleSection';
+import BoardDescription from '../BoardDescription/BoardDescription';
 
 const Board = () => {
   return (
