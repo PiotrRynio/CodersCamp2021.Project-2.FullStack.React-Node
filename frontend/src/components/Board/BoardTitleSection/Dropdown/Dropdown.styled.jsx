@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from 'rwd/breakpoints';
 
 export const StyledDropdown = styled.div`
   position: absolute;
@@ -14,17 +13,17 @@ export const StyledDropdown = styled.div`
   border-radius: 5px;
   background-color: #fff;
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     top: calc(0% + 21px);
     min-width: 240px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     top: calc(0% + 28px);
     min-width: 300px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     top: calc(0% + 35px);
     min-width: 400px;
   }
@@ -49,18 +48,18 @@ export const DropdownItem = styled.div`
     color: #2c2c2c;
   }
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     min-height: 67.5px;
     font-size: 20px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     min-height: 85px;
     padding: 0 10px;
     font-size: 25px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     min-height: 102.5px;
     font-size: 30px;
   }
@@ -78,17 +77,17 @@ export const Image = styled.div`
   color: #bbb;
   transition: color 0.15s ease-in-out;
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     min-height: 53px;
     min-width: 53px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     min-height: 66px;
     min-width: 66px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     min-height: 80px;
     min-width: 80px;
   }

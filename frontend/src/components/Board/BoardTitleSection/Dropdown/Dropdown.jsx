@@ -1,6 +1,5 @@
-import React from 'react';
-import { StyledDropdown, DropdownItem, Image } from './Dropdown.styled';
 import { FaBell, FaFlag, FaEyeSlash } from 'react-icons/fa';
+import { StyledDropdown, DropdownItem, Image } from './Dropdown.styled';
 
 const Dropdown = () => {
   const dropdownItems = [

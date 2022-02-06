@@ -13,7 +13,7 @@ export const DescriptionText = styled.div`
   font-weight: 300;
 `;
 
-export const BlueLink = styled.a`
+export const BlueLink = styled.span`
   color: #1a8cd8;
 `;
 

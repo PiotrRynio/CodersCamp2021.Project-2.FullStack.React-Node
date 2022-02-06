@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { StyledDotsButton, ButtonContainer } from './DotsButton.styled';
 import { FaEllipsisH } from 'react-icons/fa';
-
 import PropTypes from 'prop-types';
+import { StyledDotsButton, ButtonContainer } from './DotsButton.styled';
 
 const DotsButton = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);

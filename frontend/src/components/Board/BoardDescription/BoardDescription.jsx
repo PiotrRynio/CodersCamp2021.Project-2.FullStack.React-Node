@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import {
   DescriptionContainer,
@@ -10,7 +12,6 @@ import {
   BlueLink,
   BlueText,
 } from './BoardDescription.styled';
-import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
 import { Button } from 'components/Button/Button';
 
 const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distanceFromUser }) => {
@@ -24,7 +25,9 @@ const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance
     <DescriptionContainer>
       <DescriptionText>
         {truncatedText}
-        {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
+        <Link to="#" style={{ textDecoration: 'none' }}>
+          {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
+        </Link>
       </DescriptionText>
       <PostsInfo>
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}

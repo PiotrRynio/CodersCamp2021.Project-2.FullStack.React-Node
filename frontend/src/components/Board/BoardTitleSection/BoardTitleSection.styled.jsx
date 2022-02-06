@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from 'rwd/breakpoints';
 
 export const BoardInfoContainer = styled.div`
   position: relative;
@@ -29,30 +28,30 @@ export const BoardImage = styled.div`
   border-radius: 50%;
   background-color: #bbb;
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     min-height: 80px;
     min-width: 80px;
   }
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     min-height: 100px;
     min-width: 100px;
   }
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     min-height: 110px;
     min-width: 110px;
   }
 `;
 
 export const BoardTitle = styled.h2`
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 30px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: 40px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     font-size: 50px;
   }
 `;
@@ -76,15 +75,15 @@ export const AuthorName = styled.span`
     text-decoration-thickness: 0.5px;
   }
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 20px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: 25px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     font-size: 30px;
   }
 `;
@@ -102,15 +101,15 @@ export const AuthorAvatar = styled.div`
     color: #6b6b6b;
   }
 
-  @media ${breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 30px;
   }
 
-  @media ${breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     font-size: 40px;
   }
 
-  @media ${breakpoints.xl} {
+  @media ${({ theme }) => theme.breakpoints.xl} {
     font-size: 50px;
   }
 `;
