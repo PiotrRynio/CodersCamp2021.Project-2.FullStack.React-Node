@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import {
@@ -13,8 +12,15 @@ import {
   BlueText,
 } from './BoardDescription.styled';
 import { Button } from 'components/Button/Button';
+import StyledLink from 'components/StyledLink/StyledLink';
 
-const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distanceFromUser }) => {
+const BoardDescription = ({
+  descriptionText,
+  postsNumber,
+  lastPostDate,
+  distanceFromUser,
+  boardId,
+}) => {
   const [watch, setWatch] = useState(false);
   const [notify, setNotify] = useState(false);
 
@@ -25,9 +31,9 @@ const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance
     <DescriptionContainer>
       <DescriptionText>
         {truncatedText}
-        <Link to="#" style={{ textDecoration: 'none' }}>
+        <StyledLink to={`/board/${boardId}`}>
           {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
-        </Link>
+        </StyledLink>
       </DescriptionText>
       <PostsInfo>
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}

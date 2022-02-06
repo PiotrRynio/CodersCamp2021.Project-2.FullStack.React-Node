@@ -1,15 +1,12 @@
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import Board from 'components/Board/Board';
 import AnnouncementsList from 'components/AnnouncementsList/AnnouncementsList';
 
 const BoardDetails = () => {
   const { id } = useParams();
 
-  const {
-    data: boardData,
-    isLoading,
-    isError,
-  } = useQuery('boardsList', async () => {
+  const { data, isLoading, isError } = useQuery(`boardsid${id}`, async () => {
     return await fetch(`/boards/${id}`).then((response) => response.json());
   });
 
@@ -19,9 +16,10 @@ const BoardDetails = () => {
 
   return (
     <>
+      <Board boardData={data} />
       <AnnouncementsList
-        boardsIds={[id]}
-        announcementsNumber={boardData.announcements.length}
+        boardsIds={[+id]}
+        announcementsNumber={data.announcements.length}
         showBoardNames={false}
       />
     </>

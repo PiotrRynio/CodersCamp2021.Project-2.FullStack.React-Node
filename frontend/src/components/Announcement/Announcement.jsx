@@ -8,9 +8,9 @@ import {
   Board,
   ShortContent,
   TextWrapper,
-  StyledLink,
 } from './Announcement.styled';
 import AnnouncementIcon from '../AnnouncementIcon/AnnouncementIcon';
+import StyledLink from 'components/StyledLink/StyledLink';
 
 const Announcement = ({ announcement, isOpen, showBoard }) => {
   const { title, iconType, boardName, content, comments, id } = announcement;

@@ -6,7 +6,7 @@ export const BoardInfoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px 15px 0px 15px;
+  padding: 15px 15px 0 15px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   color: #2c2c2c;
@@ -20,25 +20,25 @@ export const BoardInfo = styled.div`
   min-width: 100%;
 `;
 
-export const BoardImage = styled.div`
+export const BoardImage = styled.img`
   display: inline-block;
-  min-height: 60px;
-  min-width: 60px;
+  height: 60px;
+  width: 60px;
   margin-right: 10px;
   border-radius: 50%;
   background-color: #bbb;
 
   @media ${({ theme }) => theme.breakpoints.md} {
-    min-height: 80px;
-    min-width: 80px;
+    height: 80px;
+    width: 80px;
   }
   @media ${({ theme }) => theme.breakpoints.lg} {
-    min-height: 100px;
-    min-width: 100px;
+    height: 100px;
+    width: 100px;
   }
   @media ${({ theme }) => theme.breakpoints.xl} {
-    min-height: 110px;
-    min-width: 110px;
+    height: 110px;
+    width: 110px;
   }
 `;
 

@@ -41,7 +41,6 @@ function App() {
                     <Route path="notifications" element={<Notifications />} />
                     <Route path="subscribed" element={<Subscribed />} />
                     <Route path="add-post" element={<AddPost />} />
-                    <Route path="board/:id" element={<Home />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="announcement/:id" element={<AnnouncementDetails />} />
                     <Route path="board/:id" element={<BoardDetails />} />
