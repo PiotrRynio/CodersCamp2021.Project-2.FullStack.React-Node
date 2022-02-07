@@ -12,7 +12,7 @@ const Board = ({ boardData, isOpen = false }) => {
         postsNumber={announcements.length}
         lastPostDate={
           announcements.length > 0
-            ? Date(announcements[announcements.length - 1].date).toDateString()
+            ? new Date(announcements[announcements.length - 1].date).toDateString()
             : ''
         }
         distanceFromUser={1.2}
