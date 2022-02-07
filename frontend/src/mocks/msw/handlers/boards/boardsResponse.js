@@ -29,7 +29,7 @@ const sampleBoard3 = {
   author: 'Krzysztof',
 };
 const sampleBoard4 = {
-  id: 4,
+  id: 3,
   icon: avatar1,
   boardName: 'Chrząszczyżewoszyce',
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
@@ -37,20 +37,28 @@ const sampleBoard4 = {
 };
 
 const sampleBoard5 = {
-  id: 5,
+  id: 4,
   icon: avatar1,
   boardName: 'Opole',
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
   author: 'Krzysztof',
 };
 const sampleBoard6 = {
-  id: 6,
+  id: 5,
   icon: avatar1,
   boardName: 'Wrocław',
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
   author: 'Krzysztof',
 };
 const sampleBoard7 = {
+  id: 6,
+  icon: avatar1,
+  boardName: 'Świdnicka',
+  announcements: [sampleAnnouncement4, sampleAnnouncement5],
+  author: 'Krzysztof',
+};
+
+const sampleBoard8 = {
   id: 7,
   icon: avatar1,
   boardName: 'Świdnicka',
