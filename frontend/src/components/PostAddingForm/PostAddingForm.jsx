@@ -19,18 +19,14 @@ import {
 const PostAddingForm = ({ formSubmit }) => {
   const { register, handleSubmit, control } = useForm();
 
-  const { data: dataAnnouncementsList } = useQuery('announcementsList', async () => {
-    return await fetch('/boards/1/announcements').then((response) => response.json());
-  });
-
   const {
     data: dataAvailableUserBoards,
     isLoading,
     isError,
-  } = useQuery('AvailableUserBoards', async () => {
-    return await fetch('/users/1/boards?isPostAddingAllowed=true').then((response) =>
-      response.json().then((response) =>
-        response.boards.map((board) => {
+  } = useQuery('AvailableBoardsPostAddingForm', async () => {
+    return await fetch('/board?isNearUser=true').then((response) =>
+      response.json().then((data) =>
+        data.boards.map((board) => {
           return { value: board.boardName, label: board.boardName };
         }),
       ),
