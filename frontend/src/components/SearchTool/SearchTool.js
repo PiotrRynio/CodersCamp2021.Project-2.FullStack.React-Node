@@ -38,7 +38,7 @@ export const SearchTool = (callback, userID) => {
     isLoadingBoardsAlreadyAssigned,
     isErrorBoardsAlreadyAssigned,
   } = useQuery('UserBoards', async () => {
-    return await fetch('/user/${userID}/boards')
+    return await fetch(`/user/${userID}/boards`)
       .then((response) => response.json())
       .then((data) =>
         data.boards.map((board) => {
