@@ -1,8 +1,14 @@
 import '@testing-library/jest-dom';
-import { server } from './mocks/msw/server';
+import { server } from 'mocks/msw/rest-api/server';
 
-beforeAll(() => server.listen());
+beforeAll(() => {
+  server.listen();
+});
 
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+});
 
-afterAll(() => server.close());
+afterAll(() => {
+  server.close();
+});

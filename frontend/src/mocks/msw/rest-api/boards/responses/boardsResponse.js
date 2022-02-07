@@ -1,6 +1,6 @@
 import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 import avatar2 from 'mocks/images/avatars/sample-avatar2.jpg';
-import { announcementsResponse } from 'mocks/msw/handlers/announcements/announcementResponse';
+import { announcementsResponse } from 'mocks/msw/rest-api/announcements/responses/announcementResponse';
 
 const [
   sampleAnnouncement1,

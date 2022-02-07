@@ -9,7 +9,7 @@ export const Form = styled.form`
   background-color: white;
   text-align: left;
 `;
-export const FormTitle = styled.h1`
+export const FormTitle = styled.h3`
   width: 230px;
   padding-bottom: 2px;
   padding-left: 5px;

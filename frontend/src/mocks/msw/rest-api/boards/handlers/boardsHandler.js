@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { availableForUserBoardsResponse, boardsResponse } from './boardsResponse';
+import { availableForUserBoardsResponse, boardsResponse } from '../responses/boardsResponse';
 
 const getAllBoardsHandler = rest.get('/boards', (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(boardsResponse));
@@ -15,7 +15,7 @@ const postAnnouncementListResponse = rest.post('/boards/:id/announcements', (req
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id].announcements));
 });
 
-const getAvailableUserBoards = rest.get('/board?isNearUser=true', (req, res, ctx) => {
+const getAvailableUserBoards = rest.get('/boards?isNearUser=true', (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(availableForUserBoardsResponse));
 });
 

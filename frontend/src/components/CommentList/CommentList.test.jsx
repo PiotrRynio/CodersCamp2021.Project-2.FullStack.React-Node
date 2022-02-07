@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { CommentList } from './CommentList';
 import { avatar1 } from 'mocks/images/avatars/sample-avatar1.jpg';
 import '../../setupTests';
-import { Providers } from '../Providers/Providers';
+import { AppProviders } from '../../providers/AppProviders';
 
 const fakeList = [
   {
@@ -33,9 +33,9 @@ describe('User comment list', () => {
   it('Should properly render component', async () => {
     //when
     render(
-      <Providers>
+      <AppProviders>
         <CommentList comments={fakeList} />{' '}
-      </Providers>,
+      </AppProviders>,
     );
     const title = screen.getByText('Comments');
 
@@ -46,9 +46,9 @@ describe('User comment list', () => {
   it('Should contain expected number of comments', () => {
     //when
     render(
-      <Providers>
+      <AppProviders>
         <CommentList comments={fakeList} />{' '}
-      </Providers>,
+      </AppProviders>,
     );
     const userComments = screen.getAllByTestId('comment');
 
