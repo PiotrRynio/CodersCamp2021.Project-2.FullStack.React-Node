@@ -1,8 +1,4 @@
-import { createContext, useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'assets/styles/theme';
 import Home from 'views/Home/Home';
 import Notifications from 'views/Notifications/Notifications';
 import Subscribed from 'views/Subscribed/Subscribed';
@@ -12,13 +8,13 @@ import SignIn from 'views/SignIn/SignIn';
 import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
+import BoardDetails from 'views/BoardDetails/BoardDetails';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
 import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
-import { Container } from './App.styled';
 import { Providers } from 'components/Providers/Providers';
+import { Container } from './App.styled';
 
 function App() {
-  const [user, setUser] = useState({ loggedIn: true });
   return (
     <Router>
       <Providers>
@@ -35,6 +31,7 @@ function App() {
                 <Route path="add-post" element={<AddPost />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="announcement/:id" element={<AnnouncementDetails />} />
+                <Route path="board/:id" element={<BoardDetails />} />
               </Route>
             </Route>
           </Routes>

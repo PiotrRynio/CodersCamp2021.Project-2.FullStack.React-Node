@@ -1,4 +1,7 @@
 import { FaUserCircle } from 'react-icons/fa';
+import DotsButton from 'components/DotsButton/DotsButton';
+import Dropdown from 'components/Dropdown/Dropdown';
+import StyledLink from 'components/StyledLink/StyledLink';
 import {
   BoardInfoContainer,
   BoardInfo,
@@ -8,16 +11,20 @@ import {
   AuthorName,
   AuthorAvatar,
 } from './BoardTitleSection.styled';
-import DotsButton from 'components/DotsButton/DotsButton';
-import Dropdown from 'components/Dropdown/Dropdown';
 
-const BoardTitleSection = ({ boardTitle = 'board_title', user = 'user_name' }) => {
+const BoardTitleSection = ({
+  boardTitle = 'board_title',
+  user = 'user_name',
+  boardImg = '',
+  boardId,
+}) => {
   return (
     <BoardInfoContainer>
       <BoardInfo>
-        <BoardImage />
-        {/* TODO: Dodać Link dookoła BoardTitle jak już będzie widok BoardTitleSection'a  */}
-        <BoardTitle>{boardTitle}</BoardTitle>
+        <BoardImage src={boardImg} />
+        <StyledLink to={`/board/${boardId}`}>
+          <BoardTitle>{boardTitle}</BoardTitle>
+        </StyledLink>
         <DotsButton>
           <Dropdown></Dropdown>
         </DotsButton>

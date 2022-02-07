@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Announcement from 'components/Announcement/Announcement';
 
 const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) => {
-  const { data, isLoading, isError } = useQuery('boardsList', async () => {
+  const { data, isLoading, isError } = useQuery('boards', async () => {
     return await fetch('/boards').then((response) => response.json());
   });
 
