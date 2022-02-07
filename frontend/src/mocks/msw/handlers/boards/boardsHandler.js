@@ -40,4 +40,5 @@ export default [
   postAnnouncementListResponse,
   getAvailableUserBoards,
   getBoardHandler,
+  postBoardsListsHandler,
 ];
