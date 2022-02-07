@@ -1,7 +1,7 @@
 import { FaBullhorn, FaBolt, FaDog, FaTint, FaCity } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
-const getIcon = (iconType) => {
+const Icon = (iconType) => {
   if (iconType === 'electricity') {
     return <FaBolt />;
   } else if (iconType === 'water') {
@@ -10,13 +10,12 @@ const getIcon = (iconType) => {
     return <FaDog />;
   } else if (iconType === 'city') {
     return <FaCity />;
-  } else {
-    return <FaBullhorn />;
   }
+  return <FaBullhorn />;
 };
 
-getIcon.propTypes = {
+Icon.propTypes = {
   iconType: PropTypes.oneOf(['electricity', 'water', 'pets', 'city']),
 };
 
-export default getIcon;
+export default Icon;
