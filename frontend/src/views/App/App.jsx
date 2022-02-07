@@ -19,7 +19,6 @@ import { Providers } from 'components/Providers/Providers';
 import { Container } from './App.styled';
 
 function App() {
-  const [user, setUser] = useState({ loggedIn: true });
   return (
     <Router>
       <Providers>
