@@ -16,7 +16,7 @@ const BoardPreviewList = ({ boardsIds }) => {
     } else if (boardsIds) {
       setBoardsIdsToShow(boardsIds);
     }
-  }, [data, boardsIds, isLoading, isError]);
+  }, [data, boardsIds]);
 
   if (isLoading || isError) {
     return <></>;
