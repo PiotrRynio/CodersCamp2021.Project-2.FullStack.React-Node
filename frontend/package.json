@@ -6,6 +6,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test --watch  --env=jsdom",
+    "test:cov": "react-scripts test --coverage  --env=jsdom",
+    "test:ci": "react-scripts test --ci --silent --coverage --env=jsdom",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,scss,css,md,json}\""
   },
