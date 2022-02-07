@@ -10,7 +10,11 @@ const Board = ({ boardData, isOpen = false }) => {
       <BoardDescription
         descriptionText={description}
         postsNumber={announcements.length}
-        lastPostDate={new Date(announcements[announcements.length - 1].date).toDateString()}
+        lastPostDate={
+          announcements.length > 0
+            ? Date(announcements[announcements.length - 1].date).toDateString()
+            : ''
+        }
         distanceFromUser={1.2}
         boardId={id}
         isOpen={isOpen}

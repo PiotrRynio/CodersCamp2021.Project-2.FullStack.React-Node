@@ -1,8 +1,4 @@
-import { createContext, useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'assets/styles/theme';
 import Home from 'views/Home/Home';
 import Notifications from 'views/Notifications/Notifications';
 import Subscribed from 'views/Subscribed/Subscribed';

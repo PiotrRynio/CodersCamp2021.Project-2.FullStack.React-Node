@@ -33,12 +33,7 @@ const PostAddingForm = ({ formSubmit }) => {
     );
   });
 
-  const {
-    mutate,
-    data: mutationData,
-    error: isMutationError,
-    isLoading: isLoadingMutation,
-  } = useMutation((newComment) => {
+  const { mutate } = useMutation((newComment) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
