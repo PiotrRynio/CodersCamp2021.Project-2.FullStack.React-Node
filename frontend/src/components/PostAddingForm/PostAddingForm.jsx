@@ -25,11 +25,12 @@ const PostAddingForm = ({ formSubmit }) => {
     isError,
   } = useQuery('AvailableBoardsPostAddingForm', async () => {
     return await fetch('/board?isNearUser=true').then((response) =>
-      response.json().then((data) =>
-        data.boards.map((board) => {
+      response.json().then((data) => {
+        console.log(data);
+        return data.boards.map((board) => {
           return { value: board.boardName, label: board.boardName };
-        }),
-      ),
+        });
+      }),
     );
   });
 

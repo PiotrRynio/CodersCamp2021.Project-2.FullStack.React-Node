@@ -1,13 +1,13 @@
-import { fireEvent, waitFor, render, screen, waitForElement } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { SearchTool } from './SearchTool';
-import { Providers } from '../Providers/Providers';
+import { AppProviders } from '../../providers/AppProviders';
 
 describe('Search Tool', () => {
   it('Should properly render components', async () => {
     render(
-      <Providers>
+      <AppProviders>
         <SearchTool />
-      </Providers>,
+      </AppProviders>,
     );
     // GIVEN
     const title = screen.getByText('Explore!');
@@ -18,9 +18,9 @@ describe('Search Tool', () => {
   });
   it('Component should not show options after render', async () => {
     render(
-      <Providers>
+      <AppProviders>
         <SearchTool />
-      </Providers>,
+      </AppProviders>,
     );
     //GIVEN
     const option = screen.queryAllByTestId('option');

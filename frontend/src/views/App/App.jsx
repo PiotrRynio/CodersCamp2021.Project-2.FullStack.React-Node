@@ -11,13 +11,13 @@ import ProtectedRoute from 'views/ProtectedRoute';
 import BoardDetails from 'views/BoardDetails/BoardDetails';
 import AnnouncementDetails from 'views/AnnouncementDetails/AnnouncementDetails';
 import RecoverPassword from 'views/RecoverPassword/RecoverPassword';
-import { Providers } from 'components/Providers/Providers';
+import { AppProviders } from 'providers/AppProviders';
 import { Container } from './App.styled';
 
 function App() {
   return (
     <Router>
-      <Providers>
+      <AppProviders>
         <Container>
           <Routes>
             <Route path="/log-in" element={<Login />} />
@@ -36,7 +36,7 @@ function App() {
             </Route>
           </Routes>
         </Container>
-      </Providers>
+      </AppProviders>
     </Router>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, LogOut } from './Profile.styled';
 import { useContext } from 'react';
-import { UserContext } from 'components/Providers/Providers';
+import { UserContext } from 'providers/AppProviders';
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
