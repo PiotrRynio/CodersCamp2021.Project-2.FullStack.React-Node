@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
 
 const BoardPreviewList = ({ boardsIds }) => {
-  const { data, isLoading, isError } = useQuery('board', async () => {
+  const { data, isLoading, isError } = useQuery('boards', async () => {
     return await fetch(`/boards`).then((response) => response.json());
   });
 

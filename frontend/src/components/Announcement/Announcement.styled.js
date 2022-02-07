@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   margin: 10px;
@@ -81,8 +80,4 @@ export const Comments = styled.p`
   &:hover {
     color: black;
   }
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
 `;

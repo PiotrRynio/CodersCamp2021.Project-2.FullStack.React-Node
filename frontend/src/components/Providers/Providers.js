@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Outlet } from 'react-router-dom';
 import { createContext, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
