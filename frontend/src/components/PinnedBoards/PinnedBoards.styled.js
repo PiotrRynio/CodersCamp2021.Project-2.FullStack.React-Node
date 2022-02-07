@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding-top: 16px;
-  padding-left: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px;
   padding-bottom: 24px;
 `;
 
 export const Title = styled.span`
   color: black;
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: 500;
   text-decoration: none;
 `;

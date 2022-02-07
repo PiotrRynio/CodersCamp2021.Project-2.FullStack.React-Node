@@ -1,10 +1,10 @@
-import React from 'react';
-import { Sidebar, Subscriptions } from './RightSidebar.styled';
+import PinnedBoards from 'components/PinnedBoards/PinnedBoards';
+import { Sidebar } from './RightSidebar.styled';
 
 const RightSidebar = () => {
   return (
     <Sidebar>
-      <Subscriptions>Subscriptions</Subscriptions>
+      <PinnedBoards />
     </Sidebar>
   );
 };
