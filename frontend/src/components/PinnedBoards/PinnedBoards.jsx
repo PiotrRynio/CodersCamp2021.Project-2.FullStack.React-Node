@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { Container, Title, TitleMainColor } from './PinnedBoards.styled';
 import BoardEntry from './BoardEntry';
-import getIcon from 'utils/getIcon';
+import Icon from 'components/Icon/Icon';
 
 const PinnedBoards = () => {
   const {
@@ -29,7 +29,7 @@ const PinnedBoards = () => {
           <BoardEntry
             key={board.boardId}
             boardName={board.boardName}
-            boardIcon={getIcon(board.boardIcon)}
+            boardIcon={Icon(board.boardIcon)}
           />
         );
       })}
