@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import AnnouncementIcon from 'components/AnnouncementIcon/AnnouncementIcon';
+import StyledLink from 'components/StyledLink/StyledLink';
 import {
   Wrapper,
   ReadMore,
@@ -9,8 +11,6 @@ import {
   ShortContent,
   TextWrapper,
 } from './Announcement.styled';
-import AnnouncementIcon from '../AnnouncementIcon/AnnouncementIcon';
-import StyledLink from 'components/StyledLink/StyledLink';
 
 const Announcement = ({ announcement, isOpen, showBoard }) => {
   const { title, iconType, boardName, content, comments, id } = announcement;
