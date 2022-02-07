@@ -11,12 +11,14 @@ const [
 const sampleBoard1 = {
   id: 0,
   boardName: 'Sobótka',
+  boardIcon: 'city',
   announcements: [sampleAnnouncement1, sampleAnnouncement2, sampleAnnouncement3],
   author: 'Artur',
 };
 const sampleBoard2 = {
   id: 1,
   boardName: 'Chrząszczyżewoszyce',
+  boardIcon: '',
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
   author: 'Krzysztof',
 };
