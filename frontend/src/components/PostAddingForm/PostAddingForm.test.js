@@ -1,14 +1,10 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+// import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import PostAddingForm from './PostAddingForm';
-import { Providers } from '../Providers/Providers';
+import { render, screen } from 'test-utils';
 
 describe('PostAddingForm', () => {
   it('Should properly render form before data is received', async () => {
-    render(
-      <Providers>
-        <PostAddingForm />{' '}
-      </Providers>,
-    );
+    render(<PostAddingForm />);
 
     const loadingStatus = screen.getByText(/Loading/i);
     expect(loadingStatus).toBeInTheDocument();

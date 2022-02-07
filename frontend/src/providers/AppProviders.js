@@ -6,7 +6,7 @@ import { GlobalStyle } from 'assets/styles/GlobalStyles';
 
 export const UserContext = createContext({});
 
-export const Providers = ({ children }) => {
+export const AppProviders = ({ children }) => {
   const queryClient = new QueryClient();
   const [user, setUser] = useState({ loggedIn: true });
 

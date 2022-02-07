@@ -18,7 +18,7 @@ import {
 } from './Login.styled';
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { UserContext } from 'components/Providers/Providers';
+import { UserContext } from 'providers/AppProviders';
 
 const LogIn = () => {
   const { user, setUser } = useContext(UserContext);
