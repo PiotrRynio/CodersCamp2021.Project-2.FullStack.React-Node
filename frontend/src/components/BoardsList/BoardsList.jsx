@@ -1,8 +1,11 @@
 import { useQuery } from 'react-query';
 import Board from 'components/Board/Board';
 import { BoardWrapper } from './BoardList.styled';
+import { useState } from 'react';
 
 const BoardsList = () => {
+  const [userCords, setUserCords] = useState({ isSet: false });
+
   const {
     data: boardsData,
     isLoading,
@@ -14,6 +17,14 @@ const BoardsList = () => {
   if (isLoading || isError) {
     return <></>;
   }
+
+  navigator.geolocation.getCurrentPosition(
+    ({ coords }) => {
+      console.log('cords', coords);
+      setUserCords({ latitude: coords.latitude, longitude: coords.longitude, isSet: true });
+    },
+    () => setUserCords({ isSet: false }),
+  );
 
   const getDistanceFromCordinatesInKm = (firstCordinates, secondCordinates) => {
     const EARTH_RADIUS = 6371;
@@ -29,20 +40,23 @@ const BoardsList = () => {
     );
   };
 
-  navigator.geolocation.getCurrentPosition((position) => {
-    console.log(
-      getDistanceFromCordinatesInKm(
-        { latitude: 53.32055555555556, longitude: -1.7297222222222221 },
-        { latitude: 53.31861111111111, longitude: -1.6997222222222223 },
-      ),
-    );
-  });
-
   return (
     <>
       {boardsData.boards.map((board) => (
         <BoardWrapper>
-          <Board key={board.id} boardData={board} />
+          {userCords.isSet ? (
+            <Board
+              key={board.id}
+              boardData={board}
+              distance={getDistanceFromCordinatesInKm(board.cords, userCords)}
+            />
+          ) : (
+            <Board key={board.id} boardData={board} />
+          )}
+
+          {
+            // /> }
+          }
         </BoardWrapper>
       ))}
     </>

@@ -16,6 +16,7 @@ const sampleBoard1 = {
   announcements: [sampleAnnouncement1, sampleAnnouncement2, sampleAnnouncement3],
   avatar: avatar1,
   author: 'Artur',
+  cords: { latitude: 50.90005960872424, longitude: 16.744514564579045 },
   description:
     'Sobótka Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet dictum sit amet justo donec enim diam vulputate. Enim sed faucibus turpis in eu mi. Nibh cras pulvinar mattis nunc sed blandit libero. Cras tincidunt lobortis feugiat vivamus at augue eget arcu.',
 };
@@ -25,6 +26,7 @@ const sampleBoard2 = {
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
   author: 'Krzysztof',
   avatar: avatar2,
+  cords: { latitude: 54.343777269198945, longitude: 18.662549271679243 },
   description:
     'To drugie description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet dictum sit amet justo donec enim diam vulputate. Enim sed faucibus turpis in eu mi. Nibh cras pulvinar mattis nunc sed blandit libero. Cras tincidunt lobortis feugiat vivamus at augue eget arcu.',
 };
