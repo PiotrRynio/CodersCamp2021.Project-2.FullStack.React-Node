@@ -19,14 +19,12 @@ const BoardsList = () => {
   }
 
   navigator.geolocation.getCurrentPosition(
-    ({ coords }) => {
-      console.log('cords', coords);
-      setUserCords({ latitude: coords.latitude, longitude: coords.longitude, isSet: true });
-    },
+    ({ coords }) =>
+      setUserCords({ latitude: coords.latitude, longitude: coords.longitude, isSet: true }),
     () => setUserCords({ isSet: false }),
   );
 
-  const getDistanceFromCordinatesInKm = (firstCordinates, secondCordinates) => {
+  const getDistanceFromCoordinatesInKm = (firstCordinates, secondCordinates) => {
     const EARTH_RADIUS = 6371;
     const deg2rad = (deg) => deg * (Math.PI / 180);
     const latitude = deg2rad(firstCordinates.latitude - secondCordinates.latitude);
@@ -48,15 +46,11 @@ const BoardsList = () => {
             <Board
               key={board.id}
               boardData={board}
-              distance={getDistanceFromCordinatesInKm(board.cords, userCords)}
+              distanceFromUser={getDistanceFromCoordinatesInKm(board.cords, userCords)}
             />
           ) : (
             <Board key={board.id} boardData={board} />
           )}
-
-          {
-            // /> }
-          }
         </BoardWrapper>
       ))}
     </>
