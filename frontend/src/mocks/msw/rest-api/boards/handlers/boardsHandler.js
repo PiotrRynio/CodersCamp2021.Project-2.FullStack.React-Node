@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { boardsResponse } from './boardsResponse';
+import { availableForUserBoardsResponse, boardsResponse } from '../responses/boardsResponse';
 
 const getAllBoardsHandler = rest.get('/boards', (req, res, ctx) => {
   return res(ctx.status(200), ctx.json(boardsResponse));
@@ -15,17 +15,23 @@ const postAnnouncementListResponse = rest.post('/boards/:id/announcements', (req
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id].announcements));
 });
 
-const getAvailableUserBoards = rest.get(
-  '/users/1/boards?isPostAddingAllowed=true',
-  (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(boardsResponse));
-  },
-);
+const getAvailableUserBoards = rest.get('/boards?isNearUser=true', (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(availableForUserBoardsResponse));
+});
 
 const getBoardHandler = rest.get('/boards/:id', (req, res, ctx) => {
   const { id } = req.params;
 
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id]));
+});
+
+const postBoardsListsHandler = rest.post('/boards', (req, res, ctx) => {
+  const { boards } = boardsResponse;
+  const newId = boards.length;
+  req.body.id = newId;
+  boards.push(req.body);
+
+  return res(ctx.status(200), ctx.json(req.body));
 });
 
 export default [
@@ -34,4 +40,5 @@ export default [
   postAnnouncementListResponse,
   getAvailableUserBoards,
   getBoardHandler,
+  postBoardsListsHandler,
 ];

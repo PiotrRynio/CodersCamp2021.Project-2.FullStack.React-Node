@@ -5,8 +5,11 @@
   "scripts": {
     "prepare": "husky install && cd frontend && npm install",
     "start-fe": "cd frontend && npm start",
-    "build": "react-scripts build",
-    "test": "cd frontend && npm run test"
+    "build": "cd frontend && npm run build",
+    "test": "cd frontend && npm run test",
+    "test:watch": "cd frontend && npm run test:watch",
+    "test:cov": "cd frontend && npm run test:cov",
+    "test:ci": "cd frontend && npm run test:ci"
   },
   "devDependencies": {
     "husky": "^7.0.4"

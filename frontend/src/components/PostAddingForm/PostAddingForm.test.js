@@ -1,20 +1,27 @@
-import { render, screen } from '@testing-library/react';
 import PostAddingForm from './PostAddingForm';
+import { render, screen } from 'test-utils';
 
 describe('PostAddingForm', () => {
-  render(<PostAddingForm />);
-  it('Should render basic form components', async () => {
-    // GIVEN
-    const inputs = screen.getAllByRole('textbox');
-    const button = screen.getByRole('button');
+  it('Should properly render form before data is received', async () => {
+    //when
+    render(<PostAddingForm />);
 
-    // THEN
-    expect(inputs.length).toBe(2);
-
-    inputs.map((input) => {
-      return expect(input).toBeInTheDocument();
-    });
-
-    expect(button).toBeInTheDocument();
+    // then
+    const loadingStatus = screen.getByText(/Loading/i);
+    expect(loadingStatus).toBeInTheDocument();
   });
+  /* it('Should properly render form after data is received', async () => {
+    render(
+      <Providers>
+        <PostAddingForm />{' '}
+      </Providers>,
+    );
+
+    const loadingStatus = screen.getByText(/Loading/i);
+    await waitForElementToBeRemoved(() => loadingStatus);
+    const submitButton = screen.getByRole('button');
+    expect(submitButton).toBeInTheDocument();
+    const formTitle = screen.getByText(/Add New Announcement/i);
+    expect(formTitle).toBeInTheDocument();
+  });*/
 });

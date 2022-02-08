@@ -9,7 +9,7 @@ export const Form = styled.form`
   background-color: white;
   text-align: left;
 `;
-export const FormTitle = styled.h1`
+export const FormTitle = styled.h3`
   width: 230px;
   padding-bottom: 2px;
   padding-left: 5px;
@@ -37,6 +37,8 @@ export const ContentInput = styled.textarea`
   border-radius: 4px;
   text-align: left;
   border-color: hsl(0, 0%, 80%);
+  resize: none;
+
   :focus::-webkit-input-placeholder {
     color: transparent;
   }
@@ -51,6 +53,11 @@ export const Button = styled.button`
   float: right;
   margin-top: 2px;
   border-color: #1a8cd8;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 export const MarkedTitle = styled.span`

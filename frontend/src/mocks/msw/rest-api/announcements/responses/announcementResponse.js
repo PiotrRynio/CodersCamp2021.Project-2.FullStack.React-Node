@@ -1,4 +1,4 @@
-import { commentListsResponse } from 'mocks/msw/handlers/commentLists/commentListsResponse';
+import { commentListsResponse } from 'mocks/msw/rest-api/commentLists/responses/commentListsResponse';
 
 const [comment1, comment2, comment3, comment4, comment5] = commentListsResponse.commentList;
 

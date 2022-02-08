@@ -12,10 +12,13 @@ import {
   FormLink,
   FormLogIn,
   FormSubmit,
+  RecoverPassword,
+  RecoverPasswordText,
+  RecoverSpan,
 } from './Login.styled';
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { UserContext } from '../App/App';
+import { UserContext } from 'providers/AppProviders';
 
 const LogIn = () => {
   const { user, setUser } = useContext(UserContext);
@@ -55,6 +58,13 @@ const LogIn = () => {
             <FormLogIn>Sign up!</FormLogIn>
           </FormLink>
         </FormButtons>
+
+        <RecoverPassword>
+          <RecoverPasswordText to="/recover-password">
+            Have you forgotten your password?
+            <RecoverSpan>Get it back!</RecoverSpan>
+          </RecoverPasswordText>
+        </RecoverPassword>
       </Form>
     </Container>
   );

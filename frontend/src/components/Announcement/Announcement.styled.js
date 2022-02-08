@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { breakpoints } from 'rwd/breakpoints';
 
 export const Wrapper = styled.div`
   margin: 10px;
@@ -11,7 +9,7 @@ export const Wrapper = styled.div`
   border-radius: 10px;
   max-width: 100%;
 
-  @media ${breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     padding: 20px;
   }
 `;
@@ -19,7 +17,7 @@ export const Wrapper = styled.div`
 export const TextWrapper = styled.div`
   max-width: calc(100% - 55px);
 
-  @media ${breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     max-width: calc(100% - 80px);
   }
 `;
@@ -40,7 +38,7 @@ export const Content = styled.p`
   text-align: justify;
   white-space: pre-wrap;
 
-  @media ${breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     margin-right: 20px;
   }
 `;
@@ -54,7 +52,7 @@ export const ShortContent = styled.p`
   text-overflow: ellipsis;
   width: 100%;
 
-  @media ${breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     margin-right: 20px;
   }
 `;
@@ -62,13 +60,13 @@ export const ShortContent = styled.p`
 export const ReadMore = styled.span`
   font-weight: bold;
   font-size: 14px;
-  color: #1a8cd8;
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   transition: all 300ms;
 
   &:hover {
     color: white;
-    background: #1a8cd8;
+    background: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -82,8 +80,4 @@ export const Comments = styled.p`
   &:hover {
     color: black;
   }
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
 `;
