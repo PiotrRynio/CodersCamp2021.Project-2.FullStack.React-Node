@@ -50,7 +50,6 @@ const BoardDescription = ({
         <></>
       ) : (
         <Distance>
-          {console.log(distanceFromUser)}
           {distanceFromUser ? `${distanceFromUser} km from you` : ''}
           <Button buttonName="Watch" icon={<FaPaperPlane />} />
         </Distance>
