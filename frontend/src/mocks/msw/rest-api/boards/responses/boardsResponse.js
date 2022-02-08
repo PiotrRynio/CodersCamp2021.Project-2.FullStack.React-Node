@@ -1,5 +1,6 @@
 import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 import avatar2 from 'mocks/images/avatars/sample-avatar2.jpg';
+import avatar3 from 'mocks/images/avatars/sample-avatar3.jpg';
 import { announcementsResponse } from 'mocks/msw/rest-api/announcements/responses/announcementResponse';
 
 const [
@@ -33,9 +34,13 @@ const sampleBoard2 = {
 
 const sampleBoard3 = {
   id: 2,
-  boardName: 'Opole',
+  boardName: 'Knurów',
   announcements: [sampleAnnouncement4, sampleAnnouncement5],
-  author: 'Krzysztof',
+  author: 'Świnek',
+  avatar: avatar3,
+  cords: { latitude: 53.90178364190212, longitude: 14.237340052681517 },
+  description:
+    'Świniów. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet dictum sit amet justo donec enim diam vulputate. Enim sed faucibus turpis in eu mi. Nibh cras pulvinar mattis nunc sed blandit libero. Cras tincidunt lobortis feugiat vivamus at augue eget arcu.',
 };
 const sampleBoard4 = {
   id: 3,
@@ -79,4 +84,4 @@ export const availableForUserBoardsResponse = {
   boards: [sampleBoard4, sampleBoard5, sampleBoard6, sampleBoard7],
 };
 export const UserAlreadyAssignedBoardsResponse = { boards: [sampleBoard4, sampleBoard5] };
-export const boardsResponse = { boards: [sampleBoard1, sampleBoard2] };
+export const boardsResponse = { boards: [sampleBoard1, sampleBoard2, sampleBoard3] };
