@@ -33,19 +33,3 @@ export const TopBarLogo = styled(Link)`
 export const TopBarLogoMarked = styled.span`
   color: #1a8cd8;
 `;
-
-export const TopBarSearch = styled.input`
-  padding: 5px 10px;
-  border-radius: 10px;
-  width: 200px;
-  transition: 0.2s ease-in-out;
-  &:focus {
-    width: 300px;
-  }
-
-  @media (max-width: 768px) {
-    &:focus {
-      width: 250px;
-    }
-  }
-`;

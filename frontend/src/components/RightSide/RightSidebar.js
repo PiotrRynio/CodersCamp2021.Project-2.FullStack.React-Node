@@ -5,7 +5,7 @@ import PinnedBoards from 'components/PinnedBoards/PinnedBoards';
 const RightSidebar = () => {
   return (
     <Sidebar>
-      <SearchTool userID={1} />
+      <SearchTool userId={1} />
       <PinnedBoards />
     </Sidebar>
   );

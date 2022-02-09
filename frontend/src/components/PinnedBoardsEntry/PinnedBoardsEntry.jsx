@@ -1,11 +1,11 @@
 import { Container, Item, Name, Avatar } from './PinnedBoardsEntry.styled';
 
-const BoardEntry = (props) => {
+const BoardEntry = ({ avatar, boardName }) => {
   return (
     <Container>
       <Item>
-        <Avatar src={props.avatar}></Avatar>
-        <Name>{props.boardName}</Name>
+        <Avatar src={avatar}></Avatar>
+        <Name>{boardName}</Name>
       </Item>
     </Container>
   );
