@@ -1,5 +1,6 @@
 import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
 import { useQuery } from 'react-query';
+import { BoardWrapper } from './SubscribedBoardsList.styled';
 
 export const SubscribedBoardsList = () => {
   const { data, isLoading, isError } = useQuery('subscribedBoards', async () => {
@@ -19,14 +20,17 @@ export const SubscribedBoardsList = () => {
   return (
     <>
       {data.map((board) => (
-        <BoardTitleSection
-          key={board.boardsIds}
-          boardTitle={board.boardName}
-          user={board.author}
-          boardImg={board.avatar}
-          boardId={board.boardId}
-        />
+        <BoardWrapper>
+          <BoardTitleSection
+            key={board.boardsIds}
+            boardTitle={board.boardName}
+            user={board.author}
+            boardImg={board.avatar}
+            boardId={board.boardId}
+          />
+        </BoardWrapper>
       ))}
+      ;
     </>
   );
 };
