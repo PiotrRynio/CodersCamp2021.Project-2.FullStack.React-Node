@@ -1,13 +1,12 @@
-import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
 import { useQuery } from 'react-query';
-import { BoardWrapper } from './SubscribedBoardsList.styled';
-import { UserContext } from 'providers/AppProviders';
 import { useContext } from 'react';
+import { UserContext } from 'providers/AppProviders';
+import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
+import { BoardWrapper } from './SubscribedBoardsList.styled';
 
 export const SubscribedBoardsList = () => {
   const { user } = useContext(UserContext);
 
-  console.log(user);
   const { data, isLoading, isError } = useQuery('subscribedBoards', async () => {
     return await fetch(`user/${user.userId}/boards`)
       .then((response) => response.json())
@@ -25,12 +24,11 @@ export const SubscribedBoardsList = () => {
   return (
     <>
       {data.map((board) => (
-        <BoardWrapper>
+        <BoardWrapper key={board.boardsIds}>
           <BoardTitleSection
-            key={board.boardsIds}
             boardTitle={board.boardName}
             user={board.author}
-            boardImg={board.avatar}
+            boardImg={board.icon}
             boardId={board.boardId}
           />
         </BoardWrapper>
