@@ -21,8 +21,8 @@ export const TitleMainColor = styled.span`
 `;
 
 export const Icon = styled.span`
-  font-size: 28px;
   margin-top: 12px;
   margin-left: 6px;
+  font-size: 28px;
   font-color: white;
 `;
