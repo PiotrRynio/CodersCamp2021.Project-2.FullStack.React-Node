@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { Container, Title, TitleMainColor } from './PinnedBoards.styled';
 import BoardEntry from './BoardEntry';
+import StyledLink from 'components/StyledLink/StyledLink';
 import Icon from 'components/Icon/Icon';
 
 const PinnedBoards = () => {
@@ -26,11 +27,13 @@ const PinnedBoards = () => {
       </Title>
       {boardsData.boards.map((board) => {
         return (
-          <BoardEntry
-            key={board.boardId}
-            boardName={board.boardName}
-            boardIcon={Icon(board.boardIcon)}
-          />
+          <StyledLink to={`/boards/${board.id}`}>
+            <BoardEntry
+              key={board.boardId}
+              boardName={board.boardName}
+              boardIcon={Icon(board.boardIcon)}
+            />
+          </StyledLink>
         );
       })}
     </Container>
