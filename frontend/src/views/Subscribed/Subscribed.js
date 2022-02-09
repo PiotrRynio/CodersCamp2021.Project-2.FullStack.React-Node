@@ -1,7 +1,12 @@
 import React from 'react';
 import { Container } from './Subscribed.styled';
+import { SubscribedBoardsList } from 'components/SubscribedBoardsList/SubscribedBoardsList';
 
 const Subscribed = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <SubscribedBoardsList />
+    </Container>
+  );
 };
 export default Subscribed;
