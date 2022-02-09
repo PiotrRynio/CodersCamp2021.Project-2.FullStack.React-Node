@@ -1,4 +1,4 @@
-import { Container, Item, Name, Avatar } from './BoardEntry.styled';
+import { Container, Item, Name, Avatar } from './PinnedBoardsEntry.styled';
 
 const BoardEntry = (props) => {
   return (

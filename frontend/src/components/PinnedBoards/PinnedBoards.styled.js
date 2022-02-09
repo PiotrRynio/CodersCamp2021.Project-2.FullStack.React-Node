@@ -19,10 +19,3 @@ export const Title = styled.span`
 export const TitleMainColor = styled.span`
   color: #1a8cd8;
 `;
-
-export const Icon = styled.span`
-  margin-top: 12px;
-  margin-left: 6px;
-  font-size: 28px;
-  font-color: white;
-`;
