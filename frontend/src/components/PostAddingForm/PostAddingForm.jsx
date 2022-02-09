@@ -24,7 +24,7 @@ const PostAddingForm = ({ formSubmit }) => {
     isLoading,
     isError,
   } = useQuery('AvailableBoardsPostAddingForm', async () => {
-    return await fetch('/board?isNearUser=true').then((response) =>
+    return await fetch('/boards?isNearUser=true').then((response) =>
       response.json().then((data) => {
         console.log(data);
         return data.boards.map((board) => {
