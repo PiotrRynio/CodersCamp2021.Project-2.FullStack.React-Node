@@ -17,6 +17,7 @@ const RecoverPassword = () => {
           Board<LogoSpan>MAP</LogoSpan>
         </Logo>
       </LogoContainer>
+
       <RecoverPasswordForm>
         <FormText>
           Enter Your E-mail to recover password!
