@@ -15,7 +15,7 @@ const AnnouncementIcon = ({ iconType }) => {
     }
   };
 
-  return <IconContainer>{properIcon()}</IconContainer>;
+  return <IconContainer role="icon-container">{properIcon()}</IconContainer>;
 };
 
 AnnouncementIcon.propTypes = {

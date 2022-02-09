@@ -28,4 +28,16 @@ describe('AnnouncementIcon', () => {
     //then
     expect(receivedIcon).toBeInTheDocument();
   });
+
+  it('should be inside div', () => {
+    //given
+    render(<AnnouncementIcon />);
+
+    //when
+    const receivedElement = screen.getByRole('icon-container');
+
+    //then
+    expect(receivedElement).toBeInTheDocument();
+    expect(receivedElement.children).toHaveLength(1);
+  });
 });
