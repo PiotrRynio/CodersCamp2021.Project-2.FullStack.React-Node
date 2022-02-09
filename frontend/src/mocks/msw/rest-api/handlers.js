@@ -4,11 +4,13 @@ import announcementsHandler from './announcements/handlers/announcementHandler';
 import getAvailableUserBoards from './boards/handlers/boardsHandler';
 import availableUserBoards from './boards/handlers/boardsHandler';
 import getAlreadyAssignedBoards from './boards/handlers/boardsHandler';
+import postAnnouncementListResponse from './boards/handlers/boardsHandler';
 export const handlers = [
   ...commentListHandlers,
   ...getAllBoardsHandler,
   ...getAvailableUserBoards,
   ...availableUserBoards,
   ...getAlreadyAssignedBoards,
+  ...postAnnouncementListResponse,
   announcementsHandler,
 ];

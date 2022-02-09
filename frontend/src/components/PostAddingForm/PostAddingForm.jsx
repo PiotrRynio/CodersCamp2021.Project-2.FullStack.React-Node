@@ -51,7 +51,7 @@ const PostAddingForm = ({ formSubmit }) => {
   ];
 
   const onSubmit = (data) => {
-    let newAnnouncement = {
+    const newAnnouncement = {
       id: uuidv4(),
       title: data.title,
       boardName: data.boardName.value,
@@ -59,6 +59,7 @@ const PostAddingForm = ({ formSubmit }) => {
       content: data.content,
       date: new Date(),
     };
+
     mutate(newAnnouncement);
   };
 
