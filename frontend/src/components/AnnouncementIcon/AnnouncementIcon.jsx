@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 const AnnouncementIcon = ({ iconType }) => {
   const properIcon = () => {
     if (iconType === 'electricity') {
-      return <FaBolt />;
+      return <FaBolt role="electricity-icon" />;
     } else if (iconType === 'water') {
-      return <FaTint />;
+      return <FaTint role="water-icon" />;
     } else if (iconType === 'pets') {
-      return <FaDog />;
+      return <FaDog role="pets-icon" />;
     } else {
-      return <FaBullhorn />;
+      return <FaBullhorn role="default-icon" />;
     }
   };
 
