@@ -3,6 +3,7 @@ import {
   Container,
   LogoSection,
   Form,
+  InputsWrapper,
   Logo,
   LogoSpan,
   FormText,
@@ -13,8 +14,8 @@ import {
   FormLogIn,
   FormSubmit,
   RecoverPassword,
-  RecoverPasswordText,
-  RecoverSpan,
+  RecoverPasswordHint,
+  RecoverLink,
 } from './Login.styled';
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
@@ -24,6 +25,18 @@ const LogIn = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const onSubmitButtonClick = () => {
+    if (user.loggedIn) {
+      return;
+    }
+    setUser({ loggedIn: true });
+
+    if (location.state?.from) {
+      navigate(location.state.from);
+    }
+  };
+
   return (
     <Container>
       <LogoSection>
@@ -36,35 +49,23 @@ const LogIn = () => {
           Welcome on Board<LogoSpan>MAP</LogoSpan>! <br />
           Please log in.
         </FormText>
+        <InputsWrapper>
+          <FormEmail type="text" name="email" placeholder="Email" />
+          <FormPassword type="password" name="password" placeholder="Password" />
 
-        <FormEmail type="text" name="email" placeholder="Enter your email" />
-        <FormPassword type="password" name="password1" placeholder="Enter your password" />
+          <FormButtons>
+            <FormSubmit onClick={onSubmitButtonClick}>Submit!</FormSubmit>
 
-        <FormButtons>
-          <FormSubmit
-            onClick={() => {
-              if (user.loggedIn) return;
-              setUser({ loggedIn: true });
+            <FormLink to="/sign-up">
+              <FormLogIn>Sign up!</FormLogIn>
+            </FormLink>
+          </FormButtons>
 
-              if (location.state?.from) {
-                navigate(location.state.from);
-              }
-            }}
-          >
-            Submit!
-          </FormSubmit>
-
-          <FormLink to="/sign-up">
-            <FormLogIn>Sign up!</FormLogIn>
-          </FormLink>
-        </FormButtons>
-
-        <RecoverPassword>
-          <RecoverPasswordText to="/recover-password">
-            Have you forgotten your password?
-            <RecoverSpan>Get it back!</RecoverSpan>
-          </RecoverPasswordText>
-        </RecoverPassword>
+          <RecoverPassword>
+            <RecoverPasswordHint>Have you forgotten your password?</RecoverPasswordHint>
+            <RecoverLink to="/recover-password">Get it back!</RecoverLink>
+          </RecoverPassword>
+        </InputsWrapper>
       </Form>
     </Container>
   );

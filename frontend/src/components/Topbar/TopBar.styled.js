@@ -39,11 +39,12 @@ export const TopBarSearch = styled.input`
   border-radius: 10px;
   width: 200px;
   transition: 0.2s ease-in-out;
+
   &:focus {
     width: 300px;
   }
-
   @media (max-width: 768px) {
+    margin-bottom: 10px;
     &:focus {
       width: 250px;
     }

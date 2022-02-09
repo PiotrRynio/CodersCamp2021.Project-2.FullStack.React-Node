@@ -16,28 +16,26 @@ import { Container } from './App.styled';
 
 function App() {
   return (
-    <Router>
-      <AppProviders>
-        <Container>
-          <Routes>
-            <Route path="/log-in" element={<Login />} />
-            <Route path="/sign-up" element={<SignIn />} />
-            <Route path="/recover-password" element={<RecoverPassword />} />
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="notifications" element={<Notifications />} />
-                <Route path="subscribed" element={<Subscribed />} />
-                <Route path="add-post" element={<AddPost />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="announcement/:id" element={<AnnouncementDetails />} />
-                <Route path="board/:id" element={<BoardDetails />} />
-              </Route>
+    <AppProviders>
+      <Container>
+        <Routes>
+          <Route path="/log-in" element={<Login />} />
+          <Route path="/sign-up" element={<SignIn />} />
+          <Route path="/recover-password" element={<RecoverPassword />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="notifications" element={<Notifications />} />
+              <Route path="subscribed" element={<Subscribed />} />
+              <Route path="add-post" element={<AddPost />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="announcement/:id" element={<AnnouncementDetails />} />
+              <Route path="board/:id" element={<BoardDetails />} />
             </Route>
-          </Routes>
-        </Container>
-      </AppProviders>
-    </Router>
+          </Route>
+        </Routes>
+      </Container>
+    </AppProviders>
   );
 }
 

@@ -41,15 +41,14 @@ const BoardsList = () => {
   return (
     <>
       {boardsData.boards.map((board) => (
-        <BoardWrapper>
+        <BoardWrapper key={board.id}>
           {userCords.isSet ? (
             <Board
-              key={board.id}
               boardData={board}
               distanceFromUser={getDistanceFromCoordinatesInKm(board.cords, userCords)}
             />
           ) : (
-            <Board key={board.id} boardData={board} />
+            <Board boardData={board} />
           )}
         </BoardWrapper>
       ))}

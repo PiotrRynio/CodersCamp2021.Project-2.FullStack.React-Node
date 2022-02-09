@@ -17,7 +17,3 @@ export const Sidebar = styled.div`
     display: none;
   }
 `;
-
-export const Subscriptions = styled.h4`
-  font-size: 36px;
-`;
