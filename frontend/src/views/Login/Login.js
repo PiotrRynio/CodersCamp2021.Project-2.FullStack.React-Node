@@ -51,7 +51,7 @@ const LogIn = () => {
         </FormText>
         <InputsWrapper>
           <FormEmail type="text" name="email" placeholder="Email" />
-          <FormPassword type="password" name="password1" placeholder="Password" />
+          <FormPassword type="password" name="password" placeholder="Password" />
 
           <FormButtons>
             <FormSubmit onClick={onSubmitButtonClick}>Submit!</FormSubmit>
