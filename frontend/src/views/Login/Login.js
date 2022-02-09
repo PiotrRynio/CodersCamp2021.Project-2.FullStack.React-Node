@@ -14,8 +14,8 @@ import {
   FormLogIn,
   FormSubmit,
   RecoverPassword,
-  RecoverPasswordText,
-  RecoverSpan,
+  RecoverPasswordHint,
+  RecoverLink,
 } from './Login.styled';
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
@@ -62,11 +62,8 @@ const LogIn = () => {
           </FormButtons>
 
           <RecoverPassword>
-            <RecoverPasswordText to="/recover-password">
-              Have you forgotten your password?
-              <br />
-              <RecoverSpan>Get it back!</RecoverSpan>
-            </RecoverPasswordText>
+            <RecoverPasswordHint>Have you forgotten your password?</RecoverPasswordHint>
+            <RecoverLink to="/recover-password">Get it back!</RecoverLink>
           </RecoverPassword>
         </InputsWrapper>
       </Form>
