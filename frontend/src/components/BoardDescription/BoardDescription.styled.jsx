@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import StyledLink from 'components/StyledLink/StyledLink';
 
 export const DescriptionContainer = styled.div`
   padding: 15px;

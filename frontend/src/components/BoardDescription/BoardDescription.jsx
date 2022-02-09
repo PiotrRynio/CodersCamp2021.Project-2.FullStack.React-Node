@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaEye, FaBell, FaPaperPlane } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import {
@@ -13,8 +12,16 @@ import {
   BlueText,
 } from './BoardDescription.styled';
 import { Button } from 'components/Button/Button';
+import StyledLink from 'components/StyledLink/StyledLink';
 
-const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distanceFromUser }) => {
+const BoardDescription = ({
+  descriptionText,
+  postsNumber,
+  lastPostDate,
+  distanceFromUser,
+  boardId,
+  isOpen = false,
+}) => {
   const [watch, setWatch] = useState(false);
   const [notify, setNotify] = useState(false);
 
@@ -24,19 +31,30 @@ const BoardDescription = ({ descriptionText, postsNumber, lastPostDate, distance
   return (
     <DescriptionContainer>
       <DescriptionText>
-        {truncatedText}
-        <Link to="#" style={{ textDecoration: 'none' }}>
-          {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
-        </Link>
+        {isOpen ? (
+          descriptionText
+        ) : (
+          <>
+            {truncatedText}
+            <StyledLink to={`/board/${boardId}`}>
+              {descriptionText.length > 150 ? <BlueLink>&nbsp;Read&nbsp;more</BlueLink> : ''}
+            </StyledLink>
+          </>
+        )}
       </DescriptionText>
       <PostsInfo>
         Posts in last month: <BlueText>{postsNumber}</BlueText>, last:{' '}
         <BlueText>{lastPostDate}</BlueText>
       </PostsInfo>
-      <Distance>
-        {distanceFromUser} km from you
-        <Button buttonName="Watch" icon={<FaPaperPlane />} />
-      </Distance>
+      {isOpen ? (
+        <></>
+      ) : (
+        <Distance>
+          {distanceFromUser ? `${distanceFromUser} km from you` : ''}
+          <Button buttonName="Watch" icon={<FaPaperPlane />} />
+        </Distance>
+      )}
+
       <IconsContainer>
         <Icon isActive={watch} onClick={() => setWatch((prevState) => !prevState)}>
           <FaEye />

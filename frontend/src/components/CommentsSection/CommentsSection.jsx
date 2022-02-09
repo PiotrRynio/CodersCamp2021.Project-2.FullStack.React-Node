@@ -14,12 +14,7 @@ export const CommentsSection = ({ announcementId }) => {
     );
   });
 
-  const {
-    mutate,
-    data: mutationData,
-    error: isMutationError,
-    isLoading: isLoadingMutation,
-  } = useMutation((newComment) => {
+  const { mutate, data: mutationData } = useMutation((newComment) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

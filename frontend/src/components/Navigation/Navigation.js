@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaHome, FaBell, FaUserAlt, FaHeart, FaPlusSquare } from 'react-icons/fa';
 import { Container, NavMenu, NavItem, NavLink, NavIcon, NavText } from './Navigation.styled';
 

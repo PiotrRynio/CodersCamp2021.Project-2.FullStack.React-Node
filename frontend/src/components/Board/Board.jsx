@@ -1,15 +1,23 @@
-import BoardTitleSection from '../BoardTitleSection/BoardTitleSection';
-import BoardDescription from '../BoardDescription/BoardDescription';
+import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
+import BoardDescription from 'components/BoardDescription/BoardDescription';
 
-const Board = () => {
+const Board = ({ boardData, distanceFromUser, isOpen = false }) => {
+  const { boardName, author, avatar, description, announcements, id } = boardData;
+
   return (
     <>
-      <BoardTitleSection />
+      <BoardTitleSection boardTitle={boardName} user={author} boardImg={avatar} boardId={id} />
       <BoardDescription
-        descriptionText="Sed sed enim a turpis imperdiet bibendum. Sed dignissim lacus eget suscipit ultricies. Sed facilisis eget mauris eu laoreet. Aenean mattis viverra nisi, a sagittis arcu."
-        postsNumber={8}
-        lastPostDate="12.02.2020"
-        distanceFromUser={1.2}
+        descriptionText={description}
+        postsNumber={announcements.length}
+        lastPostDate={
+          announcements.length > 0
+            ? new Date(announcements[announcements.length - 1].date).toDateString()
+            : ''
+        }
+        distanceFromUser={distanceFromUser}
+        boardId={id}
+        isOpen={isOpen}
       />
     </>
   );
