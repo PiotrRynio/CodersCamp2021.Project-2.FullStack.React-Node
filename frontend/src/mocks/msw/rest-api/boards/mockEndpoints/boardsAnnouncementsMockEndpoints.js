@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { BOARDS_PATH, REGISTRATIONS_PATH, REST_API_URL } from 'constants/restApiPaths';
+import { BOARDS_PATH, REST_API_URL } from 'constants/restApiPaths';
 import { server } from 'mocks/msw/rest-api/server';
 
 export function getRegisteredEventsWillReturn(boardAnnouncementsResponse) {
