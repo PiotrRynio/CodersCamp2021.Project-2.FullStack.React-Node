@@ -1,4 +1,3 @@
-import { MemoryRouter as Router } from 'react-router-dom';
 import { render, screen } from 'test-utils';
 import Announcement from './Announcement';
 
@@ -15,11 +14,7 @@ describe('Announcement', () => {
 
   it('Should properly render announcement', async () => {
     //when
-    render(
-      <Router>
-        <Announcement announcement={fakeAnnouncement} />
-      </Router>,
-    );
+    render(<Announcement announcement={fakeAnnouncement} />);
 
     // then
     const title = screen.getByText(fakeAnnouncement.title);
@@ -32,11 +27,7 @@ describe('Announcement', () => {
 
   it('Should properly render announcement with board name', async () => {
     //when
-    render(
-      <Router>
-        <Announcement announcement={fakeAnnouncement} showBoard={true} />
-      </Router>,
-    );
+    render(<Announcement announcement={fakeAnnouncement} showBoard={true} />);
 
     // then
     const boardName = screen.queryByText(fakeAnnouncement.boardName);
@@ -47,11 +38,7 @@ describe('Announcement', () => {
     //given
 
     //when
-    render(
-      <Router>
-        <Announcement announcement={fakeAnnouncement} isOpen={true} />
-      </Router>,
-    );
+    render(<Announcement announcement={fakeAnnouncement} isOpen={true} />);
 
     // then
     const commentsText = screen.queryByText(`[${fakeAnnouncement.comments.length} comments]`);
