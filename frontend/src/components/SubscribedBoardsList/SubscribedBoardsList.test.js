@@ -1,11 +1,9 @@
-import { render, screen } from 'test-utils';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { render, screen, waitFor } from 'test-utils';
 import { SubscribedBoardsList } from './SubscribedBoardsList';
 import {
   getUserBoardsWillReturn,
   getUserBoardsWillReturnFail,
 } from 'mocks/msw/rest-api/boards/mockEndpoints/UserBoardsMockEndpoints';
-import { waitFor } from '@testing-library/react';
 import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 
 describe('SubscribedBoardsList', () => {
@@ -50,11 +48,7 @@ describe('SubscribedBoardsList', () => {
 
     // given
     getUserBoardsWillReturn(fakeBoardsResponse);
-    render(
-      <Router>
-        <SubscribedBoardsList />
-      </Router>,
-    );
+    render(<SubscribedBoardsList />);
 
     //when
     const boardName = await waitFor(() => screen.findByText(/TestBoardName1/i), { timeout: 10000 });
