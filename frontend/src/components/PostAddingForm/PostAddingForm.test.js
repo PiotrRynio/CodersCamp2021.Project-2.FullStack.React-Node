@@ -3,8 +3,8 @@ import { render, screen, waitForElementToBeRemoved, waitFor } from 'test-utils';
 import {
   getRegisteredEventsWillReturn,
   getRegisteredEventsWillReturnFail,
-} from '../../mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
-import { availableForUserBoardsResponse } from '../../mocks/msw/rest-api/boards/responses/boardsResponse';
+} from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
+import { availableForUserBoardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
 
 describe('PostAddingForm', () => {
   it('Should properly render form before data is received', async () => {

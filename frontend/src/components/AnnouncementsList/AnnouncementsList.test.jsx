@@ -7,9 +7,11 @@ import {
 import { boardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
 
 describe('PostAddingForm', () => {
+  const boardsIds = [0, 1];
+  const announcementsNumber = 4;
   it('Should show loading message before get query data', async () => {
     //when
-    render(<AnnouncementsList boardsIds={[0, 1]} announcementsNumber={4} />);
+    render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={announcementsNumber} />);
 
     // then
     const loadingStatus = screen.getByText(/Loading/i);
@@ -21,15 +23,15 @@ describe('PostAddingForm', () => {
     getRegisteredEventsWillReturn(boardsResponse);
 
     //when
-    render(<AnnouncementsList boardsIds={[0, 1]} announcementsNumber={4} />);
+    render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={announcementsNumber} />);
     await waitForElementToBeRemoved(screen.queryByText(/Loading/i));
 
     // then
     const headings = screen.getAllByRole('heading', { level: 3 });
+    expect(headings).toHaveLength(4);
     headings.forEach((heading) => {
       expect(heading).toBeInTheDocument();
     });
-    expect(headings).toHaveLength(4);
   });
 
   it('Should properly show error status', async () => {
@@ -37,7 +39,7 @@ describe('PostAddingForm', () => {
     getRegisteredEventsWillReturnFail();
 
     //when
-    render(<AnnouncementsList boardsIds={[0, 1]} announcementsNumber={4} />);
+    render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={announcementsNumber} />);
     await waitForElementToBeRemoved(() => screen.queryByText(/Loading/i), { timeout: 10000 });
 
     // then
