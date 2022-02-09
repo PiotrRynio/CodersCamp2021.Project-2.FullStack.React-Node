@@ -2,10 +2,10 @@ import React from 'react';
 import { Container } from './Subscribed.styled';
 import { SubscribedBoardsList } from 'components/SubscribedBoardsList/SubscribedBoardsList';
 
-const Subscribed = (userID) => {
+const Subscribed = (userId) => {
   return (
     <Container>
-      <SubscribedBoardsList />
+      <SubscribedBoardsList userId={1} />
     </Container>
   );
 };

@@ -1,11 +1,12 @@
-import { render, screen } from '../../test-utils';
+import { render, screen } from 'test-utils';
+import { MemoryRouter as Router } from 'react-router-dom';
 import { SubscribedBoardsList } from './SubscribedBoardsList';
 import {
-  getBoardsWillReturn,
-  getBoardsWillReturnFail,
-} from '../../mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
-import { waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import avatar1 from '../../mocks/images/avatars/sample-avatar1.jpg';
+  getUserBoardsWillReturn,
+  getUserBoardsWillReturnFail,
+} from 'mocks/msw/rest-api/boards/mockEndpoints/UserBoardsMockEndpoints';
+import { waitFor } from '@testing-library/react';
+import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 
 describe('SubscribedBoardsList', () => {
   const fakeBoard1 = {
@@ -36,7 +37,7 @@ describe('SubscribedBoardsList', () => {
   });
   it('Should display status when error occurred', async () => {
     // given
-    getBoardsWillReturnFail();
+    getUserBoardsWillReturnFail();
     render(<SubscribedBoardsList />);
 
     // when
@@ -44,16 +45,23 @@ describe('SubscribedBoardsList', () => {
     // then
     expect(errorStatus).toBeInTheDocument();
   });
-  /*  it('Should properly display subscribed boards list', async () => {
+  it('Should properly display subscribed boards list', async () => {
     const fakeBoardsResponse = { boards: [fakeBoard1, fakeBoard2] };
 
     // given
-    getBoardsWillReturn(fakeBoardsResponse);
-    render(<SubscribedBoardsList />);
+    getUserBoardsWillReturn(fakeBoardsResponse);
+    render(
+      <Router>
+        <SubscribedBoardsList />
+      </Router>,
+    );
 
     //when
     const boardName = await waitFor(() => screen.findByText(/TestBoardName1/i), { timeout: 10000 });
     // then
-    //screen.getByText('TestBoardName1');
-  });*/
+    screen.getByText('TestBoardName1');
+    screen.getByText('TestBoardName2');
+    screen.getByText('TestAuthor1');
+    screen.getByText('TestAuthor2');
+  });
 });
