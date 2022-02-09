@@ -44,7 +44,7 @@ const LogIn = () => {
           <FormSubmit
             onClick={() => {
               if (user.loggedIn) return;
-              setUser({ loggedIn: true });
+              setUser({ userId: 1, loggedIn: true });
 
               if (location.state?.from) {
                 navigate(location.state.from);

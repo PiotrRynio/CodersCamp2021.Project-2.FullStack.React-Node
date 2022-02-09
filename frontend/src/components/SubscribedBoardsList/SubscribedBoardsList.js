@@ -1,10 +1,15 @@
 import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
 import { useQuery } from 'react-query';
 import { BoardWrapper } from './SubscribedBoardsList.styled';
+import { UserContext } from 'providers/AppProviders';
+import { useContext } from 'react';
 
-export const SubscribedBoardsList = (userId) => {
+export const SubscribedBoardsList = () => {
+  const { user } = useContext(UserContext);
+
+  console.log(user);
   const { data, isLoading, isError } = useQuery('subscribedBoards', async () => {
-    return await fetch(`user/${userId}/boards`)
+    return await fetch(`user/${user.userId}/boards`)
       .then((response) => response.json())
       .then((data) => {
         return data.boards;

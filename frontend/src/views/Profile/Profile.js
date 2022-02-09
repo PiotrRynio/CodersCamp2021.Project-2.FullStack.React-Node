@@ -10,7 +10,7 @@ const Profile = () => {
       <LogOut
         onClick={() => {
           if (!user.loggedIn) return;
-          setUser({ loggedIn: false });
+          setUser({ userId: 0, loggedIn: false });
         }}
       >
         WYLOGUJ
