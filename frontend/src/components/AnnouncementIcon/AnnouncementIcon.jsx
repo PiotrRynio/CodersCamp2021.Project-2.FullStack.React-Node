@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 const AnnouncementIcon = ({ iconType }) => {
   const properIcon = () => {
     if (iconType === 'electricity') {
-      return <FaBolt role="electricity-icon" />;
+      return <FaBolt aria-label="electricity icon" />;
     } else if (iconType === 'water') {
-      return <FaTint role="water-icon" />;
+      return <FaTint aria-label="water icon" />;
     } else if (iconType === 'pets') {
-      return <FaDog role="pets-icon" />;
+      return <FaDog aria-label="pets icon" />;
     } else {
-      return <FaBullhorn role="default-icon" />;
+      return <FaBullhorn aria-label="default icon" />;
     }
   };
 
-  return <IconContainer role="icon-container">{properIcon()}</IconContainer>;
+  return <IconContainer aria-label="icon container">{properIcon()}</IconContainer>;
 };
 
 AnnouncementIcon.propTypes = {

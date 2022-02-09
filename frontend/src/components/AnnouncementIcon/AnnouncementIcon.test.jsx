@@ -5,7 +5,7 @@ describe('AnnouncementIcon', () => {
   it('properly render default icon', () => {
     //when
     render(<AnnouncementIcon />);
-    const receivedIcon = screen.getByRole('default-icon');
+    const receivedIcon = screen.getByLabelText('default icon');
 
     //then
     expect(receivedIcon).toBeInTheDocument();
@@ -14,7 +14,7 @@ describe('AnnouncementIcon', () => {
   it('properly render another than default icon', () => {
     //when
     render(<AnnouncementIcon iconType={'pets'} />);
-    const receivedIcon = screen.getByRole('pets-icon');
+    const receivedIcon = screen.getByLabelText('pets icon');
 
     //then
     expect(receivedIcon).toBeInTheDocument();
@@ -23,18 +23,18 @@ describe('AnnouncementIcon', () => {
   it('show default icon when wrong value is set', () => {
     //when
     render(<AnnouncementIcon iconType={'wrongValue'} />);
-    const receivedIcon = screen.getByRole('default-icon');
+    const receivedIcon = screen.getByLabelText('default icon');
 
     //then
     expect(receivedIcon).toBeInTheDocument();
   });
 
-  it('should be inside div', () => {
+  it('should render styled div with one item', () => {
     //given
     render(<AnnouncementIcon />);
 
     //when
-    const receivedElement = screen.getByRole('icon-container');
+    const receivedElement = screen.getByLabelText('icon container');
 
     //then
     expect(receivedElement).toBeInTheDocument();
