@@ -19,7 +19,7 @@ export const SearchTool = (callback, userID) => {
     isLoadingAvailableBoards,
     isErrorAvailableBoards,
   } = useQuery('AvailableBoardsSearchTool', async () => {
-    return await fetch('/board?isNearUser=true')
+    return await fetch('/boards?isNearUser=true')
       .then((response) => response.json())
       .then((data) =>
         data.boards.map((board) => {
@@ -27,7 +27,7 @@ export const SearchTool = (callback, userID) => {
             id: board.id,
             value: board.boardName,
             label: board.boardName,
-            boardIcon: board.icon,
+            boardIcon: board.avatar,
           };
         }),
       );
