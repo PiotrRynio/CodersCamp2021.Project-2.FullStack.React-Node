@@ -13,16 +13,19 @@ export const Item = styled.div`
   margin-top: 8px;
 `;
 
-export const Icon = styled.div`
-  font-size: 1.6em;
-  margin-right: 12px;
-  padding-top: 8px;
-  padding-left: 12px;
+export const Avatar = styled.img`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-top: 2px;
+  margin-left: 2px;
+  border: 1px solid gray;
 `;
 
 export const Name = styled.span`
   color: black;
   font-size: 1em;
   font-weight: 300;
-  padding-top: 12px;
+  padding-top: 10px;
+  padding-left: 4px;
 `;

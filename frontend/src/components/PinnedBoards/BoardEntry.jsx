@@ -1,10 +1,10 @@
-import { Container, Item, Name, Icon } from './BoardEntry.styled';
+import { Container, Item, Name, Avatar } from './BoardEntry.styled';
 
 const BoardEntry = (props) => {
   return (
     <Container>
       <Item>
-        <Icon>{props.boardIcon}</Icon>
+        <Avatar src={props.avatar}></Avatar>
         <Name>{props.boardName}</Name>
       </Item>
     </Container>
