@@ -3,6 +3,7 @@ import {
   Container,
   LogoSection,
   Form,
+  InputsWrapper,
   Logo,
   LogoSpan,
   FormText,
@@ -31,22 +32,28 @@ const SignIn = () => {
           Get started with us today!
           <br /> Create your account!
         </FormText>
-        <FormID>
-          <FormFirstName type="text" name="firstName" placeholder="Enter your first name" />
-          <FormLastName type="text" name="lastName" placeholder="Enter your last name" />
-        </FormID>
-        <FormEmail type="text" name="email" placeholder="Enter your email" />
-        <FormPassword type="password" name="password1" placeholder="Enter your password" />
-        <FormPassword2 type="password" name="password2" placeholder="Confirm your password" />
-        <FormButtons>
-          <FormLink to="/">
-            <FormSubmit>Submit!</FormSubmit>
-          </FormLink>
+        <InputsWrapper>
+          <FormID>
+            <FormFirstName type="text" name="firstName" placeholder="First name" />
+            <FormLastName type="text" name="lastName" placeholder="Last name" />
+          </FormID>
+          <FormEmail type="text" name="email" placeholder="Email" />
+          <FormPassword type="password" name="password" placeholder="Password" />
+          <FormPassword2
+            type="password"
+            name="repeatedPassword"
+            placeholder="Confirm your password"
+          />
+          <FormButtons>
+            <FormLink to="/">
+              <FormSubmit>Submit!</FormSubmit>
+            </FormLink>
 
-          <FormLink to="/log-in">
-            <FormLogIn>Log In</FormLogIn>
-          </FormLink>
-        </FormButtons>
+            <FormLink to="/log-in">
+              <FormLogIn>Log In</FormLogIn>
+            </FormLink>
+          </FormButtons>
+        </InputsWrapper>
       </Form>
     </Container>
   );

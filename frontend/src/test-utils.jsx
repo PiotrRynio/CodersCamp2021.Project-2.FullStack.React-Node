@@ -1,8 +1,13 @@
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import { AppProviders } from 'providers/AppProviders';
 
 const AllTheProviders = ({ children }) => {
-  return <AppProviders>{children}</AppProviders>;
+  return (
+    <MemoryRouter>
+      <AppProviders>{children}</AppProviders>
+    </MemoryRouter>
+  );
 };
 
 const customRender = (ui, options) => render(ui, { wrapper: AllTheProviders, ...options });
