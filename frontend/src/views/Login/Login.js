@@ -3,6 +3,7 @@ import {
   Container,
   LogoSection,
   Form,
+  InputsWrapper,
   Logo,
   LogoSpan,
   FormText,
@@ -36,35 +37,37 @@ const LogIn = () => {
           Welcome on Board<LogoSpan>MAP</LogoSpan>! <br />
           Please log in.
         </FormText>
+        <InputsWrapper>
+          <FormEmail type="text" name="email" placeholder="Email" />
+          <FormPassword type="password" name="password1" placeholder="Password" />
 
-        <FormEmail type="text" name="email" placeholder="Enter your email" />
-        <FormPassword type="password" name="password1" placeholder="Enter your password" />
+          <FormButtons>
+            <FormSubmit
+              onClick={() => {
+                if (user.loggedIn) return;
+                setUser({ loggedIn: true });
 
-        <FormButtons>
-          <FormSubmit
-            onClick={() => {
-              if (user.loggedIn) return;
-              setUser({ loggedIn: true });
+                if (location.state?.from) {
+                  navigate(location.state.from);
+                }
+              }}
+            >
+              Submit!
+            </FormSubmit>
 
-              if (location.state?.from) {
-                navigate(location.state.from);
-              }
-            }}
-          >
-            Submit!
-          </FormSubmit>
+            <FormLink to="/sign-up">
+              <FormLogIn>Sign up!</FormLogIn>
+            </FormLink>
+          </FormButtons>
 
-          <FormLink to="/sign-up">
-            <FormLogIn>Sign up!</FormLogIn>
-          </FormLink>
-        </FormButtons>
-
-        <RecoverPassword>
-          <RecoverPasswordText to="/recover-password">
-            Have you forgotten your password?
-            <RecoverSpan>Get it back!</RecoverSpan>
-          </RecoverPasswordText>
-        </RecoverPassword>
+          <RecoverPassword>
+            <RecoverPasswordText to="/recover-password">
+              Have you forgotten your password?
+              <br />
+              <RecoverSpan>Get it back!</RecoverSpan>
+            </RecoverPasswordText>
+          </RecoverPassword>
+        </InputsWrapper>
       </Form>
     </Container>
   );
