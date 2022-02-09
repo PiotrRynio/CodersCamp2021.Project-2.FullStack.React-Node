@@ -27,7 +27,9 @@ const LogIn = () => {
   const location = useLocation();
 
   const onSubmitButtonClick = () => {
-    if (user.loggedIn) return;
+    if (user.loggedIn) {
+      return;
+    }
     setUser({ loggedIn: true });
 
     if (location.state?.from) {
