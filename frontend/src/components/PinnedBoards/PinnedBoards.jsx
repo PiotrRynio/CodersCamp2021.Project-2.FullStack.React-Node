@@ -26,7 +26,7 @@ const PinnedBoards = () => {
       </Title>
       {boardsData.boards.map((board) => {
         return (
-          <StyledLink to={`/boards/${board.id}`}>
+          <StyledLink to={`/board/${board.id}`}>
             <BoardEntry key={board.boardId} boardName={board.boardName} avatar={board.avatar} />
           </StyledLink>
         );
