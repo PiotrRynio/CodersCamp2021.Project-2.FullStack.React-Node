@@ -1,5 +1,5 @@
 import React from 'react';
-import { TopBarContainer, TopBarLogo, TopBarLogoMarked } from './TopBar.styled.js';
+import { TopBarContainer, TopBarLogo, TopBarLogoMarked, TopBarSearch } from './TopBar.styled.js';
 
 const TopBar = () => {
   return (
@@ -7,6 +7,7 @@ const TopBar = () => {
       <TopBarLogo to="/">
         Board<TopBarLogoMarked>MAP</TopBarLogoMarked>
       </TopBarLogo>
+      <TopBarSearch />
     </TopBarContainer>
   );
 };
