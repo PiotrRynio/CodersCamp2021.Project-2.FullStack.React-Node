@@ -28,4 +28,5 @@ export const Name = styled.span`
   font-weight: 300;
   padding-top: 10px;
   padding-left: 4px;
+  overflow: hidden;
 `;
