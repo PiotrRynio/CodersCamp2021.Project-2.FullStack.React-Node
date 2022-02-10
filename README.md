@@ -17,12 +17,10 @@ BoardMap is a solution for sharing information and announcements in notice-board
 Project is divided into frontend and backend part.
 
 ### Frontend
-Netlify Deployment
-URL: 
+Repo: [CodersCamp2021.Project-2.React](https://github.com/PiotrRynio/CodersCamp2021.Project-2.React)
 
 ### Backend
 Coming soon...
-
 ## Our Crew
 Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 
@@ -35,21 +33,24 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 ## Technologies
 **Frontend**
 - React
-- HTML
 - SCSS
-- Jest
-- Husky
-- ESLint
-- prettier
-- styled-components
-- Codecov
-- Figma
-- Material UI
+- JEST
+- React-testing-library
+- React-select
+- React-hook-form
 - Mock Service Worker
+- styled-components
+- Figma
+
 
 **Backend**
 
 **Others**
+- Husky
+- ESLint
+- prettier
+- Codecov
+
 
 ## Running the project
 
