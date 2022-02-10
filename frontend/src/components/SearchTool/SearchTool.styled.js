@@ -2,7 +2,9 @@ import styled from 'styled-components';
 export const StyledOptions = {
   container: (provided) => ({
     ...provided,
-    width: '100%',
+    borderRadius: '10px',
+    width: '340px',
+    transition: '0.2s ease-in-out',
   }),
   option: (provided) => ({
     ...provided,
@@ -36,37 +38,13 @@ export const StyledOptions = {
   valueContainer: (provided) => ({
     ...provided,
     width: '80%',
-    height: '60px',
+    height: '40px',
     borderRadius: '14px',
-    marginRight: '5px',
     background: 'rgba(0, 0, 0, 0.33)',
   }),
   indicatorsContainer: (provided) => ({
     ...provided,
-    display: 'flex',
-    height: '60px',
-    width: '20%',
-    minWidth: '40px',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    borderRadius: '14px',
-    border: 'none',
-    padding: 0,
-    background: 'white',
-  }),
-  indicatorContainer: (provided) => ({
-    ...provided,
-    display: 'flex',
-    width: '60px',
-    height: '60px',
-    padding: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    borderRadius: '14px',
-    background: 'white',
-    border: 'none',
+    display: 'none',
   }),
 
   indicatorSeparator: (provided) => ({
@@ -101,17 +79,6 @@ export const BoardName = styled.span`
   margin: 10px;
 `;
 
-export const Title = styled.h3`
-  width: 100%;
-  display: flex;
-  justify-content: start;
-  margin-top: 50px;
-`;
-
 export const CheckIcon = styled.span`
   color: #689f38;
-`;
-
-export const Container = styled.div`
-  width: 100%;
 `;

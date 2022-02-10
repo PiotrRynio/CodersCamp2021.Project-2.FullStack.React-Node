@@ -13,10 +13,12 @@ export const TopBarContainer = styled.div`
   z-index: 100000;
 
   @media (max-width: 768px) {
-    position: relative;
-    padding: 10px 0 0 0;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     height: 100px;
+    padding: 10px 0 0 0;
   }
 `;
 

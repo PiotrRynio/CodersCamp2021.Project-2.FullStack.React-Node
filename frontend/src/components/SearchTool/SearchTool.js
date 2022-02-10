@@ -1,4 +1,4 @@
-import { FaSearch, FaCheck } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import Select, { components } from 'react-select';
 import { useQuery } from 'react-query';
 import {
@@ -8,10 +8,9 @@ import {
   OptionRow,
   RightSideOfOptionRow,
   StyledOptions,
-  Title,
-  Container,
 } from './SearchTool.styled';
 import { UserAvatar } from 'components/UserAvatar/UserAvatar';
+import StyledLink from '../StyledLink/StyledLink';
 
 export const SearchTool = (callback, userID) => {
   const {
@@ -57,25 +56,23 @@ export const SearchTool = (callback, userID) => {
   };
 
   const DropdownIndicator = (props) => {
-    return (
-      <components.DropdownIndicator {...props}>
-        <FaSearch />
-      </components.DropdownIndicator>
-    );
+    return <components.DropdownIndicator {...props} />;
   };
   const { Option } = components;
   const OptionInSelect = (props) => (
-    <Option {...props} data-testid="select">
-      <OptionRow>
-        <LeftSideOfOptionRow>
-          <UserAvatar userAvatarImage={props.data.boardIcon} />
-          <BoardName>{props.data.label}</BoardName>
-        </LeftSideOfOptionRow>
-        <RightSideOfOptionRow>
-          <CheckIcon>{props.data.icon}</CheckIcon>
-        </RightSideOfOptionRow>
-      </OptionRow>
-    </Option>
+    <StyledLink to={`/board/${props.data.id}`}>
+      <Option {...props} data-testid="select">
+        <OptionRow>
+          <LeftSideOfOptionRow>
+            <UserAvatar userAvatarImage={props.data.boardIcon} />
+            <BoardName>{props.data.label}</BoardName>
+          </LeftSideOfOptionRow>
+          <RightSideOfOptionRow>
+            <CheckIcon>{props.data.icon}</CheckIcon>
+          </RightSideOfOptionRow>
+        </OptionRow>
+      </Option>
+    </StyledLink>
   );
 
   if (isLoadingBoardsAlreadyAssigned || isLoadingAvailableBoards) {
@@ -94,17 +91,14 @@ export const SearchTool = (callback, userID) => {
     }
   }
   return (
-    <Container>
-      <Title>Explore!</Title>
-      <Select
-        closeMenuOnSelect={true}
-        searchable={true}
-        onChange={handleBoardSelected}
-        styles={StyledOptions}
-        options={dataAvailableForUserBoards}
-        components={{ DropdownIndicator, Option: OptionInSelect }}
-        placeholder={'Search...'}
-      />
-    </Container>
+    <Select
+      closeMenuOnSelect={true}
+      searchable={true}
+      onChange={handleBoardSelected}
+      styles={StyledOptions}
+      options={dataAvailableForUserBoards}
+      components={{ DropdownIndicator, Option: OptionInSelect }}
+      placeholder={'Search...'}
+    />
   );
 };
