@@ -8,7 +8,7 @@ const DotsButton = ({ children }) => {
 
   return (
     <StyledDotsButton onClick={() => setIsOpen((prevState) => !prevState)}>
-      <ButtonContainer>
+      <ButtonContainer onClose={() => setIsOpen(false)}>
         <FaEllipsisH />
       </ButtonContainer>
       {isOpen && children}

@@ -1,7 +1,7 @@
 import { FaBell, FaFlag, FaEyeSlash } from 'react-icons/fa';
-import { StyledDropdown, DropdownItem, Image } from './Dropdown.styled';
+import { StyledDropdown, DropdownItem, Image, Overlay } from './Dropdown.styled';
 
-const Dropdown = () => {
+const Dropdown = ({ onClose }) => {
   const dropdownItems = [
     {
       icon: <FaBell />,
@@ -23,7 +23,12 @@ const Dropdown = () => {
     </DropdownItem>
   ));
 
-  return <StyledDropdown>{displayDropdownItems}</StyledDropdown>;
+  return (
+    <>
+      <Overlay onClick={onClose} />
+      <StyledDropdown>{displayDropdownItems}</StyledDropdown>
+    </>
+  );
 };
 
 export default Dropdown;
