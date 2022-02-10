@@ -1,8 +1,8 @@
 import PostAddingForm from './PostAddingForm';
 import { render, screen, waitForElementToBeRemoved, waitFor } from 'test-utils';
 import {
-  getRegisteredEventsWillReturn,
-  getRegisteredEventsWillReturnFail,
+  getBoardsWillReturnFail,
+  getBoardsWillReturn,
 } from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
 import { availableForUserBoardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
 
@@ -18,7 +18,7 @@ describe('PostAddingForm', () => {
 
   it('Should properly show error status', async () => {
     // given
-    getRegisteredEventsWillReturnFail();
+    getBoardsWillReturnFail();
 
     //when
     render(<PostAddingForm />);
@@ -31,7 +31,7 @@ describe('PostAddingForm', () => {
 
   it('Should display add post form', async () => {
     // given
-    getRegisteredEventsWillReturn(availableForUserBoardsResponse);
+    getBoardsWillReturn(availableForUserBoardsResponse);
 
     //when
     render(<PostAddingForm />);
