@@ -29,7 +29,7 @@ export const SubscribedBoardsList = () => {
             boardTitle={board.boardName}
             user={board.author}
             boardImg={board.avatar}
-            boardId={board.boardId}
+            boardId={board.id}
           />
         </BoardWrapper>
       ))}
