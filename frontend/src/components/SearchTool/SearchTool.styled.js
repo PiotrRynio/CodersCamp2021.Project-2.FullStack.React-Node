@@ -3,7 +3,7 @@ export const StyledOptions = {
   container: (provided) => ({
     ...provided,
     borderRadius: '10px',
-    width: '340px',
+    width: '370px',
     transition: '0.2s ease-in-out',
   }),
   option: (provided) => ({
@@ -62,7 +62,7 @@ export const OptionRow = styled.div`
   padding: 10px;
   margin-top: 5px;
   background: white;
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 export const LeftSideOfOptionRow = styled.div`
