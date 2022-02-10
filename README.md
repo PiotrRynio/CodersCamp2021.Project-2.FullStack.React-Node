@@ -35,9 +35,15 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 - React
 - SCSS
 - JEST
-- React-testing-library
-- React-select
-- React-hook-form
+- react-icons
+- react-router
+- react-router-dom
+- react-testing-library
+- user-event-testing-library
+- react-select
+- react-hook-form
+- uuid
+- Prop-types
 - Mock Service Worker
 - styled-components
 - Figma
@@ -50,6 +56,7 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 - ESLint
 - prettier
 - Codecov
+- Lint-staged
 
 
 ## Running the project
