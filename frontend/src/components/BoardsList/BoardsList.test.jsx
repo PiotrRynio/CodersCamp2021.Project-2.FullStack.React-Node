@@ -1,9 +1,6 @@
 import { render, screen, waitFor } from 'test-utils';
 import BoardsList from './BoardsList';
-import {
-  getRegisteredEventsWillReturn,
-  getRegisteredEventsWillReturnFail,
-} from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
+import { getBoardsWillReturn } from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
 import { boardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
 
 describe('BoardList', () => {
@@ -21,7 +18,7 @@ describe('BoardList', () => {
       getCurrentPosition: jest.fn(),
     };
     global.navigator.geolocation = mockGeolocation;
-    getRegisteredEventsWillReturn(boardsResponse);
+    getBoardsWillReturn(boardsResponse);
 
     //when
     render(<BoardsList />);
