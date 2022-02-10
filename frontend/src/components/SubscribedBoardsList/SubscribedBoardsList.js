@@ -28,12 +28,11 @@ export const SubscribedBoardsList = () => {
           <BoardTitleSection
             boardTitle={board.boardName}
             user={board.author}
-            boardImg={board.icon}
+            boardImg={board.avatar}
             boardId={board.boardId}
           />
         </BoardWrapper>
       ))}
-      ;
     </>
   );
 };

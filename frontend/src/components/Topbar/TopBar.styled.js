@@ -10,7 +10,7 @@ export const TopBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  z-index: 100000;
+  z-index: 1;
 
   @media (max-width: 768px) {
     flex-direction: column;

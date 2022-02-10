@@ -92,3 +92,10 @@ export const Image = styled.div`
     min-width: 80px;
   }
 `;
+
+export const Overlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background-color: transparent;
+  z-index: 2;
+`;
