@@ -1,86 +1,67 @@
 # BoardMap 
-Status: Work in progress. Work on the project started on 10-01-2021.
+[![codecov](https://codecov.io/gh/PiotrRynio/CodersCamp2021.Project-1.JavaScript/branch/main/graph/badge.svg?token=UF79DJ2XLN)](https://codecov.io/gh/PiotrRynio/CodersCamp2021.Project-1.JavaScript)
 
------
+Second team project of CodersCamp2021. It is a single page web application. Our motivation was to learn how to work as a group on a project and improve our skills in web technologies. 
+
+## General Information
+BoardMap is a solution for sharing information and announcements in notice-boards. The goal of this project was to build a social app to simplify people connections at local level.
+
+## Main functionalities
+- Boards creating (private or public)
+- User account creating
+- Boards subscribing and pinning
+- Announcements adding
+- Comments adding
+
+## Project structure 
+Project is divided into frontend and backend part.
+
+### Frontend
+Netlify Deployment
+URL: 
+
+### Backend
+Coming soon...
 
 ## Our Crew
-
 Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 
 - [Agnieszka Przybyłowska](https://github.com/APrzybylowska)
 - [Patryk Święcicki](https://github.com/PSwiecicki)
 - [Radosław Dulisz](https://github.com/RadekDulisz)
 - [Bartosz Dombrow](https://github.com/BartoszDombrow)
-- [Kuba Jarosz](https://github.com/kubajaro)
 - [Jarosław Kaczor](https://github.com/jaroslawkaczor)
 
------
+## Technologies
+**Frontend**
+- React
+- HTML
+- SCSS
+- Jest
+- Husky
+- ESLint
+- prettier
+- styled-components
+- Codecov
+- Figma
+- Material UI
+- Mock Service Worker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Backend**
 
-## Available Scripts
+**Others**
 
-In the project directory, you can run:
+## Running the project
 
-### `npm start`
+Running this project locally
+**Frontend**
+###### From the repo:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone this project locally
+2. Run `npm install` in your bash/command line
+3. Run `npm run start-fe` in your bash/command line
+4. Go to `http://localhost:3000` in your browser (or other from your bash/command line info).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Others:
+- Compile and minify for production - `npm build`
+- Run all tests - `npm test`
