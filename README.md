@@ -34,19 +34,18 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 **Frontend**
 - React
 - SCSS
-- JEST
+- styled-components
+- Mock Service Worker
+- Jest testing-library
+- react-testing-library
+- user-event-testing-library
 - react-icons
 - react-router
 - react-router-dom
-- react-testing-library
-- user-event-testing-library
 - react-select
 - react-hook-form
 - uuid
 - Prop-types
-- Mock Service Worker
-- styled-components
-- Figma
 
 
 **Backend**
@@ -54,7 +53,7 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 **Others**
 - Husky
 - ESLint
-- prettier
+- Prettier
 - Codecov
 - Lint-staged
 
