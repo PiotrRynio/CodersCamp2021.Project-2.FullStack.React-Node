@@ -1,7 +1,9 @@
 import { FaBell, FaFlag, FaEyeSlash } from 'react-icons/fa';
 import { StyledDropdown, DropdownItem, Image } from './Dropdown.styled';
+import useComponentVisible from './useComponentVisible';
 
 const Dropdown = () => {
+  const { ref, isComponentVisible } = useComponentVisible(true);
   const dropdownItems = [
     {
       icon: <FaBell />,
@@ -23,7 +25,7 @@ const Dropdown = () => {
     </DropdownItem>
   ));
 
-  return <StyledDropdown>{displayDropdownItems}</StyledDropdown>;
+  return <StyledDropdown ref={ref}>{isComponentVisible && displayDropdownItems}</StyledDropdown>;
 };
 
 export default Dropdown;
