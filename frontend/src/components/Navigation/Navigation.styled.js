@@ -47,7 +47,10 @@ export const NavMenu = styled.ul`
   }
 `;
 
-export const NavItem = styled.li``;
+export const NavItem = styled.li`
+  border-bottom: ${(props) => props.isActive && '2px solid #1a8cd8 '};
+  margin-top: ${(props) => props.isActive && `-10px`};
+`;
 
 export const NavLink = styled(Link)`
   height: 100px;
