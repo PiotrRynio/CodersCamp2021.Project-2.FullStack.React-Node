@@ -6,7 +6,7 @@ import {
 } from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
 import { boardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
 
-describe('PostAddingForm', () => {
+describe('AnnouncementList', () => {
   const boardsIds = [0, 1];
   const announcementsNumber = 4;
   it('Should show loading message before get query data', async () => {
