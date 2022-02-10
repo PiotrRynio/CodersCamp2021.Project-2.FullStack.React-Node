@@ -1,5 +1,6 @@
 import React from 'react';
-import { TopBarContainer, TopBarLogo, TopBarLogoMarked, TopBarSearch } from './TopBar.styled.js';
+import { TopBarContainer, TopBarLogo, TopBarLogoMarked } from './TopBar.styled.js';
+import { SearchTool } from 'components/SearchTool/SearchTool';
 
 const TopBar = () => {
   return (
@@ -7,7 +8,7 @@ const TopBar = () => {
       <TopBarLogo to="/">
         Board<TopBarLogoMarked>MAP</TopBarLogoMarked>
       </TopBarLogo>
-      <TopBarSearch />
+      <SearchTool userId={1} />
     </TopBarContainer>
   );
 };

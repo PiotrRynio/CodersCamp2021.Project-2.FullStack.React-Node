@@ -38,6 +38,7 @@ const BoardCreationForm = () => {
   const submitHandler = (newBoardData) => {
     const newBoard = {
       announcements: [],
+      cords: { latitude: 51 + Math.random(), longitude: 17 + Math.random() },
       ...newBoardData,
     };
     mutate(newBoard);
@@ -65,7 +66,7 @@ const BoardCreationForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('icon')}
+          {...register('avatar')}
           ref={fileInput}
         />
       </StyledLabel>

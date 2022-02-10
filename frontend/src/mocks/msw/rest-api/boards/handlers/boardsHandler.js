@@ -19,6 +19,10 @@ const getAvailableUserBoards = rest.get('/boards?isNearUser=true', (req, res, ct
   return res(ctx.status(200), ctx.json(availableForUserBoardsResponse));
 });
 
+const getUserBoards = rest.get('/user/:id/boards', (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(boardsResponse));
+});
+
 const getBoardHandler = rest.get('/boards/:id', (req, res, ctx) => {
   const { id } = req.params;
 
@@ -41,4 +45,5 @@ export default [
   getAvailableUserBoards,
   getBoardHandler,
   postBoardsListsHandler,
+  getUserBoards,
 ];

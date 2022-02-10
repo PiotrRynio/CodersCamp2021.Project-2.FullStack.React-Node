@@ -10,10 +10,8 @@ describe('Search Tool', () => {
       </AppProviders>,
     );
     // GIVEN
-    const title = screen.getByText('Explore!');
     const placeholder = screen.getByText('Search...');
     // THEN
-    expect(title).toBeInTheDocument();
     expect(placeholder).toBeInTheDocument();
   });
   it('Component should not show options after render', async () => {

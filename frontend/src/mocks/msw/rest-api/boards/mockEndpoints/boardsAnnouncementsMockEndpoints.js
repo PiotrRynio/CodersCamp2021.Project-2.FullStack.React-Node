@@ -2,15 +2,15 @@ import { rest } from 'msw';
 import { BOARDS_PATH, REST_API_URL } from 'constants/restApiPaths';
 import { server } from 'mocks/msw/rest-api/server';
 
-export function getRegisteredEventsWillReturn(boardAnnouncementsResponse) {
+export function getBoardsWillReturn(boardsResponse) {
   server.use(
     rest.get(`${REST_API_URL}${BOARDS_PATH}`, (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(boardAnnouncementsResponse));
+      return res(ctx.status(200), ctx.json(boardsResponse));
     }),
   );
 }
 
-export function getRegisteredEventsIsLoading() {
+export function getBoardsIsLoading() {
   server.use(
     rest.get(`${REST_API_URL}${BOARDS_PATH}`, (req, res, ctx) => {
       return res(ctx.delay('infinite'));
@@ -18,9 +18,9 @@ export function getRegisteredEventsIsLoading() {
   );
 }
 
-export function getRegisteredEventsWillReturnFail() {
+export function getBoardsWillReturnFail() {
   server.use(
-    rest.get(`${REST_API_URL}${BOARDS_PATH}`, (req, res, ctx) => {
+    rest.get(`/boards`, (req, res, ctx) => {
       return res(ctx.status(404));
     }),
   );

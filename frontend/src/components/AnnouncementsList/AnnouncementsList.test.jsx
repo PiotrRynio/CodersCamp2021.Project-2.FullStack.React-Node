@@ -1,12 +1,12 @@
 import { render, screen, waitForElementToBeRemoved } from 'test-utils';
 import AnnouncementsList from './AnnouncementsList';
 import {
-  getRegisteredEventsWillReturn,
-  getRegisteredEventsWillReturnFail,
+  getBoardsWillReturn,
+  getBoardsWillReturnFail,
 } from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
 import { boardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
 
-describe('PostAddingForm', () => {
+describe('AnnouncementList', () => {
   const boardsIds = [0, 1];
   const announcementsNumber = 4;
   it('Should show loading message before get query data', async () => {
@@ -20,7 +20,7 @@ describe('PostAddingForm', () => {
 
   it('Should show data after query', async () => {
     //given
-    getRegisteredEventsWillReturn(boardsResponse);
+    getBoardsWillReturn(boardsResponse);
 
     //when
     render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={announcementsNumber} />);
@@ -36,7 +36,7 @@ describe('PostAddingForm', () => {
 
   it('Should properly show error status', async () => {
     // given
-    getRegisteredEventsWillReturnFail();
+    getBoardsWillReturnFail();
 
     //when
     render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={announcementsNumber} />);

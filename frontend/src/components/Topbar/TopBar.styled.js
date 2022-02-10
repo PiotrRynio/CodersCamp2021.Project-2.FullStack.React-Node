@@ -13,10 +13,12 @@ export const TopBarContainer = styled.div`
   z-index: 100000;
 
   @media (max-width: 768px) {
-    position: relative;
-    padding: 10px 0 0 0;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     height: 100px;
+    padding: 10px 0 0 0;
   }
 `;
 
@@ -39,11 +41,12 @@ export const TopBarSearch = styled.input`
   border-radius: 10px;
   width: 200px;
   transition: 0.2s ease-in-out;
+
   &:focus {
     width: 300px;
   }
-
   @media (max-width: 768px) {
+    margin-bottom: 10px;
     &:focus {
       width: 250px;
     }
