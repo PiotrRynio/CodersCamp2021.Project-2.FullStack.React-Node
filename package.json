@@ -5,6 +5,8 @@
   "scripts": {
     "prepare": "husky install && cd frontend && npm install",
     "start-fe": "cd frontend && npm start",
+    "start-be": "cd backend && npm run start",
+    "start-be-dev": "cd backend && npm run start-dev",
     "build": "cd frontend && npm run build",
     "test": "cd frontend && npm run test",
     "test:watch": "cd frontend && npm run test:watch",
@@ -13,8 +15,5 @@
   },
   "devDependencies": {
     "husky": "^7.0.4"
-  },
-  "dependencies": {
-    "ol": "^6.12.0"
   }
 }
