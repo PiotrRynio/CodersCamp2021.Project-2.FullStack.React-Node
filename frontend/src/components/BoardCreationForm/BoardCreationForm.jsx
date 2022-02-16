@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import MapInput from 'components/MapInput/MapInput';
 import {
   StyledForm,
   FormTitle,
@@ -14,7 +15,6 @@ import {
   HiddenInput,
   StyledButton,
 } from './BoardCreationForm.styled';
-import MapWrapper from '../MapInput/MapInput';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
@@ -30,10 +30,7 @@ const BoardCreationForm = () => {
     };
     return fetch('/boards', requestOptions)
       .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-        return navigate(`/board/${res.id}`);
-      });
+      .then((res) => navigate(`/board/${res.id}`));
   });
 
   const handleButtonClick = () => {
@@ -41,7 +38,9 @@ const BoardCreationForm = () => {
   };
 
   const submitHandler = (newBoardData) => {
-    if (!coords) return;
+    if (!coords) {
+      return;
+    }
     const newBoard = {
       announcements: [],
       coords,
@@ -96,7 +95,7 @@ const BoardCreationForm = () => {
         <ContentInput {...register('description')} />
       </StyledLabel>
       <StyledLabel>Place your board: </StyledLabel>
-      <MapWrapper setCoordsCallback={handleMapClick} />
+      <MapInput setCoordsCallback={handleMapClick} />
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );

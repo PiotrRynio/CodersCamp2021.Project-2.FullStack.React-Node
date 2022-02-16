@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-
-// openlayers
+import React, { useEffect, useRef } from 'react';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
@@ -8,18 +6,12 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import { fromLonLat, transform } from 'ol/proj';
-import { toStringXY } from 'ol/coordinate';
-import { MapDiv } from './MapInput.styled';
-import { Feature } from 'ol';
 import { Point } from 'ol/geom';
-import { instanceOf } from 'prop-types';
-import { Layer } from 'ol/layer';
+import { Feature } from 'ol';
+import { MapDiv } from './MapInput.styled';
 
 const MapInput = ({ setCoordsCallback }) => {
-  const [map, setMap] = useState();
   const mapElement = useRef();
-  const mapRef = useRef();
-  mapRef.current = map;
 
   useEffect(() => {
     const initialMap = new Map({
@@ -40,32 +32,26 @@ const MapInput = ({ setCoordsCallback }) => {
     });
 
     initialMap.on('click', handleMapClick);
-
-    setMap(initialMap);
   }, []);
 
   const handleMapClick = ({ target, pixel }) => {
-    const clickedCoord = mapRef.current.getCoordinateFromPixel(pixel);
+    const clickedCoords = target.getCoordinateFromPixel(pixel);
+    const transformedCoords = transform(clickedCoords, 'EPSG:3857', 'EPSG:4326');
 
-    const transormedCoord = transform(clickedCoord, 'EPSG:3857', 'EPSG:4326');
-
-    setCoordsCallback(transormedCoord);
+    setCoordsCallback(transformedCoords);
 
     const layers = target.getLayers();
-
     layers.forEach((layer, index) => {
       if (layer.__proto__.constructor.name === 'VectorLayer') {
         target.removeLayer(layer);
       }
     });
 
-    console.log(transormedCoord);
-
     const newLayer = new VectorLayer({
       source: new VectorSource({
         features: [
           new Feature({
-            geometry: new Point(fromLonLat(transormedCoord)),
+            geometry: new Point(fromLonLat(transformedCoords)),
           }),
         ],
       }),
@@ -73,7 +59,7 @@ const MapInput = ({ setCoordsCallback }) => {
     target.addLayer(newLayer);
   };
 
-  return <MapDiv ref={mapElement}></MapDiv>;
+  return <MapDiv ref={mapElement} />;
 };
 
 export default MapInput;
