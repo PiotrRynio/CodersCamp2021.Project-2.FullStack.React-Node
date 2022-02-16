@@ -1,6 +1,8 @@
 import express from 'express';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import dotenv from 'dotenv';
+import cors from 'cors';
+import { HelloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
 
 dotenv.config();
 
