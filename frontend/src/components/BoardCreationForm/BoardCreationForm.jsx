@@ -14,9 +14,11 @@ import {
   HiddenInput,
   StyledButton,
 } from './BoardCreationForm.styled';
+import MapWrapper from '../MapInput/MapInput';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
+  const [coords, setCords] = useState(null);
   const { register, handleSubmit } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
@@ -28,7 +30,10 @@ const BoardCreationForm = () => {
     };
     return fetch('/boards', requestOptions)
       .then((response) => response.json())
-      .then((res) => navigate(`/board/${res.id}`));
+      .then((res) => {
+        console.log(res);
+        return navigate(`/board/${res.id}`);
+      });
   });
 
   const handleButtonClick = () => {
@@ -36,9 +41,10 @@ const BoardCreationForm = () => {
   };
 
   const submitHandler = (newBoardData) => {
+    if (!coords) return;
     const newBoard = {
       announcements: [],
-      cords: { latitude: 51 + Math.random(), longitude: 17 + Math.random() },
+      coords,
       ...newBoardData,
     };
     mutate(newBoard);
@@ -46,6 +52,13 @@ const BoardCreationForm = () => {
 
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
+  };
+
+  const handleMapClick = (cords) => {
+    setCords({
+      latitude: cords[1],
+      longitude: cords[0],
+    });
   };
 
   return (
@@ -82,6 +95,8 @@ const BoardCreationForm = () => {
         Description:
         <ContentInput {...register('description')} />
       </StyledLabel>
+      <StyledLabel>Place your board: </StyledLabel>
+      <MapWrapper setCoordsCallback={handleMapClick} />
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
