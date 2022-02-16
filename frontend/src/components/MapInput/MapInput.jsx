@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import VectorLayer from 'ol/layer/Vector';
+import TileLayerWithType from './Layers/TileLayerWithType';
+import VectorLayer from './Layers/VectorLayerWithType';
 import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import { fromLonLat, transform } from 'ol/proj';
@@ -17,7 +17,7 @@ const MapInput = ({ setCoordsCallback }) => {
     const initialMap = new Map({
       target: mapElement.current,
       layers: [
-        new TileLayer({
+        new TileLayerWithType({
           source: new XYZ({
             url: 'http://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}',
           }),
@@ -42,7 +42,7 @@ const MapInput = ({ setCoordsCallback }) => {
 
     const layers = target.getLayers();
     layers.forEach((layer, index) => {
-      if (layer.__proto__.constructor.name === 'VectorLayer') {
+      if (layer.TYPE === 'VectorLayerWithType') {
         target.removeLayer(layer);
       }
     });
