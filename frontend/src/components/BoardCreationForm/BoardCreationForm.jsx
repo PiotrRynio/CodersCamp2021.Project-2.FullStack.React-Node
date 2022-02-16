@@ -57,7 +57,7 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardName', { required: true })}
+          {...register('boardName', { required: true, minLength: 1, maxLength: 100 })}
         />
       </StyledLabel>
       <StyledLabel>
