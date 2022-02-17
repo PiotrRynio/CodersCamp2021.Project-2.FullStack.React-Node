@@ -33,7 +33,7 @@ const Announcement = ({ announcement, isOpen, showBoard }) => {
             <ShortContent {...register('shortContent', {required: true})}>{content}</ShortContent>
             <StyledLink {...register('link', {required: true})} to={`/announcement/${id}`}>
               <ReadMore {...register('boardName')}>[read more]</ReadMore>
-              <Comments {...register('boardName')}>{commentsText}</Comments>
+              <Comments {...register('commentText')}>{commentsText}</Comments>
             </StyledLink>
           </>
         )}
