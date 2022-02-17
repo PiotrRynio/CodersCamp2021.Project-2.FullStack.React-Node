@@ -70,6 +70,7 @@ export const ContentInput = styled.textarea`
   width: 100%;
   height: 80px;
   padding: 5px;
+  margin-bottom: 15px;
   border-radius: 4px;
   text-align: justify;
   border-color: hsl(0, 0%, 80%);
