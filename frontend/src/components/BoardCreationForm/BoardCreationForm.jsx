@@ -53,10 +53,11 @@ const BoardCreationForm = () => {
     setInputFileText(target.files[0].name);
   };
 
-  const handleMapClick = (cords) => {
+  const handleMapClick = (selectedCoords) => {
+    const [longitude, latitude] = selectedCoords;
     setCords({
-      latitude: cords[1],
-      longitude: cords[0],
+      latitude,
+      longitude,
     });
   };
 
