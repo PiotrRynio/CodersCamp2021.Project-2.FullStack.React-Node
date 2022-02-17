@@ -79,7 +79,7 @@ const PostAddingForm = ({ formSubmit }) => {
         control={control}
         defaultValue={dataAvailableUserBoards[0]}
         render={({ field }) => (
-          <Select {...field} styles={StyledOptions} options={dataAvailableUserBoards} />
+          <Select {...field} styles={StyledOptions} options={dataAvailableUserBoards}/>
         )}
       />
       <SecondFormRow>

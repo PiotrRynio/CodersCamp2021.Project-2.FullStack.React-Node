@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 import AnnouncementIcon from 'components/AnnouncementIcon/AnnouncementIcon';
 import StyledLink from 'components/StyledLink/StyledLink';
@@ -14,24 +15,25 @@ import {
 
 const Announcement = ({ announcement, isOpen, showBoard }) => {
   const { title, iconType, boardName, content, comments, id } = announcement;
+  const { register } = useForm();
 
   const commentsText =
     comments && (comments.length === 1 ? '[1 comment]' : `[${comments.length} comments]`);
 
   return (
     <Wrapper>
-      <AnnouncementIcon iconType={iconType} />
+      <AnnouncementIcon iconType={iconType} {...register('icon', {required: true})}/>
       <TextWrapper>
-        <Board>{showBoard && boardName}</Board>
-        <Title>{title}</Title>
+        <Board {...register('boardName', {required: true})}>{showBoard && boardName}</Board>
+        <Title {...register('title', {required: true})}>{title}</Title>
         {isOpen ? (
-          <Content>{content}</Content>
+          <Content {...register('content', {required: true})}>{content}</Content>
         ) : (
           <>
-            <ShortContent>{content}</ShortContent>
-            <StyledLink to={`/announcement/${id}`}>
-              <ReadMore>[read more]</ReadMore>
-              <Comments>{commentsText}</Comments>
+            <ShortContent {...register('shortContent', {required: true})}>{content}</ShortContent>
+            <StyledLink {...register('link', {required: true})} to={`/announcement/${id}`}>
+              <ReadMore {...register('boardName')}>[read more]</ReadMore>
+              <Comments {...register('boardName')}>{commentsText}</Comments>
             </StyledLink>
           </>
         )}
