@@ -57,7 +57,7 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardName', { required: true, minLength: 1, maxLength: 100 })}
+          {...register('boardName', { required: true, minLength: 5, maxLength: 100 })}
         />
       </StyledLabel>
       <StyledLabel>
@@ -66,21 +66,23 @@ const BoardCreationForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar')}
+          {...register('avatar', { required: true })}
           ref={fileInput}
         />
       </StyledLabel>
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
       <StyledLabel>
         Access type:
-        <StyledSelect {...register('accessType')}>
+        <StyledSelect {...register('accessType', { required: true })}>
           <option value="private">Private</option>
           <option value="public">Public</option>
         </StyledSelect>
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <ContentInput {...register('description')} />
+        <ContentInput
+          {...register('description', { required: true, minLength: 5, maxLength: 500 })}
+        />
       </StyledLabel>
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
