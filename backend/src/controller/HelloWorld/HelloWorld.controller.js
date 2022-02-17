@@ -1,7 +1,12 @@
 import { HelloWorldService } from '../../service/HelloWorld/HelloWorld.service.js';
+import { Router } from 'express';
 
-export function helloWorldController(router) {
+export function helloWorldController() {
+  const router = Router();
+
   const helloWorldService = new HelloWorldService();
 
-  router.get('/helloWorld', helloWorldService.getHelloWorld);
+  router.route('/hello-world').get(helloWorldService.getHelloWorld);
+
+  return router;
 }

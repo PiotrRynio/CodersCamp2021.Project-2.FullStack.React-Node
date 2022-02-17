@@ -4,11 +4,13 @@ import dotenv from 'dotenv';
 import { helloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
 
 dotenv.config();
+
 export const app = async () => {
   const restApiServer = express();
   restApiServer.use(cors());
+  restApiServer.use(express.json());
 
-  helloWorldController(restApiServer);
+  restApiServer.use('/rest-api', helloWorldController());
 
   return restApiServer;
 };
