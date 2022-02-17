@@ -2,15 +2,14 @@ import express from 'express';
 // import cors from 'cors';
 // import { HelloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
 import dotenv from 'dotenv';
-import {HelloWorldController} from "./controller/HelloWorld/HelloWorld.controller.js";
+import { helloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
 
 dotenv.config();
 
 export const app = async () => {
   const restApiServer = express();
 
- new HelloWorldController(restApiServer);
-
+  helloWorldController(restApiServer);
 
   return restApiServer;
 };
