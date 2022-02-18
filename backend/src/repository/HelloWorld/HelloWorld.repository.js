@@ -4,13 +4,15 @@ const { Schema } = mongoose;
 
 export class HelloWorldRepository {
   // eslint-disable-next-line class-methods-use-this
-  static async findAll() {
-    // eslint-disable-next-line no-use-before-define
-    const mongoFindResult = await MongoHelloWorld.find({});
-    console.log(mongoFindResult);
-    // eslint-disable-next-line no-use-before-define
-    return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+  static async getAll() {
+    try {
+      const mongoFindResult = await MongoHelloWorld.find({});
+      return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+    } catch (e) {
+      console.log(e);
+    }
   }
+  static async createOne() {}
 }
 
 const HelloWorldSchema = new mongoose.Schema({
