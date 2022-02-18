@@ -26,7 +26,7 @@ const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) =
         .slice(0, announcementsNumber);
       setAnnouncements(announcementsToShow);
     }
-  }, [data]);
+  }, [data, boardsIds]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -37,15 +37,13 @@ const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) =
 
   return (
     <>
-      {announcements.map((announcement) => {
-        return (
-          <Announcement
-            key={announcement.id}
-            announcement={announcement}
-            showBoard={showBoardNames}
-          />
-        );
-      })}
+      {announcements.map((announcement) => (
+        <Announcement
+          key={announcement.id}
+          announcement={announcement}
+          showBoard={showBoardNames}
+        />
+      ))}
     </>
   );
 };
