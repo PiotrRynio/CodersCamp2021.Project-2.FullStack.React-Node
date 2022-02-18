@@ -13,10 +13,15 @@ import { useContext } from 'react';
 import { UserContext } from 'providers/AppProviders';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { ErrorMessage } from '@hookform/error-message';
 
 export const CommentForm = ({ announcementId, refetchCallback }) => {
   const { user } = useContext(UserContext);
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { mutate } = useMutation((newComment) => {
     const requestOptions = {
       method: 'POST',
@@ -46,10 +51,25 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
         <Form onSubmit={handleSubmit(submitHandler)}>
           <TextArea
             placeholder="Add comment..."
-            {...register('commentText', { required: true, maxLength: 500 })}
+            {...register('commentText', {
+              required: 'This is required.',
+              pattern: {
+                value: /.*[^\s].*/,
+                message: "Comment can't contain only whitespaces",
+              },
+              maxLength: {
+                value: 500,
+                message: 'This input exceed max length (500).',
+              },
+            })}
           />
           <BottomFormSection>
-            <ErrorText>{/*errorText*/}</ErrorText>
+            <ErrorMessage
+              errors={errors}
+              name="commentText"
+              render={({ message }) => <ErrorText>{message}</ErrorText>}
+            />
+            {!errors.commentText ? <ErrorText></ErrorText> : <></>}
             <Button type="submit">Add comment</Button>
           </BottomFormSection>
         </Form>
