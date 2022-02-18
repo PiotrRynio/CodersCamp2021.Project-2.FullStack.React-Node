@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import { HelloWorld } from '../../service/HelloWorld/HelloWorld.js';
 const { Schema } = mongoose;
 
-// eslint-disable-next-line import/prefer-default-export
 export class HelloWorldRepository {
   // eslint-disable-next-line class-methods-use-this
   static async findAll() {

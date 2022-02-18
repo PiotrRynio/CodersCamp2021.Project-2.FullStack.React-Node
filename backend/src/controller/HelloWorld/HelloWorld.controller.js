@@ -6,7 +6,10 @@ export function helloWorldController() {
 
   const helloWorldService = new HelloWorldService();
 
-  router.route('/hello-world').get(helloWorldService.getHelloWorld);
+  router
+    .route('/hello-world')
+    .get(helloWorldService.getHelloWorld)
+    .post(helloWorldService.postHelloWorld);
 
   return router;
 }
