@@ -4,12 +4,10 @@ import { Router } from 'express';
 export function helloWorldController() {
   const router = Router();
 
-  const helloWorldService = new HelloWorldService();
-
   router
     .route('/hello-world')
-    .get(helloWorldService.getHelloWorld)
-    .post(helloWorldService.postHelloWorld);
+    .get(HelloWorldService.getHelloWorld)
+    .post(HelloWorldService.postHelloWorld);
 
   return router;
 }

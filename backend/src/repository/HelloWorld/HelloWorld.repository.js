@@ -6,11 +6,12 @@ export class HelloWorldRepository {
   // eslint-disable-next-line class-methods-use-this
   static async findAll() {
     console.log('jestesmy w find all ');
-    return 'HELLO WORLD';
+    // return 'HELLO WORLD';
 
     // eslint-disable-next-line no-use-before-define
-    const mongoFindResult = await MongoHelloWorld.find({});
+    const mongoFindResult = await MongoHelloWorld.find();
     // eslint-disable-next-line no-use-before-define
+    console.log('');
     console.log('jestesmy na koncu ');
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
   }

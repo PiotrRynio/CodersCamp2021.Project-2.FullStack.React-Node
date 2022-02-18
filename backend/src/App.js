@@ -7,6 +7,8 @@ import { helloWorldController } from './controller/HelloWorld/HelloWorld.control
 dotenv.config();
 
 export const app = async () => {
+  // await connectToMongoDb();
+
   const restApiServer = express();
   restApiServer.use(cors());
   restApiServer.use(express.json());
