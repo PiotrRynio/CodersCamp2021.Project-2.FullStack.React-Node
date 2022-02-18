@@ -8,26 +8,12 @@ export const CommentsSection = ({ announcementId }) => {
     data: dataQuery,
     isLoading,
     isError,
+    refetch,
   } = useQuery('commentList', async () => {
     return await fetch(`/announcements/${announcementId}/comments`).then((response) =>
       response.json(),
     );
   });
-
-  const { mutate, data: mutationData } = useMutation((newComment) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newComment),
-    };
-    return fetch(`/announcements/${announcementId}/comments`, requestOptions).then((response) =>
-      response.json(),
-    );
-  });
-
-  const handleCommentSubmit = (comment) => {
-    mutate(comment);
-  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -38,8 +24,8 @@ export const CommentsSection = ({ announcementId }) => {
 
   return (
     <Section>
-      <CommentForm handleSubmit={handleCommentSubmit} />
-      <CommentList comments={mutationData?.commentList || dataQuery.commentList} />
+      <CommentForm announcementId={announcementId} refetchCallback={refetch} />
+      <CommentList comments={dataQuery.commentList} />
     </Section>
   );
 };

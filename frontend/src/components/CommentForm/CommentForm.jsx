@@ -1,5 +1,4 @@
 import { UserAvatar } from '../UserAvatar/UserAvatar';
-import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 import {
   AvatarContainer,
   Form,
@@ -10,67 +9,47 @@ import {
   Button,
   ErrorText,
 } from './CommentForm.styled';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useContext } from 'react';
+import { UserContext } from 'providers/AppProviders';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
-export const CommentForm = ({ handleSubmit }) => {
-  const sampleUser1 = {
-    userId: uuidv4(),
-    avatarUrl: avatar1,
-    firstName: 'Andrzej',
-    lastName: 'Nowak',
-  };
+export const CommentForm = ({ announcementId, refetchCallback }) => {
+  const { user } = useContext(UserContext);
+  const { register, handleSubmit } = useForm();
+  const { mutate } = useMutation((newComment) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newComment),
+    };
+    return fetch(`/announcements/${announcementId}/comments`, requestOptions)
+      .then((response) => response.json())
+      .then(() => refetchCallback());
+  });
 
-  const [commentText, setCommentText] = useState('');
-  const [errorText, setErrorText] = useState('');
-
-  const validateForm = () => {
-    setErrorText('');
-
-    if (!commentText) {
-      setErrorText('Can not be empty!');
-      return false;
-    }
-
-    if (commentText.length > 500) {
-      setErrorText('Too long! Comment must be shorter than 500 characters.');
-      return false;
-    }
-    return true;
-  };
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (validateForm()) {
-      const newComment = {
-        commentId: uuidv4(),
-        content: commentText,
-        createDate: new Date(),
-        author: sampleUser1,
-      };
-      setCommentText('');
-      handleSubmit(newComment);
-    }
+  const submitHandler = ({ commentText }) => {
+    const newComment = {
+      content: commentText,
+      createDate: new Date(),
+      author: user,
+    };
+    mutate(newComment);
   };
 
   return (
     <>
       <FormContainer>
         <AvatarContainer>
-          <UserAvatar userAvatarImage={avatar1} />
+          <UserAvatar userAvatarImage={user.avatarUrl} />
         </AvatarContainer>
-        <Form onSubmit={onSubmit}>
+        <Form onSubmit={handleSubmit(submitHandler)}>
           <TextArea
             placeholder="Add comment..."
-            onChange={(e) => {
-              setCommentText(e.target.value);
-            }}
-            rows="4"
-            cols="70"
-            value={commentText}
+            {...register('commentText', { required: true, maxLength: 500 })}
           />
           <BottomFormSection>
-            <ErrorText>{errorText}</ErrorText>
+            <ErrorText>{/*errorText*/}</ErrorText>
             <Button type="submit">Add comment</Button>
           </BottomFormSection>
         </Form>
