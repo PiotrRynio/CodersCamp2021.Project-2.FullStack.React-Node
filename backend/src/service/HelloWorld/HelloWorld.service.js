@@ -8,7 +8,7 @@ export class HelloWorldService {
       .catch((err) => res.status(500).json({ message: `Server error: ${err}` }));
   }
 
-  async postHelloWorld(req, res) {
+  static async postHelloWorld(req, res) {
     const { error } = helloWorldValidationSchema.validate(req.body);
     if (error) {
       return res.status(400).send(error.details[0].message);
