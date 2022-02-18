@@ -97,8 +97,14 @@ const PostAddingForm = ({ formSubmit }) => {
             placeholder="Enter title..."
             {...register('title', { required: true, minLength: 5, maxLength: 100 })}
           />
-          {errors.title && (
+          {errors.title && errors.title.type === 'required' && (
+            <ErrorMessage>This field can't be empty</ErrorMessage>
+          )}
+          {errors.title && errors.title.type === 'minLength' && (
             <ErrorMessage>Your title should be at least 5 characters long</ErrorMessage>
+          )}
+          {errors.title && errors.title.type === 'maxLength' && (
+            <ErrorMessage>Your title shouldn't exceed 100 characters</ErrorMessage>
           )}
         </LeftColumn>
         <RightColumn>
@@ -119,9 +125,17 @@ const PostAddingForm = ({ formSubmit }) => {
       <ContentInput
         type="text"
         placeholder="Enter announcement message..."
-        {...register('content', { required: true, minLength: 1, maxLength: 300 })}
+        {...register('content', { required: true, minLength: 3, maxLength: 300 })}
       />
-      {errors.content && <ErrorMessage>This field can't be left empty</ErrorMessage>}
+      {errors.content && errors.content.type === 'required' && (
+        <ErrorMessage>This field can't be empty</ErrorMessage>
+      )}
+      {errors.content && errors.content.type === 'minLength' && (
+        <ErrorMessage>Your message should be at least 3 characters long</ErrorMessage>
+      )}
+      {errors.content && errors.content.type === 'maxLength' && (
+        <ErrorMessage>Your message shouldn't exceed 300 characters</ErrorMessage>
+      )}
       <div>
         <Button type="submit">Add</Button>
       </div>
