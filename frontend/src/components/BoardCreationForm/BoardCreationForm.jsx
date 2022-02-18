@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import MapInput from 'components/MapInput/MapInput';
 import {
   StyledForm,
   FormTitle,
@@ -17,6 +18,7 @@ import {
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
+  const [coords, setCords] = useState(null);
   const { register, handleSubmit } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
@@ -36,9 +38,12 @@ const BoardCreationForm = () => {
   };
 
   const submitHandler = (newBoardData) => {
+    if (!coords) {
+      return;
+    }
     const newBoard = {
       announcements: [],
-      cords: { latitude: 51 + Math.random(), longitude: 17 + Math.random() },
+      coords,
       ...newBoardData,
     };
     mutate(newBoard);
@@ -46,6 +51,14 @@ const BoardCreationForm = () => {
 
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
+  };
+
+  const handleMapClick = (selectedCoords) => {
+    const [longitude, latitude] = selectedCoords;
+    setCords({
+      latitude,
+      longitude,
+    });
   };
 
   return (
@@ -84,6 +97,8 @@ const BoardCreationForm = () => {
           {...register('description', { required: true, minLength: 5, maxLength: 500 })}
         />
       </StyledLabel>
+      <StyledLabel>Place your board: </StyledLabel>
+      <MapInput setCoordsCallback={handleMapClick} />
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );

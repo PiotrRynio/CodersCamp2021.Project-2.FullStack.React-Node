@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "husky install && cd frontend && npm install",
+    "prepare": "husky install && cd backend && npm install  &&  cd .. && cd frontend && npm install",
     "start-fe": "cd frontend && npm start",
     "start-be": "cd backend && npm run start",
     "start-be-dev": "cd backend && npm run start-dev",

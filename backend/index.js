@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import { app } from './src/App.js';
 
 console.log('Application was started');
