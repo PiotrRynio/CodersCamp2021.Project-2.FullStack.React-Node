@@ -96,3 +96,8 @@ export const StyledOptions = {
     height: '40px',
   }),
 };
+
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: ${({ theme }) => theme.fontSize.md};
+`;

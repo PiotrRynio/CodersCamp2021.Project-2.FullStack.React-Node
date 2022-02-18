@@ -14,10 +14,16 @@ import {
   Button,
   LeftColumn,
   RightColumn,
+  ErrorMessage,
 } from './PostAddingForm.styled';
 
 const PostAddingForm = ({ formSubmit }) => {
-  const { register, handleSubmit, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
   const {
     data: dataAvailableUserBoards,
@@ -69,7 +75,7 @@ const PostAddingForm = ({ formSubmit }) => {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit((data) => console.log(data))}>
       <FormTitle>
         Add new <MarkedTitle>Announcement</MarkedTitle>
       </FormTitle>
@@ -89,8 +95,11 @@ const PostAddingForm = ({ formSubmit }) => {
             id="titleInput"
             type="text"
             placeholder="Enter title..."
-            {...register('title', { required: true })}
+            {...register('title', { required: true, minLength: 5, maxLength: 100 })}
           />
+          {errors.title && (
+            <ErrorMessage>Your title should be at least 5 characters long</ErrorMessage>
+          )}
         </LeftColumn>
         <RightColumn>
           {' '}
@@ -110,8 +119,9 @@ const PostAddingForm = ({ formSubmit }) => {
       <ContentInput
         type="text"
         placeholder="Enter announcement message..."
-        {...register('content', { required: true })}
+        {...register('content', { required: true, minLength: 1, maxLength: 300 })}
       />
+      {errors.content && <ErrorMessage>This field can't be left empty</ErrorMessage>}
       <div>
         <Button type="submit">Add</Button>
       </div>
