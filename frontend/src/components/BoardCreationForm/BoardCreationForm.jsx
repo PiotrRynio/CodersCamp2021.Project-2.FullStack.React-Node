@@ -14,12 +14,17 @@ import {
   StyledSelect,
   HiddenInput,
   StyledButton,
+  ErrorMessage,
 } from './BoardCreationForm.styled';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
   const [coords, setCords] = useState(null);
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
   const { mutate } = useMutation((newBoard) => {
@@ -72,7 +77,9 @@ const BoardCreationForm = () => {
           placeholder="Enter board name..."
           {...register('boardName', { required: true, minLength: 5, maxLength: 100 })}
         />
+        {errors.boardName && <ErrorMessage>Please enter a valid board name.</ErrorMessage>}
       </StyledLabel>
+
       <StyledLabel>
         Avatar:
         <HiddenInput
@@ -83,6 +90,7 @@ const BoardCreationForm = () => {
           ref={fileInput}
         />
       </StyledLabel>
+
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
       <StyledLabel>
         Access type:
@@ -91,14 +99,18 @@ const BoardCreationForm = () => {
           <option value="public">Public</option>
         </StyledSelect>
       </StyledLabel>
+
       <StyledLabel htmlFor="description">
         Description:
         <ContentInput
           {...register('description', { required: true, minLength: 5, maxLength: 500 })}
         />
+        {errors.description && <ErrorMessage>Please enter a valid description.</ErrorMessage>}
       </StyledLabel>
+
       <StyledLabel>Place your board: </StyledLabel>
       <MapInput setCoordsCallback={handleMapClick} />
+
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
