@@ -20,6 +20,7 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { mutate } = useMutation((newComment) => {
@@ -30,7 +31,11 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
     };
     return fetch(`/announcements/${announcementId}/comments`, requestOptions)
       .then((response) => response.json())
-      .then(() => refetchCallback());
+      .then((data) => {
+        refetchCallback();
+        reset();
+        return data;
+      });
   });
 
   const submitHandler = ({ commentText }) => {
@@ -64,13 +69,12 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
             })}
           />
           <BottomFormSection>
+            <Button type="submit">Add comment</Button>
             <ErrorMessage
               errors={errors}
               name="commentText"
               render={({ message }) => <ErrorText>{message}</ErrorText>}
             />
-            {!errors.commentText ? <ErrorText></ErrorText> : <></>}
-            <Button type="submit">Add comment</Button>
           </BottomFormSection>
         </Form>
       </FormContainer>
