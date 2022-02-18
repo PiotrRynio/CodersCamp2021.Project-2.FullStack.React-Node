@@ -86,12 +86,13 @@ const BoardCreationForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar', { required: true })}
+          {...register('avatar')}
           ref={fileInput}
         />
       </StyledLabel>
-
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
+      {errors.avatar && <ErrorMessage>Please pick your board image.</ErrorMessage>}
+
       <StyledLabel>
         Access type:
         <StyledSelect {...register('accessType', { required: true })}>
@@ -109,8 +110,15 @@ const BoardCreationForm = () => {
       </StyledLabel>
 
       <StyledLabel>Place your board: </StyledLabel>
-      <MapInput setCoordsCallback={handleMapClick} />
-
+      <MapInput
+        setCoordsCallback={handleMapClick}
+        {...register('coords', {
+          validate: () => coords?.latitude !== null && coords?.longitude !== null,
+        })}
+      />
+      {errors.coords && errors.coords.message && (
+        <ErrorMessage>Please enter your location.</ErrorMessage>
+      )}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
