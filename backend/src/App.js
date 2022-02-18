@@ -3,11 +3,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { helloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
-
+import { connectToMongoDb } from './utils/dataBase/mongo/mongoDB.js';
 dotenv.config();
 
 export const app = async () => {
-  // await connectToMongoDb();
+  await connectToMongoDb();
 
   const restApiServer = express();
   restApiServer.use(cors());
