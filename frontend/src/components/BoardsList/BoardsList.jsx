@@ -45,7 +45,7 @@ const BoardsList = () => {
           {userCords.isSet ? (
             <Board
               boardData={board}
-              distanceFromUser={getDistanceFromCoordinatesInKm(board.cords, userCords)}
+              distanceFromUser={getDistanceFromCoordinatesInKm(board.coords, userCords)}
             />
           ) : (
             <Board boardData={board} />
