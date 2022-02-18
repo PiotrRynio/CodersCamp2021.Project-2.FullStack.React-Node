@@ -5,29 +5,25 @@ const { Schema } = mongoose;
 export class HelloWorldRepository {
   // eslint-disable-next-line class-methods-use-this
   static async findAll() {
-    console.log('jestesmy w find all ');
-    // return 'HELLO WORLD';
-
     // eslint-disable-next-line no-use-before-define
-    const mongoFindResult = await MongoHelloWorld.find();
+    const mongoFindResult = await MongoHelloWorld.find({});
+    console.log(mongoFindResult);
     // eslint-disable-next-line no-use-before-define
-    console.log('');
-    console.log('jestesmy na koncu ');
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
   }
 }
 
 const HelloWorldSchema = new mongoose.Schema({
   _id: Schema.Types.String,
-  helloWorldText: Schema.Types.String,
+  text: Schema.Types.String,
 });
 
-const MongoHelloWorld = mongoose.model('HelloWorldSchema', HelloWorldSchema);
+const MongoHelloWorld = mongoose.model('HelloWorldSchema', HelloWorldSchema, 'hello-world');
 
 function mongoDocumentToDomain(mongoDocument) {
   return new HelloWorld({
     // eslint-disable-next-line no-underscore-dangle
     helloWorldId: mongoDocument._id,
-    helloWorldText: mongoDocument.helloWorldText,
+    helloWorldText: mongoDocument.text,
   });
 }
