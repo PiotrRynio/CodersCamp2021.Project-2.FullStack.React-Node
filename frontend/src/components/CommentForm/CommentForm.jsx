@@ -1,4 +1,9 @@
-import { UserAvatar } from '../UserAvatar/UserAvatar';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { ErrorMessage } from '@hookform/error-message';
+import { UserContext } from 'providers/AppProviders';
+import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import {
   AvatarContainer,
   Form,
@@ -9,11 +14,6 @@ import {
   Button,
   ErrorText,
 } from './CommentForm.styled';
-import { useContext } from 'react';
-import { UserContext } from 'providers/AppProviders';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import { ErrorMessage } from '@hookform/error-message';
 
 export const CommentForm = ({ announcementId, refetchCallback }) => {
   const { user } = useContext(UserContext);
