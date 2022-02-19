@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "husky": "^7.0.4"
+  },
+  "dependencies": {
+    "@hookform/error-message": "^2.0.0"
   }
 }

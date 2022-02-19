@@ -97,7 +97,7 @@ export const StyledOptions = {
   }),
 };
 
-export const ErrorMessage = styled.div`
+export const ErrorText = styled.div`
   color: red;
   font-size: ${({ theme }) => theme.fontSize.md};
 `;

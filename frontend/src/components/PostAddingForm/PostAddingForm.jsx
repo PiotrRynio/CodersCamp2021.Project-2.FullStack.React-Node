@@ -1,8 +1,10 @@
+import { useMutation, useQuery } from 'react-query';
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
-import { useForm, Controller } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
 import { v4 as uuidv4 } from 'uuid';
+import { ErrorMessage } from '@hookform/error-message';
+import { useForm, Controller } from 'react-hook-form';
+
 import {
   Form,
   FormTitle,
@@ -14,7 +16,7 @@ import {
   Button,
   LeftColumn,
   RightColumn,
-  ErrorMessage,
+  ErrorText,
 } from './PostAddingForm.styled';
 
 const PostAddingForm = ({ formSubmit }) => {
@@ -95,17 +97,27 @@ const PostAddingForm = ({ formSubmit }) => {
             id="titleInput"
             type="text"
             placeholder="Enter title..."
-            {...register('title', { required: true, minLength: 5, maxLength: 100 })}
+            {...register('title', {
+              required: "This field can't be empty.",
+              pattern: {
+                value: /.*[^\s].*/,
+                message: "This field can't contain only whitespaces",
+              },
+              minLength: {
+                value: 5,
+                message: 'Your message should be at least 5 characters long',
+              },
+              maxLength: {
+                value: 100,
+                message: "Your title shouldn't exceed 100 characters",
+              },
+            })}
           />
-          {errors.title && errors.title.type === 'required' && (
-            <ErrorMessage>This field can't be empty</ErrorMessage>
-          )}
-          {errors.title && errors.title.type === 'minLength' && (
-            <ErrorMessage>Your title should be at least 5 characters long</ErrorMessage>
-          )}
-          {errors.title && errors.title.type === 'maxLength' && (
-            <ErrorMessage>Your title shouldn't exceed 100 characters</ErrorMessage>
-          )}
+          <ErrorMessage
+            errors={errors}
+            name="title"
+            render={({ message }) => <ErrorText>{message}</ErrorText>}
+          />
         </LeftColumn>
         <RightColumn>
           {' '}
@@ -125,20 +137,31 @@ const PostAddingForm = ({ formSubmit }) => {
       <ContentInput
         type="text"
         placeholder="Enter announcement message..."
-        {...register('content', { required: true, minLength: 3, maxLength: 300 })}
+        {...register('content', {
+          required: "This field can't be empty",
+          pattern: {
+            value: /.*[^\s].*/,
+            message: "This field can't contain only whitespaces",
+          },
+          minLength: {
+            value: 3,
+            message: 'Your message should be at least 3 characters long',
+          },
+          maxLength: {
+            value: 300,
+            message: "Your message shouldn't exceed 300 characters",
+          },
+        })}
       />
-      {errors.content && errors.content.type === 'required' && (
-        <ErrorMessage>This field can't be empty</ErrorMessage>
-      )}
-      {errors.content && errors.content.type === 'minLength' && (
-        <ErrorMessage>Your message should be at least 3 characters long</ErrorMessage>
-      )}
-      {errors.content && errors.content.type === 'maxLength' && (
-        <ErrorMessage>Your message shouldn't exceed 300 characters</ErrorMessage>
-      )}
+
       <div>
         <Button type="submit">Add</Button>
       </div>
+      <ErrorMessage
+        errors={errors}
+        name="content"
+        render={({ message }) => <ErrorText>{message}</ErrorText>}
+      />
     </Form>
   );
 };
