@@ -77,7 +77,7 @@ const PostAddingForm = ({ formSubmit }) => {
   }
 
   return (
-    <Form onSubmit={handleSubmit((data) => console.log(data))}>
+    <Form onSubmit={handleSubmit((data) => onSubmit(data))}>
       <FormTitle>
         Add new <MarkedTitle>Announcement</MarkedTitle>
       </FormTitle>
