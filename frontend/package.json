@@ -10,7 +10,8 @@
     "test:cov": "react-scripts test --coverage  --env=jsdom",
     "test:ci": "react-scripts test --ci --silent --coverage --env=jsdom",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"src/**/*.{js,scss,css,md,json}\""
+    "format": "prettier --write \"src/**/*.{js,scss,css,md,json}\"",
+    "proxy": "http://localhost:5000"
   },
   "dependencies": {
     "ol": "^6.12.0",

@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { helloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
+import { BoardsController } from './controller/Boards/Boards.controller.js';
 import { connectToMongoDb } from './utils/dataBase/mongo/mongoDB.js';
 dotenv.config();
 
@@ -16,6 +17,7 @@ export const app = async () => {
   restApiServer.use(morgan('combined'));
 
   restApiServer.use('/rest-api', helloWorldController());
+  restApiServer.use('/boards', BoardsController());
 
   return restApiServer;
 };
