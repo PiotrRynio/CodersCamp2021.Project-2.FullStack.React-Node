@@ -1,20 +1,12 @@
-import React from 'react';
-import { Container, LogOut } from './Profile.styled';
-import { useContext } from 'react';
-import { UserContext } from 'providers/AppProviders';
+import { Container } from './Profile.styled';
+import UserProfile from 'components/UserProfile/UserProfile';
+import Logout from 'components/LogoutButton/LogoutButton';
 
 const Profile = () => {
-  const { user, setUser } = useContext(UserContext);
   return (
     <Container>
-      <LogOut
-        onClick={() => {
-          if (!user.loggedIn) return;
-          setUser({ userId: 0, loggedIn: false });
-        }}
-      >
-        WYLOGUJ
-      </LogOut>
+      <UserProfile />
+      <Logout />
     </Container>
   );
 };
