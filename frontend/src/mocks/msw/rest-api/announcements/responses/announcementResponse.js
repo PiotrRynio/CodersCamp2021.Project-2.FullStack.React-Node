@@ -59,18 +59,7 @@ const sampleAnnouncement5 = {
   boardName: 'Chrząszczyżewoszyce',
   content:
     'PiesLorem ipsum dolor sit amearius condimenum nunc. Curabitur sit amet magna lorem. Suspendisse fringilla magna ligula, at tempor odio rhoncus eget. Sed pharetra imperdiet tellus, in sodales mauris vehicula non. Fusce viverra justo vel luctus dictum. Aliquam a sem eu ante fermentum scelerisque. Proin mauris erat, consectetur vel consequat quis, porttitor eu diam. Nunc aliquam arcu in neque condimentum condimentum. Sed sed condimentum arcu.',
-  comments: [
-    comment1,
-    comment2,
-    comment3,
-    comment4,
-    comment5,
-    comment1,
-    comment2,
-    comment3,
-    comment4,
-    comment5,
-  ],
+  comments: [comment1, comment2, comment3, comment4, comment5],
   date: new Date(2022, 2, 14, 0, 0, 0),
 };
 

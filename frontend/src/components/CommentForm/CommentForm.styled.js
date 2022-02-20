@@ -26,6 +26,7 @@ export const TextArea = styled.textarea`
   border-radius: 10px;
   padding: 5px;
   border-color: rgba(0, 0, 0, 0.52);
+  resize: none;
 
   :focus::-webkit-input-placeholder {
     color: transparent;
@@ -34,6 +35,7 @@ export const TextArea = styled.textarea`
 
 export const BottomFormSection = styled.div`
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 `;
 
