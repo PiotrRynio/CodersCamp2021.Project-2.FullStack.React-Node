@@ -144,7 +144,7 @@ const PostAddingForm = () => {
           },
           minLength: {
             value: 20,
-            message: 'Your message should be at least 3 characters long',
+            message: 'Your message should be at least 20 characters long',
           },
           maxLength: {
             value: 300,
