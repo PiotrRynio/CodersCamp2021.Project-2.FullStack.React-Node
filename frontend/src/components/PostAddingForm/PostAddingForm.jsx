@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
-import { v4 as uuidv4 } from 'uuid';
 import { ErrorMessage } from '@hookform/error-message';
 import { useForm, Controller } from 'react-hook-form';
 
@@ -17,9 +16,10 @@ import {
   LeftColumn,
   RightColumn,
   ErrorText,
+  BottomFormSection,
 } from './PostAddingForm.styled';
 
-const PostAddingForm = ({ formSubmit }) => {
+const PostAddingForm = () => {
   const {
     register,
     handleSubmit,
@@ -59,7 +59,6 @@ const PostAddingForm = ({ formSubmit }) => {
 
   const onSubmit = (data) => {
     let newAnnouncement = {
-      id: uuidv4(),
       title: data.title,
       boardName: data.boardName.value,
       iconType: data.iconType.value,
@@ -77,7 +76,7 @@ const PostAddingForm = ({ formSubmit }) => {
   }
 
   return (
-    <Form onSubmit={handleSubmit((data) => onSubmit(data))}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormTitle>
         Add new <MarkedTitle>Announcement</MarkedTitle>
       </FormTitle>
@@ -144,7 +143,7 @@ const PostAddingForm = ({ formSubmit }) => {
             message: "This field can't contain only whitespaces",
           },
           minLength: {
-            value: 3,
+            value: 20,
             message: 'Your message should be at least 3 characters long',
           },
           maxLength: {
@@ -153,15 +152,16 @@ const PostAddingForm = ({ formSubmit }) => {
           },
         })}
       />
-
-      <div>
-        <Button type="submit">Add</Button>
-      </div>
-      <ErrorMessage
-        errors={errors}
-        name="content"
-        render={({ message }) => <ErrorText>{message}</ErrorText>}
-      />
+      <BottomFormSection>
+        <div>
+          <Button type="submit">Add</Button>
+        </div>
+        <ErrorMessage
+          errors={errors}
+          name="content"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      </BottomFormSection>
     </Form>
   );
 };
