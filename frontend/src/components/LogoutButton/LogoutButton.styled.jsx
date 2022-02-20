@@ -4,13 +4,14 @@ export const LogoutButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 30px;
+  padding: 10px 20px;
+  margin: 10px;
   border: 0.5px solid #1c1c1c;
   border-radius: 20px;
   background: transparent;
   color: #1c1c1c;
   transition: all 0.2s ease-out;
+  cursor: pointer;
 
   &:focus {
     outline: none;

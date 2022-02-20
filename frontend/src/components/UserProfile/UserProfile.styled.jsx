@@ -10,6 +10,9 @@ export const Container = styled.div`
 `;
 
 export const UserBackground = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   min-width: 100%;
   height: 150px;
   background: #bbb;
@@ -20,6 +23,30 @@ export const UserBackground = styled.div`
 
   @media ${({ theme }) => theme.breakpoints.lg} {
     height: 300px;
+  }
+`;
+
+export const EditBackgroundButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 10px;
+  border: 0.5px solid #1c1c1c;
+  border-radius: 20px;
+  background: transparent;
+  color: #1c1c1c;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border: 0.5px solid ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
+    color: white;
   }
 `;
 
@@ -82,17 +109,29 @@ export const UserName = styled.h2`
   display: flex;
   align-self: flex-end;
   padding: 10px 10px 0 0;
-  font-weight: bold;
 `;
 
 export const UserBoardsAmount = styled.h4`
   display: flex;
   align-self: flex-end;
-  padding: 5px 10px 0 0;
+  padding: 5px 10px 40px 0;
   margin: 0;
+  opacity: 0.5;
   font-weight: normal;
 `;
 
 export const TextBold = styled.span`
   font-weight: bold;
+`;
+
+export const BoardListHeader = styled.h1`
+  display: flex;
+  align-self: flex-start;
+  padding: 10px 80px 10px 80px;
+  margin: 40px 15px 10px 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: white;
+  font-weight: normal;
 `;
