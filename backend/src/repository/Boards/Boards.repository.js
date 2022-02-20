@@ -1,6 +1,7 @@
 export class BoardsRepository {
   static async addOne(newBoard) {
-    console.log(newBoard);
+    newBoard.save();
+    console.log('w repo');
     return;
   }
 }

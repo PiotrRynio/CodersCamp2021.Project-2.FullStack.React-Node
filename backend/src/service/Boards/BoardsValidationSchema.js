@@ -3,10 +3,10 @@ import JoiObjectId from 'joi-objectid';
 const myJoiObjectId = JoiObjectId(Joi);
 
 const boardsValidationSchema = Joi.object({
-  boardName: Joi.string().min(10).required(),
+  boardName: Joi.string().min(6).required(),
   coords: Joi.object().required(),
   accessType: Joi.string().required(),
-  admin: myJoiObjectId().required,
+  adminId: myJoiObjectId().required(),
 });
 
 export default boardsValidationSchema;

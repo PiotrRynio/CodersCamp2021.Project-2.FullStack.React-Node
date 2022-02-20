@@ -9,14 +9,16 @@ export class BoardsService {
       console.log('error walidacja');
       return res.status(400).send(error.details[0].message);
     }
-
+    console.log(req.body);
     const newBoard = new BoardsModel({
       boardName: req.body.boardName,
       coords: req.body.coords,
       accessType: req.body.accessType,
-      admin: req.body.admin,
+      adminId: req.body.adminId,
       dateCreated: req.body.dateCreated,
+      announcements: [],
     });
+    console.log(newBoard);
     await BoardsRepository.addOne(newBoard);
     res.json(newBoard);
   }

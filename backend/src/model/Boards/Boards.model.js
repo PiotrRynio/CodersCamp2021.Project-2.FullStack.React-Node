@@ -22,7 +22,7 @@ const BoardSchema = new mongoose.Schema({
     default: Date.now(),
   },
   avatar: String,
-  announcements: [mongoose.Schema.Types.ObjectId],
+  announcements: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 
 export const BoardsModel = mongoose.model('BoardSchema', BoardSchema, 'boards');
