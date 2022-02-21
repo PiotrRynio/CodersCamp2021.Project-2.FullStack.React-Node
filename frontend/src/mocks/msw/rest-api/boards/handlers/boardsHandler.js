@@ -11,7 +11,7 @@ const getAnnouncementListResponse = rest.get('/boards/:id/announcements', (req, 
 });
 const postAnnouncementListResponse = rest.post('/boards/:id/announcements', (req, res, ctx) => {
   const { id } = req.params;
-  boardsResponse[id].announcements.push(req.body);
+  boardsResponse.boards[id].announcements.push(req.body);
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id].announcements));
 });
 

@@ -6,8 +6,14 @@ export function helloWorldController() {
 
   router
     .route('/hello-world')
-    .get(HelloWorldService.getHelloWorld)
-    .post(HelloWorldService.postHelloWorld);
+    // .get(() => HelloWorldService.getHelloWorld())
+    .post((request, response) => {
+      HelloWorldService.postHelloWorld('arg')
+        .then((data) => data)
+        .catch((error) => {
+          response.status(400).send({ message: error.message });
+        });
+    });
 
   return router;
 }
