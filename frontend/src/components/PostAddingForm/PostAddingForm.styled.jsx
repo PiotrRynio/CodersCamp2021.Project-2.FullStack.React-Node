@@ -96,3 +96,15 @@ export const StyledOptions = {
     height: '40px',
   }),
 };
+
+export const BottomFormSection = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+`;
+
+export const ErrorText = styled.p`
+  padding-top: 4px;
+  color: red;
+  font-size: ${({ theme }) => theme.fontSize.md};
+`;
