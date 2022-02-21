@@ -10,12 +10,20 @@ export class HelloWorldService {
     // TODO: .catch((err) => res.status(500).json({ message: `Server error: ${err}` }));
   }
 
-  static async postHelloWorld(req, res) {
-    const { error } = helloWorldValidationSchema.validate(req.body);
-    if (error) {
-      return res.status(400).send(error.details[0].message);
-    }
+  static async postHelloWorld(helloWorldName) {
+    console.log('1111111111');
+    // const { error } = helloWorldValidationSchema.validate(helloWorldName };
+    throw new Error('nasz error');
 
+    // // console.log(error);
+    // if (error) {
+    //   // return res.status(400).send(error.details[0].message);
+    //   //
+    //   //
+    //   // return { type: 'error', message: error.details[0].message };
+    // }
+
+    console.log('222222');
     const hello = { name: req.body.name };
 
     res.status(200).json(hello);
