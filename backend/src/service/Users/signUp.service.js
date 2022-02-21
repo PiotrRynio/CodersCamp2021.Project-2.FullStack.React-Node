@@ -1,21 +1,11 @@
-import { MongoSingUp } from '../../repository/User/SignUpModels.repository.js';
+import { UserRegistrationDetailRepository } from '../../repository/User/SignUpModels.repository.js';
 
-export class SignUpUser {
-  static async postSignUp(req, res) {
-    const singedUpUser = new MongoSingUp({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      confirmPassword: req.body.confirmPassword,
-    });
-    singedUpUser
-      .save()
-      .then((data) => {
-        res.json(data);
-      })
-      .catch((error) => {
-        res.json(error);
-      });
+export class UserRegistrationDetailsService {
+  static async signUp(userRegistrationDetails) {
+    const userEmail = userRegistrationDetails.email;
+    const registeredUserRegistrationDetails = await UserRegistrationDetailRepository.find(
+      userEmail,
+    );
+    return registeredUserRegistrationDetails;
   }
 }

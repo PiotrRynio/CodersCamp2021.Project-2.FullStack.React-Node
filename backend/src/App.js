@@ -4,7 +4,8 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { helloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
 import { connectToMongoDb } from './utils/dataBase/mongo/mongoDB.js';
-import { signUp } from './controller/users/signUp.controler.js';
+import { userRegistrationDetailsController } from './controller/users/signUp.controler.js';
+
 dotenv.config();
 
 export const app = async () => {
@@ -17,6 +18,6 @@ export const app = async () => {
   restApiServer.use(morgan('combined'));
 
   restApiServer.use('/rest-api', helloWorldController());
-  restApiServer.use('/rest-api', signUp());
+  restApiServer.use('/rest-api', userRegistrationDetailsController());
   return restApiServer;
 };

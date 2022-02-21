@@ -20,8 +20,29 @@ import {
 } from './SignUp.styled';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { ErrorMessage } from '@hookform/error-message';
 
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { mutate } = useMutation((newUserData) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newUserData),
+    };
+    return fetch(`http://localhost:5000/rest-api/sign-up`, requestOptions).then((response) =>
+      response.json(),
+    );
+  });
+
+  const submitHandler = (formData) => {
+    mutate(formData);
+  };
+
   return (
     <Container>
       <LogoSection>
@@ -34,28 +55,82 @@ const SignUp = () => {
           Get started with us today!
           <br /> Create your account!
         </FormText>
-        <InputsWrapper>
-          <FormID>
-            <FormFirstName type="text" name="firstName" placeholder="First name" />
-            <FormLastName type="text" name="lastName" placeholder="Last name" />
-          </FormID>
-          <FormEmail type="text" name="email" placeholder="Email" />
-          <FormPassword type="password" name="password" placeholder="Password" />
+        <InputsWrapper onSubmit={handleSubmit(submitHandler)}>
+          <FormFirstName
+            placeholder="First name"
+            {...register('firstName', {
+              required: 'This is required.',
+              pattern: {
+                value: /.*[^\s].*/,
+                message: "First name can't contain only whitespaces.",
+              },
+              maxLength: {
+                value: 32,
+                message: 'This input exceed max length (32).',
+              },
+            })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="firstName"
+            render={({ message }) => <p>{message}</p>}
+          />
+          <FormLastName
+            placeholder="Last name"
+            {...register('lastName', {
+              required: 'This is required.',
+              pattern: {
+                value: /.*[^\s].*/,
+                message: "First name can't contain only whitespaces.",
+              },
+              maxLength: {
+                value: 32,
+                message: 'This input exceed max length (32).',
+              },
+            })}
+          />
+
+          <FormEmail
+            type="email"
+            placeholder="Email"
+            {...register('email', {
+              required: 'This is required.',
+              maxLength: {
+                value: 64,
+                message: 'This input exceed max length (64).',
+              },
+            })}
+          />
+          <FormPassword
+            type="password"
+            placeholder="Password"
+            {...register('password', {
+              required: 'This is required.',
+              minLength: 8,
+              maxLength: {
+                value: 32,
+                message: 'This input exceed max length (32).',
+              },
+            })}
+          />
           <FormPassword2
             type="password"
-            name="confirmPassword"
             placeholder="Confirm your password"
+            {...register('confirmPassword', {
+              required: 'This is required.',
+              minLength: 8,
+              maxLength: {
+                value: 32,
+                message: 'This input exceed max length (32).',
+              },
+            })}
           />
-          <FormButtons>
-            <FormLink to="/">
-              <FormSubmit>Submit!</FormSubmit>
-            </FormLink>
 
-            <FormLink to="/log-in">
-              <FormLogIn>Log In</FormLogIn>
-            </FormLink>
-          </FormButtons>
+          <FormSubmit type="submit">Submit!</FormSubmit>
         </InputsWrapper>
+        <FormLink to="/log-in">
+          <FormLogIn>Log In</FormLogIn>
+        </FormLink>
       </Form>
     </Container>
   );
