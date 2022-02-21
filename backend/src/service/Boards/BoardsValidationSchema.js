@@ -7,6 +7,8 @@ const boardsValidationSchema = Joi.object({
   coords: Joi.object().required(),
   accessType: Joi.string().required(),
   adminId: myJoiObjectId().required(),
+  announcements: Joi.array(),
+  dateCreated: Joi.date(),
 });
 
 export default boardsValidationSchema;
