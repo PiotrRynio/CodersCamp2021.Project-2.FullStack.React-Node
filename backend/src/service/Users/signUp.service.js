@@ -7,6 +7,7 @@ export class SignUpUser {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
+      confirmPassword: req.body.confirmPassword,
     });
     singedUpUser
       .save()

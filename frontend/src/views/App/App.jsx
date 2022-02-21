@@ -4,7 +4,7 @@ import Notifications from 'views/Notifications/Notifications';
 import Subscribed from 'views/Subscribed/Subscribed';
 import AddPost from 'views/AddPost/AddPost';
 import Profile from 'views/Profile/Profile';
-import SignIn from 'views/SignIn/SignIn';
+import SignUp from 'views/SignUp/SignUp';
 import Layout from 'views/Layout';
 import Login from 'views/Login/Login';
 import ProtectedRoute from 'views/ProtectedRoute';
@@ -20,7 +20,7 @@ function App() {
       <Container>
         <Routes>
           <Route path="/log-in" element={<Login />} />
-          <Route path="/sign-up" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/recover-password" element={<RecoverPassword />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

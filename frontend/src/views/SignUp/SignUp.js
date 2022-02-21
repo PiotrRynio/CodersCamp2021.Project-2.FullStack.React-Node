@@ -17,9 +17,11 @@ import {
   FormLink,
   FormLogIn,
   FormSubmit,
-} from './SignIn.styled';
+} from './SignUp.styled';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <Container>
       <LogoSection>
@@ -41,7 +43,7 @@ const SignIn = () => {
           <FormPassword type="password" name="password" placeholder="Password" />
           <FormPassword2
             type="password"
-            name="repeatedPassword"
+            name="confirmPassword"
             placeholder="Confirm your password"
           />
           <FormButtons>
@@ -59,4 +61,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
