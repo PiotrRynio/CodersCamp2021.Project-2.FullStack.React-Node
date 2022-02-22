@@ -7,6 +7,5 @@ export class UserRegistrationDetails {
     this.lastName = props.lastName;
     this.email = props.email;
     this.password = props.password;
-    console.log('W KLASIE JESTEŚMY!');
   }
 }

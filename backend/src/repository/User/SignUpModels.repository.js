@@ -11,20 +11,11 @@ export class UserRegistrationDetailRepository {
   }
 
   static async createNewUser(userRegistrationDetails) {
-    const newUserMongoDocument = {
-      _id: 'xxx',
-      firstName: 'Nowy User',
-      lastName: 'xxx',
-      email: 'xxx@xxx.ps',
-      password: 'xxx',
-    };
-    console.log(userRegistrationDetails);
-    await MongoUserRegistrationDetails.create(newUserMongoDocument);
+    await MongoUserRegistrationDetails.create(userRegistrationDetails);
   }
 }
 
 const userRegistrationDetailsSchema = new mongoose.Schema({
-  _id: String,
   firstName: {
     type: String,
     required: true,
@@ -49,14 +40,11 @@ const userRegistrationDetailsSchema = new mongoose.Schema({
   },
 });
 
-const MongoUserRegistrationDetails = mongoose.model(
-  'UserRegistrationDetailsSchema',
-  userRegistrationDetailsSchema,
-);
+const MongoUserRegistrationDetails = mongoose.model('XDDD', userRegistrationDetailsSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   return new UserRegistrationDetails({
-    userId: mongoDocument._id,
+    userId: mongoDocument._id.toString(),
     firstName: mongoDocument.firstName,
     lastName: mongoDocument.lastName,
     email: mongoDocument.email,

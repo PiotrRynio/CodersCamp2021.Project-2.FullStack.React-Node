@@ -1,5 +1,4 @@
 import { UserRegistrationDetailRepository } from '../../repository/User/SignUpModels.repository.js';
-import { UserRegistrationDetails } from './UserRegistrationDetails.js';
 
 export class UserRegistrationDetailsService {
   static async signUp(userRegistrationDetails) {
@@ -7,8 +6,9 @@ export class UserRegistrationDetailsService {
     const registeredUserRegistrationDetails = await UserRegistrationDetailRepository.findUser(
       userEmail,
     );
+    console.log(registeredUserRegistrationDetails);
 
-    const isUserExist = registeredUserRegistrationDetails.length;
+    const isUserExist = !!registeredUserRegistrationDetails.length;
 
     if (isUserExist) {
       throw new Error('User with this email exists');
