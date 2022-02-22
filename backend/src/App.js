@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { helloWorldController } from './controller/HelloWorld/HelloWorld.controller.js';
 import { connectToMongoDb } from './utils/dataBase/mongo/mongoDB.js';
-import { userRegistrationDetailsController } from './controller/users/signUp.controller.js';
+import { userRegistrationDetailsController } from './controller/users/UserRegistrationDetails.controller.js';
 
 dotenv.config();
 

@@ -40,7 +40,10 @@ const userRegistrationDetailsSchema = new mongoose.Schema({
   },
 });
 
-const MongoUserRegistrationDetails = mongoose.model('XDDD', userRegistrationDetailsSchema);
+const MongoUserRegistrationDetails = mongoose.model(
+  'userRegistrationDetails',
+  userRegistrationDetailsSchema,
+);
 
 function mongoDocumentToDomain(mongoDocument) {
   return new UserRegistrationDetails({

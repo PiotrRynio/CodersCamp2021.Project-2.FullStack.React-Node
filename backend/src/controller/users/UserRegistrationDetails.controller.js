@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { UserRegistrationDetailsService } from '../../service/Users/signUp.service.js';
+import { UserRegistrationDetailsService } from '../../service/Users/UserRegistrationDetails.service.js';
 import { UserRegistrationDetails } from '../../service/Users/UserRegistrationDetails.js';
 
 export function userRegistrationDetailsController() {
