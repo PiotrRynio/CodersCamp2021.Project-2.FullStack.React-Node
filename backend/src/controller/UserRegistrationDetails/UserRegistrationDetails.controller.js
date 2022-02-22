@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { UserRegistrationDetailsService } from '../../service/Users/UserRegistrationDetails.service.js';
-import { UserRegistrationDetails } from '../../service/Users/UserRegistrationDetails.js';
+import { UserRegistrationDetailsService } from '../../service/UserRegistrationDetails/UserRegistrationDetails.service.js';
+import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
 export function userRegistrationDetailsController() {
   const router = Router();

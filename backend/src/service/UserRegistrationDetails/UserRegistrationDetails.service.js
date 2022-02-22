@@ -1,4 +1,4 @@
-import { UserRegistrationDetailRepository } from '../../repository/User/UserRegistrationDetail.repository.js';
+import { UserRegistrationDetailRepository } from '../../repository/UserRegistrationDetails/UserRegistrationDetail.repository.js';
 
 export class UserRegistrationDetailsService {
   static async signUp(userRegistrationDetails) {

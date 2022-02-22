@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { UserRegistrationDetails } from '../../service/Users/UserRegistrationDetails.js';
+import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
 export class UserRegistrationDetailRepository {
   static async findUser(email) {
