@@ -39,7 +39,7 @@ export const Form = styled.div`
   }
 `;
 
-export const InputsWrapper = styled.div`
+export const InputsWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
