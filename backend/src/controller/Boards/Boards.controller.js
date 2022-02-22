@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { BoardsService } from '../../service/Boards/BoardsService.js';
-import { BoardsModel } from '../../model/Boards/Boards.model.js';
+import { Board } from '../../service/Boards/Board.js';
 
 export function BoardsController() {
   const router = Router();
@@ -8,16 +8,17 @@ export function BoardsController() {
     .route('/')
     .get(BoardsService.addOne)
     .post((request, response) => {
-      const newBoard = new BoardsModel({
-        boardName: request.body.boardName,
-        coords: request.body.coords,
-        accessType: request.body.accessType,
-        adminId: request.body.adminId,
-        dateCreated: request.body.dateCreated,
-        announcements: [],
-      });
-
-      BoardsService.addOne(newBoard)
+      console.log(request.body);
+      BoardsService.addOne(
+        new Board({
+          boardName: request.body.boardName,
+          coords: request.body.coords,
+          accessType: request.body.accessType,
+          adminId: request.body.adminId,
+          dateCreated: request.body.dateCreated,
+          announcements: [],
+        }),
+      )
         .then((data) => response.status(200).send({ data }))
         .catch((error) => {
           console.log('error catch');
