@@ -2,12 +2,17 @@ import mongoose from 'mongoose';
 import { UserRegistrationDetails } from '../../service/Users/UserRegistrationDetails.js';
 
 export class UserRegistrationDetailRepository {
-  static async find(email) {
+  static async findUser(email) {
     const mongoFindResult = await MongoUserRegistrationDetails.find({
       email: email,
     });
 
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+  }
+
+  static async createNewUser(userRegistrationDetails) {
+    console.log(userRegistrationDetails);
+    await MongoUserRegistrationDetails.create(userRegistrationDetails);
   }
 }
 
