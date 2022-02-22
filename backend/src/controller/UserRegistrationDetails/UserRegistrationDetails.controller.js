@@ -13,8 +13,9 @@ export function userRegistrationDetailsController() {
         password: request.body.password,
       }),
     )
-      .then((data) => {
-        response.status(200).send(data);
+      .then((email) => {
+        const returnedData = { email: email };
+        response.status(200).send(returnedData);
       })
       .catch((error) => {
         response.status(400).send({ message: error.message });
