@@ -11,8 +11,15 @@ export class UserRegistrationDetailRepository {
   }
 
   static async createNewUser(userRegistrationDetails) {
+    const newUserMongoDocument = {
+      _id: 'xxx',
+      firstName: 'Nowy User',
+      lastName: 'xxx',
+      email: 'xxx@xxx.ps',
+      password: 'xxx',
+    };
     console.log(userRegistrationDetails);
-    await MongoUserRegistrationDetails.create(userRegistrationDetails);
+    await MongoUserRegistrationDetails.create(newUserMongoDocument);
   }
 }
 
