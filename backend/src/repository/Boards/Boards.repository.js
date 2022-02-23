@@ -1,9 +1,9 @@
-import { BoardsModel } from '../../repository/Boards/Boards.model.js';
+import { MongoBoardsModel } from './MongoBoardsModel.js';
 import { Board } from '../../service/Boards/Board.js';
 
 export class BoardsRepository {
   static async createNewBoard(newBoard) {
-    const createdUser = await BoardsModel.create(newBoard);
+    const createdUser = await MongoBoardsModel.create(newBoard);
     console.log(createdUser);
   }
 }

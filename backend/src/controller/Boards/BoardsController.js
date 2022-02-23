@@ -2,14 +2,14 @@ import { Router } from 'express';
 import { BoardsService } from '../../service/Boards/BoardsService.js';
 import { Board } from '../../service/Boards/Board.js';
 
-export function BoardsController() {
+export function boardsController() {
   const router = Router();
   router
     .route('/')
-    .get(BoardsService.addOne)
+    .get(BoardsService.addBoard)
     .post((request, response) => {
       console.log(request.body);
-      BoardsService.addOne(
+      BoardsService.addBoard(
         new Board({
           boardName: request.body.boardName,
           coords: request.body.coords,

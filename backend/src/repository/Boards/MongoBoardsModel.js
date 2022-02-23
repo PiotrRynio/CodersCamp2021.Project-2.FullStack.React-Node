@@ -25,4 +25,4 @@ const BoardSchema = new mongoose.Schema({
   announcements: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 
-export const BoardsModel = mongoose.model('BoardSchema', BoardSchema, 'boards');
+export const MongoBoardsModel = mongoose.model('BoardSchema', BoardSchema, 'boards');
