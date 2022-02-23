@@ -1,10 +1,9 @@
 import { Schema, model } from 'mongoose';
 import Announcement from '../../service/Announcement/Announcement.js';
 
-export class HelloWorldRepository {
-  static async findAll() {
-    const mongoFindResult = await MongoAnnouncement.find();
-    return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+export class AnnouncementsRepository {
+  static async addNewAnnouncement(newAnnouncement) {
+    await MongoAnnouncements.create(newAnnouncement);
   }
 }
 
@@ -34,7 +33,7 @@ const announcementSchema = new Schema({
   date: { type: Date, default: Date.now() },
 });
 
-const MongoAnnouncement = model('AnnouncementSchema', announcementSchema);
+const MongoAnnouncements = model('AnnouncementSchema', announcementSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   const announcement = {

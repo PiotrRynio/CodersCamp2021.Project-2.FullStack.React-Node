@@ -1,12 +1,11 @@
 class Announcement {
-  constructor(announcement) {
-    const { id, title, boardName, content, comments, date } = announcement;
-    this.id = id;
+  constructor({ announcement }) {
+    const { title, boardName, content, comments, date } = announcement;
     this.title = title;
     this.boardName = boardName;
     this.content = content;
-    this.commentsIds = comments;
-    this.date = date;
+    this.commentsIds = comments || [];
+    this.date = date || Date.now();
   }
 }
 
