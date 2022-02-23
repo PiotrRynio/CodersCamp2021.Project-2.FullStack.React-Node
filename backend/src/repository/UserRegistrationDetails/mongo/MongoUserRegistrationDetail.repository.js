@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/UserRegistrationDetails.js';
+import { UserRegistrationDetails } from '../../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
-export class UserRegistrationDetailRepository {
+export class MongoUserRegistrationDetailRepository {
   static async findUser(email) {
     const mongoFindResult = await MongoUserRegistrationDetails.find({
       email: email,

@@ -1,11 +1,11 @@
-import { UserRegistrationDetailRepository } from '../../repository/UserRegistrationDetails/UserRegistrationDetail.repository.js';
+import { MongoUserRegistrationDetailRepository } from '../../repository/UserRegistrationDetails/mongo/MongoUserRegistrationDetail.repository.js';
 import { UserRegistrationDetails } from './UserRegistrationDetails.js';
 import bcrypt from 'bcrypt';
 
 export class UserRegistrationDetailsService {
   static async signUp(userRegistrationDetails) {
     const userEmail = userRegistrationDetails.email;
-    const registeredUserRegistrationDetails = await UserRegistrationDetailRepository.findUser(
+    const registeredUserRegistrationDetails = await MongoUserRegistrationDetailRepository.findUser(
       userEmail,
     );
 
@@ -29,7 +29,9 @@ export class UserRegistrationDetailsService {
       password: hashedPassword,
     });
 
-    await UserRegistrationDetailRepository.createNewUser(userRegistrationDetailWithHashPassword);
+    await MongoUserRegistrationDetailRepository.createNewUser(
+      userRegistrationDetailWithHashPassword,
+    );
 
     return userRegistrationDetailWithHashPassword.email;
   }
