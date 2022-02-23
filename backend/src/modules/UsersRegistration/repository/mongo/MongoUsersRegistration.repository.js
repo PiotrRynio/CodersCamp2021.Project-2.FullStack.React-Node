@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { UserRegistrationDetails } from '../../../service/UserRegistrationDetails/UserRegistrationDetails.js';
+import { UserRegistration } from '../../service/UserRegistration.js';
 
-export class MongoUserRegistrationDetailRepository {
+export class MongoUsersRegistrationRepository {
   constructor() {}
 
   async findUser(email) {
@@ -48,7 +48,7 @@ const MongoUserRegistrationDetails = mongoose.model(
 );
 
 function mongoDocumentToDomain(mongoDocument) {
-  return new UserRegistrationDetails({
+  return new UserRegistration({
     userId: mongoDocument._id.toString(),
     firstName: mongoDocument.firstName,
     lastName: mongoDocument.lastName,

@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/UserRegistrationDetails.js';
+import { UserRegistration } from '../service/UserRegistration.js';
 
-export class UserRegistrationDetailsController {
+export class UsersRegistrationController {
   constructor(service) {
     this.service = service;
     this.router = Router();
@@ -9,7 +9,7 @@ export class UserRegistrationDetailsController {
     this.router.route('/sign-up').post((request, response) => {
       this.service
         .signUp(
-          new UserRegistrationDetails({
+          new UserRegistration({
             firstName: request.body.firstName,
             lastName: request.body.lastName,
             email: request.body.email,

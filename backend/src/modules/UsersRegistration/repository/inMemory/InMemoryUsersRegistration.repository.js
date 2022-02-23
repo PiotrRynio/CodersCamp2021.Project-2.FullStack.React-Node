@@ -1,4 +1,4 @@
-export class InMemoryUserRegistrationDetailRepository {
+export class InMemoryUsersRegistrationRepository {
   constructor() {
     this.entities = {};
   }

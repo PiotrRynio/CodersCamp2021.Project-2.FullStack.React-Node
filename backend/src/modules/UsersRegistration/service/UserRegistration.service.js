@@ -1,7 +1,7 @@
-import { UserRegistrationDetails } from './UserRegistrationDetails.js';
+import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
 
-export class UserRegistrationDetailsService {
+export class UserRegistrationService {
   constructor(repository) {
     this.repository = repository;
   }
@@ -22,7 +22,7 @@ export class UserRegistrationDetailsService {
 
     const hashedPassword = bcrypt.hashSync(nonHashedPassword, salt);
 
-    const userRegistrationDetailWithHashPassword = new UserRegistrationDetails({
+    const userRegistrationDetailWithHashPassword = new UserRegistration({
       userId: userRegistrationDetails.userId,
       firstName: userRegistrationDetails.firstName,
       lastName: userRegistrationDetails.lastName,
