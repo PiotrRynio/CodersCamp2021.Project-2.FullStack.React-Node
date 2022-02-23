@@ -3,6 +3,7 @@ import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/U
 
 export class UserRegistrationDetailRepository {
   constructor() {}
+
   async findUser(email) {
     const mongoFindResult = await MongoUserRegistrationDetails.find({
       email: email,
