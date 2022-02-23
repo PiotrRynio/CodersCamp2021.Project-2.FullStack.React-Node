@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { UserRegistrationDetails } from '../../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
-export class UserRegistrationDetailRepository {
+export class MongoUserRegistrationDetailRepository {
   constructor() {}
 
   async findUser(email) {
