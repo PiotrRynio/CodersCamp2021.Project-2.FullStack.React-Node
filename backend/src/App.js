@@ -12,12 +12,13 @@ dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
+  const mongoRepositoryType = 'MONGO';
+  // const inMemoryUserRegistrationDetailRepository = new InMemoryUserRegistrationDetailRepository();
+  // const mongoUserRegistrationDetailRepository = new MongoUserRegistrationDetailRepository();
+  // const mySqlUserRegistrationDetailRepository = new MySqlUserRegistrationDetailRepository();
 
-  const userRegistrationDetailRepository = new MongoUserRegistrationDetailRepository();
-  const inMemoryUserRegistrationDetailRepository = new InMemoryUserRegistrationDetailRepository();
   const userRegistrationDetailsService = new UserRegistrationDetailsService(
-    // userRegistrationDetailRepository,
-    inMemoryUserRegistrationDetailRepository,
+    userRegistrationDetailRepository(mongoRepositoryType),
   );
   const userRegistrationDetailsController = new UserRegistrationDetailsController(
     userRegistrationDetailsService,
@@ -32,3 +33,10 @@ export const app = async () => {
 
   return restApiServer;
 };
+
+function userRegistrationDetailRepository(inMemoryRepositoryType) {
+  if (inMemoryRepositoryType === 'MONGO') {
+    return new MongoUserRegistrationDetailRepository();
+  }
+  return new InMemoryUserRegistrationDetailRepository();
+}
