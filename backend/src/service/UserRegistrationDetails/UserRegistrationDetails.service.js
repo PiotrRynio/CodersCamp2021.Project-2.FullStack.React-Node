@@ -1,3 +1,4 @@
+import { UserRegistrationDetailRepository } from '../../repository/UserRegistrationDetails/mongo/UserRegistrationDetail.repository.js';
 import { UserRegistrationDetails } from './UserRegistrationDetails.js';
 import bcrypt from 'bcrypt';
 

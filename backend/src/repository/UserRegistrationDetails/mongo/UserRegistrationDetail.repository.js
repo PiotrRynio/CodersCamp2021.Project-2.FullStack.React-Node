@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/UserRegistrationDetails.js';
+import { UserRegistrationDetails } from '../../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
 export class UserRegistrationDetailRepository {
   constructor() {}
