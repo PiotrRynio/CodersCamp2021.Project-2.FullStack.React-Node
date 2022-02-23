@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export class UserRegistrationDetails {
+export class UserRegistration {
   constructor(props) {
     this.userId = props.userId || uuidv4();
     this.firstName = props.firstName;

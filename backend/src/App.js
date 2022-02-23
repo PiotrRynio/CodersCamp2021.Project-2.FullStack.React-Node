@@ -3,24 +3,21 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { connectToMongoDb } from './common/repository/mongo/mongoDB.js';
-import { UserRegistrationDetailsController } from './controller/UserRegistrationDetails/UserRegistrationDetails.controller.js';
-import { UserRegistrationDetailsService } from './service/UserRegistrationDetails/UserRegistrationDetails.service.js';
-import { MongoUserRegistrationDetailRepository } from './repository/UserRegistrationDetails/mongo/MongoUserRegistrationDetail.repository.js';
-import { InMemoryUserRegistrationDetailRepository } from './repository/UserRegistrationDetails/inMemory/InMemoryUserRegistrationDetail.repository.js';
+import { UsersRegistrationController } from './modules/UsersRegistration/controller/UsersRegistration.controller.js';
+import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
+import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
+import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
 
 dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
-  const mongoRepositoryType = 'MONGO';
-  // const inMemoryUserRegistrationDetailRepository = new InMemoryUserRegistrationDetailRepository();
-  // const mongoUserRegistrationDetailRepository = new MongoUserRegistrationDetailRepository();
-  // const mySqlUserRegistrationDetailRepository = new MySqlUserRegistrationDetailRepository();
+  const repositoryType = 'MONGO';
 
-  const userRegistrationDetailsService = new UserRegistrationDetailsService(
-    userRegistrationDetailRepository(mongoRepositoryType),
+  const userRegistrationDetailsService = new UserRegistrationService(
+    userRegistrationDetailRepository(repositoryType),
   );
-  const userRegistrationDetailsController = new UserRegistrationDetailsController(
+  const userRegistrationDetailsController = new UsersRegistrationController(
     userRegistrationDetailsService,
   );
 
@@ -36,7 +33,7 @@ export const app = async () => {
 
 function userRegistrationDetailRepository(inMemoryRepositoryType) {
   if (inMemoryRepositoryType === 'MONGO') {
-    return new MongoUserRegistrationDetailRepository();
+    return new MongoUsersRegistrationRepository();
   }
-  return new InMemoryUserRegistrationDetailRepository();
+  return new InMemoryUsersRegistrationRepository();
 }
