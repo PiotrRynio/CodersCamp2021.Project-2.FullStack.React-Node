@@ -25,7 +25,7 @@ export const app = async () => {
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
-  restApiServer.use('/rest-api', userRegistrationDetailsController);
+  restApiServer.use('/rest-api', userRegistrationDetailsController.router);
 
   return restApiServer;
 };
