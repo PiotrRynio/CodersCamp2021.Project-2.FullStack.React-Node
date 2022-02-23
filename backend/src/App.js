@@ -19,5 +19,7 @@ export const app = async () => {
   restApiServer.use('/rest-api', userRegistrationDetailsController());
   restApiServer.use('/rest-api', announcementsController());
 
+  // TODO: Pull maina i przerobić na wersję z modułami.
+
   return restApiServer;
 };

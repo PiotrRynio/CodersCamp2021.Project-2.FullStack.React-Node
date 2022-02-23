@@ -4,9 +4,9 @@ import Announcement from '../../service/Announcement/Announcement.js';
 
 export function announcementsController() {
   const router = Router();
-  console.log('sadhbasfkjbsa');
   router.route('/boards/:id/announcements').post((request, response) => {
-    AnnouncementsService.addNewAnnouncement(new Announcement(request.body))
+    const id = request.params.id;
+    AnnouncementsService.addNewAnnouncement(new Announcement(request.body), id)
       .then((announcement) => {
         const returnedData = { announcement: announcement };
         response.status(200).send(returnedData);

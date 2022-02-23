@@ -1,13 +1,15 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 import Announcement from '../../service/Announcement/Announcement.js';
 
 export class AnnouncementsRepository {
   static async addNewAnnouncement(newAnnouncement) {
     await MongoAnnouncements.create(newAnnouncement);
   }
+
+  // TODO: Dodać odczytywanie jednego announcementu z bazy.
 }
 
-const announcementSchema = new Schema({
+const announcementSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -29,11 +31,11 @@ const announcementSchema = new Schema({
     minlength: 20,
     maxlength: 300,
   },
-  comments: [{ type: Schema.Types.ObjectId }],
+  comments: [{ type: mongoose.Schema.Types.ObjectId }],
   date: { type: Date, default: Date.now() },
 });
 
-const MongoAnnouncements = model('AnnouncementSchema', announcementSchema);
+const MongoAnnouncements = mongoose.model('AnnouncementSchema', announcementSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   const announcement = {

@@ -1,6 +1,8 @@
 class Announcement {
-  constructor({ announcement }) {
-    const { title, boardName, content, comments, date } = announcement;
+  constructor(props) {
+    // TODO: Dodać walidację
+
+    const { title, boardName, content, comments, date } = props;
     this.title = title;
     this.boardName = boardName;
     this.content = content;
