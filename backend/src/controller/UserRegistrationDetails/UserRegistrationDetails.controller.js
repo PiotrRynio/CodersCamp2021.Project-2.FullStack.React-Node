@@ -1,15 +1,12 @@
 import { Router } from 'express';
-import { router } from 'express/lib/application.js';
-import {
-  UserRegistrationDetails
-} from "../../service/UserRegistrationDetails/UserRegistrationDetails.js";
+import { UserRegistrationDetails } from '../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
 export class UserRegistrationDetailsController {
   constructor(service) {
     this.service = service;
     this.router = Router();
 
-    router.route('/sign-up').post((request, response) => {
+    this.router.route('/sign-up').post((request, response) => {
       this.service
         .signUp(
           new UserRegistrationDetails({
