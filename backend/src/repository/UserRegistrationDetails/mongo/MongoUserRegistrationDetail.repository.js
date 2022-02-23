@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 import { UserRegistrationDetails } from '../../../service/UserRegistrationDetails/UserRegistrationDetails.js';
 
 export class MongoUserRegistrationDetailRepository {
-  static async findUser(email) {
+  constructor() {}
+
+  async findUser(email) {
     const mongoFindResult = await MongoUserRegistrationDetails.find({
       email: email,
     });
@@ -10,7 +12,7 @@ export class MongoUserRegistrationDetailRepository {
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
   }
 
-  static async createNewUser(userRegistrationDetails) {
+  async createNewUser(userRegistrationDetails) {
     await MongoUserRegistrationDetails.create(userRegistrationDetails);
   }
 }

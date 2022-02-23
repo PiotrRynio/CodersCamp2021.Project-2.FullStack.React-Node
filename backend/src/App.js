@@ -3,19 +3,40 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { connectToMongoDb } from './common/repository/mongo/mongoDB.js';
-import { userRegistrationDetailsController } from './controller/UserRegistrationDetails/UserRegistrationDetails.controller.js';
+import { UserRegistrationDetailsController } from './controller/UserRegistrationDetails/UserRegistrationDetails.controller.js';
+import { UserRegistrationDetailsService } from './service/UserRegistrationDetails/UserRegistrationDetails.service.js';
+import { MongoUserRegistrationDetailRepository } from './repository/UserRegistrationDetails/mongo/MongoUserRegistrationDetail.repository.js';
+import { InMemoryUserRegistrationDetailRepository } from './repository/UserRegistrationDetails/inMemory/InMemoryUserRegistrationDetail.repository.js';
 
 dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
+  const mongoRepositoryType = 'MONGO';
+  // const inMemoryUserRegistrationDetailRepository = new InMemoryUserRegistrationDetailRepository();
+  // const mongoUserRegistrationDetailRepository = new MongoUserRegistrationDetailRepository();
+  // const mySqlUserRegistrationDetailRepository = new MySqlUserRegistrationDetailRepository();
+
+  const userRegistrationDetailsService = new UserRegistrationDetailsService(
+    userRegistrationDetailRepository(mongoRepositoryType),
+  );
+  const userRegistrationDetailsController = new UserRegistrationDetailsController(
+    userRegistrationDetailsService,
+  );
 
   const restApiServer = express();
   restApiServer.use(cors());
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
-  restApiServer.use('/rest-api', userRegistrationDetailsController());
+  restApiServer.use('/rest-api', userRegistrationDetailsController.router);
 
   return restApiServer;
 };
+
+function userRegistrationDetailRepository(inMemoryRepositoryType) {
+  if (inMemoryRepositoryType === 'MONGO') {
+    return new MongoUserRegistrationDetailRepository();
+  }
+  return new InMemoryUserRegistrationDetailRepository();
+}
