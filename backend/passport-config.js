@@ -20,7 +20,6 @@ export function initialize(passport, getUserByEmail, getUserById) {
     }
   };
 
-
   passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser));
   passport.serializeUser((user, done) => done(null, user.userId));
   passport.deserializeUser((userId, done) => {

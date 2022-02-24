@@ -1,18 +1,29 @@
+import {initialize} from "../passport-config.js";
 import express from 'express';
+import session from 'express-session';
+import flash from 'express-flash';
+import passport from "passport";
+import methodOverride from 'method-override'
 import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { connectToMongoDb } from './common/repository/mongo/mongoDB.js';
 import { UsersRegistrationController } from './modules/UsersRegistration/controller/UsersRegistration.controller.js';
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
-import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
+import {
+  mongoDocumentToDomain,
+  MongoUsersRegistrationRepository
+} from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
+
 
 dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
   const repositoryType = 'MONGO';
+
+
 
   const userRegistrationDetailsService = new UserRegistrationService(
     userRegistrationDetailRepository(repositoryType),
@@ -26,10 +37,28 @@ export const app = async () => {
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
+  restApiServer.use(flash());
+  restApiServer.use(
+    session({
+      secret: 'dwadwadagwafa',
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
+  restApiServer.use(passport.initialize());
+  restApiServer.use(passport.session());
+  restApiServer.use(methodOverride('_method'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
 
   return restApiServer;
 };
+
+const initializePassport = initialize;
+initializePassport(
+  passport,
+  email => mongoDocumentToDomain.find(user => user.email === email),
+  id => mongoDocumentToDomain.find(user => user.userId === id)
+)
 
 function userRegistrationDetailRepository(inMemoryRepositoryType) {
   if (inMemoryRepositoryType === 'MONGO') {

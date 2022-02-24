@@ -1,5 +1,14 @@
 import { Router } from 'express';
+import passport from 'passport';
 import { UserRegistration } from '../service/UserRegistration.js';
+
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  next();
+}
 
 export class UsersRegistrationController {
   constructor(service) {
@@ -24,7 +33,17 @@ export class UsersRegistrationController {
           response.status(400).send({ message: error.message });
         });
     });
+
+    this.router.route('/log-in').post(
+      checkNotAuthenticated,
+      passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true,
+      }),
+    );
   }
+
 
   async router() {
     return this.router;

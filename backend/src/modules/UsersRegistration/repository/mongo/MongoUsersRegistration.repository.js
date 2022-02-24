@@ -47,7 +47,7 @@ const MongoUserRegistrationDetails = mongoose.model(
   userRegistrationDetailsSchema,
 );
 
-function mongoDocumentToDomain(mongoDocument) {
+export function mongoDocumentToDomain(mongoDocument) {
   return new UserRegistration({
     userId: mongoDocument._id.toString(),
     firstName: mongoDocument.firstName,
