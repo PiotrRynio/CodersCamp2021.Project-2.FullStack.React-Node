@@ -1,14 +1,7 @@
-import { AddComment } from '../repository/mongo/MongoAddComment.repository';
-import AddCommentValidationSchema from './AddCommentValidationSchema.js';
+import { AddComment } from './AddComment';
 
 export class AddCommentService {
-  static async postHelloWorld(req, res) {
-    const { error } = AddCommentValidationSchema.validate(req.body);
-    if (error) {
-      return res.status(400).send(error.details[0].message);
-    }
-
-    const msg = { name: req.body.name };
-    res.status(200).json(hello);
+  constructor(repository) {
+    this.repository = repository;
   }
 }

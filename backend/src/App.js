@@ -10,6 +10,8 @@ import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration
 
 import { AddCommentController } from './modules/AddComment/controller/AddComment.controller';
 import { AddCommentService } from './modules/AddComment/service/AddComment.service';
+import { MongoAddCommentRepository } from './modules/AddComment/repository/mongo/MongoAddCommentRepository.repository.js';
+import { InMemoryAddCommentRepository } from './modules/AddComment/repository/mongo/InMemoryAddCommentRepository.repository.js';
 
 dotenv.config();
 
@@ -24,7 +26,7 @@ export const app = async () => {
     userRegistrationDetailsService,
   );
 
-  const addCommentService = new AddCommentService(new MongoUsersRegistrationRepository());
+  const addCommentService = new AddCommentService(new MongoAddCommentRepository());
   const addCommentController = new AddCommentController(addCommentService);
 
   const restApiServer = express();
