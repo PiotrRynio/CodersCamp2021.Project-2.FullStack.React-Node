@@ -7,7 +7,9 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
+
 import { AddCommentController } from './modules/AddComment/controller/AddComment.controller';
+import { AddCommentService } from './modules/AddComment/service/AddComment.service';
 
 dotenv.config();
 
@@ -22,13 +24,16 @@ export const app = async () => {
     userRegistrationDetailsService,
   );
 
+  const addCommentService = new AddCommentService(new MongoUsersRegistrationRepository());
+  const addCommentController = new AddCommentController(addCommentService);
+
   const restApiServer = express();
   restApiServer.use(cors());
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api/addComment', AddCommentController.router);
+  restApiServer.use('/rest-api/addComment', addCommentController.router);
 
   return restApiServer;
 };
