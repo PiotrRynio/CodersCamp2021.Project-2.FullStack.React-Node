@@ -3,10 +3,11 @@ import Announcement from '../../service/Announcement/Announcement.js';
 
 export class AnnouncementsRepository {
   static async addNewAnnouncement(newAnnouncement) {
-    await MongoAnnouncements.create(newAnnouncement);
+    return await MongoAnnouncements.create(newAnnouncement).then((createdAnnouncement) => {
+      const addedAnnouncement = mongoDocumentToDomain(createdAnnouncement);
+      return addedAnnouncement;
+    });
   }
-
-  // TODO: Dodać odczytywanie jednego announcementu z bazy.
 }
 
 const announcementSchema = new mongoose.Schema({
@@ -39,7 +40,7 @@ const MongoAnnouncements = mongoose.model('AnnouncementSchema', announcementSche
 
 function mongoDocumentToDomain(mongoDocument) {
   const announcement = {
-    id: mongoDocument._id,
+    id: mongoDocument._id.toString(),
     title: mongoDocument.title,
     boardName: mongoDocument.boardName,
     content: mongoDocument.content,
