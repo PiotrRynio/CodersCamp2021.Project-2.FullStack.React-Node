@@ -5,7 +5,9 @@ import { AddCommentService } from '../../service/AddComment.service';
 export class MongoAddCommentRepository {
   constructor() {}
 
-  //TODO
+  async createNewComment(MongoAddCommentModel) {
+    await MongoAddCommentModel.create(addCommentSchema);
+  }
 }
 
 const addCommentSchema = new mongoose.Schema({
@@ -27,7 +29,7 @@ const addCommentSchema = new mongoose.Schema({
   },
 });
 
-const MongoAddComment = mongoose.model('addComment', addCommentSchema);
+const MongoAddCommentModel = mongoose.model('addComment', addCommentSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   return new AddComment({
