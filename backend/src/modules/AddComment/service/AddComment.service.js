@@ -6,7 +6,7 @@ export class AddCommentService {
   }
 
   async createComment(addComment) {
-    const commentObject = new UserRegistration({
+    const commentObject = new AddComment({
       userId: addComment.userId,
       board: addComment.board,
       content: addComment.content,
