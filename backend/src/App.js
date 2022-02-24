@@ -7,7 +7,7 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
-import { AddCommentController } from './controller/AddComment/AddComment.controller';
+import { AddCommentController } from './modules/AddComment/controller/AddComment.controller';
 
 dotenv.config();
 

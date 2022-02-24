@@ -1,4 +1,4 @@
-import { AddComment } from '../../repository/AddComment/AddComment.repository';
+import { AddComment } from '../repository/mongo/MongoAddComment.repository';
 import AddCommentValidationSchema from './AddCommentValidationSchema.js';
 
 export class AddCommentService {
