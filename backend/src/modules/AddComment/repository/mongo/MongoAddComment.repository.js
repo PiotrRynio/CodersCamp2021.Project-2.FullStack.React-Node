@@ -29,12 +29,4 @@ const addCommentSchema = new mongoose.Schema({
   },
 });
 
-const MongoAddCommentModel = mongoose.model('addComment', addCommentSchema);
-
-function mongoDocumentToDomain(mongoDocument) {
-  return new AddComment({
-    userId: mongoDocument._id.toString(),
-    board: mongoDocument.firstName,
-    content: mongoDocument.lastName,
-  });
-}
+const mongoAddCommentModel = mongoose.model('addComment', addCommentSchema);
