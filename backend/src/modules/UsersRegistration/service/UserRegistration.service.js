@@ -1,13 +1,14 @@
-import { MongoUserRegistrationDetailRepository } from '../../repository/UserRegistrationDetails/mongo/MongoUserRegistrationDetail.repository.js';
-import { UserRegistrationDetails } from './UserRegistrationDetails.js';
+import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
 
-export class UserRegistrationDetailsService {
-  static async signUp(userRegistrationDetails) {
+export class UserRegistrationService {
+  constructor(repository) {
+    this.repository = repository;
+  }
+
+  async signUp(userRegistrationDetails) {
     const userEmail = userRegistrationDetails.email;
-    const registeredUserRegistrationDetails = await MongoUserRegistrationDetailRepository.findUser(
-      userEmail,
-    );
+    const registeredUserRegistrationDetails = await this.repository.findUser(userEmail);
 
     const isUserExist = !!registeredUserRegistrationDetails.length;
 
@@ -21,7 +22,7 @@ export class UserRegistrationDetailsService {
 
     const hashedPassword = bcrypt.hashSync(nonHashedPassword, salt);
 
-    const userRegistrationDetailWithHashPassword = new UserRegistrationDetails({
+    const userRegistrationDetailWithHashPassword = new UserRegistration({
       userId: userRegistrationDetails.userId,
       firstName: userRegistrationDetails.firstName,
       lastName: userRegistrationDetails.lastName,
@@ -29,9 +30,7 @@ export class UserRegistrationDetailsService {
       password: hashedPassword,
     });
 
-    await MongoUserRegistrationDetailRepository.createNewUser(
-      userRegistrationDetailWithHashPassword,
-    );
+    await this.repository.createNewUser(userRegistrationDetailWithHashPassword);
 
     return userRegistrationDetailWithHashPassword.email;
   }
