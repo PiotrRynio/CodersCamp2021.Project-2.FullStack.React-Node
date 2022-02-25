@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import Announcement from '../../service/Announcement.js';
 
-export class AnnouncementsRepository {
-  static async addNewAnnouncement(newAnnouncement) {
+export class MongoAnnouncementsRepository {
+  async addAnnouncement(newAnnouncement) {
     return await MongoAnnouncements.create(newAnnouncement).then((createdAnnouncement) => {
       return mongoDocumentToDomain(createdAnnouncement);
     });

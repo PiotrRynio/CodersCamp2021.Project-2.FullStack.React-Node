@@ -1,14 +1,14 @@
-import { AnnouncementsRepository } from '../repository/mongo/Announcement.repository.js';
 import Announcement from './Announcement.js';
 
 export class AnnouncementsService {
-  static async addNewAnnouncement(announcementData, boardId) {
+  constructor(repository) {
+    this.repository = repository;
+  }
+  async addAnnouncement(announcementData, boardId) {
     // TODO: Sprawdzić czy board istnieje get Boards/Id
-    console.log(announcementData);
-
     const newAnnouncement = new Announcement(announcementData);
 
-    const createdAnnouncement = await AnnouncementsRepository.addNewAnnouncement(newAnnouncement);
+    const createdAnnouncement = await this.repository.addAnnouncement(newAnnouncement);
 
     // TODO: Dodać Id announcementu do boarda
 
