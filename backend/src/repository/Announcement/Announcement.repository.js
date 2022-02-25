@@ -4,8 +4,7 @@ import Announcement from '../../service/Announcement/Announcement.js';
 export class AnnouncementsRepository {
   static async addNewAnnouncement(newAnnouncement) {
     return await MongoAnnouncements.create(newAnnouncement).then((createdAnnouncement) => {
-      const addedAnnouncement = mongoDocumentToDomain(createdAnnouncement);
-      return addedAnnouncement;
+      return mongoDocumentToDomain(createdAnnouncement);
     });
   }
 }
