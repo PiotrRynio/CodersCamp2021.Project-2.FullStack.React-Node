@@ -1,8 +1,12 @@
-import { AnnouncementsRepository } from '../../repository/Announcement/Announcement.repository.js';
+import { AnnouncementsRepository } from '../repository/mongo/Announcement.repository.js';
+import Announcement from './Announcement.js';
 
 export class AnnouncementsService {
-  static async addNewAnnouncement(newAnnouncement, boardId) {
+  static async addNewAnnouncement(announcementData, boardId) {
     // TODO: Sprawdzić czy board istnieje get Boards/Id
+    console.log(announcementData);
+
+    const newAnnouncement = new Announcement(announcementData);
 
     const createdAnnouncement = await AnnouncementsRepository.addNewAnnouncement(newAnnouncement);
 

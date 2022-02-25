@@ -9,12 +9,3 @@ export const announcementValidationSchema = Joi.object({
   commentsIds: Joi.array().items(Joi.string()),
   date: Joi.date(),
 });
-
-export const announcementValidation = (request, response, next) => {
-  const { error } = announcementValidationSchema.validate(request.body);
-  if (error) {
-    response.status(400).send({ message: error.message });
-  } else {
-    next();
-  }
-};

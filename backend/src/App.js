@@ -7,7 +7,7 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
-import { announcementsController } from './controller/Announcement/Announcements.controller.js';
+import { announcementsController } from './modules/Announcements/controller/Announcements.controller.js';
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ export const app = async () => {
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
-  restApiServer.use('/rest-api', userRegistrationDetailsController.router());
+  //restApiServer.use('/rest-api', userRegistrationDetailsController.router());
   restApiServer.use('/rest-api', announcementsController());
 
   // TODO: Pull maina i przerobić na wersję z modułami.

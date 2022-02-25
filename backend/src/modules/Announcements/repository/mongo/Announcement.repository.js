@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Announcement from '../../service/Announcement/Announcement.js';
+import Announcement from '../../service/Announcement.js';
 
 export class AnnouncementsRepository {
   static async addNewAnnouncement(newAnnouncement) {
@@ -31,7 +31,7 @@ const announcementSchema = new mongoose.Schema({
     minlength: 20,
     maxlength: 300,
   },
-  comments: [{ type: mongoose.Schema.Types.ObjectId }],
+  commentsIds: [{ type: mongoose.Schema.Types.ObjectId }],
   date: { type: Date, default: Date.now() },
 });
 
@@ -43,7 +43,7 @@ function mongoDocumentToDomain(mongoDocument) {
     title: mongoDocument.title,
     boardName: mongoDocument.boardName,
     content: mongoDocument.content,
-    comments: mongoDocument.comments,
+    commentsIds: mongoDocument.commentsIds,
     date: mongoDocument.date,
   };
   return new Announcement(announcement);
