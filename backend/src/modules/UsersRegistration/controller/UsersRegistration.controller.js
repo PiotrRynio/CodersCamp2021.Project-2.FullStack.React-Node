@@ -25,8 +25,4 @@ export class UsersRegistrationController {
         });
     });
   }
-
-  async router() {
-    return this.router;
-  }
 }
