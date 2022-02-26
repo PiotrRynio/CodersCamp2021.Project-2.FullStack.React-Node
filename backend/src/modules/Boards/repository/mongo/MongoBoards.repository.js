@@ -19,7 +19,7 @@ function mongoDocumentToDomain(mongoDocument) {
   return new Board({
     boardId: mongoDocument._id.toString(),
     boardName: mongoDocument.boardName,
-    coords: mongoDocument.coords,
+    mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,
     adminId: mongoDocument.adminId,
     dateCreated: mongoDocument.dateCreated,

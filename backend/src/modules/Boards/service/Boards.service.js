@@ -1,5 +1,6 @@
-import { MongoBoardsRepository } from '../repository/mongo/MongoBoards.repository.js';
 import validateBoard from './validateBoard.js';
+import { getDistanceFromCoordinatesInKm } from '../../../utils/Boards/getDistanceFromUser.js';
+import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans/values.js';
 
 export class BoardsService {
   constructor(repository) {
@@ -11,12 +12,21 @@ export class BoardsService {
     if (error) {
       throw new Error(error.details[0].message);
     }
-    const foundValues = await this.repository.findBoardByName(newBoard.boardName);
-    const boardNameIsOccupied = !!foundValues;
-    console.log(`board name is occupied:  ${boardNameIsOccupied}`);
+    const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);
+
+    const boardNameIsOccupied = !!foundBoardsWithSameName;
 
     if (boardNameIsOccupied) {
-      throw new Error('Wrong board name');
+      foundBoardsWithSameName.forEach((foundBoard) => {
+        const distanceToExistingBoard = getDistanceFromCoordinatesInKm(
+          newBoard.mapCoordinates,
+          foundBoard.mapCoordinates,
+        );
+
+        if (distanceToExistingBoard < ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS) {
+          throw new Error('Board with the same name is too near');
+        }
+      });
     }
 
     await this.repository.createNewBoard(newBoard);

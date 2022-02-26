@@ -47,8 +47,6 @@ const BoardCreationForm = () => {
       mapCoordinates,
       ...newBoardData,
     };
-
-    console.log(newBoard);
     mutate(newBoard);
   };
 
