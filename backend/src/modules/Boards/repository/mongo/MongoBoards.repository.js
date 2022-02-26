@@ -1,6 +1,5 @@
 import { MongoBoardsModel } from './MongoBoardsModel.js';
 import { Board } from '../../service/Board.js';
-import { mongo } from 'mongoose';
 
 export class MongoBoardsRepository {
   constructor() {}

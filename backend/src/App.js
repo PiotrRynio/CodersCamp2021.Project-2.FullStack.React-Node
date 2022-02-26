@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { BoardsController } from './modules/Boards/controller/BoardsController.js';
 import { connectToMongoDb } from './utils/dataBase/mongo/mongoDB.js';
-import { BoardsService } from './modules/Boards/service/BoardsService.js';
+import { BoardsService } from './modules/Boards/service/Boards.service.js';
 import { MongoBoardsRepository } from './modules/Boards/repository/mongo/MongoBoards.repository.js';
-import { InMemoryBoardsRepository } from './modules/Boards/repository/inMemory/InMemoryBoardsRepository.js';
+import { InMemoryBoardsRepository } from './modules/Boards/repository/inMemory/InMemoryBoards.repository.js';
 
 dotenv.config();
 
