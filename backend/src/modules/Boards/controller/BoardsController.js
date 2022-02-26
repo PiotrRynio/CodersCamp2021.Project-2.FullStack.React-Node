@@ -7,7 +7,6 @@ export class BoardsController {
     this.router = Router();
 
     this.router.route('/boards').post((request, response) => {
-      //console.log(request.body);
       this.service
         .addBoard(
           new Board({
@@ -23,7 +22,6 @@ export class BoardsController {
           response.status(200).send({ returnedData });
         })
         .catch((error) => {
-          console.log('error catch');
           response.status(400).send({ message: error.message });
         });
     });
