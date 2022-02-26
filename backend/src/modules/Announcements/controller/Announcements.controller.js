@@ -9,8 +9,8 @@ export class AnnouncementsController {
       const id = request.params.id;
       this.service
         .addAnnouncement(request.body, id)
-        .then((announcement) => {
-          const returnedData = { announcement: announcement };
+        .then((announcements) => {
+          const returnedData = { announcements: announcements };
           response.status(200).send(returnedData);
         })
         .catch((error) => {

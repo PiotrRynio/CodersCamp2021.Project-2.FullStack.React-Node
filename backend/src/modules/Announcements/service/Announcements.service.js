@@ -13,6 +13,6 @@ export class AnnouncementsService {
     // TODO: Dodać Id announcementu do boarda
 
     // TODO: Zwrócić listę announcementów tego boarda po dodaniu zamiast tego niżej
-    return createdAnnouncement;
+    return [createdAnnouncement];
   }
 }
