@@ -9,6 +9,10 @@ export class MongoBoardsRepository {
       return mongoDocumentToDomain(createdBoard);
     });
   }
+  async findBoardByName(boardName) {
+    const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName });
+    return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+  }
 }
 
 function mongoDocumentToDomain(mongoDocument) {

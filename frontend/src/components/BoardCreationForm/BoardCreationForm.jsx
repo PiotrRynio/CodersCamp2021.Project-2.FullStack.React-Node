@@ -28,12 +28,10 @@ const BoardCreationForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newBoard),
     };
-    return (
-      fetch('/boards/', requestOptions)
-        .then((response) => response.json())
-        // TODO obsluzyc mozliwosc blednej odpowiedzi
-        .then((res) => navigate(`/board/${res.id}`))
-    );
+    return fetch('/boards/', requestOptions)
+      .then((response) => response.json())
+      .then((res) => navigate(`/board/${res.id}`));
+    // TODO obsluzyc mozliwosc blednej odpowiedzi
   });
 
   const handleButtonClick = () => {
@@ -50,6 +48,7 @@ const BoardCreationForm = () => {
       ...newBoardData,
     };
 
+    console.log(newBoard);
     mutate(newBoard);
   };
 

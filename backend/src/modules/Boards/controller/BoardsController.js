@@ -11,7 +11,7 @@ export class BoardsController {
         .addBoard(
           new Board({
             boardName: request.body.boardName,
-            coords: request.body.coords,
+            mapCoordinates: request.body.mapCoordinates,
             accessType: request.body.accessType,
             adminId: request.body.adminId,
             dateCreated: request.body.dateCreated,

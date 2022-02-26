@@ -1,7 +1,7 @@
 export class Board {
   constructor(props) {
     this.boardName = props.boardName;
-    this.coords = props.coords;
+    this.mapCoordinates = props.mapCoordinates;
     this.accessType = props.accessType;
     this.adminId = props.adminId;
     this.dateCreated = props.dateCreated;
