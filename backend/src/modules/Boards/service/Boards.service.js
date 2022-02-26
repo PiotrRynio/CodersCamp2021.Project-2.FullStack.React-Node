@@ -11,6 +11,8 @@ export class BoardsService {
       throw new Error(error.details[0].message);
     }
 
+    // TU WALIDACJA
+
     await this.repository.createNewBoard(newBoard);
     return newBoard;
   }

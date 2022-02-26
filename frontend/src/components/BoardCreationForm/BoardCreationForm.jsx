@@ -18,7 +18,7 @@ import {
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
-  const [coords, setCords] = useState(null);
+  const [mapCoordinates, setMapCoordinates] = useState(null);
   const { register, handleSubmit } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
@@ -41,16 +41,14 @@ const BoardCreationForm = () => {
   };
 
   const submitHandler = (newBoardData) => {
-    if (!coords) {
+    if (!mapCoordinates) {
       return;
     }
     const newBoard = {
       announcements: [],
-      coords,
+      mapCoordinates,
       ...newBoardData,
     };
-    console.log('XXXXXXXXXXXXXXXXX');
-    console.log(newBoard);
 
     mutate(newBoard);
   };
@@ -59,9 +57,9 @@ const BoardCreationForm = () => {
     setInputFileText(target.files[0].name);
   };
 
-  const handleMapClick = (selectedCoords) => {
-    const [longitude, latitude] = selectedCoords;
-    setCords({
+  const handleMapClick = (selectedMapCoordinates) => {
+    const [longitude, latitude] = selectedMapCoordinates;
+    setMapCoordinates({
       latitude,
       longitude,
     });

@@ -1,10 +1,8 @@
 import joi from 'joi';
-import JoiObjectId from 'joi-objectid';
-const myJoiObjectId = JoiObjectId(joi);
+import joiObjectId from 'joi-objectid';
+const myJoiObjectId = joiObjectId(joi);
 
 export const validateBoard = (newBoard) => {
-
-
   const boardsValidationSchema = joi.object({
     boardName: joi.string().min(6).required(),
     coords: joi.object().required(),
@@ -15,7 +13,6 @@ export const validateBoard = (newBoard) => {
   });
 
   return boardsValidationSchema.validate(newBoard);
-
-}
+};
 
 export default validateBoard;
