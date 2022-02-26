@@ -10,7 +10,7 @@ export class MongoBoardsRepository {
     });
   }
   async findBoardByName(boardName) {
-    const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName });
+    const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName }).exec();
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
   }
 }

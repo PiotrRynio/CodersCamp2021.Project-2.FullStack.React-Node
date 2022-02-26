@@ -1,15 +1,15 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class InMemoryBoardsRepository {
   constructor() {
     this.entities = {};
   }
-  async createNewBoard(boardDetails) {
-    const nameAndCoords = `${boardDetails.name}+ ${boardDetails.coords}`;
-    this.entities[nameAndCoords] = boardDetails;
+  async createNewBoard(newBoard) {
+    newBoard.id = uuidv4();
+    this.entities[newBoard.id] = newBoard;
   }
 
-  async findBoard(nameAndCoords) {
-    return Promise.resolve(
-      Object.keys(this.entities).map((nameAndCoords) => this.entities[nameAndCoords]),
-    );
+  async findBoardByName(boardName) {
+    return Promise.resolve(Object.keys(this.entities).map((boardID) => this.entities[boardID]));
   }
 }

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const BoardSchema = new mongoose.Schema({
+  id: { type: String },
   boardName: {
     type: String,
     required: true,
