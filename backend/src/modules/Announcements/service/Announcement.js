@@ -1,4 +1,5 @@
 import { announcementValidationSchema } from './AnnouncementValidationSchema.js';
+import { v4 as uuidv4 } from 'uuid';
 
 class Announcement {
   constructor(props) {
@@ -8,7 +9,7 @@ class Announcement {
     }
 
     const { id, title, boardName, content, commentsIds, date, iconType } = props;
-    this.id = id;
+    this.id = id || uuidv4();
     this.title = title;
     this.boardName = boardName;
     this.iconType = iconType;

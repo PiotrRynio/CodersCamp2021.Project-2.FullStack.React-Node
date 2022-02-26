@@ -1,13 +1,14 @@
-import { MongoAnnouncementsRepository } from './repository/mongo/Announcement.repository.js';
+import { MongoAnnouncementsRepository } from './repository/mongo/MongoAnnouncement.repository.js';
 import { AnnouncementsService } from './service/Announcements.service.js';
 import { AnnouncementsController } from './controller/Announcements.controller.js';
+import { InMemoryAnnouncementRepository } from './repository/inMemory/InMemoryAnnouncement.repository.js';
 
 export const announcementsModule = (moduleRepositoryType) => {
   const announcementRepository = (repositoryType) => {
     if (repositoryType === 'MONGO') {
       return new MongoAnnouncementsRepository();
     }
-    // TODO: Dodać InMemoryAnnouncementRepository
+    return new InMemoryAnnouncementRepository();
   };
 
   const repository = announcementRepository(moduleRepositoryType);

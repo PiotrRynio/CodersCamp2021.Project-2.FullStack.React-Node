@@ -24,6 +24,9 @@ const announcementSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 50,
   },
+  iconType: {
+    type: String,
+  },
   content: {
     type: String,
     required: true,
@@ -42,6 +45,7 @@ function mongoDocumentToDomain(mongoDocument) {
     id: mongoDocument._id.toString(),
     title: mongoDocument.title,
     boardName: mongoDocument.boardName,
+    iconType: mongoDocument.iconType,
     content: mongoDocument.content,
     commentsIds: mongoDocument.commentsIds,
     date: mongoDocument.date,
