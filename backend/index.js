@@ -1,5 +1,4 @@
 import { app } from './src/App.js';
-
 console.log('Application was started');
 
 const port = process.env.REST_API_PORT || 5000;
