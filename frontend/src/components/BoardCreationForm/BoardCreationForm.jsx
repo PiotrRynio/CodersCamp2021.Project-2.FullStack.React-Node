@@ -19,7 +19,7 @@ import {
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
-  const [coords, setCords] = useState(null);
+  const [mapCoordinates, setMapCoordinates] = useState(null);
   const {
     register,
     handleSubmit,
@@ -43,12 +43,12 @@ const BoardCreationForm = () => {
   };
 
   const submitHandler = (newBoardData) => {
-    if (!coords) {
+    if (!mapCoordinates) {
       return;
     }
     const newBoard = {
       announcements: [],
-      coords,
+      mapCoordinates,
       ...newBoardData,
     };
     mutate(newBoard);
@@ -60,7 +60,7 @@ const BoardCreationForm = () => {
 
   const handleMapClick = (selectedCoords) => {
     const [longitude, latitude] = selectedCoords;
-    setCords({
+    setMapCoordinates({
       latitude,
       longitude,
     });
@@ -75,9 +75,13 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardName', { required: true, minLength: 5, maxLength: 100 })}
+          {...register('boardName', { required: true, minLength: 6, maxLength: 100 })}
         />
-        {errors.boardName && <ErrorMessage>Please enter a valid board name.</ErrorMessage>}
+        {errors.boardName && (
+          <ErrorMessage>
+            Please enter a valid board name. It should contain min. 6 and max. 100 characters.{' '}
+          </ErrorMessage>
+        )}
       </StyledLabel>
 
       <StyledLabel>
@@ -106,19 +110,21 @@ const BoardCreationForm = () => {
         <ContentInput
           {...register('description', { required: true, minLength: 5, maxLength: 500 })}
         />
-        {errors.description && <ErrorMessage>Please enter a valid description.</ErrorMessage>}
+        {errors.description && (
+          <ErrorMessage>
+            Please enter a valid description. It should contain min. 5 and max. 500 characters.
+          </ErrorMessage>
+        )}
       </StyledLabel>
 
       <StyledLabel>Place your board: </StyledLabel>
       <MapInput
         setCoordsCallback={handleMapClick}
-        {...register('coords', {
-          validate: () => coords?.latitude !== null && coords?.longitude !== null,
+        {...register('mapCoordinates', {
+          validate: () => mapCoordinates?.latitude !== null && mapCoordinates?.longitude !== null,
         })}
       />
-      {errors.coords && errors.coords.message && (
-        <ErrorMessage>Please enter your location.</ErrorMessage>
-      )}
+      {errors.mapCoordinates && <ErrorMessage>Please enter coordinates. </ErrorMessage>}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
