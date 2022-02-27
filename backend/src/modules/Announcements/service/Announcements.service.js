@@ -15,4 +15,10 @@ export class AnnouncementsService {
     // TODO: Zwrócić listę announcementów tego boarda po dodaniu zamiast tego niżej
     return [createdAnnouncement];
   }
+
+  async getAnnouncement(announcementId) {
+    const announcement = await this.repository.findOne(announcementId);
+
+    return announcement;
+  }
 }
