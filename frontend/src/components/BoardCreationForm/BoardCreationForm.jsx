@@ -14,7 +14,7 @@ import {
   StyledSelect,
   HiddenInput,
   StyledButton,
-  ErrorMessage,
+  Error,
 } from './BoardCreationForm.styled';
 
 const BoardCreationForm = () => {
@@ -78,9 +78,9 @@ const BoardCreationForm = () => {
           {...register('boardName', { required: true, minLength: 6, maxLength: 100 })}
         />
         {errors.boardName && (
-          <ErrorMessage>
+          <Error>
             Please enter a valid board name. It should contain min. 6 and max. 100 characters.{' '}
-          </ErrorMessage>
+          </Error>
         )}
       </StyledLabel>
 
@@ -90,12 +90,12 @@ const BoardCreationForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar')}
+          {...register('avatar', { required: true })}
           ref={fileInput}
         />
       </StyledLabel>
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
-      {errors.avatar && <ErrorMessage>Please pick your board image.</ErrorMessage>}
+      {errors.avatar && <Error>Please pick your board image.</Error>}
 
       <StyledLabel>
         Access type:
@@ -111,9 +111,9 @@ const BoardCreationForm = () => {
           {...register('description', { required: true, minLength: 5, maxLength: 500 })}
         />
         {errors.description && (
-          <ErrorMessage>
+          <Error>
             Please enter a valid description. It should contain min. 5 and max. 500 characters.
-          </ErrorMessage>
+          </Error>
         )}
       </StyledLabel>
 
@@ -121,10 +121,10 @@ const BoardCreationForm = () => {
       <MapInput
         setCoordsCallback={handleMapClick}
         {...register('mapCoordinates', {
-          validate: () => mapCoordinates?.latitude !== null && mapCoordinates?.longitude !== null,
+          required: true,
         })}
       />
-      {errors.mapCoordinates && <ErrorMessage>Please enter coordinates. </ErrorMessage>}
+      {errors.mapCoordinates && <Error>Please set coordinates. </Error>}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );

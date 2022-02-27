@@ -114,7 +114,7 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const ErrorMessage = styled.p`
+export const Error = styled.p`
   color: #cc1111;
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 500;
