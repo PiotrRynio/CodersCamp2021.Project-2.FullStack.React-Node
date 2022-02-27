@@ -7,19 +7,28 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
+import { CommentController } from './modules/AddComment/controller/AddComment.controller.js';
+import { AddCommentService } from './modules/AddComment/service/AddComment.service.js';
+import { MongoCommentRepository } from './modules/AddComment/repository/mongo/MongoAddComment.repository.js';
+import { InMemoryCommentRepository } from './modules/AddComment/repository/inMemory/inMemoryAddComment.repository.js';
 
 dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
   const repositoryType = 'MONGO';
+  const userRegistrationRepository = userRegistrationDetailRepository(repositoryType);
 
-  const userRegistrationDetailsService = new UserRegistrationService(
-    userRegistrationDetailRepository(repositoryType),
-  );
+  const userRegistrationDetailsService = new UserRegistrationService(userRegistrationRepository);
   const userRegistrationDetailsController = new UsersRegistrationController(
     userRegistrationDetailsService,
   );
+
+  const addCommentRepository = new commentDetailsRepository(repositoryType);
+
+  const addCommentService = new AddCommentService(addCommentRepository);
+
+  const addCommentController = new CommentController(addCommentService);
 
   const restApiServer = express();
   restApiServer.use(cors());
@@ -27,6 +36,7 @@ export const app = async () => {
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
+  restApiServer.use('/rest-api', addCommentController.router);
 
   return restApiServer;
 };
@@ -36,4 +46,11 @@ function userRegistrationDetailRepository(inMemoryRepositoryType) {
     return new MongoUsersRegistrationRepository();
   }
   return new InMemoryUsersRegistrationRepository();
+}
+
+function commentDetailsRepository(inMemoryRepositoryType) {
+  if (inMemoryRepositoryType === 'MONGO') {
+    return new MongoCommentRepository();
+  }
+  return new InMemoryCommentRepository();
 }
