@@ -115,8 +115,8 @@ export const StyledButton = styled.button`
 `;
 
 export const Error = styled.p`
-  color: #cc1111;
+  padding-bottom: 12px;
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 500;
-  padding-bottom: 12px;
+  color: #cc1111;
 `;
