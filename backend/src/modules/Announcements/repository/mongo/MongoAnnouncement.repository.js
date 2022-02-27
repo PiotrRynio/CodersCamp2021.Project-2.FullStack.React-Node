@@ -11,7 +11,6 @@ export class MongoAnnouncementsRepository {
 
   async findOne(announcementId) {
     return await MongoAnnouncements.findById(announcementId).then((mongoAnnouncement) => {
-      console.log(mongoAnnouncement);
       if (!mongoAnnouncement) {
         throw new NotFoundError('Announcement');
       } else {
