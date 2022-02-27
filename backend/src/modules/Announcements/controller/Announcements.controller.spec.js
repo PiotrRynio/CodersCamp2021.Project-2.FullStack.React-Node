@@ -1,6 +1,7 @@
 import { agent } from 'supertest';
 import { AnnouncementsController } from './Announcements.controller.js';
 import { testApi } from '../../../testsUtils/testApi.js';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('AnnouncementsController |', () => {
   const postAnnouncementRequestBody = {
@@ -12,18 +13,19 @@ describe('AnnouncementsController |', () => {
 
   test('POST /rest-api/borders/:id/announcements | when return boardsAnnouncements with new Announcements', async () => {
     // GIVEN
+    const expectedId = uuidv4();
     const expectedResponse = {
       announcements: [
         {
           ...postAnnouncementRequestBody,
-          id: 'newId',
+          id: expectedId,
           commentsIds: [],
         },
       ],
     };
     const testService = {
       addAnnouncement: async (postAnnouncementRequestBody) => {
-        postAnnouncementRequestBody.id = 'newId';
+        postAnnouncementRequestBody.id = expectedId;
         postAnnouncementRequestBody.commentsIds = [];
         return [postAnnouncementRequestBody];
       },

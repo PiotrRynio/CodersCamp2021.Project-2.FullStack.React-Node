@@ -1,9 +1,9 @@
-import { announcementValidationSchema } from './AnnouncementValidationSchema.js';
+import { validateAnnouncement } from './AnnouncementValidationSchema.js';
 import { v4 as uuidv4 } from 'uuid';
 
 class Announcement {
   constructor(props) {
-    const { error } = announcementValidationSchema.validate(props);
+    const { error } = validateAnnouncement(props);
     if (error) {
       throw new Error(error.details[0].message);
     }
@@ -12,7 +12,7 @@ class Announcement {
     this.id = id || uuidv4();
     this.title = title;
     this.boardName = boardName;
-    this.iconType = iconType;
+    this.iconType = iconType || 'default';
     this.content = content;
     this.commentsIds = commentsIds || [];
     this.date = date || Date.now();

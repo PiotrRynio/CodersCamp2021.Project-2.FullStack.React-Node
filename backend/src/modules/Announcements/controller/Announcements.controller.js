@@ -14,7 +14,6 @@ export class AnnouncementsController {
           response.status(200).send(returnedData);
         })
         .catch((error) => {
-          console.log(error);
           response.status(400).send({ message: error.message });
         });
     });
