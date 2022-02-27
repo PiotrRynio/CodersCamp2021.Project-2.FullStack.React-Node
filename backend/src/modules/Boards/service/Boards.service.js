@@ -1,5 +1,5 @@
 import validateBoard from './validateBoard.js';
-import { getDistanceFromCoordinatesInKm } from './getDistanceFromCoordinatesInKm.js';
+import { getDistanceFromCoordinatesInKilometers } from './getDistanceFromCoordinatesInKilometers.js';
 import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans/values.js';
 
 export class BoardsService {
@@ -18,7 +18,7 @@ export class BoardsService {
 
     if (boardNameIsOccupied) {
       foundBoardsWithSameName.forEach((foundBoard) => {
-        const distanceToExistingBoard = getDistanceFromCoordinatesInKm(
+        const distanceToExistingBoard = getDistanceFromCoordinatesInKilometers(
           newBoard.mapCoordinates,
           foundBoard.mapCoordinates,
         );

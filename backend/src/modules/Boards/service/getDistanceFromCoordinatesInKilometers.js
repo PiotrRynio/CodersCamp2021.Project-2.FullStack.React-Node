@@ -1,4 +1,4 @@
-export const getDistanceFromCoordinatesInKm = (firstCordinates, secondCordinates) => {
+export const getDistanceFromCoordinatesInKilometers = (firstCordinates, secondCordinates) => {
   const EARTH_RADIUS = 6371;
   const deg2rad = (deg) => deg * (Math.PI / 180);
   const latitude = deg2rad(firstCordinates.latitude - secondCordinates.latitude);
