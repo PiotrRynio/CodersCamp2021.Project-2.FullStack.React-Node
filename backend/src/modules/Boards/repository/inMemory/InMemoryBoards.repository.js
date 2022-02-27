@@ -5,7 +5,7 @@ export class InMemoryBoardsRepository {
     this.entities = {};
   }
   async createNewBoard(newBoard) {
-    newBoard.id = uuidv4();
+    newBoard.id = newBoard.id || uuidv4();
     this.entities[newBoard.id] = newBoard;
   }
 
