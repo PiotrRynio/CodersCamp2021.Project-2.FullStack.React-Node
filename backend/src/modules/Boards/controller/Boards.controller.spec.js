@@ -24,7 +24,7 @@ describe('BoardsController |', () => {
     // THEN
     expect(status).toEqual(200);
     expect(body.returnedData.boardName).toEqual(boardBody.boardName);
-    expect(body.returnedData.coords).toEqual(boardBody.coords);
+    expect(body.returnedData.mapCoordinates).toEqual(boardBody.mapCoordinates);
     expect(body.returnedData.accessType).toEqual(boardBody.accessType);
     expect(body.returnedData.adminId).toEqual(boardBody.adminId);
   });

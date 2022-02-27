@@ -19,6 +19,6 @@ describe('UsersRegistrationRepository |', () => {
     const returnedBody = await boardsService.addBoard(testBoard);
 
     //Then
-    expect(returnedBody).toContain(testBoard);
+    expect(returnedBody).toEqual(testBoard);
   });
 });
