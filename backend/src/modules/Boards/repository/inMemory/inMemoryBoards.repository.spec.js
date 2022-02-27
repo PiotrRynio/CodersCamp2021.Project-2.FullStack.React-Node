@@ -22,4 +22,13 @@ describe('UsersRegistrationRepository |', () => {
     const addedBoard = testRepository.entities[testID];
     expect(addedBoard).toBe(testBoard);
   });
+
+  test('properly find added board', async () => {
+    //WHEN
+    testRepository.createNewBoard(testBoard);
+    const foundBoards = await testRepository.findBoardByName(testBoard.boardName);
+
+    //THEN
+    expect(foundBoards).toContain(testBoard);
+  });
 });
