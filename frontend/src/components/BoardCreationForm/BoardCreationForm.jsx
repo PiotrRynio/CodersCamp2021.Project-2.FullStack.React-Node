@@ -90,7 +90,7 @@ const BoardCreationForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar', { required: true })}
+          {...register('avatar')}
           ref={fileInput}
         />
       </StyledLabel>
@@ -121,7 +121,8 @@ const BoardCreationForm = () => {
       <MapInput
         setCoordsCallback={handleMapClick}
         {...register('mapCoordinates', {
-          required: true,
+          validate: () =>
+            mapCoordinates?.latitude !== undefined && mapCoordinates?.longitude !== undefined,
         })}
       />
       {errors.mapCoordinates && <Error>Please set coordinates. </Error>}
