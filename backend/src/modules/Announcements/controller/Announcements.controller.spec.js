@@ -2,6 +2,7 @@ import { agent } from 'supertest';
 import { AnnouncementsController } from './Announcements.controller.js';
 import { testApi } from '../../../testsUtils/testApi.js';
 import { v4 as uuidv4 } from 'uuid';
+import { NotFoundError } from '../../../utils/NotFoundError.js';
 
 describe('AnnouncementsController |', () => {
   const postAnnouncementRequestBody = {
@@ -61,5 +62,70 @@ describe('AnnouncementsController |', () => {
     // THEN
     expect(status).toEqual(400);
     expect(body).toEqual({ message: 'Error message' });
+  });
+
+  test('GET /rest-api/announcements/:id | when return announcement', async () => {
+    // GIVEN
+    const expectedId = uuidv4();
+    const expectedResponse = {
+      announcement: {
+        ...postAnnouncementRequestBody,
+        id: expectedId,
+        commentsIds: [],
+      },
+    };
+    const announcementBody = {};
+    const testService = {
+      getAnnouncement: async (announcementId) => ({
+        ...postAnnouncementRequestBody,
+        id: expectedId,
+        commentsIds: [],
+      }),
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).get(`/rest-api/announcements/${expectedId}`);
+
+    // THEN
+    expect(status).toEqual(200);
+    expect(body).toEqual(expectedResponse);
+  });
+
+  test('GET /rest-api/announcements/:id | when service throw Error', async () => {
+    // GIVEN
+    const testService = {
+      getAnnouncement: async () => {
+        throw new Error('Error message');
+      },
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).get(`/rest-api/announcements/test-id`);
+
+    // THEN
+    expect(status).toEqual(400);
+    expect(body).toEqual({ message: 'Error message' });
+  });
+
+  test('GET /rest-api/announcements/:id | when service throw NotFoundError', async () => {
+    // GIVEN
+    const testService = {
+      getAnnouncement: async () => {
+        throw new NotFoundError('Announcement');
+      },
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).get(`/rest-api/announcements/test-id2`);
+
+    // THEN
+    expect(status).toEqual(404);
+    expect(body).toEqual({ message: 'Announcement not found.' });
   });
 });
