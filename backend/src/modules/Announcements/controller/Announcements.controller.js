@@ -1,4 +1,4 @@
-import { request, response, Router } from 'express';
+import { Router } from 'express';
 import { NotFoundError } from '../../../utils/NotFoundError.js';
 
 export class AnnouncementsController {
