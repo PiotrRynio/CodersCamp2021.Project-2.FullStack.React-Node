@@ -8,7 +8,7 @@ import { UserRegistrationService } from './modules/UsersRegistration/service/Use
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
 import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
-import { BoardsModule } from './modules/Boards/BoardsModule.js';
+import { BoardsModule } from './modules/Boards/boardsModule.js';
 
 dotenv.config();
 

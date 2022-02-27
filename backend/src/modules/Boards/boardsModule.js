@@ -3,7 +3,7 @@ import { BoardsService } from './service/Boards.service.js';
 import { BoardsController } from './controller/BoardsController.js';
 import { InMemoryBoardsRepository } from './repository/inMemory/InMemoryBoards.repository.js';
 
-export const BoardsModule = (moduleRepositoryType) => {
+export const boardsModule = (moduleRepositoryType) => {
   const boardsRepository = (repositoryType) => {
     if (repositoryType === 'MONGO') {
       return new MongoBoardsRepository();

@@ -1,5 +1,5 @@
 import validateBoard from './validateBoard.js';
-import { getDistanceFromCoordinatesInKm } from '../../../utils/Boards/getDistanceFromUser.js';
+import { getDistanceFromCoordinatesInKm } from './getDistanceFromCoordinatesInKm.js';
 import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans/values.js';
 
 export class BoardsService {
