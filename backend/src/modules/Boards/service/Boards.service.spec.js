@@ -1,8 +1,6 @@
 import { InMemoryBoardsRepository } from '../repository/inMemory/InMemoryBoards.repository.js';
 import { Board } from './Board.js';
 import { BoardsService } from './Boards.service.js';
-import { InMemoryAnnouncementRepository } from '../../Announcements/repository/inMemory/InMemoryAnnouncement.repository.js';
-import { AnnouncementsService } from '../../Announcements/service/Announcements.service.js';
 
 describe('UsersRegistrationRepository |', () => {
   const testBoard = new Board({
