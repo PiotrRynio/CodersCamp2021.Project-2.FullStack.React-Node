@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { ErrorMessage } from '@hookform/error-message';
 import MapInput from 'components/MapInput/MapInput';
 import {
   StyledForm,
@@ -16,6 +17,7 @@ import {
   StyledButton,
   Error,
 } from './BoardCreationForm.styled';
+import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
@@ -75,15 +77,28 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardName', { required: true, minLength: 6, maxLength: 100 })}
+          {...register('boardTitle', {
+            required: "This field can't be empty.",
+            pattern: {
+              value: /.*[^\s].*/,
+              message: "This field can't contain only whitespaces",
+            },
+            minLength: {
+              value: 6,
+              message: 'Your board title should be at least 5 characters long',
+            },
+            maxLength: {
+              value: 100,
+              message: "Your board title shouldn't exceed 100 characters",
+            },
+          })}
         />
-        {errors.boardName && (
-          <Error>
-            Please enter a valid board name. It should contain min. 6 and max. 100 characters.{' '}
-          </Error>
-        )}
+        <ErrorMessage
+          errors={errors}
+          name="boardTitle"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
       </StyledLabel>
-
       <StyledLabel>
         Avatar:
         <HiddenInput
@@ -96,7 +111,6 @@ const BoardCreationForm = () => {
       </StyledLabel>
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
       {errors.avatar && <Error>Please pick your board image.</Error>}
-
       <StyledLabel>
         Access type:
         <StyledSelect {...register('accessType', { required: true })}>
@@ -104,19 +118,33 @@ const BoardCreationForm = () => {
           <option value="public">Public</option>
         </StyledSelect>
       </StyledLabel>
-
       <StyledLabel htmlFor="description">
         Description:
         <ContentInput
-          {...register('description', { required: true, minLength: 5, maxLength: 500 })}
+          {...register('description', {
+            required: "This field can't be empty.",
+            pattern: {
+              value: /.*[^\s].*/,
+              message: "This field can't contain only whitespaces",
+            },
+            minLength: {
+              value: 5,
+              message: 'Your description should be at least 5 characters long',
+            },
+            maxLength: {
+              value: 100,
+              message: "Your description shouldn't exceed 100 characters",
+            },
+          })}
         />
         {errors.description && (
-          <Error>
-            Please enter a valid description. It should contain min. 5 and max. 500 characters.
-          </Error>
+          <ErrorMessage
+            errors={errors}
+            name="description"
+            render={({ message }) => <ErrorText>{message}</ErrorText>}
+          />
         )}
       </StyledLabel>
-
       <StyledLabel>Place your board: </StyledLabel>
       <MapInput
         setCoordsCallback={handleMapClick}
@@ -125,7 +153,14 @@ const BoardCreationForm = () => {
             mapCoordinates?.latitude !== undefined && mapCoordinates?.longitude !== undefined,
         })}
       />
-      {errors.mapCoordinates && <Error>Please set coordinates. </Error>}
+      {errors.mapCoordinates && (
+        <ErrorMessage
+          message={'Please set coordinates.'}
+          errors={errors}
+          name="mapCoordinates"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      )}{' '}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
