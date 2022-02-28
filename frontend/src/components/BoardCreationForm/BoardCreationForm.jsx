@@ -22,6 +22,7 @@ import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
   const [mapCoordinates, setMapCoordinates] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -55,12 +56,14 @@ const BoardCreationForm = () => {
     };
     mutate(newBoard);
   };
+  console.log(errors.mapCoordinates);
 
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
   };
 
   const handleMapClick = (selectedCoords) => {
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     const [longitude, latitude] = selectedCoords;
     setMapCoordinates({
       latitude,
@@ -153,14 +156,14 @@ const BoardCreationForm = () => {
             mapCoordinates?.latitude !== undefined && mapCoordinates?.longitude !== undefined,
         })}
       />
-      {errors.mapCoordinates && (
+      {errors.mapCoordinates && !mapCoordinates && (
         <ErrorMessage
           message={'Please set coordinates.'}
           errors={errors}
           name="mapCoordinates"
           render={({ message }) => <ErrorText>{message}</ErrorText>}
         />
-      )}{' '}
+      )}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );
