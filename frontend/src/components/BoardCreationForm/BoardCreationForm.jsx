@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { ErrorMessage } from '@hookform/error-message';
 import MapInput from 'components/MapInput/MapInput';
+import { REST_API_URL } from '../../constants/restApiPaths';
 import {
   StyledForm,
   FormTitle,
@@ -36,7 +37,7 @@ const BoardCreationForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newBoard),
     };
-    return fetch('/boards', requestOptions)
+    return fetch(`${REST_API_URL}/boards`, requestOptions)
       .then((response) => response.json())
       .then((res) => navigate(`/board/${res.id}`));
   });
@@ -56,14 +57,12 @@ const BoardCreationForm = () => {
     };
     mutate(newBoard);
   };
-  console.log(errors.mapCoordinates);
 
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
   };
 
   const handleMapClick = (selectedCoords) => {
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     const [longitude, latitude] = selectedCoords;
     setMapCoordinates({
       latitude,
