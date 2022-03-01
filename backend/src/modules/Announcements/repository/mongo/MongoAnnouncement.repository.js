@@ -9,13 +9,12 @@ export class MongoAnnouncementsRepository {
     });
   }
 
-  async findOne(announcementId) {
+  async findOneByAnnouncementId(announcementId) {
     return await MongoAnnouncements.findById(announcementId).then((mongoAnnouncement) => {
       if (!mongoAnnouncement) {
         throw new NotFoundError('Announcement');
-      } else {
-        return mongoDocumentToDomain(mongoAnnouncement);
       }
+      return mongoDocumentToDomain(mongoAnnouncement);
     });
   }
 }

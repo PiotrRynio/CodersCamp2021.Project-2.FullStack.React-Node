@@ -76,11 +76,7 @@ describe('AnnouncementsController |', () => {
     };
     const announcementBody = {};
     const testService = {
-      getAnnouncement: async (announcementId) => ({
-        ...postAnnouncementRequestBody,
-        id: expectedId,
-        commentsIds: [],
-      }),
+      findAnnouncement: async (announcementId) => ({ ...expectedResponse.announcement }),
     };
     const announcementsController = new AnnouncementsController(testService);
     const app = testApi('/rest-api', announcementsController.router);
@@ -96,7 +92,7 @@ describe('AnnouncementsController |', () => {
   test('GET /rest-api/announcements/:id | when service throw Error', async () => {
     // GIVEN
     const testService = {
-      getAnnouncement: async () => {
+      findAnnouncement: async () => {
         throw new Error('Error message');
       },
     };
@@ -114,7 +110,7 @@ describe('AnnouncementsController |', () => {
   test('GET /rest-api/announcements/:id | when service throw NotFoundError', async () => {
     // GIVEN
     const testService = {
-      getAnnouncement: async () => {
+      findAnnouncement: async () => {
         throw new NotFoundError('Announcement');
       },
     };

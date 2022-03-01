@@ -81,7 +81,7 @@ describe('AnnouncementService |', () => {
     await announcementService.addAnnouncement(correctAnnouncementData, boardId);
 
     //When
-    const foundAnnouncement = await announcementService.getAnnouncement(existingAnnouncementId);
+    const foundAnnouncement = await announcementService.findAnnouncement(existingAnnouncementId);
 
     //Then
     expect(foundAnnouncement).toEqual({
@@ -100,7 +100,7 @@ describe('AnnouncementService |', () => {
 
     //When
     const getNotExistingAnnouncement = async () => {
-      await announcementService.getAnnouncement(notExistingAnnouncementId);
+      await announcementService.findAnnouncement(notExistingAnnouncementId);
     };
     //Then
     await expect(getNotExistingAnnouncement).rejects.toThrow(NotFoundError);

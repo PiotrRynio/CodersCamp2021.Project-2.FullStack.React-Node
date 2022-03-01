@@ -16,8 +16,8 @@ export class AnnouncementsService {
     return [createdAnnouncement];
   }
 
-  async getAnnouncement(announcementId) {
-    const announcement = await this.repository.findOne(announcementId);
+  async findAnnouncement(announcementId) {
+    const announcement = await this.repository.findOneByAnnouncementId(announcementId);
 
     return announcement;
   }

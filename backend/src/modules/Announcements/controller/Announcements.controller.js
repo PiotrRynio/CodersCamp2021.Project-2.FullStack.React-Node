@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import Announcement from '../service/Announcement.js';
 
 export class AnnouncementsController {
   constructor(service) {
@@ -21,7 +22,7 @@ export class AnnouncementsController {
     this.router.route('/announcements/:id').get((request, response) => {
       const id = request.params.id;
       this.service
-        .getAnnouncement(id)
+        .findAnnouncement(id)
         .then((announcement) => {
           const returnedAnnouncement = { announcement: announcement };
           response.status(200).send(returnedAnnouncement);

@@ -10,7 +10,7 @@ export class InMemoryAnnouncementRepository {
     return this.entities[newAnnouncement.id];
   }
 
-  async findOne(announcementId) {
+  async findOneByAnnouncementId(announcementId) {
     const announcement = this.entities[announcementId];
 
     if (!announcement) {
