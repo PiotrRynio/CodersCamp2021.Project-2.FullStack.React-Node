@@ -19,6 +19,7 @@ import {
   Error,
 } from './BoardCreationForm.styled';
 import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
+import { response } from 'msw';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
@@ -37,9 +38,12 @@ const BoardCreationForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newBoard),
     };
-    return fetch(`${REST_API_URL}/boards`, requestOptions)
-      .then((response) => response.json())
-      .then((res) => navigate(`/board/${res.id}`));
+    console.log(requestOptions.body);
+    const url = `${REST_API_URL}/boards`;
+
+    return fetch(url, requestOptions).then((response) => response.json());
+
+    //.then((res) => navigate(`/board/${res.id}`));
   });
 
   const handleButtonClick = () => {
@@ -52,9 +56,10 @@ const BoardCreationForm = () => {
     }
     const newBoard = {
       announcements: [],
-      mapCoordinates,
       ...newBoardData,
     };
+    newBoard.mapCoordinates = mapCoordinates;
+
     mutate(newBoard);
   };
 
@@ -64,6 +69,7 @@ const BoardCreationForm = () => {
 
   const handleMapClick = (selectedCoords) => {
     const [longitude, latitude] = selectedCoords;
+
     setMapCoordinates({
       latitude,
       longitude,
@@ -79,7 +85,7 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardTitle', {
+          {...register('boardName', {
             required: "This field can't be empty.",
             pattern: {
               value: /.*[^\s].*/,
@@ -97,7 +103,7 @@ const BoardCreationForm = () => {
         />
         <ErrorMessage
           errors={errors}
-          name="boardTitle"
+          name="boardName"
           render={({ message }) => <ErrorText>{message}</ErrorText>}
         />
       </StyledLabel>

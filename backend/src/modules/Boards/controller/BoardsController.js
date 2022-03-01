@@ -15,6 +15,7 @@ export class BoardsController {
             accessType: request.body.accessType,
             adminId: request.body.adminId,
             dateCreated: request.body.dateCreated,
+            description: request.body.description,
             announcements: [],
           }),
         )
