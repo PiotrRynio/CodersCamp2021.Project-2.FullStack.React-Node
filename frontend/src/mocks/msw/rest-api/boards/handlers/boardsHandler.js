@@ -11,12 +11,8 @@ const getAnnouncementListResponse = rest.get('/boards/:id/announcements', (req, 
 });
 const postAnnouncementListResponse = rest.post('/boards/:id/announcements', (req, res, ctx) => {
   const { id } = req.params;
-  boardsResponse[id].announcements.push(req.body);
+  boardsResponse.boards[id].announcements.push(req.body);
   return res(ctx.status(200), ctx.json(boardsResponse.boards[id].announcements));
-});
-
-const getAvailableUserBoards = rest.get('/boards?isNearUser=true', (req, res, ctx) => {
-  return res(ctx.status(200), ctx.json(availableForUserBoardsResponse));
 });
 
 const getUserBoards = rest.get('/user/:id/boards', (req, res, ctx) => {
@@ -36,6 +32,10 @@ const postBoardsListsHandler = rest.post('/boards', (req, res, ctx) => {
   boards.push(req.body);
 
   return res(ctx.status(200), ctx.json(req.body));
+});
+
+const getAvailableUserBoards = rest.get('/boards?isNearUser=true', (req, res, ctx) => {
+  return res(ctx.status(200), ctx.json(availableForUserBoardsResponse));
 });
 
 export default [

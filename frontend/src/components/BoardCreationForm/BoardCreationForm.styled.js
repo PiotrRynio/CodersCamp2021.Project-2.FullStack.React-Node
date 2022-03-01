@@ -26,7 +26,6 @@ export const MarkedTitle = styled.span`
 export const BoardTitleInput = styled.input`
   height: 40px;
   padding: 5px;
-  margin-bottom: 15px;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
   font-family: ${({ theme }) => theme.fontFamily.primary};
@@ -42,6 +41,7 @@ export const BoardTitleInput = styled.input`
 export const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 `;
 
 export const HiddenInput = styled.input`
@@ -53,7 +53,6 @@ export const StyledIconPicker = styled.div`
   align-items: center;
   height: 40px;
   padding: 5px;
-  margin-bottom: 15px;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
   font-family: ${({ theme }) => theme.fontFamily.primary};
@@ -70,7 +69,7 @@ export const ContentInput = styled.textarea`
   width: 100%;
   height: 80px;
   padding: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
   border-radius: 4px;
   text-align: justify;
   border-color: hsl(0, 0%, 80%);
@@ -89,7 +88,7 @@ export const ContentInput = styled.textarea`
 export const StyledSelect = styled.select`
   height: 40px;
   padding: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
   font-family: ${({ theme }) => theme.fontFamily.primary};
@@ -106,7 +105,6 @@ export const StyledButton = styled.button`
   width: 100px;
   height: 30px;
   border-radius: 5px;
-  margin-top: 2px;
   border-color: ${({ theme }) => theme.colors.primary};
   align-self: flex-end;
 
@@ -114,4 +112,11 @@ export const StyledButton = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
   }
+`;
+
+export const Error = styled.p`
+  padding-bottom: 12px;
+  font-size: ${({ theme }) => theme.fontSize.md};
+  font-weight: 500;
+  color: #cc1111;
 `;

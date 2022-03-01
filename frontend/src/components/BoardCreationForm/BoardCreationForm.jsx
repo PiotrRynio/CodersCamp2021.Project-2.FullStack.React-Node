@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { ErrorMessage } from '@hookform/error-message';
 import MapInput from 'components/MapInput/MapInput';
 import {
   StyledForm,
@@ -14,12 +15,19 @@ import {
   StyledSelect,
   HiddenInput,
   StyledButton,
+  Error,
 } from './BoardCreationForm.styled';
+import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
-  const [coords, setCords] = useState(null);
-  const { register, handleSubmit } = useForm();
+  const [mapCoordinates, setMapCoordinates] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
   const { mutate } = useMutation((newBoard) => {
@@ -38,24 +46,26 @@ const BoardCreationForm = () => {
   };
 
   const submitHandler = (newBoardData) => {
-    if (!coords) {
+    if (!mapCoordinates) {
       return;
     }
     const newBoard = {
       announcements: [],
-      coords,
+      mapCoordinates,
       ...newBoardData,
     };
     mutate(newBoard);
   };
+  console.log(errors.mapCoordinates);
 
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
   };
 
   const handleMapClick = (selectedCoords) => {
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     const [longitude, latitude] = selectedCoords;
-    setCords({
+    setMapCoordinates({
       latitude,
       longitude,
     });
@@ -70,7 +80,26 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardName', { required: true })}
+          {...register('boardTitle', {
+            required: "This field can't be empty.",
+            pattern: {
+              value: /.*[^\s].*/,
+              message: "This field can't contain only whitespaces",
+            },
+            minLength: {
+              value: 6,
+              message: 'Your board title should be at least 5 characters long',
+            },
+            maxLength: {
+              value: 100,
+              message: "Your board title shouldn't exceed 100 characters",
+            },
+          })}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="boardTitle"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
         />
       </StyledLabel>
       <StyledLabel>
@@ -84,19 +113,57 @@ const BoardCreationForm = () => {
         />
       </StyledLabel>
       <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
+      {errors.avatar && <Error>Please pick your board image.</Error>}
       <StyledLabel>
         Access type:
-        <StyledSelect {...register('accessType')}>
+        <StyledSelect {...register('accessType', { required: true })}>
           <option value="private">Private</option>
           <option value="public">Public</option>
         </StyledSelect>
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <ContentInput {...register('description')} />
+        <ContentInput
+          {...register('description', {
+            required: "This field can't be empty.",
+            pattern: {
+              value: /.*[^\s].*/,
+              message: "This field can't contain only whitespaces",
+            },
+            minLength: {
+              value: 5,
+              message: 'Your description should be at least 5 characters long',
+            },
+            maxLength: {
+              value: 100,
+              message: "Your description shouldn't exceed 100 characters",
+            },
+          })}
+        />
+        {errors.description && (
+          <ErrorMessage
+            errors={errors}
+            name="description"
+            render={({ message }) => <ErrorText>{message}</ErrorText>}
+          />
+        )}
       </StyledLabel>
       <StyledLabel>Place your board: </StyledLabel>
-      <MapInput setCoordsCallback={handleMapClick} />
+      <MapInput
+        setCoordsCallback={handleMapClick}
+        {...register('mapCoordinates', {
+          validate: () =>
+            mapCoordinates?.latitude !== undefined && mapCoordinates?.longitude !== undefined,
+        })}
+      />
+      {errors.mapCoordinates && !mapCoordinates && (
+        <ErrorMessage
+          message={'Please set coordinates.'}
+          errors={errors}
+          name="mapCoordinates"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      )}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );

@@ -1,8 +1,9 @@
+import { useMutation, useQuery } from 'react-query';
 import { FaBullhorn, FaBolt, FaDog, FaTint } from 'react-icons/fa';
 import Select from 'react-select';
+import { ErrorMessage } from '@hookform/error-message';
 import { useForm, Controller } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
-import { v4 as uuidv4 } from 'uuid';
+
 import {
   Form,
   FormTitle,
@@ -14,10 +15,17 @@ import {
   Button,
   LeftColumn,
   RightColumn,
+  ErrorText,
+  BottomFormSection,
 } from './PostAddingForm.styled';
 
-const PostAddingForm = ({ formSubmit }) => {
-  const { register, handleSubmit, control } = useForm();
+const PostAddingForm = () => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
   const {
     data: dataAvailableUserBoards,
@@ -51,7 +59,6 @@ const PostAddingForm = ({ formSubmit }) => {
 
   const onSubmit = (data) => {
     let newAnnouncement = {
-      id: uuidv4(),
       title: data.title,
       boardName: data.boardName.value,
       iconType: data.iconType.value,
@@ -89,7 +96,26 @@ const PostAddingForm = ({ formSubmit }) => {
             id="titleInput"
             type="text"
             placeholder="Enter title..."
-            {...register('title', { required: true })}
+            {...register('title', {
+              required: "This field can't be empty.",
+              pattern: {
+                value: /.*[^\s].*/,
+                message: "This field can't contain only whitespaces",
+              },
+              minLength: {
+                value: 5,
+                message: 'Your message should be at least 5 characters long',
+              },
+              maxLength: {
+                value: 100,
+                message: "Your title shouldn't exceed 100 characters",
+              },
+            })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="title"
+            render={({ message }) => <ErrorText>{message}</ErrorText>}
           />
         </LeftColumn>
         <RightColumn>
@@ -110,11 +136,32 @@ const PostAddingForm = ({ formSubmit }) => {
       <ContentInput
         type="text"
         placeholder="Enter announcement message..."
-        {...register('content', { required: true })}
+        {...register('content', {
+          required: "This field can't be empty",
+          pattern: {
+            value: /.*[^\s].*/,
+            message: "This field can't contain only whitespaces",
+          },
+          minLength: {
+            value: 20,
+            message: 'Your message should be at least 20 characters long',
+          },
+          maxLength: {
+            value: 300,
+            message: "Your message shouldn't exceed 300 characters",
+          },
+        })}
       />
-      <div>
-        <Button type="submit">Add</Button>
-      </div>
+      <BottomFormSection>
+        <div>
+          <Button type="submit">Add</Button>
+        </div>
+        <ErrorMessage
+          errors={errors}
+          name="content"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      </BottomFormSection>
     </Form>
   );
 };
