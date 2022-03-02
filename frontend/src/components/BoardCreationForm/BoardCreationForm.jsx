@@ -1,3 +1,5 @@
+import { storage } from '../../firebase/firebase';
+import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
@@ -19,7 +21,6 @@ import {
   Error,
 } from './BoardCreationForm.styled';
 import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
-import { response } from 'msw';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
@@ -51,16 +52,31 @@ const BoardCreationForm = () => {
   const handleButtonClick = () => {
     fileInput.current.click();
   };
+  const handleFileUpload = async () => {
+    const storageRef = ref(storage, `/images/${avatarAsFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const prog = snapshot.bytesTransferred / snapshot.totalBytes;
+      },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => console.log(url));
+      },
+    );
+
+    console.log('1');
+  };
 
   const submitHandler = (newBoardData) => {
-    if (!mapCoordinates) {
-      return;
-    }
     const newBoard = {
       announcements: [],
       ...newBoardData,
     };
     newBoard.mapCoordinates = mapCoordinates;
+
+    handleFileUpload().then(console.log('2'));
 
     mutate(newBoard);
   };
@@ -68,7 +84,6 @@ const BoardCreationForm = () => {
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
     setAvatarAsFile(target.files[0]);
-    console.log('XXXXXXXXXXXXXXXXXXXX');
     console.log(target.files[0]);
     console.log(avatarAsFile);
   };
