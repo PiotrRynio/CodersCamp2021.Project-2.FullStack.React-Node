@@ -31,7 +31,7 @@ const UserProfile = () => {
         <TextBold>8</TextBold>&nbsp;Boards Followed
       </UserBoardsAmount>
       <BoardListHeader>Boards</BoardListHeader>
-      <SubscribedBoardsList></SubscribedBoardsList>
+      <SubscribedBoardsList />
     </Container>
   );
 };
