@@ -18,6 +18,7 @@ export class BoardsController {
             description: request.body.description,
             announcements: [],
           }),
+          //TODO obsluzyc z frontu admin ID
         )
         .then((returnedData) => {
           response.status(200).send({ returnedData });

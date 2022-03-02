@@ -23,6 +23,8 @@ import { response } from 'msw';
 
 const BoardCreationForm = () => {
   const [inputFileText, setInputFileText] = useState('Add board avatar...');
+  const [avatarAsFile, setAvatarAsFile] = useState();
+  const [avatarAsURL, setAvatarAsURL] = useState();
   const [mapCoordinates, setMapCoordinates] = useState(null);
 
   const {
@@ -65,6 +67,10 @@ const BoardCreationForm = () => {
 
   const handleFileChange = ({ target }) => {
     setInputFileText(target.files[0].name);
+    setAvatarAsFile(target.files[0]);
+    console.log('XXXXXXXXXXXXXXXXXXXX');
+    console.log(target.files[0]);
+    console.log(avatarAsFile);
   };
 
   const handleMapClick = (selectedCoords) => {
@@ -108,7 +114,7 @@ const BoardCreationForm = () => {
         />
       </StyledLabel>
       <StyledLabel>
-        Avatar:
+        Image:
         <HiddenInput
           type="file"
           accept="image/png, image/jpeg"
