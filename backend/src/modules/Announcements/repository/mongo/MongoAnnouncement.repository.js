@@ -1,10 +1,20 @@
 import mongoose from 'mongoose';
 import Announcement from '../../service/Announcement.js';
+import { NotFoundError } from '../../../../utils/NotFoundError.js';
 
 export class MongoAnnouncementsRepository {
   async addAnnouncement(newAnnouncement) {
     return await MongoAnnouncements.create(newAnnouncement).then((createdAnnouncement) => {
       return mongoDocumentToDomain(createdAnnouncement);
+    });
+  }
+
+  async findOneByAnnouncementId(announcementId) {
+    return await MongoAnnouncements.findById(announcementId).then((mongoAnnouncement) => {
+      if (!mongoAnnouncement) {
+        throw new NotFoundError('Announcement');
+      }
+      return mongoDocumentToDomain(mongoAnnouncement);
     });
   }
 }

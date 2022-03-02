@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import Announcement from '../service/Announcement.js';
 
 export class AnnouncementsController {
   constructor(service) {
@@ -15,6 +16,23 @@ export class AnnouncementsController {
         })
         .catch((error) => {
           response.status(400).send({ message: error.message });
+        });
+    });
+
+    this.router.route('/announcements/:id').get((request, response) => {
+      const id = request.params.id;
+      this.service
+        .findAnnouncement(id)
+        .then((announcement) => {
+          const returnedAnnouncement = { announcement: announcement };
+          response.status(200).send(returnedAnnouncement);
+        })
+        .catch((error) => {
+          if (error.name === 'NotFoundError') {
+            response.status(404).send({ message: error.message });
+          } else {
+            response.status(400).send({ message: error.message });
+          }
         });
     });
   }
