@@ -1,6 +1,6 @@
 import { storage } from '../../firebase/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -34,47 +34,46 @@ const BoardCreationForm = () => {
   } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
-  const { mutate } = useMutation((newBoard) => {
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
+  const { mutate, data: boardDataMutation } = useMutation((newBoard) => {
     console.log('Mutation');
-
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newBoard),
-    };
-    //console.log(requestOptions.body);
-    const url = `${REST_API_URL}/boards`;
-
-    return fetch(url, requestOptions).then((response) => response.json());
-
-    //.then((res) => navigate(`/board/${res.id}`));
+    const storageRef = ref(storage, `/images/${avatarAsFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
+    console.log('1');
+    uploadTask.on(
+      'state_changed',
+      () => {},
+      (err) => console.log(err),
+      () => {
+        const returnedUrl = getDownloadURL(uploadTask.snapshot.ref).then((firebaseAvatarUrl) => {
+          console.log(firebaseAvatarUrl);
+          newBoard.avatarUrl = firebaseAvatarUrl;
+          console.log(newBoard);
+          console.log('2');
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newBoard),
+          };
+          const postBoardUrl = `${REST_API_URL}/boards`;
+          return fetch(postBoardUrl, requestOptions).then((response) => {
+            console.log('3');
+            return response.json();
+          });
+        });
+      },
+    );
   });
+
+  useEffect(() => {
+    if (boardDataMutation) {
+      console.log(boardDataMutation.returnedData);
+      navigate(`/board/${boardDataMutation.returnedData.id}`);
+    }
+  }, [boardDataMutation]);
 
   const handleButtonClick = () => {
     fileInput.current.click();
-  };
-  const handleFileUpload = async () => {
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-    console.log('UPLOADING');
-    const storageRef = ref(storage, `/images/${avatarAsFile.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
-    const promise = new Promise((resolve, reject) => {
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          const prog = snapshot.bytesTransferred / snapshot.totalBytes;
-        },
-        (err) => console.log(err),
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-            console.log(url);
-            console.log('FINISH UPLOADING');
-            resolve(url);
-          });
-        },
-      );
-    });
   };
 
   const submitHandler = async (newBoardData) => {
@@ -84,9 +83,8 @@ const BoardCreationForm = () => {
     };
     newBoard.mapCoordinates = mapCoordinates;
 
-    const url = await handleFileUpload();
-    console.log('RECEIVED URL');
-    console.log(url);
+    console.log('0');
+    mutate(newBoard);
   };
 
   const handleFileChange = ({ target }) => {
