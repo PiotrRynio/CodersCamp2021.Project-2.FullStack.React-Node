@@ -48,7 +48,7 @@ export const HiddenInput = styled.input`
   display: none;
 `;
 
-export const StyledIconPicker = styled.div`
+export const StyledAvatarPicker = styled.div`
   display: flex;
   align-items: center;
   height: 40px;

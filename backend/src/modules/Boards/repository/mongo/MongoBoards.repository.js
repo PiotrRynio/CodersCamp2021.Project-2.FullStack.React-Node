@@ -5,6 +5,8 @@ export class MongoBoardsRepository {
   constructor() {}
 
   async createNewBoard(newBoard) {
+    console.log('TU4');
+
     const createdBoard = await MongoBoardsModel.create(newBoard).then((createdBoard) => {
       return mongoDocumentToDomain(createdBoard);
     });

@@ -7,6 +7,7 @@ export class Board {
     this.adminId = props.adminId;
     this.description = props.description;
     this.dateCreated = props.dateCreated || Date.now();
+    this.avatarUrl = props.avatarUrl;
     this.announcements = [];
   }
 }

@@ -12,7 +12,7 @@ export const validateBoard = (newBoard) => {
     adminId: myJoiObjectId(),
     announcements: joi.array(),
     dateCreated: joi.date(),
-    avatar: joi.string(),
+    avatarUrl: joi.string().required(),
   });
 
   return boardsValidationSchema.validate(newBoard);

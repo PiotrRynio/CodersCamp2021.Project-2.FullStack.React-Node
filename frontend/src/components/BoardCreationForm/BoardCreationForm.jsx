@@ -11,7 +11,7 @@ import {
   StyledForm,
   FormTitle,
   MarkedTitle,
-  StyledIconPicker,
+  StyledAvatarPicker,
   ContentInput,
   StyledLabel,
   BoardTitleInput,
@@ -24,7 +24,6 @@ import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
 const BoardCreationForm = () => {
   const [avatarAsFile, setAvatarAsFile] = useState();
-  const [avatarAsURL, setAvatarAsURL] = useState();
   const [mapCoordinates, setMapCoordinates] = useState(null);
 
   const {
@@ -36,38 +35,34 @@ const BoardCreationForm = () => {
   const navigate = useNavigate();
 
   const { mutate, data: boardDataMutation } = useMutation((newBoard) => {
-    console.log('Mutation');
     const storageRef = ref(storage, `/images/${avatarAsFile.name}`);
     const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
-    console.log('1');
     uploadTask.on(
       'state_changed',
       () => {},
       (err) => console.log(err),
       () => {
-        const returnedUrl = getDownloadURL(uploadTask.snapshot.ref).then((firebaseAvatarUrl) => {
-          console.log(firebaseAvatarUrl);
-          newBoard.avatarUrl = firebaseAvatarUrl;
-          console.log(newBoard);
-          console.log('2');
-          const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newBoard),
-          };
-          const postBoardUrl = `${REST_API_URL}/boards`;
-          return fetch(postBoardUrl, requestOptions).then((response) => {
-            console.log('3');
-            return response.json();
-          });
-        });
+        const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
+          (firebaseAvatarUrl) => {
+            newBoard.avatarUrl = firebaseAvatarUrl;
+            const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newBoard),
+            };
+            const postBoardUrl = `${REST_API_URL}/boards`;
+            return fetch(postBoardUrl, requestOptions).then((response) => {
+              return response.json();
+            });
+          },
+        );
       },
     );
   });
 
   useEffect(() => {
     if (boardDataMutation) {
-      console.log(boardDataMutation.returnedData);
+      console.log('USE EFFECt');
       navigate(`/board/${boardDataMutation.returnedData.id}`);
     }
   }, [boardDataMutation]);
@@ -79,11 +74,12 @@ const BoardCreationForm = () => {
   const submitHandler = async (newBoardData) => {
     const newBoard = {
       announcements: [],
-      ...newBoardData,
+      accessType: newBoardData.accessType,
+      description: newBoardData.description,
+      boardName: newBoardData.boardName,
+      mapCoordinates: newBoardData.mapCoordinates,
     };
     newBoard.mapCoordinates = mapCoordinates;
-
-    console.log('0');
     mutate(newBoard);
   };
 
@@ -137,14 +133,23 @@ const BoardCreationForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar')}
+          {...register('avatar', {
+            validate: () => avatarAsFile !== undefined,
+          })}
           ref={fileInput}
         />
       </StyledLabel>
-      <StyledIconPicker onClick={handleButtonClick}>
+      <StyledAvatarPicker onClick={handleButtonClick}>
         {!!avatarAsFile ? avatarAsFile.name : 'Select image...'}
-      </StyledIconPicker>
-      {errors.avatar && <Error>Please pick your board image.</Error>}
+      </StyledAvatarPicker>
+      {errors.avatar && (
+        <ErrorMessage
+          message={"Board image can't be empty"}
+          errors={errors}
+          name="avatar"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      )}
       <StyledLabel>
         Access type:
         <StyledSelect {...register('accessType', { required: true })}>
@@ -189,7 +194,7 @@ const BoardCreationForm = () => {
       />
       {errors.mapCoordinates && !mapCoordinates && (
         <ErrorMessage
-          message={'Please set coordinates.'}
+          message={"Coordinates can't be empty."}
           errors={errors}
           name="mapCoordinates"
           render={({ message }) => <ErrorText>{message}</ErrorText>}

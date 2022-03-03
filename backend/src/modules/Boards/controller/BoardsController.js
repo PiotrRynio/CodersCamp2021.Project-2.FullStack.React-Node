@@ -16,6 +16,7 @@ export class BoardsController {
             adminId: request.body.adminId,
             dateCreated: request.body.dateCreated,
             description: request.body.description,
+            avatarUrl: request.body.avatarUrl,
             announcements: [],
           }),
           //TODO obsluzyc z frontu admin ID
