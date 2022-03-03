@@ -23,7 +23,6 @@ import {
 import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
 const BoardCreationForm = () => {
-  const [inputFileText, setInputFileText] = useState('Add board avatar...');
   const [avatarAsFile, setAvatarAsFile] = useState();
   const [avatarAsURL, setAvatarAsURL] = useState();
   const [mapCoordinates, setMapCoordinates] = useState(null);
@@ -36,12 +35,15 @@ const BoardCreationForm = () => {
   const fileInput = useRef(null);
   const navigate = useNavigate();
   const { mutate } = useMutation((newBoard) => {
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    console.log('Mutation');
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newBoard),
     };
-    console.log(requestOptions.body);
+    //console.log(requestOptions.body);
     const url = `${REST_API_URL}/boards`;
 
     return fetch(url, requestOptions).then((response) => response.json());
@@ -53,39 +55,42 @@ const BoardCreationForm = () => {
     fileInput.current.click();
   };
   const handleFileUpload = async () => {
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    console.log('UPLOADING');
     const storageRef = ref(storage, `/images/${avatarAsFile.name}`);
     const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const prog = snapshot.bytesTransferred / snapshot.totalBytes;
-      },
-      (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => console.log(url));
-      },
-    );
-
-    console.log('1');
+    const promise = new Promise((resolve, reject) => {
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const prog = snapshot.bytesTransferred / snapshot.totalBytes;
+        },
+        (err) => console.log(err),
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            console.log(url);
+            console.log('FINISH UPLOADING');
+            resolve(url);
+          });
+        },
+      );
+    });
   };
 
-  const submitHandler = (newBoardData) => {
+  const submitHandler = async (newBoardData) => {
     const newBoard = {
       announcements: [],
       ...newBoardData,
     };
     newBoard.mapCoordinates = mapCoordinates;
 
-    handleFileUpload().then(console.log('2'));
-
-    mutate(newBoard);
+    const url = await handleFileUpload();
+    console.log('RECEIVED URL');
+    console.log(url);
   };
 
   const handleFileChange = ({ target }) => {
-    setInputFileText(target.files[0].name);
     setAvatarAsFile(target.files[0]);
-    console.log(target.files[0]);
-    console.log(avatarAsFile);
   };
 
   const handleMapClick = (selectedCoords) => {
@@ -138,7 +143,9 @@ const BoardCreationForm = () => {
           ref={fileInput}
         />
       </StyledLabel>
-      <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
+      <StyledIconPicker onClick={handleButtonClick}>
+        {!!avatarAsFile ? avatarAsFile.name : 'Select image...'}
+      </StyledIconPicker>
       {errors.avatar && <Error>Please pick your board image.</Error>}
       <StyledLabel>
         Access type:
