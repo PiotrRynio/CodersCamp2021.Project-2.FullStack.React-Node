@@ -14,7 +14,7 @@ dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
-  const repositoryType = 'local';
+  const repositoryType = 'MONGO';
 
   const userRegistrationDetailsService = new UserRegistrationService(
     userRegistrationDetailRepository(repositoryType),
