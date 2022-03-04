@@ -113,10 +113,3 @@ export const StyledButton = styled.button`
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;
-
-export const Error = styled.p`
-  padding-bottom: 12px;
-  font-size: ${({ theme }) => theme.fontSize.md};
-  font-weight: 500;
-  color: #cc1111;
-`;

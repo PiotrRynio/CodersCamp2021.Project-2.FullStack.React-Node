@@ -11,7 +11,6 @@ export class BoardsService {
     const { error } = validateBoard(newBoard);
     if (error) {
       console.log(newBoard);
-
       console.log(error.details[0].message);
 
       throw new Error(error.details[0].message);
@@ -26,15 +25,12 @@ export class BoardsService {
           newBoard.mapCoordinates,
           foundBoard.mapCoordinates,
         );
-
         if (distanceToExistingBoard < ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS) {
           throw new Error('Board with the same name is too near');
         }
       });
     }
-    console.log('TU2');
-
-    await this.repository.createNewBoard(newBoard);
-    return newBoard;
+    const createdBoard = await this.repository.createNewBoard(newBoard);
+    return createdBoard;
   }
 }

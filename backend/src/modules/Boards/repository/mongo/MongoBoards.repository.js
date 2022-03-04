@@ -5,9 +5,7 @@ export class MongoBoardsRepository {
   constructor() {}
 
   async createNewBoard(newBoard) {
-    console.log('TU4');
-
-    const createdBoard = await MongoBoardsModel.create(newBoard).then((createdBoard) => {
+    return await MongoBoardsModel.create(newBoard).then((createdBoard) => {
       return mongoDocumentToDomain(createdBoard);
     });
   }
@@ -19,12 +17,14 @@ export class MongoBoardsRepository {
 
 function mongoDocumentToDomain(mongoDocument) {
   return new Board({
-    boardId: mongoDocument._id.toString(),
+    id: mongoDocument._id.toString(),
     boardName: mongoDocument.boardName,
     mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,
     adminId: mongoDocument.adminId,
     dateCreated: mongoDocument.dateCreated,
     announcements: mongoDocument.announcements,
+    avatarUrl: mongoDocument.avatarUrl,
+    description: mongoDocument.description,
   });
 }

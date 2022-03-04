@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { storage } from '../../firebase/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
 import { useEffect, useRef, useState } from 'react';
@@ -18,7 +19,6 @@ import {
   StyledSelect,
   HiddenInput,
   StyledButton,
-  Error,
 } from './BoardCreationForm.styled';
 import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
@@ -35,7 +35,8 @@ const BoardCreationForm = () => {
   const navigate = useNavigate();
 
   const { mutate, data: boardDataMutation } = useMutation((newBoard) => {
-    const storageRef = ref(storage, `/images/${avatarAsFile.name}`);
+    const uploadFileName = uuidv4();
+    const storageRef = ref(storage, `/images/${uploadFileName}`);
     const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
     uploadTask.on(
       'state_changed',
@@ -52,6 +53,8 @@ const BoardCreationForm = () => {
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
             return fetch(postBoardUrl, requestOptions).then((response) => {
+              console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+              console.log(response.json());
               return response.json();
             });
           },
