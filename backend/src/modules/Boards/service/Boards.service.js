@@ -10,9 +10,7 @@ export class BoardsService {
   async addBoard(newBoard) {
     const { error } = validateBoard(newBoard);
     if (error) {
-      console.log(newBoard);
       console.log(error.details[0].message);
-
       throw new Error(error.details[0].message);
     }
     const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);

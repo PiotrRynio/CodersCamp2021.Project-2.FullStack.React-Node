@@ -56,6 +56,7 @@ const BoardCreationForm = () => {
               .then((response) => {
                 return response.json();
               })
+              .then(window.alert('Board added correctly!'))
               .then((res) => {
                 navigate(`/board/${res.returnedData.id}`);
               });
