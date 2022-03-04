@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storage } from '../../firebase/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -34,7 +34,7 @@ const BoardCreationForm = () => {
   const fileInput = useRef(null);
   const navigate = useNavigate();
 
-  const { mutate, data: boardDataMutation } = useMutation((newBoard) => {
+  const { mutate } = useMutation((newBoard) => {
     const uploadFileName = uuidv4();
     const storageRef = ref(storage, `/images/${uploadFileName}`);
     const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
@@ -44,7 +44,7 @@ const BoardCreationForm = () => {
       (err) => console.log(err),
       () => {
         const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
-          (firebaseAvatarUrl) => {
+          async (firebaseAvatarUrl) => {
             newBoard.avatarUrl = firebaseAvatarUrl;
             const requestOptions = {
               method: 'POST',
@@ -52,23 +52,18 @@ const BoardCreationForm = () => {
               body: JSON.stringify(newBoard),
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
-            return fetch(postBoardUrl, requestOptions).then((response) => {
-              console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-              console.log(response.json());
-              return response.json();
-            });
+            return await fetch(postBoardUrl, requestOptions)
+              .then((response) => {
+                return response.json();
+              })
+              .then((res) => {
+                navigate(`/board/${res.returnedData.id}`);
+              });
           },
         );
       },
     );
   });
-
-  useEffect(() => {
-    if (boardDataMutation) {
-      console.log('USE EFFECt');
-      navigate(`/board/${boardDataMutation.returnedData.id}`);
-    }
-  }, [boardDataMutation]);
 
   const handleButtonClick = () => {
     fileInput.current.click();
