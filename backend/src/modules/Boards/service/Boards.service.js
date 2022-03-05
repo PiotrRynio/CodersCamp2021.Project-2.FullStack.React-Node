@@ -35,7 +35,15 @@ export class BoardsService {
     if (!!boardPropsToUpdate) {
       throw new Error('No data to update');
     }
+    if (!!boardPropsToUpdate.id) {
+      throw new Error('No board id');
+    }
+    const foundBoardToUpdate = await this.repository.findBoardByID(boardPropsToUpdate.id);
+    const propsToUpdate = Object.keys(boardPropsToUpdate);
+    propsToUpdate.forEach((prop) => {
+      foundBoardToUpdate[prop] = boardPropsToUpdate[prop];
+    });
 
-    const foundBoardToUpdate = await this.repository.findById(boardPropsToUpdate.id);
+    await this.repository.updateBoard(foundBoardToUpdate);
   }
 }

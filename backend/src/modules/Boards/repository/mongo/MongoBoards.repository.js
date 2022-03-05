@@ -16,7 +16,16 @@ export class MongoBoardsRepository {
 
   async findBoardByID(boardId) {
     const mongoFindResult = await MongoBoardsModel.findById(boardId).exec();
+    if (!!mongoFindResult) {
+      throw new Error('Board not found!');
+    }
     return mongoDocumentToDomain(mongoFindResult);
+  }
+
+  async updateBoard(boardToUpdate) {
+    const updatedBoard = await MongoBoardsModel.updateOne({ _id: updatedBoard.id }, boardToUpdate, {
+      new: true,
+    });
   }
 }
 
