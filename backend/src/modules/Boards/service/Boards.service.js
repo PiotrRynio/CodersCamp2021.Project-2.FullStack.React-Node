@@ -13,7 +13,6 @@ export class BoardsService {
       throw new Error(error.details[0].message);
     }
     const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);
-
     const boardNameIsOccupied = !!foundBoardsWithSameName;
 
     if (boardNameIsOccupied) {
@@ -28,8 +27,15 @@ export class BoardsService {
         }
       });
     }
-
     await this.repository.createNewBoard(newBoard);
     return newBoard;
+  }
+
+  async updateBoard(boardPropsToUpdate) {
+    if (!!boardPropsToUpdate) {
+      throw new Error('No data to update');
+    }
+
+    const foundBoardToUpdate = await this.repository.findById(boardPropsToUpdate.id);
   }
 }

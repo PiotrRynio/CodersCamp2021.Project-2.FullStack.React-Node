@@ -13,6 +13,11 @@ export class MongoBoardsRepository {
     const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName }).exec();
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
   }
+
+  async findBoardByID(boardId) {
+    const mongoFindResult = await MongoBoardsModel.findById(boardId).exec();
+    return mongoDocumentToDomain(mongoFindResult);
+  }
 }
 
 function mongoDocumentToDomain(mongoDocument) {

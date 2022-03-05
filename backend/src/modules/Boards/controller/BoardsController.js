@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { request, response, Router } from 'express';
 import { Board } from '../service/Board.js';
 
 export class BoardsController {
@@ -24,6 +24,14 @@ export class BoardsController {
         .catch((error) => {
           response.status(400).send({ message: error.message });
         });
+    });
+
+    this.router.route('/boards/:id').patch((request, response) => {
+      const boardPropsToUpdate = request.body;
+      this.service.updateBoard(boardPropsToUpdate).then((returnedData) => {
+        console.log('CONTROLLER RETURNED DATA');
+        console.log(returnedData);
+      });
     });
   }
 }
