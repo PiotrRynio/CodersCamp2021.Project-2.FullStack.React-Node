@@ -1,8 +1,9 @@
 import Announcement from './Announcement.js';
 
 export class AnnouncementsService {
-  constructor(repository) {
+  constructor(repository, boardsService) {
     this.repository = repository;
+    this.boardsService = boardsService;
   }
   async addAnnouncement(announcementData, boardId) {
     // TODO: Sprawdzić czy board istnieje get Boards/Id
@@ -17,8 +18,13 @@ export class AnnouncementsService {
   }
 
   async findAnnouncement(announcementId) {
-    const announcement = await this.repository.findOneByAnnouncementId(announcementId);
+    return await this.repository.findOneByAnnouncementId(announcementId);
+  }
 
-    return announcement;
+  async findBoardAnnouncements(boardId) {
+    const announcementsIds = this.boardsService.getAnnouncementsIds(boardId);
+    return await announcementsIds.map(
+      async (announcementId) => await this.repository.findOneByAnnouncementId(announcementId),
+    );
   }
 }

@@ -32,4 +32,9 @@ export class BoardsService {
     await this.repository.createNewBoard(newBoard);
     return newBoard;
   }
+
+  async getAnnouncementsIds(boardId) {
+    // TODO: Zaimplementować metodę do zwracania announcementIds z boarda
+    return [];
+  }
 }
