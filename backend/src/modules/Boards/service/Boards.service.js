@@ -27,18 +27,27 @@ export class BoardsService {
         }
       });
     }
-    await this.repository.createNewBoard(newBoard);
-    return newBoard;
+    const createdBoard = await this.repository.createNewBoard(newBoard);
+
+    //TODO nie dziala await!!! - brak mozliwosci zwrocenia ID
+    console.log('IN SERVICE');
+    console.log(createdBoard);
+    return createdBoard;
   }
 
   async updateBoard(boardPropsToUpdate) {
-    if (!!boardPropsToUpdate) {
+    console.log('IN SERVICE');
+    console.log(boardPropsToUpdate);
+    if (!boardPropsToUpdate) {
       throw new Error('No data to update');
     }
-    if (!!boardPropsToUpdate.id) {
+    if (!boardPropsToUpdate._id) {
       throw new Error('No board id');
     }
-    const foundBoardToUpdate = await this.repository.findBoardByID(boardPropsToUpdate.id);
+    console.log('BEFORE FIND ');
+    const foundBoardToUpdate = await this.repository.findBoardByID(boardPropsToUpdate._id);
+    console.log('FIND BOARD BY ID');
+    console.log(foundBoardToUpdate);
     const propsToUpdate = Object.keys(boardPropsToUpdate);
     propsToUpdate.forEach((prop) => {
       foundBoardToUpdate[prop] = boardPropsToUpdate[prop];

@@ -4,8 +4,10 @@ import { Board } from '../../service/Board.js';
 export class MongoBoardsRepository {
   constructor() {}
 
-  async createNewBoard(newBoard) {
-    const createdBoard = await MongoBoardsModel.create(newBoard).then((createdBoard) => {
+  createNewBoard(newBoard) {
+    const createdBoard = MongoBoardsModel.create(newBoard).then((createdBoard) => {
+      console.log('IN REPO');
+      console.log(mongoDocumentToDomain(createdBoard));
       return mongoDocumentToDomain(createdBoard);
     });
   }
@@ -15,6 +17,8 @@ export class MongoBoardsRepository {
   }
 
   async findBoardByID(boardId) {
+    console.log('IN FIND');
+    console.log(boardId);
     const mongoFindResult = await MongoBoardsModel.findById(boardId).exec();
     if (!!mongoFindResult) {
       throw new Error('Board not found!');
@@ -23,15 +27,15 @@ export class MongoBoardsRepository {
   }
 
   async updateBoard(boardToUpdate) {
-    const updatedBoard = await MongoBoardsModel.updateOne({ _id: updatedBoard.id }, boardToUpdate, {
-      new: true,
-    });
+    console.log(boardToUpdate);
+    console.log('ON MONGO REPO');
   }
+  // const updatedBoard = await MongoBoardsModel.findOneAndUpdate({_id:boardToUpdate._id},update, { new:true })
 }
 
 function mongoDocumentToDomain(mongoDocument) {
   return new Board({
-    boardId: mongoDocument._id.toString(),
+    id: mongoDocument._id.valueOf(),
     boardName: mongoDocument.boardName,
     mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,

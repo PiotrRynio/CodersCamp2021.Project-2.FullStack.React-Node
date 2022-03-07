@@ -28,8 +28,9 @@ export class BoardsController {
 
     this.router.route('/boards/:id').patch((request, response) => {
       const boardPropsToUpdate = request.body;
-      this.service.updateBoard(boardPropsToUpdate).then((returnedData) => {
-        console.log('CONTROLLER RETURNED DATA');
+      console.log('CONTROLLER');
+      console.log(boardPropsToUpdate);
+      boardPropsToUpdate._id = this.service.updateBoard(boardPropsToUpdate).then((returnedData) => {
         console.log(returnedData);
       });
     });
