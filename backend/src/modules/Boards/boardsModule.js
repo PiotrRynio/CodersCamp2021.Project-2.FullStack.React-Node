@@ -10,7 +10,6 @@ export const boardsModule = (moduleRepositoryType) => {
     }
     return new InMemoryBoardsRepository();
   };
-
   const repository = boardsRepository(moduleRepositoryType);
   const service = new BoardsService(repository);
   const controller = new BoardsController(service);

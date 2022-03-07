@@ -1,26 +1,29 @@
+import { v4 as uuidv4 } from 'uuid';
+import { storage } from '../../firebase/firebase';
+import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { ErrorMessage } from '@hookform/error-message';
 import MapInput from 'components/MapInput/MapInput';
+import { REST_API_URL } from '../../constants/restApiPaths';
 import {
   StyledForm,
   FormTitle,
   MarkedTitle,
-  StyledIconPicker,
+  StyledAvatarPicker,
   ContentInput,
   StyledLabel,
   BoardTitleInput,
   StyledSelect,
   HiddenInput,
   StyledButton,
-  Error,
 } from './BoardCreationForm.styled';
 import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
 const BoardCreationForm = () => {
-  const [inputFileText, setInputFileText] = useState('Add board avatar...');
+  const [avatarAsFile, setAvatarAsFile] = useState();
   const [mapCoordinates, setMapCoordinates] = useState(null);
 
   const {
@@ -30,41 +33,62 @@ const BoardCreationForm = () => {
   } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
+
   const { mutate } = useMutation((newBoard) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newBoard),
-    };
-    return fetch('/boards', requestOptions)
-      .then((response) => response.json())
-      .then((res) => navigate(`/board/${res.id}`));
+    const uploadFileName = uuidv4();
+    const storageRef = ref(storage, `/images/${uploadFileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
+    uploadTask.on(
+      'state_changed',
+      () => {},
+      (err) => console.log(err),
+      () => {
+        const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
+          async (firebaseAvatarUrl) => {
+            newBoard.avatarUrl = firebaseAvatarUrl;
+            const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newBoard),
+            };
+            const postBoardUrl = `${REST_API_URL}/boards`;
+            return await fetch(postBoardUrl, requestOptions)
+              .then((response) => {
+                return response.json();
+              })
+              .then(window.alert('Board added correctly!'))
+              .then((res) => {
+                navigate(`/board/${res.returnedData.id}`);
+              });
+          },
+        );
+      },
+    );
   });
 
   const handleButtonClick = () => {
     fileInput.current.click();
   };
 
-  const submitHandler = (newBoardData) => {
-    if (!mapCoordinates) {
-      return;
-    }
+  const submitHandler = async (newBoardData) => {
     const newBoard = {
       announcements: [],
-      mapCoordinates,
-      ...newBoardData,
+      accessType: newBoardData.accessType,
+      description: newBoardData.description,
+      boardName: newBoardData.boardName,
+      mapCoordinates: newBoardData.mapCoordinates,
     };
+    newBoard.mapCoordinates = mapCoordinates;
     mutate(newBoard);
   };
-  console.log(errors.mapCoordinates);
 
   const handleFileChange = ({ target }) => {
-    setInputFileText(target.files[0].name);
+    setAvatarAsFile(target.files[0]);
   };
 
   const handleMapClick = (selectedCoords) => {
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
     const [longitude, latitude] = selectedCoords;
+
     setMapCoordinates({
       latitude,
       longitude,
@@ -80,7 +104,7 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardTitle', {
+          {...register('boardName', {
             required: "This field can't be empty.",
             pattern: {
               value: /.*[^\s].*/,
@@ -98,22 +122,33 @@ const BoardCreationForm = () => {
         />
         <ErrorMessage
           errors={errors}
-          name="boardTitle"
+          name="boardName"
           render={({ message }) => <ErrorText>{message}</ErrorText>}
         />
       </StyledLabel>
       <StyledLabel>
-        Avatar:
+        Image:
         <HiddenInput
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar')}
+          {...register('avatar', {
+            validate: () => avatarAsFile !== undefined,
+          })}
           ref={fileInput}
         />
       </StyledLabel>
-      <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
-      {errors.avatar && <Error>Please pick your board image.</Error>}
+      <StyledAvatarPicker onClick={handleButtonClick}>
+        {!!avatarAsFile ? avatarAsFile.name : 'Select image...'}
+      </StyledAvatarPicker>
+      {errors.avatar && (
+        <ErrorMessage
+          message={"Board image can't be empty"}
+          errors={errors}
+          name="avatar"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      )}
       <StyledLabel>
         Access type:
         <StyledSelect {...register('accessType', { required: true })}>
@@ -158,7 +193,7 @@ const BoardCreationForm = () => {
       />
       {errors.mapCoordinates && !mapCoordinates && (
         <ErrorMessage
-          message={'Please set coordinates.'}
+          message={"Coordinates can't be empty."}
           errors={errors}
           name="mapCoordinates"
           render={({ message }) => <ErrorText>{message}</ErrorText>}

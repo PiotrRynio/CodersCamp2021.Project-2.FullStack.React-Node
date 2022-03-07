@@ -48,7 +48,7 @@ export const HiddenInput = styled.input`
   display: none;
 `;
 
-export const StyledIconPicker = styled.div`
+export const StyledAvatarPicker = styled.div`
   display: flex;
   align-items: center;
   height: 40px;
@@ -112,11 +112,4 @@ export const StyledButton = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
   }
-`;
-
-export const Error = styled.p`
-  padding-bottom: 12px;
-  font-size: ${({ theme }) => theme.fontSize.md};
-  font-weight: 500;
-  color: #cc1111;
 `;
