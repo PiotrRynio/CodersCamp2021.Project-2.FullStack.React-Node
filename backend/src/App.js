@@ -7,10 +7,7 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
-import { CommentController } from './modules/AddComment/controller/AddComment.controller.js';
-import { AddCommentService } from './modules/AddComment/service/AddComment.service.js';
-import { MongoCommentRepository } from './modules/AddComment/repository/mongo/MongoAddComment.repository.js';
-import { InMemoryCommentRepository } from './modules/AddComment/repository/inMemory/inMemoryAddComment.repository.js';
+import { addCommentModule } from './modules/AddComment/AddCommentModule.js';
 
 dotenv.config();
 
@@ -24,19 +21,13 @@ export const app = async () => {
     userRegistrationDetailsService,
   );
 
-  const addCommentRepository = new commentDetailsRepository(repositoryType);
-
-  const addCommentService = new AddCommentService(addCommentRepository);
-
-  const addCommentController = new CommentController(addCommentService);
-
   const restApiServer = express();
   restApiServer.use(cors());
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api', addCommentController.router);
+  restApiServer.use('/rest-api', addCommentModule(repositoryType));
 
   return restApiServer;
 };
@@ -46,11 +37,4 @@ function userRegistrationDetailRepository(inMemoryRepositoryType) {
     return new MongoUsersRegistrationRepository();
   }
   return new InMemoryUsersRegistrationRepository();
-}
-
-function commentDetailsRepository(inMemoryRepositoryType) {
-  if (inMemoryRepositoryType === 'MONGO') {
-    return new MongoCommentRepository();
-  }
-  return new InMemoryCommentRepository();
 }
