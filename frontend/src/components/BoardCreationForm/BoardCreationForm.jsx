@@ -1,13 +1,18 @@
+import { v4 as uuidv4 } from 'uuid';
+import { storage } from '../../firebase/firebase';
+import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { ErrorMessage } from '@hookform/error-message';
 import MapInput from 'components/MapInput/MapInput';
+import { REST_API_URL } from '../../constants/restApiPaths';
 import {
   StyledForm,
   FormTitle,
   MarkedTitle,
-  StyledIconPicker,
+  StyledAvatarPicker,
   ContentInput,
   StyledLabel,
   BoardTitleInput,
@@ -15,47 +20,76 @@ import {
   HiddenInput,
   StyledButton,
 } from './BoardCreationForm.styled';
+import { ErrorText } from '../PostAddingForm/PostAddingForm.styled';
 
 const BoardCreationForm = () => {
-  const [inputFileText, setInputFileText] = useState('Add board avatar...');
-  const [coords, setCords] = useState(null);
-  const { register, handleSubmit } = useForm();
+  const [avatarAsFile, setAvatarAsFile] = useState();
+  const [mapCoordinates, setMapCoordinates] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
+
   const { mutate } = useMutation((newBoard) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newBoard),
-    };
-    return fetch('/boards', requestOptions)
-      .then((response) => response.json())
-      .then((res) => navigate(`/board/${res.id}`));
+    const uploadFileName = uuidv4();
+    const storageRef = ref(storage, `/images/${uploadFileName}`);
+    const uploadTask = uploadBytesResumable(storageRef, avatarAsFile);
+    uploadTask.on(
+      'state_changed',
+      () => {},
+      (err) => console.log(err),
+      () => {
+        const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
+          async (firebaseAvatarUrl) => {
+            newBoard.avatarUrl = firebaseAvatarUrl;
+            const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newBoard),
+            };
+            const postBoardUrl = `${REST_API_URL}/boards`;
+            return await fetch(postBoardUrl, requestOptions)
+              .then((response) => {
+                return response.json();
+              })
+              .then(window.alert('Board added correctly!'))
+              .then((res) => {
+                navigate(`/board/${res.returnedData.id}`);
+              });
+          },
+        );
+      },
+    );
   });
 
   const handleButtonClick = () => {
     fileInput.current.click();
   };
 
-  const submitHandler = (newBoardData) => {
-    if (!coords) {
-      return;
-    }
+  const submitHandler = async (newBoardData) => {
     const newBoard = {
       announcements: [],
-      coords,
-      ...newBoardData,
+      accessType: newBoardData.accessType,
+      description: newBoardData.description,
+      boardName: newBoardData.boardName,
+      mapCoordinates: newBoardData.mapCoordinates,
     };
+    newBoard.mapCoordinates = mapCoordinates;
     mutate(newBoard);
   };
 
   const handleFileChange = ({ target }) => {
-    setInputFileText(target.files[0].name);
+    setAvatarAsFile(target.files[0]);
   };
 
   const handleMapClick = (selectedCoords) => {
     const [longitude, latitude] = selectedCoords;
-    setCords({
+
+    setMapCoordinates({
       latitude,
       longitude,
     });
@@ -70,33 +104,101 @@ const BoardCreationForm = () => {
         Board name:
         <BoardTitleInput
           placeholder="Enter board name..."
-          {...register('boardName', { required: true })}
+          {...register('boardName', {
+            required: "This field can't be empty.",
+            pattern: {
+              value: /.*[^\s].*/,
+              message: "This field can't contain only whitespaces",
+            },
+            minLength: {
+              value: 6,
+              message: 'Your board title should be at least 5 characters long',
+            },
+            maxLength: {
+              value: 100,
+              message: "Your board title shouldn't exceed 100 characters",
+            },
+          })}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="boardName"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
         />
       </StyledLabel>
       <StyledLabel>
-        Avatar:
+        Image:
         <HiddenInput
           type="file"
           accept="image/png, image/jpeg"
           onInput={handleFileChange}
-          {...register('avatar')}
+          {...register('avatar', {
+            validate: () => avatarAsFile !== undefined,
+          })}
           ref={fileInput}
         />
       </StyledLabel>
-      <StyledIconPicker onClick={handleButtonClick}>{inputFileText}</StyledIconPicker>
+      <StyledAvatarPicker onClick={handleButtonClick}>
+        {!!avatarAsFile ? avatarAsFile.name : 'Select image...'}
+      </StyledAvatarPicker>
+      {errors.avatar && (
+        <ErrorMessage
+          message={"Board image can't be empty"}
+          errors={errors}
+          name="avatar"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      )}
       <StyledLabel>
         Access type:
-        <StyledSelect {...register('accessType')}>
+        <StyledSelect {...register('accessType', { required: true })}>
           <option value="private">Private</option>
           <option value="public">Public</option>
         </StyledSelect>
       </StyledLabel>
       <StyledLabel htmlFor="description">
         Description:
-        <ContentInput {...register('description')} />
+        <ContentInput
+          {...register('description', {
+            required: "This field can't be empty.",
+            pattern: {
+              value: /.*[^\s].*/,
+              message: "This field can't contain only whitespaces",
+            },
+            minLength: {
+              value: 5,
+              message: 'Your description should be at least 5 characters long',
+            },
+            maxLength: {
+              value: 100,
+              message: "Your description shouldn't exceed 100 characters",
+            },
+          })}
+        />
+        {errors.description && (
+          <ErrorMessage
+            errors={errors}
+            name="description"
+            render={({ message }) => <ErrorText>{message}</ErrorText>}
+          />
+        )}
       </StyledLabel>
       <StyledLabel>Place your board: </StyledLabel>
-      <MapInput setCoordsCallback={handleMapClick} />
+      <MapInput
+        setCoordsCallback={handleMapClick}
+        {...register('mapCoordinates', {
+          validate: () =>
+            mapCoordinates?.latitude !== undefined && mapCoordinates?.longitude !== undefined,
+        })}
+      />
+      {errors.mapCoordinates && !mapCoordinates && (
+        <ErrorMessage
+          message={"Coordinates can't be empty."}
+          errors={errors}
+          name="mapCoordinates"
+          render={({ message }) => <ErrorText>{message}</ErrorText>}
+        />
+      )}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
   );

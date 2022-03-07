@@ -24,7 +24,7 @@ const BoardsList = () => {
     () => setUserCords({ isSet: false }),
   );
 
-  const getDistanceFromCoordinatesInKm = (firstCordinates, secondCordinates) => {
+  const getDistanceFromCoordinatesInKilometers = (firstCordinates, secondCordinates) => {
     const EARTH_RADIUS = 6371;
     const deg2rad = (deg) => deg * (Math.PI / 180);
     const latitude = deg2rad(firstCordinates.latitude - secondCordinates.latitude);
@@ -45,7 +45,7 @@ const BoardsList = () => {
           {userCords.isSet ? (
             <Board
               boardData={board}
-              distanceFromUser={getDistanceFromCoordinatesInKm(board.coords, userCords)}
+              distanceFromUser={getDistanceFromCoordinatesInKilometers(board.coords, userCords)}
             />
           ) : (
             <Board boardData={board} />
