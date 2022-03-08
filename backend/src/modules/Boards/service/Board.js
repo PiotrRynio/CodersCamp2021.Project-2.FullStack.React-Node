@@ -6,6 +6,6 @@ export class Board {
     this.accessType = props.accessType;
     this.adminId = props.adminId;
     this.dateCreated = props.dateCreated || Date.now();
-    this.announcements = [];
+    this.announcements = props.announcements;
   }
 }

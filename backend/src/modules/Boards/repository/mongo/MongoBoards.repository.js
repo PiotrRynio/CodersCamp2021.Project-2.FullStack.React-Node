@@ -24,7 +24,8 @@ export class MongoBoardsRepository {
     if (!mongoFindResult) {
       throw new Error('Board not found!');
     }
-    return mongoDocumentToDomain(mongoFindResult);
+    const foundBoard = mongoDocumentToDomain(mongoFindResult);
+    return foundBoard;
   }
 
   async addNewAnnouncementId(boardID, announcementID) {
