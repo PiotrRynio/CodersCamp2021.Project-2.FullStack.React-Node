@@ -1,6 +1,7 @@
 import validateBoard from './validateBoard.js';
 import { getDistanceFromCoordinatesInKilometers } from './getDistanceFromCoordinatesInKilometers.js';
 import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans/values.js';
+import validateAddingAnnouncement from './validateAddingAnnouncement.js';
 
 export class BoardsService {
   constructor(repository) {
@@ -28,31 +29,23 @@ export class BoardsService {
       });
     }
     const createdBoard = await this.repository.createNewBoard(newBoard);
-
-    //TODO nie dziala await!!! - brak mozliwosci zwrocenia ID
-    console.log('IN SERVICE');
-    console.log(createdBoard);
     return createdBoard;
   }
 
-  async updateBoard(boardPropsToUpdate) {
+  async addNewAnnouncement(boardId, announcementId) {
     console.log('IN SERVICE');
-    console.log(boardPropsToUpdate);
-    if (!boardPropsToUpdate) {
-      throw new Error('No data to update');
+    const { error } = validateAddingAnnouncement({ boardId, announcementId });
+    if (error) {
+      throw new Error(error.details[0].message);
     }
-    if (!boardPropsToUpdate._id) {
-      throw new Error('No board id');
-    }
-    console.log('BEFORE FIND ');
-    const foundBoardToUpdate = await this.repository.findBoardByID(boardPropsToUpdate._id);
-    console.log('FIND BOARD BY ID');
-    console.log(foundBoardToUpdate);
-    const propsToUpdate = Object.keys(boardPropsToUpdate);
-    propsToUpdate.forEach((prop) => {
-      foundBoardToUpdate[prop] = boardPropsToUpdate[prop];
-    });
+    console.log({ boardId }, { announcementId });
 
-    await this.repository.updateBoard(foundBoardToUpdate);
+    const boardToAddNewAnnouncement = await this.repository.findBoardByID(boardId);
+
+    if (boardToAddNewAnnouncement.announcements.includes(announcementId)) {
+      throw new Error('Board contain this Announcement id!');
+    }
+
+    await this.repository.addNewAnnouncementId(boardId, announcementId);
   }
 }

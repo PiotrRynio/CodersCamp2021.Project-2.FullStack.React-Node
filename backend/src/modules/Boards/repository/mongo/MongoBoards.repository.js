@@ -10,6 +10,7 @@ export class MongoBoardsRepository {
       console.log(mongoDocumentToDomain(createdBoard));
       return mongoDocumentToDomain(createdBoard);
     });
+    return createdBoard;
   }
   async findBoardByName(boardName) {
     const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName }).exec();
@@ -20,17 +21,24 @@ export class MongoBoardsRepository {
     console.log('IN FIND');
     console.log(boardId);
     const mongoFindResult = await MongoBoardsModel.findById(boardId).exec();
-    if (!!mongoFindResult) {
+    if (!mongoFindResult) {
       throw new Error('Board not found!');
     }
     return mongoDocumentToDomain(mongoFindResult);
   }
 
-  async updateBoard(boardToUpdate) {
-    console.log(boardToUpdate);
+  async addNewAnnouncementId(boardID, announcementID) {
+    console.log({ boardID }, { announcementID });
     console.log('ON MONGO REPO');
+
+    const updatedBoard = await MongoBoardsModel.findByIdAndUpdate(
+      { _id: boardID },
+      { $push: { announcements: announcementID } },
+      { new: true },
+    );
+    console.log({ updatedBoard });
+    return updatedBoard;
   }
-  // const updatedBoard = await MongoBoardsModel.findOneAndUpdate({_id:boardToUpdate._id},update, { new:true })
 }
 
 function mongoDocumentToDomain(mongoDocument) {

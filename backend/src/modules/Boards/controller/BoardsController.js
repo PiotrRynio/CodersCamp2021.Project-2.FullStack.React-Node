@@ -26,13 +26,19 @@ export class BoardsController {
         });
     });
 
-    this.router.route('/boards/:id').patch((request, response) => {
-      const boardPropsToUpdate = request.body;
+    this.router.route('/boards/:id/announcements').patch((request, response) => {
+      const boardId = request.body._id;
+      const announcementId = request.body.announcement_id;
+      console.log({ boardId }, { announcementId });
       console.log('CONTROLLER');
-      console.log(boardPropsToUpdate);
-      boardPropsToUpdate._id = this.service.updateBoard(boardPropsToUpdate).then((returnedData) => {
-        console.log(returnedData);
-      });
+      this.service
+        .addNewAnnouncement(boardId, announcementId)
+        .then((returnedData) => {
+          response.status(200).send({ returnedData });
+        })
+        .catch((error) => {
+          response.status(400).send({ message: error.message });
+        });
     });
   }
 }
