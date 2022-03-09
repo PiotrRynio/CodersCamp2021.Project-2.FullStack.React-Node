@@ -18,4 +18,14 @@ export class InMemoryAnnouncementRepository {
     }
     return announcement;
   }
+
+  async deleteOneByAnnouncementId(announcementId) {
+    const announcement = this.entities[announcementId];
+
+    if (!announcement) {
+      throw new NotFoundError('Announcement');
+    }
+    delete this.entities[announcementId];
+    return announcement;
+  }
 }

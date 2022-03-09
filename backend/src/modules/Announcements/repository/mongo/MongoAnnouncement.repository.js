@@ -4,9 +4,8 @@ import { NotFoundError } from '../../../../utils/NotFoundError.js';
 
 export class MongoAnnouncementsRepository {
   async addAnnouncement(newAnnouncement) {
-    return await MongoAnnouncements.create(newAnnouncement).then((createdAnnouncement) => {
-      return mongoDocumentToDomain(createdAnnouncement);
-    });
+    const mongoAnnouncement = await MongoAnnouncements.create(newAnnouncement);
+    return mongoDocumentToDomain(mongoAnnouncement);
   }
 
   async findOneByAnnouncementId(announcementId) {
@@ -16,6 +15,23 @@ export class MongoAnnouncementsRepository {
       }
       return mongoDocumentToDomain(mongoAnnouncement);
     });
+  }
+
+  async deleteOneByAnnouncementId(announcementId) {
+    return await MongoAnnouncements.findByIdAndDelete(announcementId).then((mongoAnnouncement) => {
+      if (!mongoAnnouncement) {
+        throw new NotFoundError('Announcement');
+      }
+      return mongoDocumentToDomain(mongoAnnouncement);
+    });
+  }
+
+  async updateOneByAnnouncementId(announcementId, updatedAnnouncement) {
+    const mongoAnnouncement = await MongoAnnouncements.findByIdAndUpdate(
+      announcementId,
+      updatedAnnouncement,
+    );
+    return mongoDocumentToDomain(mongoAnnouncement);
   }
 }
 
@@ -48,7 +64,7 @@ const announcementSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now() },
 });
 
-const MongoAnnouncements = mongoose.model('AnnouncementSchema', announcementSchema);
+const MongoAnnouncements = mongoose.model('Announcements', announcementSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   const announcement = {
