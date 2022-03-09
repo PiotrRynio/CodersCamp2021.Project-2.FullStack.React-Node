@@ -42,9 +42,18 @@ describe('UsersRegistrationRepository |', () => {
 
 //TODO test dla tworzenia boarda o tej samej nazwie i sprawdzenie odleglosci
 
-describe('Boards service | add new annoucements'),
-  () => {
+describe('Boards service | add new annoucements', () => {
+  test('when no data are sent then error is thrown', async () => {
     //Given
     const inMemoryBoardsRepository = new InMemoryBoardsRepository();
     const boardsService = new BoardsService(inMemoryBoardsRepository);
-  };
+
+    //When
+    const addWithoutParameters = async () => {
+      await boardsService.addNewAnnouncement();
+
+      //Then
+      await expect(addWithoutParameters).rejects.toThrowError();
+    };
+  });
+});
