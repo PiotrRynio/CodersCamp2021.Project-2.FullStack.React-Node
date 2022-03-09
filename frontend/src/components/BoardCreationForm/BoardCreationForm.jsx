@@ -52,11 +52,16 @@ const BoardCreationForm = () => {
               body: JSON.stringify(newBoard),
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
-            const response = await fetch(postBoardUrl, requestOptions);
-            await response.json();
-            console.log(response);
-            window.alert('Board added correctly!');
-            //navigate(`/board/${response.returnedData.id}`);
+            return await fetch(postBoardUrl, requestOptions).then(async (response) => {
+              if (response.ok) {
+                await response.json();
+                window.alert('Board added correctly!');
+                navigate(`/board/${response.returnedData._id}`);
+              } else {
+                const jsonResponse = await response.json();
+                window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
+              }
+            });
           },
         );
       },

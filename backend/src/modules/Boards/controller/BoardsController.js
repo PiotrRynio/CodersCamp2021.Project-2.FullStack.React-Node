@@ -22,7 +22,6 @@ export class BoardsController {
           //TODO obsluzyc z frontu admin ID
         )
         .then((returnedData) => {
-          console.log({ returnedData });
           response.status(200).send({ returnedData });
         })
         .catch((error) => {
@@ -30,7 +29,7 @@ export class BoardsController {
         });
     });
 
-    this.router.route('/boards/:id/announcements').patch((request, response) => {
+    this.router.route('/boards/:id/').patch((request, response) => {
       const boardId = request.body._id;
       const announcementId = request.body.announcement_id;
       console.log({ boardId }, { announcementId });
