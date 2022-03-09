@@ -4,12 +4,20 @@ export class InMemoryBoardsRepository {
   constructor() {
     this.entities = {};
   }
-  async createNewBoard(newBoard) {
+  createNewBoard(newBoard) {
     newBoard.id = newBoard.id || uuidv4();
     this.entities[newBoard.id] = newBoard;
   }
 
-  async findBoardByName(boardName) {
-    return Promise.resolve(Object.keys(this.entities).map((boardID) => this.entities[boardID]));
+  findBoardByName(boardName) {
+    return Object.keys(this.entities).map((boardID) => this.entities[boardID]);
+  }
+
+  findBoardById(boardID) {
+    return Object.keys(this.entities).map((boardID) => this.entities[boardID]);
+  }
+
+  addNewAnnouncementId(boardID, announcementID) {
+    this.entities[boardID].announcements.push(announcementID);
   }
 }

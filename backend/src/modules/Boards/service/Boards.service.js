@@ -14,7 +14,8 @@ export class BoardsService {
       throw new Error(error.details[0].message);
     }
     const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);
-    const boardNameIsOccupied = !!foundBoardsWithSameName;
+    const boardNameIsOccupied = !foundBoardsWithSameName;
+    console.log({ boardNameIsOccupied });
 
     if (boardNameIsOccupied) {
       foundBoardsWithSameName.forEach((foundBoard) => {

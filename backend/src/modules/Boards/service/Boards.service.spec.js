@@ -2,7 +2,7 @@ import { InMemoryBoardsRepository } from '../repository/inMemory/InMemoryBoards.
 import { Board } from './Board.js';
 import { BoardsService } from './Boards.service.js';
 
-describe('UsersRegistrationRepository |', () => {
+describe('Boards service | add board', () => {
   const testBoard = new Board({
     boardName: 'Wroclaw',
     mapCoordinates: { latitude: 51.88569995139321, longitude: 17.02390643626451 },
@@ -37,3 +37,10 @@ describe('UsersRegistrationRepository |', () => {
     await expect(addBoardWithoutContent).rejects.toThrowError();
   });
 });
+
+describe('Boards service | add new annoucements'),
+  () => {
+    //Given
+    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+    const boardsService = new BoardsService(inMemoryBoardsRepository);
+  };
