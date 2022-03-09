@@ -3,7 +3,7 @@ import { AnnouncementsService } from './service/Announcements.service.js';
 import { AnnouncementsController } from './controller/Announcements.controller.js';
 import { InMemoryAnnouncementRepository } from './repository/inMemory/InMemoryAnnouncement.repository.js';
 
-export const announcementsModule = (moduleRepositoryType) => {
+export const announcementsModule = (moduleRepositoryType, boardsService) => {
   const announcementRepository = (repositoryType) => {
     if (repositoryType === 'MONGO') {
       return new MongoAnnouncementsRepository();
@@ -12,8 +12,8 @@ export const announcementsModule = (moduleRepositoryType) => {
   };
 
   const repository = announcementRepository(moduleRepositoryType);
-  const service = new AnnouncementsService(repository);
+  const service = new AnnouncementsService(repository, boardsService);
   const controller = new AnnouncementsController(service);
 
-  return controller.router;
+  return [controller, service, repository];
 };

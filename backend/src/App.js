@@ -22,6 +22,8 @@ export const app = async () => {
   const userRegistrationDetailsController = new UsersRegistrationController(
     userRegistrationDetailsService,
   );
+  const [boardsController, boardsService] = boardsModule(repositoryType);
+  const [announcementController] = announcementsModule(repositoryType, boardsService);
 
   const restApiServer = express();
   restApiServer.use(cors());
@@ -29,8 +31,8 @@ export const app = async () => {
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api', announcementsModule(repositoryType));
-  restApiServer.use('/rest-api', boardsModule(repositoryType));
+  restApiServer.use('/rest-api', announcementController.router);
+  restApiServer.use('/rest-api', boardsController.router);
 
   return restApiServer;
 };

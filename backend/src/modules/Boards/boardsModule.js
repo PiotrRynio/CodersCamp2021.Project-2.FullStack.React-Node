@@ -14,5 +14,5 @@ export const boardsModule = (moduleRepositoryType) => {
   const service = new BoardsService(repository);
   const controller = new BoardsController(service);
 
-  return controller.router;
+  return [controller, service, repository];
 };
