@@ -1,4 +1,4 @@
-import { request, response, Router } from 'express';
+import { Router } from 'express';
 import { Board } from '../service/Board.js';
 
 export class BoardsController {
@@ -32,8 +32,6 @@ export class BoardsController {
     this.router.route('/boards/:id/').patch((request, response) => {
       const boardId = request.body._id;
       const announcementId = request.body.announcement_id;
-      console.log({ boardId }, { announcementId });
-      console.log('CONTROLLER');
       this.service
         .addNewAnnouncement(boardId, announcementId)
         .then((returnedData) => {

@@ -9,11 +9,8 @@ export class BoardsService {
   }
 
   async addBoard(newBoard) {
-    console.log('SERVICE');
-    console.log({ newBoard });
     const { error } = validateBoard(newBoard);
     if (error) {
-      console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
     const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);
@@ -36,12 +33,10 @@ export class BoardsService {
   }
 
   async addNewAnnouncement(boardId, announcementId) {
-    console.log('IN SERVICE');
     const { error } = validateAddingAnnouncement({ boardId, announcementId });
     if (error) {
       throw new Error(error.details[0].message);
     }
-    console.log({ boardId }, { announcementId });
 
     const boardToAddNewAnnouncement = await this.repository.findBoardByID(boardId);
 
