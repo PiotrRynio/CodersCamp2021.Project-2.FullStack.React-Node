@@ -55,5 +55,9 @@ describe('Boards service | add new annoucements', () => {
       //Then
       await expect(addWithoutParameters).rejects.toThrowError();
     };
+
+    test('when board with asked id is not existing then error is thrown');
+    test('when board already contains announcement with specified id then error is thrown');
+    test('when parameters are correct and board exists then announcements are added');
   });
 });
