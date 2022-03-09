@@ -4,6 +4,6 @@ export class InMemoryCommentRepository {
   }
 
   async createNewComment(commentDetails) {
-    this.entities[commentDetails.content] = commentDetails;
+    this.entities[commentDetails.commentId] = commentDetails;
   }
 }

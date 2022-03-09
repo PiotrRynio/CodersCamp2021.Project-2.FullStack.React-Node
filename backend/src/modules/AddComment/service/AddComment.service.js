@@ -8,7 +8,6 @@ export class AddCommentService {
   async addComment(comment) {
     const commentData = new Comment({
       userId: comment.userId,
-      board: comment.board,
       content: comment.content,
       date: comment.date,
     });

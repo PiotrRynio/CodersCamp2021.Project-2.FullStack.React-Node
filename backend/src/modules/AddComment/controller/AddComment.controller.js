@@ -10,7 +10,6 @@ export class CommentController {
       this.service
         .addComment(
           new Comment({
-            board: request.body.board,
             content: request.body.content,
           }),
         )
