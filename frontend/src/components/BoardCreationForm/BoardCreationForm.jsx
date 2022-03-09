@@ -52,14 +52,11 @@ const BoardCreationForm = () => {
               body: JSON.stringify(newBoard),
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
-            return await fetch(postBoardUrl, requestOptions)
-              .then((response) => {
-                return response.json();
-              })
-              .then(window.alert('Board added correctly!'))
-              .then((res) => {
-                navigate(`/board/${res.returnedData.id}`);
-              });
+            const response = await fetch(postBoardUrl, requestOptions);
+            await response.json();
+            console.log(response);
+            window.alert('Board added correctly!');
+            //navigate(`/board/${response.returnedData.id}`);
           },
         );
       },

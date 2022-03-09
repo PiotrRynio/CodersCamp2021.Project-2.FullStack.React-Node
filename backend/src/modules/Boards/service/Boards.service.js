@@ -9,13 +9,15 @@ export class BoardsService {
   }
 
   async addBoard(newBoard) {
+    console.log('SERVICE');
+    console.log({ newBoard });
     const { error } = validateBoard(newBoard);
     if (error) {
+      console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
     const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);
-    const boardNameIsOccupied = !foundBoardsWithSameName;
-    console.log({ boardNameIsOccupied });
+    const boardNameIsOccupied = !!foundBoardsWithSameName.length;
 
     if (boardNameIsOccupied) {
       foundBoardsWithSameName.forEach((foundBoard) => {
@@ -31,7 +33,6 @@ export class BoardsService {
     }
     const createdBoard = await this.repository.createNewBoard(newBoard);
     return createdBoard;
-
   }
 
   async addNewAnnouncement(boardId, announcementId) {

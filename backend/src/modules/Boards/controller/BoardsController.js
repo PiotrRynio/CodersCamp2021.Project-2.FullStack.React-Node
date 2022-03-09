@@ -22,6 +22,7 @@ export class BoardsController {
           //TODO obsluzyc z frontu admin ID
         )
         .then((returnedData) => {
+          console.log({ returnedData });
           response.status(200).send({ returnedData });
         })
         .catch((error) => {

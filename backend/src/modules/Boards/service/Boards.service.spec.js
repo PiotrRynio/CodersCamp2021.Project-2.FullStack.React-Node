@@ -40,6 +40,8 @@ describe('UsersRegistrationRepository |', () => {
   });
 });
 
+//TODO test dla tworzenia boarda o tej samej nazwie i sprawdzenie odleglosci
+
 describe('Boards service | add new annoucements'),
   () => {
     //Given

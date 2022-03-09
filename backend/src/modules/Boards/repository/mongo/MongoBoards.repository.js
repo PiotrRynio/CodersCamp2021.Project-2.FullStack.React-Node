@@ -5,10 +5,11 @@ export class MongoBoardsRepository {
   constructor() {}
 
   async createNewBoard(newBoard) {
-    const createdBoard = await MongoBoardsModel.create(newBoard).then((createdBoard) => {
-      return mongoDocumentToDomain(createdBoard);
-    });
+    const createdBoard = await MongoBoardsModel.create(newBoard);
+    return createdBoard;
+    //  return mongoDocumentToDomain(createdBoard);
   }
+
   async findBoardByName(boardName) {
     const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName }).exec();
     return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
@@ -41,7 +42,7 @@ export class MongoBoardsRepository {
 
 function mongoDocumentToDomain(mongoDocument) {
   return new Board({
-    boardId: mongoDocument._id.toString(),
+    id: mongoDocument._id.valueOf(),
     boardName: mongoDocument.boardName,
     mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,
