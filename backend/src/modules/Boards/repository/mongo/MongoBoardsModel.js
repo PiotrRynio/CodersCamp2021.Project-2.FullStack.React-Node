@@ -22,7 +22,14 @@ const BoardSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  avatar: String,
+  avatarUrl: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   announcements: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 

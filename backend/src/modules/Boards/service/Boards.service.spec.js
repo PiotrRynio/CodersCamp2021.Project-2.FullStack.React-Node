@@ -2,12 +2,14 @@ import { InMemoryBoardsRepository } from '../repository/inMemory/InMemoryBoards.
 import { Board } from './Board.js';
 import { BoardsService } from './Boards.service.js';
 
-describe('Boards service | add board', () => {
+describe('UsersRegistrationRepository |', () => {
   const testBoard = new Board({
     boardName: 'Wroclaw',
     mapCoordinates: { latitude: 51.88569995139321, longitude: 17.02390643626451 },
     accessType: 'public',
     adminId: '507f191e810c19729de860ea',
+    description: 'sample description',
+    avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
   });
   const testBoardWithoutContent = new Board({});
 

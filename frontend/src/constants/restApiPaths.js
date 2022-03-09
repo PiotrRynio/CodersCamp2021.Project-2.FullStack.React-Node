@@ -1,4 +1,4 @@
-export const REST_API_URL = '';
+export const REST_API_URL = 'http://localhost:5000/rest-api';
 
 export const BOARDS_PATH = '/boards';
 

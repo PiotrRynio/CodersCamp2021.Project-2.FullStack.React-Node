@@ -7,6 +7,7 @@ export class InMemoryBoardsRepository {
   createNewBoard(newBoard) {
     newBoard.id = newBoard.id || uuidv4();
     this.entities[newBoard.id] = newBoard;
+    return this.entities[newBoard.id];
   }
 
   findBoardByName(boardName) {

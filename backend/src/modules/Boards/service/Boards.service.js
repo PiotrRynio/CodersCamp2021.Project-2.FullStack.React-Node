@@ -31,6 +31,7 @@ export class BoardsService {
     }
     const createdBoard = await this.repository.createNewBoard(newBoard);
     return createdBoard;
+
   }
 
   async addNewAnnouncement(boardId, announcementId) {

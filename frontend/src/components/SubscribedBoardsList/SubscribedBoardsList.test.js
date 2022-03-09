@@ -33,6 +33,7 @@ describe('SubscribedBoardsList', () => {
     const loadingStatus = screen.getByText(/Loading/i);
     expect(loadingStatus).toBeInTheDocument();
   });
+
   it('Should display status when error occurred', async () => {
     // given
     getUserBoardsWillReturnFail();

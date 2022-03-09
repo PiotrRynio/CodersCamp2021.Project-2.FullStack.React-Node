@@ -4,13 +4,10 @@ import { Board } from '../../service/Board.js';
 export class MongoBoardsRepository {
   constructor() {}
 
-  createNewBoard(newBoard) {
-    const createdBoard = MongoBoardsModel.create(newBoard).then((createdBoard) => {
-      console.log('IN REPO');
-      console.log(mongoDocumentToDomain(createdBoard));
+  async createNewBoard(newBoard) {
+    const createdBoard = await MongoBoardsModel.create(newBoard).then((createdBoard) => {
       return mongoDocumentToDomain(createdBoard);
     });
-    return createdBoard;
   }
   async findBoardByName(boardName) {
     const mongoFindResult = await MongoBoardsModel.find({ boardName: boardName }).exec();
@@ -44,12 +41,14 @@ export class MongoBoardsRepository {
 
 function mongoDocumentToDomain(mongoDocument) {
   return new Board({
-    id: mongoDocument._id.valueOf(),
+    boardId: mongoDocument._id.toString(),
     boardName: mongoDocument.boardName,
     mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,
     adminId: mongoDocument.adminId,
     dateCreated: mongoDocument.dateCreated,
     announcements: mongoDocument.announcements,
+    avatarUrl: mongoDocument.avatarUrl,
+    description: mongoDocument.description,
   });
 }
