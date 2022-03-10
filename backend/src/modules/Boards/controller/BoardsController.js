@@ -10,6 +10,7 @@ export class BoardsController {
       this.service
         .addBoard(
           new Board({
+            id: request.body.boardName,
             boardName: request.body.boardName,
             mapCoordinates: request.body.mapCoordinates,
             accessType: request.body.accessType,

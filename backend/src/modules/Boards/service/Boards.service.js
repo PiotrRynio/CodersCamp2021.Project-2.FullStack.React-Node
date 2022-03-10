@@ -28,23 +28,30 @@ export class BoardsService {
         }
       });
     }
+    console.log('ADDDDDDDDDDDDDDDDDDDD');
+    console.log(newBoard);
     const createdBoard = await this.repository.createNewBoard(newBoard);
     return createdBoard;
   }
 
   async addNewAnnouncement(boardId, announcementId) {
-    const { error } = validateAddingAnnouncement({ boardId, announcementId });
+    const { error } = validateAddingAnnouncement(
+      { boardId, announcementId },
+      this.repository.constructor.name,
+    );
     if (error) {
+      console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
 
     const boardToAddNewAnnouncement = await this.repository.findBoardByID(boardId);
 
-    if (boardToAddNewAnnouncement.announcements.includes(announcementId)) {
+    if (boardToAddNewAnnouncement?.announcements.includes(announcementId)) {
       throw new Error('Board already contains this announcement id!');
     }
 
     const updatedBoard = await this.repository.addNewAnnouncementId(boardId, announcementId);
+    console.log({ updatedBoard });
     return updatedBoard;
   }
 }
