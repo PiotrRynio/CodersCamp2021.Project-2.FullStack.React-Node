@@ -16,6 +16,8 @@ export class UserRegistrationService {
       throw new Error('User with this email exists');
     }
 
+
+
     const salt = 10;
 
     const nonHashedPassword = userRegistrationDetails.password;

@@ -1,5 +1,7 @@
 import { Router } from 'express';
+import jwt from 'jsonwebtoken';
 import { UserRegistration } from '../service/UserRegistration.js';
+import { UserLogIn } from '../service/UserLogIn.js';
 
 export class UsersRegistrationController {
   constructor(service) {
@@ -23,6 +25,18 @@ export class UsersRegistrationController {
         .catch((error) => {
           response.status(400).send({ message: error.message });
         });
+    });
+
+    this.router.route('/log-in').post((request, response) => {
+      this.service.signUp(
+        new UserLogIn({
+          email: request.body.email,
+          password: request.body.password,
+        }),
+      );
+      const payload = UserLogIn;
+      const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+      response.json(token);
     });
   }
 }
