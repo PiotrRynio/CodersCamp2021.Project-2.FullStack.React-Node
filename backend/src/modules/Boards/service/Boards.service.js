@@ -59,4 +59,15 @@ export class BoardsService {
     const clearedRepository = await this.repository.removeAllBoards();
     return clearedRepository;
   }
+
+  async getBoardAnnouncementsList(boardId) {
+    if (!boardId) {
+      throw new Error('No board ID');
+    }
+    const boardFromGetAnnouncements = await this.repository.findBoardByID(boardId);
+
+    if (!boardFromGetAnnouncements) {
+      throw new Error('Board not found!');
+    }
+  }
 }

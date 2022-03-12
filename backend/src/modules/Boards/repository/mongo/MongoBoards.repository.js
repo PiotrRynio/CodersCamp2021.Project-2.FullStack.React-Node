@@ -31,6 +31,13 @@ export class MongoBoardsRepository {
     );
     return updatedBoard;
   }
+
+  async getBoardAnnouncements(boardID) {
+    const foundBoardAnnouncements = await MongoBoardsModel.findById(boardID)
+      .select('announcements')
+      .exec();
+    return foundBoardAnnouncements;
+  }
 }
 
 function mongoDocumentToDomain(mongoDocument) {
