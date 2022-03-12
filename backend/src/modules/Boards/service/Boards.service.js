@@ -10,6 +10,7 @@ export class BoardsService {
   async addBoard(newBoard) {
     const { error } = validateBoard(newBoard);
     if (error) {
+      console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
     const foundBoardsWithSameName = await this.repository.findBoardByName(newBoard.boardName);
@@ -22,14 +23,12 @@ export class BoardsService {
           newBoard.mapCoordinates,
           foundBoard.mapCoordinates,
         );
-
         if (distanceToExistingBoard < ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS) {
           throw new Error('Board with the same name is too near');
         }
       });
     }
-
-    await this.repository.createNewBoard(newBoard);
-    return newBoard;
+    const createdBoard = await this.repository.createNewBoard(newBoard);
+    return createdBoard;
   }
 }

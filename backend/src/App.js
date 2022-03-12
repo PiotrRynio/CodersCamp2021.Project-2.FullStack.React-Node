@@ -8,7 +8,7 @@ import { UserRegistrationService } from './modules/UsersRegistration/service/Use
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
 import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
-import { BoardsModule } from './modules/Boards/boardsModule.js';
+import { boardsModule } from './modules/Boards/boardsModule.js';
 
 dotenv.config();
 
@@ -30,7 +30,7 @@ export const app = async () => {
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
   restApiServer.use('/rest-api', announcementsModule(repositoryType));
-  restApiServer.use('/rest-api', BoardsModule(repositoryType));
+  restApiServer.use('/rest-api', boardsModule(repositoryType));
 
   return restApiServer;
 };

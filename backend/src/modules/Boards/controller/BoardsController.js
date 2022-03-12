@@ -15,8 +15,11 @@ export class BoardsController {
             accessType: request.body.accessType,
             adminId: request.body.adminId,
             dateCreated: request.body.dateCreated,
+            description: request.body.description,
+            avatarUrl: request.body.avatarUrl,
             announcements: [],
           }),
+          //TODO obsluzyc z frontu admin ID
         )
         .then((returnedData) => {
           response.status(200).send({ returnedData });
