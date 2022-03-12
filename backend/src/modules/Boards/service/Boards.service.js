@@ -43,6 +43,10 @@ export class BoardsService {
 
     const boardToAddNewAnnouncement = await this.repository.findBoardByID(boardId);
 
+    if (!boardToAddNewAnnouncement) {
+      throw new Error('Board not found!');
+    }
+
     if (boardToAddNewAnnouncement.announcements.includes(announcementId)) {
       throw new Error('Board already contains this announcement id!');
     }
