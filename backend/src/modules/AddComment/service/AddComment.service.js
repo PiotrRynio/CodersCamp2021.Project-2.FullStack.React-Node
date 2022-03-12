@@ -1,19 +1,11 @@
-import { Comment } from './AddComment.js';
-
 export class AddCommentService {
   constructor(repository) {
     this.repository = repository;
   }
 
-  async addComment(comment) {
-    const commentData = new Comment({
-      userId: comment.userId,
-      content: comment.content,
-      date: comment.date,
-    });
+  async addComment(newComment) {
+    await this.repository.createNewComment(newComment);
 
-    await this.repository.createNewComment(commentData);
-
-    return commentData.content;
+    return newComment.content;
   }
 }

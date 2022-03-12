@@ -6,6 +6,6 @@ export class Comment {
     this.userId = userId || uuidv4();
     this.content = content;
     this.date = date || Date.now();
-    this.commentId = commentId
+    this.commentId = commentId;
   }
 }
