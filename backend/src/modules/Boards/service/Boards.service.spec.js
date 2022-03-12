@@ -10,14 +10,18 @@ describe('Board service | add new board', () => {
     adminId: '507f191e810c19729de860ea',
     description: 'sample description',
     avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
+    announcements: [],
   });
   const testBoardWithoutContent = new Board({});
+  //Given
+  const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+  const boardsService = new BoardsService(inMemoryBoardsRepository);
+
+  afterEach(() => {
+    boardsService.removeAllBoards();
+  });
 
   test('when correct board is being added, then body is returned', async () => {
-    //Given
-    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
-    const boardsService = new BoardsService(inMemoryBoardsRepository);
-
     //When
     const returnedBody = await boardsService.addBoard(testBoard);
 
@@ -26,10 +30,6 @@ describe('Board service | add new board', () => {
   });
 
   test('when board data is empty, then error is throw', async () => {
-    //Given
-    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
-    const boardsService = new BoardsService(inMemoryBoardsRepository);
-
     //When
     const addBoardWithoutContent = async () => {
       await boardsService.addBoard(testBoardWithoutContent);
@@ -41,9 +41,6 @@ describe('Board service | add new board', () => {
 
   test('when a board with the same name exist too near, error is thrown', async () => {
     //Given
-    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
-    const boardsService = new BoardsService(inMemoryBoardsRepository);
-
     const boardWithTheSameName = new Board({
       boardName: 'Wroclaw',
       mapCoordinates: {
@@ -68,22 +65,26 @@ describe('Board service | add new board', () => {
 });
 
 describe('Boards service | add new annoucements', () => {
-  const testBoard = {
+  const testAnnouncementID = '622a38a4e30a4ba39ee75a40';
+  const testBoardID = '622a38b8e7cfef8c44142cd9';
+  const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+  const boardsService = new BoardsService(inMemoryBoardsRepository);
+  const testBoard = new Board({
     boardName: 'Wroclaw',
     mapCoordinates: { latitude: 51.88569995139321, longitude: 17.02390643626451 },
     accessType: 'public',
     adminId: '507f191e810c19729de860ea',
     description: 'sample description',
     avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
-  };
-  const testAnnouncementID = '622a38a4e30a4ba39ee75a40';
-  const testBoardID = '622a38b8e7cfef8c44142cd9';
+    announcements: [],
+  });
+
+  beforeEach(() => {
+    boardsService.removeAllBoards();
+    testBoard.announcements = [];
+  });
 
   test('when no data are sent then error is thrown', async () => {
-    //Given
-    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
-    const boardsService = new BoardsService(inMemoryBoardsRepository);
-
     //When
     const addWithoutParameters = async () => {
       await boardsService.addNewAnnouncement();
@@ -94,10 +95,6 @@ describe('Boards service | add new annoucements', () => {
   });
 
   test('when board with asked ID is not exist then error is thrown', () => {
-    //Given
-    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
-    const boardsService = new BoardsService(inMemoryBoardsRepository);
-
     //When
     const tryAddAnnouncementToNotExistBoard = async () => {
       await boardsService.addNewAnnouncement(testBoardID, testAnnouncementID);
@@ -108,19 +105,22 @@ describe('Boards service | add new annoucements', () => {
   });
   test('when board already contains announcement with specified id then error is thrown', async () => {
     //Given
-    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
-    const boardsService = new BoardsService(inMemoryBoardsRepository);
-    testBoard.id = testBoardID;
     const addedBoard = await boardsService.addBoard(testBoard);
     await boardsService.addNewAnnouncement(addedBoard.id, testAnnouncementID);
-    /*
+
     //When
-    const addToBoardExistingAnnouncement = async () => {
-      await boardsService.addNewAnnouncement(testBoard.id, testAnnouncementID);
+    const tryToBoardExistingAnnouncement = async () => {
+      await boardsService.addNewAnnouncement(addedBoard.id, testAnnouncementID);
     };
-*/
 
     //Then
-    //  await expect(addToBoardExistingAnnouncement).rejects.toThrowError();
+    await expect(tryToBoardExistingAnnouncement).rejects.toThrowError();
+  });
+  test('when correct announcement is being added to board, then updated board body is returned', async () => {
+    //Given
+    const addedBoard = await boardsService.addBoard(testBoard);
+    //When
+    const updatedBoard = await boardsService.addNewAnnouncement(addedBoard.id, testAnnouncementID);
+    expect(updatedBoard.announcements.includes(testAnnouncementID)).toBeTruthy();
   });
 });

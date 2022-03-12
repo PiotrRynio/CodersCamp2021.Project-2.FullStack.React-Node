@@ -7,7 +7,6 @@ export class InMemoryBoardsRepository {
   createNewBoard(newBoard) {
     newBoard.id = newBoard.id || uuidv4();
     this.entities[newBoard.id] = newBoard;
-    console.log(this.entities);
     return this.entities[newBoard.id];
   }
 
@@ -16,7 +15,8 @@ export class InMemoryBoardsRepository {
   }
 
   findBoardByID(boardID) {
-    return this.entities[boardID];
+    const foundBoard = this.entities[boardID];
+    return foundBoard;
   }
 
   addNewAnnouncementId(boardID, announcementID) {
@@ -25,6 +25,11 @@ export class InMemoryBoardsRepository {
   }
 
   getAll() {
+    return this.entities;
+  }
+
+  removeAllBoards() {
+    for (const boardProperty in this.entities) delete this.entities[boardProperty];
     return this.entities;
   }
 }

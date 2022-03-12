@@ -10,7 +10,6 @@ export class BoardsController {
       this.service
         .addBoard(
           new Board({
-            id: request.body.boardName,
             boardName: request.body.boardName,
             mapCoordinates: request.body.mapCoordinates,
             accessType: request.body.accessType,
@@ -20,7 +19,6 @@ export class BoardsController {
             avatarUrl: request.body.avatarUrl,
             announcements: [],
           }),
-          //TODO obsluzyc z frontu admin ID
         )
         .then((returnedData) => {
           response.status(200).send({ returnedData });
@@ -30,7 +28,7 @@ export class BoardsController {
         });
     });
 
-    this.router.route('/boards/:id/').patch((request, response) => {
+    this.router.route('/boards/:id').patch((request, response) => {
       const boardId = request.body._id;
       const announcementId = request.body.announcement_id;
       this.service
