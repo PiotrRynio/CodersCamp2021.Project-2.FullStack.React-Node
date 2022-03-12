@@ -35,4 +35,11 @@ export class InMemoryBoardsRepository {
     for (const boardProperty in this.entities) delete this.entities[boardProperty];
     return this.entities;
   }
+  async getBoardAnnouncements(boardID) {
+    const foundBoardAnnouncements = this.entities(boardID)?.announcements;
+    if (!foundBoardAnnouncements) {
+      throw new Error('Boards does not have announcements');
+    }
+    return foundBoardAnnouncements;
+  }
 }
