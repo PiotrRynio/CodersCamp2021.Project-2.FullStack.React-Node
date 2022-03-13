@@ -64,6 +64,67 @@ describe('AnnouncementsController |', () => {
     expect(body).toEqual({ message: 'Error message' });
   });
 
+  test('GET /rest-api/borders/:id/announcements | when return board announcements', async () => {
+    // GIVEN
+    const expectedId = uuidv4();
+    const expectedId2 = uuidv4();
+    const expectedId3 = uuidv4();
+
+    const serviceResponse = [
+      {
+        ...postAnnouncementRequestBody,
+        id: expectedId,
+        commentsIds: [],
+      },
+      {
+        ...postAnnouncementRequestBody,
+        id: expectedId2,
+        commentsIds: [],
+      },
+      {
+        ...postAnnouncementRequestBody,
+        id: expectedId3,
+        commentsIds: [],
+      },
+    ];
+
+    const expectedResponse = {
+      announcements: serviceResponse,
+    };
+    const testService = {
+      findBoardAnnouncements: async () => {
+        return serviceResponse;
+      },
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).get('/rest-api/boards/1/announcements');
+
+    // THEN
+    expect(status).toEqual(200);
+    expect(body).toEqual(expectedResponse);
+  });
+
+  test('GET /rest-api/borders/:id/announcements | when service throw Error', async () => {
+    // GIVEN
+    const testService = {
+      findBoardAnnouncements: async () => {
+        throw new Error('Error message');
+      },
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).get(`/rest-api/boards/1/announcements`);
+
+    // THEN
+    expect(status).toEqual(400);
+    expect(body).toEqual({ message: 'Error message' });
+  });
+
   test('GET /rest-api/announcements/:id | when return announcement', async () => {
     // GIVEN
     const expectedId = uuidv4();
@@ -74,9 +135,8 @@ describe('AnnouncementsController |', () => {
         commentsIds: [],
       },
     };
-    const announcementBody = {};
     const testService = {
-      findAnnouncement: async (announcementId) => ({ ...expectedResponse.announcement }),
+      findAnnouncement: async () => ({ ...expectedResponse.announcement }),
     };
     const announcementsController = new AnnouncementsController(testService);
     const app = testApi('/rest-api', announcementsController.router);
