@@ -68,7 +68,6 @@ describe('AnnouncementsController |', () => {
     // GIVEN
     const expectedId = uuidv4();
     const expectedId2 = uuidv4();
-    const expectedId3 = uuidv4();
 
     const serviceResponse = [
       {
@@ -79,11 +78,6 @@ describe('AnnouncementsController |', () => {
       {
         ...postAnnouncementRequestBody,
         id: expectedId2,
-        commentsIds: [],
-      },
-      {
-        ...postAnnouncementRequestBody,
-        id: expectedId3,
         commentsIds: [],
       },
     ];
