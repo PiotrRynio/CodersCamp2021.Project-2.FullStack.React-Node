@@ -1,9 +1,7 @@
 import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
-import { UserLogIn } from './UserLogIn.js';
 import { loginValidation } from './ValidateLogIn.js';
 import { registrationValidation } from './ValidateRegistration.js';
-import { request, response } from 'express';
 
 export class UserRegistrationService {
   constructor(repository) {
@@ -18,9 +16,9 @@ export class UserRegistrationService {
     }
 
     const userEmail = userRegistrationDetails.email;
-    const registeredUserRegistrationDetails = await this.repository.findUser(userEmail);
+    const foundUser = await this.repository.findUser(userEmail);
 
-    const isUserExist = !!registeredUserRegistrationDetails.length;
+    const isUserExist = !!foundUser;
 
     if (isUserExist) {
       throw new Error('User with this email exists');
@@ -44,27 +42,21 @@ export class UserRegistrationService {
   }
 
   async logIn(userLogIn) {
-    console.log({ userLogIn });
     const { error } = loginValidation(userLogIn);
     if (error) {
-      console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
+
     const findUserEmail = userLogIn.email;
+
     const foundUserDetails = await this.repository.findUser(findUserEmail);
 
     if (!foundUserDetails) {
       throw new Error('Email or password is wrong');
     }
 
-    console.log('jestesmy przed compare');
-    console.log(userLogIn.password);
-    console.log(foundUserDetails);
-    const isUserValidPassword = await bcrypt.compareSync(
-      foundUserDetails.password,
-      userLogIn.password,
-    );
-    console.log('jestesmy po compare');
+    const isUserValidPassword = await bcrypt.compare(userLogIn.password, foundUserDetails.password);
+
     if (!isUserValidPassword) {
       throw new Error('Invalid password');
     }

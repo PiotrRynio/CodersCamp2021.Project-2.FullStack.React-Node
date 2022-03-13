@@ -9,8 +9,9 @@ export class MongoUsersRegistrationRepository {
       email: email,
     });
     if (!mongoFindResult) {
-      return [];
+      return {};
     }
+
     return mongoDocumentToDomain(mongoFindResult[0]);
   }
 
