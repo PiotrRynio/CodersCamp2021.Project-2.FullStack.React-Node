@@ -178,4 +178,46 @@ describe('AnnouncementsController |', () => {
     expect(status).toEqual(404);
     expect(body).toEqual({ message: 'Announcement not found.' });
   });
+
+  test('DELETE /rest-api/announcements/:id | when service throw Error', async () => {
+    // GIVEN
+    const expectedId = uuidv4();
+    const expectedResponse = {
+      announcement: {
+        ...postAnnouncementRequestBody,
+        id: expectedId,
+        commentsIds: [],
+      },
+    };
+    const testService = {
+      deleteAnnouncement: async () => ({ ...expectedResponse.announcement }),
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).delete(`/rest-api/announcements/${expectedId}`);
+
+    // THEN
+    expect(status).toEqual(200);
+    expect(body).toEqual(expectedResponse);
+  });
+
+  test('DELETE /rest-api/announcements/:id | when service throw NotFoundError', async () => {
+    // GIVEN
+    const testService = {
+      deleteAnnouncement: async () => {
+        throw new Error('Error Message');
+      },
+    };
+    const announcementsController = new AnnouncementsController(testService);
+    const app = testApi('/rest-api', announcementsController.router);
+
+    // WHEN
+    const { body, status } = await agent(app, {}).delete(`/rest-api/announcements/test-id2`);
+
+    // THEN
+    expect(status).toEqual(400);
+    expect(body).toEqual({ message: 'Error Message' });
+  });
 });
