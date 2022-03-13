@@ -1,6 +1,9 @@
 import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
 import { UserLogIn } from './UserLogIn.js';
+import { loginValidation } from './ValidateLogIn.js';
+import { registrationValidation } from './ValidateRegistration.js';
+import { request, response } from 'express';
 
 export class UserRegistrationService {
   constructor(repository) {
@@ -8,6 +11,12 @@ export class UserRegistrationService {
   }
 
   async signUp(userRegistrationDetails) {
+    const { error } = registrationValidation(userRegistrationDetails);
+    if (error) {
+      console.log(error.details[0].message);
+      throw new Error(error.details[0].message);
+    }
+
     const userEmail = userRegistrationDetails.email;
     const registeredUserRegistrationDetails = await this.repository.findUser(userEmail);
 
@@ -17,11 +26,9 @@ export class UserRegistrationService {
       throw new Error('User with this email exists');
     }
 
-    const salt = 10;
-
     const nonHashedPassword = userRegistrationDetails.password;
-
-    const hashedPassword = bcrypt.hashSync(nonHashedPassword, salt);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(nonHashedPassword, salt);
 
     const userRegistrationDetailWithHashPassword = new UserRegistration({
       userId: userRegistrationDetails.userId,
@@ -31,24 +38,37 @@ export class UserRegistrationService {
       password: hashedPassword,
     });
 
-    await this.repository.createNewUser(userRegistrationDetailWithHashPassword);
+    const newUser = await this.repository.createNewUser(userRegistrationDetailWithHashPassword);
 
-    return userRegistrationDetailWithHashPassword.email;
+    return newUser.email;
   }
-  async logIn(userLogIn) {
-    const loggedUserEmail = userLogIn.email;
-    const loggedUserDetails = await this.repository.findUser(loggedUserEmail);
 
-    const isLoggedUserExist = !!loggedUserDetails.length;
-    if (!!isLoggedUserExist) {
-      throw new Error('User with this email does not exists');
+  async logIn(userLogIn) {
+    console.log({ userLogIn });
+    const { error } = loginValidation(userLogIn);
+    if (error) {
+      console.log(error.details[0].message);
+      throw new Error(error.details[0].message);
+    }
+    const findUserEmail = userLogIn.email;
+    const foundUserDetails = await this.repository.findUser(findUserEmail);
+
+    if (!foundUserDetails) {
+      throw new Error('Email or password is wrong');
     }
 
-    const userLogInDetails = new UserLogIn({
-      email: userLogIn.email,
-      password: userLogIn.password,
-    });
+    console.log('jestesmy przed compare');
+    console.log(userLogIn.password);
+    console.log(foundUserDetails);
+    const isUserValidPassword = await bcrypt.compareSync(
+      foundUserDetails.password,
+      userLogIn.password,
+    );
+    console.log('jestesmy po compare');
+    if (!isUserValidPassword) {
+      throw new Error('Invalid password');
+    }
 
-    return userLogInDetails.email;
+    return 'Success logIn';
   }
 }

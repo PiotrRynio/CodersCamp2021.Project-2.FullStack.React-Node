@@ -8,12 +8,15 @@ export class MongoUsersRegistrationRepository {
     const mongoFindResult = await MongoUserRegistrationDetails.find({
       email: email,
     });
-
-    return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+    if (!mongoFindResult) {
+      return [];
+    }
+    return mongoDocumentToDomain(mongoFindResult[0]);
   }
 
   async createNewUser(userRegistrationDetails) {
-    await MongoUserRegistrationDetails.create(userRegistrationDetails);
+    const createdUser = await MongoUserRegistrationDetails.create(userRegistrationDetails);
+    return createdUser;
   }
 }
 

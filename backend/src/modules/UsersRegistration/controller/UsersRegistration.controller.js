@@ -2,6 +2,7 @@ import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserRegistration } from '../service/UserRegistration.js';
 import { UserLogIn } from '../service/UserLogIn.js';
+import bcrypt from 'bcrypt';
 
 export class UsersRegistrationController {
   constructor(service) {
@@ -36,11 +37,11 @@ export class UsersRegistrationController {
           }),
         )
         .then((email) => {
-          const returnedData = { email: email };
-          const payload = returnedData;
-          const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
-          console.log(token);
-          response.status(200).send(token);
+          // const returnedData = { email: email };
+          // const payload = returnedData;
+          // const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+          // console.log(token);
+          response.status(200).send(email);
         })
         .catch((error) => {
           console.log(error);
