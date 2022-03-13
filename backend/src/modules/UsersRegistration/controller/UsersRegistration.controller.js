@@ -28,15 +28,24 @@ export class UsersRegistrationController {
     });
 
     this.router.route('/log-in').post((request, response) => {
-      this.service.signUp(
-        new UserLogIn({
-          email: request.body.email,
-          password: request.body.password,
-        }),
-      );
-      const payload = UserLogIn;
-      const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
-      response.json(token);
+      this.service
+        .logIn(
+          new UserLogIn({
+            email: request.body.email,
+            password: request.body.password,
+          }),
+        )
+        .then((email) => {
+          const returnedData = { email: email };
+          const payload = returnedData;
+          const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+          console.log(token);
+          response.status(200).send(token);
+        })
+        .catch((error) => {
+          console.log(error);
+          response.status(400).send({ message: error.message });
+        });
     });
   }
 }

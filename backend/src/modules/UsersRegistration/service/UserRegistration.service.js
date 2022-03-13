@@ -1,5 +1,6 @@
 import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
+import { UserLogIn } from './UserLogIn.js';
 
 export class UserRegistrationService {
   constructor(repository) {
@@ -15,8 +16,6 @@ export class UserRegistrationService {
     if (isUserExist) {
       throw new Error('User with this email exists');
     }
-
-
 
     const salt = 10;
 
@@ -35,5 +34,21 @@ export class UserRegistrationService {
     await this.repository.createNewUser(userRegistrationDetailWithHashPassword);
 
     return userRegistrationDetailWithHashPassword.email;
+  }
+  async logIn(userLogIn) {
+    const loggedUserEmail = userLogIn.email;
+    const loggedUserDetails = await this.repository.findUser(loggedUserEmail);
+
+    const isLoggedUserExist = !!loggedUserDetails.length;
+    if (!!isLoggedUserExist) {
+      throw new Error('User with this email does not exists');
+    }
+
+    const userLogInDetails = new UserLogIn({
+      email: userLogIn.email,
+      password: userLogIn.password,
+    });
+
+    return userLogInDetails.email;
   }
 }
