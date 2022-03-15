@@ -1,7 +1,7 @@
-import { CommentController } from './controller/AddComment.controller.js';
-import { AddCommentService } from './service/AddComment.service.js';
-import { InMemoryCommentRepository } from './repository/inMemory/inMemoryAddComment.repository.js';
-import { MongoCommentRepository } from './repository/mongo/MongoAddComment.repository.js';
+import { CommentController } from './controller/Comment.controller.js';
+import { AddCommentService } from './service/Comment.service.js';
+import { InMemoryCommentRepository } from './repository/inMemory/inMemoryComment.repository.js';
+import { MongoCommentRepository } from './repository/mongo/MongoComment.repository.js';
 
 export const CommentModule = (moduleRepositoryType) => {
   const addCommentRepository = (repositoryType) => {
