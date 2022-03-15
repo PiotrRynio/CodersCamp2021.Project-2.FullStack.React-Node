@@ -1,4 +1,4 @@
-export class AddCommentService {
+export class CommentService {
   constructor(repository) {
     this.repository = repository;
   }

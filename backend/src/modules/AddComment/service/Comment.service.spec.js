@@ -1,6 +1,6 @@
-import { InMemoryCommentRepository } from '../repository/inMemory/inMemoryAddComment.repository.js';
-import { AddCommentService } from './AddComment.service.js';
-import { Comment } from './AddComment.js';
+import { InMemoryCommentRepository } from '../repository/inMemory/inMemoryComment.repository.js';
+import { CommentService } from './Comment.service.js';
+import { Comment } from './Comment.js';
 
 describe('AddCommentRepository|', () => {
   const defaultComment = new Comment({
@@ -16,7 +16,7 @@ describe('AddCommentRepository|', () => {
 
   test('When the correct comment is added return content of the comment', async () => {
     const inMemoryCommentRepository = new InMemoryCommentRepository();
-    const addCommentService = new AddCommentService(inMemoryCommentRepository);
+    const addCommentService = new CommentService(inMemoryCommentRepository);
 
     const returnedContent = await addCommentService.addComment(defaultComment);
 
@@ -24,7 +24,7 @@ describe('AddCommentRepository|', () => {
   });
   test('when comment data is not valid then throw eror', async () => {
     const inMemoryCommentRepository = new InMemoryCommentRepository();
-    const addCommentService = new AddCommentService(inMemoryCommentRepository);
+    const addCommentService = new CommentService(inMemoryCommentRepository);
 
     const addCommentWithoutContent = async () => {
       await addCommentService.addComment(commentWithoutContent);

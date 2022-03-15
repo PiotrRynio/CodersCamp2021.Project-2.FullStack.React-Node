@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Comment } from '../service/AddComment.js';
+import { Comment } from '../service/Comment.js';
 
 export class CommentController {
   constructor(service) {

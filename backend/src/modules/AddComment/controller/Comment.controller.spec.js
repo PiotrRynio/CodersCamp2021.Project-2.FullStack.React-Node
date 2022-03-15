@@ -1,10 +1,10 @@
 import { agent } from 'supertest';
 import { testApi } from '../../../testsUtils/testApi.js';
-import { CommentController } from './AddComment.controller.js';
+import { CommentController } from './Comment.controller.js';
 
 describe('CommentController |', () => {
   const postCreateCommentRequestBody = {
-    content: 'tresc komentarza',
+    content: 'comment content',
     date: Date.now(),
   };
 
