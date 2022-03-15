@@ -22,7 +22,7 @@ describe('AddCommentRepository|', () => {
 
     expect(returnedContent).toBe(defaultComment.content);
   });
-  test('when comment data is not valid then throw eror', async () => {
+  test('when comment data is not valid then throw error', async () => {
     const inMemoryCommentRepository = new InMemoryCommentRepository();
     const addCommentService = new AddCommentService(inMemoryCommentRepository);
 
