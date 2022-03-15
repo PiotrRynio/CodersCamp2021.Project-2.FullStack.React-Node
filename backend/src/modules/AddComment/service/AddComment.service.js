@@ -1,6 +1,6 @@
 import { Comment } from './AddComment.js';
 
-export class AddCommentService {
+export class CommentService {
   constructor(repository) {
     this.repository = repository;
   }
