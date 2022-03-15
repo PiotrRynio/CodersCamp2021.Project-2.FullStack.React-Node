@@ -12,7 +12,7 @@ describe('CommentController |', () => {
     const testService = {
       addComment: async (postCreateCommentRequestBody) => postCreateCommentRequestBody.content,
     };
-    const addCommentController = new CommentController(testService);
+    const commentController = new CommentController(testService);
     const app = testApi('/rest-api', addCommentController.router);
 
     const { body, status } = await agent(app)
