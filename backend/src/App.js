@@ -7,18 +7,16 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
-import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
-import { boardsModule } from './modules/Boards/boardsModule.js';
+import { commentModule } from './modules/AddComment/CommentModule.js';
 
 dotenv.config();
 
 export const app = async () => {
   await connectToMongoDb();
   const repositoryType = 'MONGO';
+  const userRegistrationRepository = userRegistrationDetailRepository(repositoryType);
 
-  const userRegistrationDetailsService = new UserRegistrationService(
-    userRegistrationDetailRepository(repositoryType),
-  );
+  const userRegistrationDetailsService = new UserRegistrationService(userRegistrationRepository);
   const userRegistrationDetailsController = new UsersRegistrationController(
     userRegistrationDetailsService,
   );
@@ -29,8 +27,7 @@ export const app = async () => {
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api', announcementsModule(repositoryType));
-  restApiServer.use('/rest-api', boardsModule(repositoryType));
+  restApiServer.use('/rest-api', commentModule(repositoryType));
 
   return restApiServer;
 };
