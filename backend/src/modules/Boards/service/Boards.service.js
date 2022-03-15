@@ -54,9 +54,4 @@ export class BoardsService {
     const updatedBoard = await this.repository.addNewAnnouncementId(boardId, announcementId);
     return updatedBoard;
   }
-
-  async removeAllBoards() {
-    const clearedRepository = await this.repository.removeAllBoards();
-    return clearedRepository;
-  }
 }

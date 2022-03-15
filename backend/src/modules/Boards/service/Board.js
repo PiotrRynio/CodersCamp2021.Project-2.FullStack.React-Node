@@ -1,5 +1,12 @@
+import validateBoard from './validateBoard.js';
+
 export class Board {
   constructor(props) {
+    const { error } = validateBoard(props);
+    if (error) {
+      console.log(error.details[0].message);
+      throw new Error(error.details[0].message);
+    }
     this.id = props.id;
     this.boardName = props.boardName;
     this.mapCoordinates = props.mapCoordinates;

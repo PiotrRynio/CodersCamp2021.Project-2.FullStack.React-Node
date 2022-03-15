@@ -19,8 +19,7 @@ export class MongoBoardsRepository {
     if (!mongoFindResult) {
       throw new Error('Board not found!');
     }
-    const foundBoard = mongoDocumentToDomain(mongoFindResult);
-    return foundBoard;
+    return mongoDocumentToDomain(mongoFindResult);
   }
 
   async addNewAnnouncementId(boardID, announcementID) {
@@ -29,7 +28,7 @@ export class MongoBoardsRepository {
       { $push: { announcements: announcementID } },
       { new: true },
     );
-    return updatedBoard;
+    return mongoDocumentToDomain(updatedBoard);
   }
 }
 

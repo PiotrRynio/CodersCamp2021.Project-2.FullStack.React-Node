@@ -5,7 +5,7 @@ import { BoardsController } from './BoardsController.js';
 describe('Boards controller |', () => {
   const testBoardBody = {
     boardName: 'Wroclaw',
-    coords: { latitude: 51.88569995139321, longitude: 17.02390643626451 },
+    mapCoordinates: { latitude: 51.88569995139321, longitude: 17.02390643626451 },
     accessType: 'public',
     adminId: '507f191e810c19729de860ea',
     description: 'sample description',
@@ -35,60 +35,18 @@ describe('Boards controller |', () => {
 
   test('POST /rest-api/boards/ | when service thrown an error', async () => {
     // GIVEN
+    const errorMessage = 'Sample error message';
     const testService = {
       addBoard: async () => {
-        throw new Error('Sample error message');
+        throw new Error(errorMessage);
       },
     };
     const boardsController = new BoardsController(testService);
     const app = testApi('/rest-api', boardsController.router);
-
     // WHEN
     const { body, status } = await agent(app).post('/rest-api/boards').send(testBoardBody);
-
     // THEN
     expect(status).toEqual(400);
-    expect(body).toEqual({ message: 'Sample error message' });
-  });
-  test('PATCH /rest-api/boards/:id | when return board with added announcement', async () => {
-    // GIVEN
-    const testAnnouncementID = '622a38a4e30a4ba39ee75a40';
-    const testBoardID = '622a38b8e7cfef8c44142cd9';
-    testBoardBody.id = testBoardID;
-    testBoardBody.announcements.push(testAnnouncementID);
-    const testService = {
-      addNewAnnouncement: async (testBoardID, testAnnouncementID) => testBoardBody,
-    };
-    const boardsController = new BoardsController(testService);
-    const app = testApi('/rest-api', boardsController.router);
-
-    // WHEN
-    const { body, status } = await agent(app).patch(`/rest-api/boards/${testBoardID}`);
-
-    // THEN
-    expect(status).toEqual(200);
-    expect(body.returnedData).toEqual(testBoardBody);
-  });
-
-  test('PATCH /rest-api/boards/:id | when service thrown an error', async () => {
-    // GIVEN
-    const testAnnouncementID = '622a38a4e30a4ba39ee75a40';
-    const testBoardID = '622a38b8e7cfef8c44142cd9';
-    testBoardBody.id = testBoardID;
-    testBoardBody.announcements.push(testAnnouncementID);
-    const testService = {
-      addNewAnnouncement: async () => {
-        throw new Error('Sample error message');
-      },
-    };
-    const boardsController = new BoardsController(testService);
-    const app = testApi('/rest-api', boardsController.router);
-
-    // WHEN
-    const { body, status } = await agent(app).patch(`/rest-api/boards/${testBoardID}`);
-
-    // THEN
-    expect(status).toEqual(400);
-    expect(body).toEqual({ message: 'Sample error message' });
+    expect(body).toEqual({ message: errorMessage });
   });
 });

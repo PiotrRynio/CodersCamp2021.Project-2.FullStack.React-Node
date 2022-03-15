@@ -11,7 +11,13 @@ export class InMemoryBoardsRepository {
   }
 
   findBoardByName(boardName) {
-    return Object.keys(this.entities).map((boardID) => this.entities[boardID]);
+    const foundArray = [];
+    for (const board in this.entities) {
+      if (this.entities[board].boardName == boardName) {
+        foundArray.push(this.entities[board]);
+      }
+    }
+    return foundArray;
   }
 
   findBoardByID(boardID) {
@@ -28,11 +34,6 @@ export class InMemoryBoardsRepository {
   }
 
   getAll() {
-    return this.entities;
-  }
-
-  removeAllBoards() {
-    for (const boardProperty in this.entities) delete this.entities[boardProperty];
     return this.entities;
   }
 }
