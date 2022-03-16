@@ -1,5 +1,6 @@
 import { MongoBoardsModel } from './MongoBoardsModel.js';
 import { Board } from '../../service/Board.js';
+import announcement from '../../../Announcements/service/Announcement.js';
 
 export class MongoBoardsRepository {
   constructor() {}
@@ -29,6 +30,15 @@ export class MongoBoardsRepository {
       { new: true },
     );
     return mongoDocumentToDomain(updatedBoard);
+  }
+
+  async getBoardAnnouncements(boardID) {
+    const returnedData = await MongoBoardsModel.findById(boardID).select('announcements').exec();
+    const foundBoardAnnouncements = returnedData?.announcements?.map((announcement) =>
+      announcement.valueOf(),
+    );
+    console.log(foundBoardAnnouncements);
+    return foundBoardAnnouncements;
   }
 }
 

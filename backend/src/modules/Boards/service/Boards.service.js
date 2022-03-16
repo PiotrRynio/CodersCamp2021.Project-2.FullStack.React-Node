@@ -2,6 +2,7 @@ import validateBoard from './validateBoard.js';
 import { getDistanceFromCoordinatesInKilometers } from './getDistanceFromCoordinatesInKilometers.js';
 import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans/values.js';
 import validateAddingAnnouncement from './validateAddingAnnouncement.js';
+import mongoose from 'mongoose';
 
 export class BoardsService {
   constructor(repository) {
@@ -53,5 +54,24 @@ export class BoardsService {
 
     const updatedBoard = await this.repository.addNewAnnouncementId(boardId, announcementId);
     return updatedBoard;
+  }
+
+  async getBoardAnnouncementsList(boardId) {
+    if (!mongoose.isValidObjectId(boardId) && this.repository.constructor.name == 'MONGO') {
+      throw new Error('Sent id is not an ObjectId');
+    }
+
+    if (!boardId) {
+      throw new Error('No board ID');
+    }
+    const boardFromGetAnnouncements = await this.repository.findBoardByID(boardId);
+    console.log(boardFromGetAnnouncements);
+    if (!boardFromGetAnnouncements) {
+      console.log('errors');
+      throw new Error('Board not found!');
+    }
+    const announcementsList = await this.repository.getBoardAnnouncements(boardId);
+    console.log(announcementsList);
+    return announcementsList;
   }
 }

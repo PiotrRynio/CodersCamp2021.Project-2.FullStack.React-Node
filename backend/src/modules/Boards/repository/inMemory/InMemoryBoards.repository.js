@@ -22,15 +22,17 @@ export class InMemoryBoardsRepository {
 
   findBoardByID(boardID) {
     const foundBoard = this.entities[boardID];
-    if (!foundBoard) {
-      throw new Error('Board not found');
-    }
+
     return foundBoard;
   }
 
   addNewAnnouncementId(boardID, announcementID) {
     this.entities[boardID]?.announcements.push(announcementID);
     return this.entities[boardID];
+  }
+  getBoardAnnouncements(boardID) {
+    const foundBoardAnnouncements = this.entities[boardID]?.announcements;
+    return foundBoardAnnouncements;
   }
 
   getAll() {
