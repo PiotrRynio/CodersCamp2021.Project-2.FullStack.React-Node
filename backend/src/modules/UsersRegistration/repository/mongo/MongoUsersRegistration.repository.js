@@ -5,11 +5,10 @@ export class MongoUsersRegistrationRepository {
   constructor() {}
 
   async findUser(email) {
-    const mongoFindResult = await MongoUserRegistrationDetails.find({
-      email: email,
-    });
-    if (!mongoFindResult) {
-      return {};
+    const mongoFindResult = await MongoUserRegistrationDetails.find({ email: email });
+    console.log(mongoFindResult);
+    if (!mongoFindResult.length) {
+      return;
     }
 
     return mongoDocumentToDomain(mongoFindResult[0]);

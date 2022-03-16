@@ -37,10 +37,10 @@ export class UsersRegistrationController {
           }),
         )
         .then((email) => {
-          // const returnedData = { email: email };
-          // const payload = returnedData;
-          // const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
-          // console.log(token);
+          const returnedData = { email: email };
+          const payload = returnedData;
+          const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+          console.log(token);
           response.status(200).send(email);
         })
         .catch((error) => {
