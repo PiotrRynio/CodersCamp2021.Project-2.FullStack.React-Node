@@ -169,4 +169,15 @@ describe('Boards service | get board announcements list ', () => {
     const returnedList = await boardsService.getBoardAnnouncementsList(addedBoard.id);
     expect(returnedList.length).toBe(testBoard.announcements.length);
   });
+  test('if board with sent id not exist then error is thrown', async () => {
+    //Given
+    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+    const boardsService = new BoardsService(inMemoryBoardsRepository);
+    //When
+    const tryGetAnnouncementsFromBoardThatNotExist = async () => {
+      await boardsService.getBoardAnnouncementsList(testBoard.id);
+    };
+
+    await expect(tryGetAnnouncementsFromBoardThatNotExist).rejects.toThrowError('Board not found');
+  });
 });

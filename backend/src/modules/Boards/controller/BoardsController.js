@@ -27,10 +27,10 @@ export class BoardsController {
           response.status(400).send({ message: error.message });
         });
     });
-    this.router.route('/boards/:id/announcements').get((request, response) => {
+    this.router.route('/announcements/:id').delete((request, response) => {
       const boardId = request.params.id;
       this.service
-        .getBoardAnnouncementsList(boardId)
+        .deleteAnnouncement(boardId)
         .then((returnedData) => {
           response.status(200).send({ returnedData });
         })

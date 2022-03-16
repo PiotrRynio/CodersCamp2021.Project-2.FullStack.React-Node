@@ -20,6 +20,7 @@ export class MongoBoardsRepository {
     if (!mongoFindResult) {
       throw new Error('Board not found!');
     }
+
     return mongoDocumentToDomain(mongoFindResult);
   }
 
@@ -37,8 +38,29 @@ export class MongoBoardsRepository {
     const foundBoardAnnouncements = returnedData?.announcements?.map((announcement) =>
       announcement.valueOf(),
     );
-    console.log(foundBoardAnnouncements);
     return foundBoardAnnouncements;
+  }
+
+  async deleteBoardAnnouncement(announcementId) {
+    const foundBoardToUpdateAnnouncements = await MongoBoardsModel.findOne({
+      announcements: announcementId,
+    });
+    if (!foundBoardToUpdateAnnouncements) {
+      throw new Error('Board not found!');
+    }
+
+    const indexOfAnnouncementToDelete =
+      foundBoardToUpdateAnnouncements?.announcements.indexOf(announcementId);
+
+    foundBoardToUpdateAnnouncements?.announcements.splice(indexOfAnnouncementToDelete, 1);
+
+    await MongoBoardsModel.findOneAndUpdate(
+      { announcements: announcementId },
+      { announcements: foundBoardToUpdateAnnouncements.announcements },
+      { upsert: true, new: true },
+    );
+
+    return announcementId;
   }
 }
 
@@ -48,7 +70,6 @@ function mongoDocumentToDomain(mongoDocument) {
     boardName: mongoDocument.boardName,
     mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,
-    adminId: mongoDocument.adminId,
     dateCreated: mongoDocument.dateCreated,
     announcements: mongoDocument.announcements,
     avatarUrl: mongoDocument.avatarUrl,

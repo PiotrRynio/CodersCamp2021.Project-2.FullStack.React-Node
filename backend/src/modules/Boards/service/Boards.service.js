@@ -65,13 +65,22 @@ export class BoardsService {
       throw new Error('No board ID');
     }
     const boardFromGetAnnouncements = await this.repository.findBoardByID(boardId);
-    console.log(boardFromGetAnnouncements);
     if (!boardFromGetAnnouncements) {
-      console.log('errors');
       throw new Error('Board not found!');
     }
     const announcementsList = await this.repository.getBoardAnnouncements(boardId);
-    console.log(announcementsList);
     return announcementsList;
+  }
+
+  async deleteAnnouncement(announcementId) {
+    console.log({ announcementId });
+    //TODO SPRAWDZIC CZY PUSTY PRZEJDZIE
+    if (!mongoose.isValidObjectId(announcementId) && this.repository.constructor.name == 'MONGO') {
+      throw new Error('Sent id is not an ObjectId');
+    }
+
+    const deleteAnnouncement = await this.repository.deleteBoardAnnouncement(announcementId);
+
+    const deletedAnnouncement = 0;
   }
 }
