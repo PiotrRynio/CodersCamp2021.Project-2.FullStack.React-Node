@@ -63,8 +63,6 @@ describe('InMemoryRepository |', () => {
     const foundBoards = testRepository.findBoardByName(testBoard1.boardName);
 
     //THEN
-    console.log('TEST');
-    console.log(foundBoards);
     expect(foundBoards).toContain(testBoard1);
   });
   test(`throw an error when found board by id don't exist`, () => {
