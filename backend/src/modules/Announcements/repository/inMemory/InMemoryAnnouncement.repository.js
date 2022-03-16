@@ -28,4 +28,19 @@ export class InMemoryAnnouncementRepository {
     delete this.entities[announcementId];
     return announcement;
   }
+
+  async updateOneByAnnouncementId(announcementId, newAnnouncementBody) {
+    const announcement = this.entities[announcementId];
+
+    if (!announcement) {
+      throw new NotFoundError('Announcement');
+    }
+    const updatedAnnouncement = {
+      ...announcement,
+      ...newAnnouncementBody,
+      id: announcement.id,
+    };
+    this.entities[updatedAnnouncement.id] = updatedAnnouncement;
+    return this.entities[updatedAnnouncement.id];
+  }
 }

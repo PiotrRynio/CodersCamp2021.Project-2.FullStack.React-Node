@@ -26,9 +26,12 @@ export class AnnouncementsService {
   }
 
   async getAnnouncementsByIds(announcementsIds) {
-    return await announcementsIds.map(
-      async (announcementId) => await this.repository.findOneByAnnouncementId(announcementId),
-    );
+    const returnedAnnouncements = [];
+    announcementsIds.forEach(async (announcementId) => {
+      const announcement = await this.repository.findOneByAnnouncementId(announcementId);
+      returnedAnnouncements.push(announcement);
+    });
+    return returnedAnnouncements;
   }
 
   async deleteAnnouncement(announcementId) {
