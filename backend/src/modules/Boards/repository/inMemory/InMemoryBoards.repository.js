@@ -35,6 +35,23 @@ export class InMemoryBoardsRepository {
     return foundBoardAnnouncements;
   }
 
+  deleteBoardAnnouncement(announcementId) {
+    let deletedAnnouncementId = undefined;
+    for (const board in this.entities) {
+      if (this.entities[board].announcements.includes(announcementId)) {
+        const indexOfAnnouncementToDelete =
+          this.entities[board].announcements.indexOf(announcementId);
+        this.entities.announcements.splice(indexOfAnnouncementToDelete, 1);
+        deletedAnnouncementId = announcementId;
+        break;
+      }
+    }
+    if (!deletedAnnouncementId) {
+      throw new Error('Board not found!');
+      ('Not found specified announcement id');
+    }
+    return deletedAnnouncementId;
+  }
   getAll() {
     return this.entities;
   }

@@ -73,14 +73,12 @@ export class BoardsService {
   }
 
   async deleteAnnouncement(announcementId) {
-    console.log({ announcementId });
-    //TODO SPRAWDZIC CZY PUSTY PRZEJDZIE
     if (!mongoose.isValidObjectId(announcementId) && this.repository.constructor.name == 'MONGO') {
       throw new Error('Sent id is not an ObjectId');
     }
 
-    const deleteAnnouncement = await this.repository.deleteBoardAnnouncement(announcementId);
+    const deletedAnnouncement = await this.repository.deleteBoardAnnouncement(announcementId);
 
-    const deletedAnnouncement = 0;
+    return deletedAnnouncement;
   }
 }
