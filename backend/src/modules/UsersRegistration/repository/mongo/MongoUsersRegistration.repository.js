@@ -6,7 +6,6 @@ export class MongoUsersRegistrationRepository {
 
   async findUser(email) {
     const mongoFindResult = await MongoUserRegistrationDetails.find({ email: email });
-    console.log(mongoFindResult);
     if (!mongoFindResult.length) {
       return;
     }
