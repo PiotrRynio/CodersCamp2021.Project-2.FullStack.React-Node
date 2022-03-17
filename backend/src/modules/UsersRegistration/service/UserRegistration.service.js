@@ -1,7 +1,7 @@
 import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
-import { loginValidation } from './ValidateLogIn.js';
-import { registrationValidation } from './ValidateRegistration.js';
+import { validateLogin } from './ValidateLogIn.js';
+import { validateRegistration } from './ValidateRegistration.js';
 
 export class UserRegistrationService {
   constructor(repository) {
@@ -9,7 +9,7 @@ export class UserRegistrationService {
   }
 
   async signUp(userRegistrationDetails) {
-    const { error } = registrationValidation(userRegistrationDetails);
+    const { error } = validateRegistration(userRegistrationDetails);
     if (error) {
       console.log(error.details[0].message);
       throw new Error(error.details[0].message);
@@ -42,7 +42,7 @@ export class UserRegistrationService {
   }
 
   async logIn(userLogIn) {
-    const { error } = loginValidation(userLogIn);
+    const { error } = validateLogin(userLogIn);
     if (error) {
       throw new Error(error.details[0].message);
     }
