@@ -9,7 +9,7 @@ import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/re
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
 import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
 import { boardsModule } from './modules/Boards/boardsModule.js';
-import { CommentModule } from './modules/AddComment/CommentModule.js';
+import { commentModule } from './modules/AddComment/CommentModule.js';
 
 dotenv.config();
 
@@ -31,7 +31,7 @@ export const app = async () => {
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api', CommentModule(repositoryType));
+  restApiServer.use('/rest-api', commentModule(repositoryType));
   restApiServer.use('/rest-api', announcementController.router);
   restApiServer.use('/rest-api', boardsController.router);
 

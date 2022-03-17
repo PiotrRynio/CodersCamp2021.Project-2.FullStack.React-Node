@@ -14,19 +14,19 @@ describe('AnnouncementsController |', () => {
 
   test('POST /rest-api/borders/:id/announcements | when return boardsAnnouncements with new Announcements', async () => {
     // GIVEN
-    const expectedId = uuidv4();
+    const testId = uuidv4();
     const expectedResponse = {
       announcements: [
         {
           ...postAnnouncementRequestBody,
-          id: expectedId,
+          id: testId,
           commentsIds: [],
         },
       ],
     };
     const testService = {
       addAnnouncement: async (postAnnouncementRequestBody) => {
-        postAnnouncementRequestBody.id = expectedId;
+        postAnnouncementRequestBody.id = testId;
         postAnnouncementRequestBody.commentsIds = [];
         return [postAnnouncementRequestBody];
       },
@@ -66,18 +66,18 @@ describe('AnnouncementsController |', () => {
 
   test('GET /rest-api/borders/:id/announcements | when return board announcements', async () => {
     // GIVEN
-    const expectedId = uuidv4();
-    const expectedId2 = uuidv4();
+    const testId = uuidv4();
+    const testId2 = uuidv4();
 
     const serviceResponse = [
       {
         ...postAnnouncementRequestBody,
-        id: expectedId,
+        id: testId,
         commentsIds: [],
       },
       {
         ...postAnnouncementRequestBody,
-        id: expectedId2,
+        id: testId2,
         commentsIds: [],
       },
     ];
@@ -121,11 +121,11 @@ describe('AnnouncementsController |', () => {
 
   test('GET /rest-api/announcements/:id | when return announcement', async () => {
     // GIVEN
-    const expectedId = uuidv4();
+    const testId = uuidv4();
     const expectedResponse = {
       announcement: {
         ...postAnnouncementRequestBody,
-        id: expectedId,
+        id: testId,
         commentsIds: [],
       },
     };
@@ -136,7 +136,7 @@ describe('AnnouncementsController |', () => {
     const app = testApi('/rest-api', announcementsController.router);
 
     // WHEN
-    const { body, status } = await agent(app, {}).get(`/rest-api/announcements/${expectedId}`);
+    const { body, status } = await agent(app, {}).get(`/rest-api/announcements/${testId}`);
 
     // THEN
     expect(status).toEqual(200);
@@ -181,11 +181,11 @@ describe('AnnouncementsController |', () => {
 
   test('DELETE /rest-api/announcements/:id | when service return deleted announcement', async () => {
     // GIVEN
-    const expectedId = uuidv4();
+    const testId = uuidv4();
     const expectedResponse = {
       announcement: {
         ...postAnnouncementRequestBody,
-        id: expectedId,
+        id: testId,
         commentsIds: [],
       },
     };
@@ -196,7 +196,7 @@ describe('AnnouncementsController |', () => {
     const app = testApi('/rest-api', announcementsController.router);
 
     // WHEN
-    const { body, status } = await agent(app, {}).delete(`/rest-api/announcements/${expectedId}`);
+    const { body, status } = await agent(app, {}).delete(`/rest-api/announcements/${testId}`);
 
     // THEN
     expect(status).toEqual(200);
@@ -223,11 +223,11 @@ describe('AnnouncementsController |', () => {
 
   test('PATCH /rest-api/announcements/:id | when service return updated announcement', async () => {
     // GIVEN
-    const expectedId = uuidv4();
+    const testId = uuidv4();
     const expectedResponse = {
       announcement: {
         ...postAnnouncementRequestBody,
-        id: expectedId,
+        id: testId,
         commentsIds: [],
       },
     };
@@ -238,7 +238,7 @@ describe('AnnouncementsController |', () => {
     const app = testApi('/rest-api', announcementsController.router);
 
     // WHEN
-    const { body, status } = await agent(app, {}).patch(`/rest-api/announcements/${expectedId}`);
+    const { body, status } = await agent(app, {}).patch(`/rest-api/announcements/${testId}`);
 
     // THEN
     expect(status).toEqual(200);
@@ -247,7 +247,7 @@ describe('AnnouncementsController |', () => {
 
   test('PATCH /rest-api/announcements/:id | when service return error', async () => {
     // GIVEN
-    const expectedId = uuidv4();
+    const testId = uuidv4();
     const testService = {
       updateAnnouncement: async () => {
         throw new Error('Test error message');
@@ -257,7 +257,7 @@ describe('AnnouncementsController |', () => {
     const app = testApi('/rest-api', announcementsController.router);
 
     // WHEN
-    const { body, status } = await agent(app, {}).patch(`/rest-api/announcements/${expectedId}`);
+    const { body, status } = await agent(app, {}).patch(`/rest-api/announcements/${testId}`);
 
     // THEN
     expect(status).toEqual(400);

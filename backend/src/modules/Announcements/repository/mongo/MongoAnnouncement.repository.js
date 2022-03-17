@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import Announcement from '../../service/Announcement.js';
-import { NotFoundError } from '../../../../utils/NotFoundError.js';
 
 export class MongoAnnouncementsRepository {
   async addAnnouncement(newAnnouncement) {
@@ -11,7 +10,7 @@ export class MongoAnnouncementsRepository {
   async findOneByAnnouncementId(announcementId) {
     return await MongoAnnouncements.findById(announcementId).then((mongoAnnouncement) => {
       if (!mongoAnnouncement) {
-        throw new NotFoundError('Announcement');
+        return;
       }
       return mongoDocumentToDomain(mongoAnnouncement);
     });
@@ -20,7 +19,7 @@ export class MongoAnnouncementsRepository {
   async deleteOneByAnnouncementId(announcementId) {
     return await MongoAnnouncements.findByIdAndDelete(announcementId).then((mongoAnnouncement) => {
       if (!mongoAnnouncement) {
-        throw new NotFoundError('Announcement');
+        return;
       }
       return mongoDocumentToDomain(mongoAnnouncement);
     });
@@ -31,6 +30,9 @@ export class MongoAnnouncementsRepository {
       announcementId,
       updatedAnnouncement,
     );
+    if (!mongoAnnouncement) {
+      return;
+    }
     return mongoDocumentToDomain(mongoAnnouncement);
   }
 }

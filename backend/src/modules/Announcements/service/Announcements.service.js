@@ -1,4 +1,5 @@
 import Announcement from './Announcement.js';
+import { NotFoundError } from '../../../utils/NotFoundError.js';
 
 export class AnnouncementsService {
   constructor(repository, boardsService) {
@@ -17,7 +18,11 @@ export class AnnouncementsService {
   }
 
   async findAnnouncement(announcementId) {
-    return await this.repository.findOneByAnnouncementId(announcementId);
+    const announcement = await this.repository.findOneByAnnouncementId(announcementId);
+    if (!announcement) {
+      throw new NotFoundError('Announcement');
+    }
+    return announcement;
   }
 
   async findBoardAnnouncements(boardId) {
@@ -27,27 +32,30 @@ export class AnnouncementsService {
 
   async getAnnouncementsByIds(announcementsIds) {
     const returnedAnnouncements = [];
-    announcementsIds.forEach(async (announcementId) => {
+    for (const announcementId of announcementsIds) {
       const announcement = await this.repository.findOneByAnnouncementId(announcementId);
+      if (!announcement) {
+        throw new NotFoundError('Announcement');
+      }
       returnedAnnouncements.push(announcement);
-    });
+    }
     return returnedAnnouncements;
   }
 
   async deleteAnnouncement(announcementId) {
     const deletedAnnouncement = this.repository.deleteOneByAnnouncementId(announcementId);
+    if (!deletedAnnouncement) {
+      throw new NotFoundError('Announcement');
+    }
     this.boardsService.deleteAnnouncementId(announcementId);
     return deletedAnnouncement;
   }
 
   async updateAnnouncement(announcementId, announcementData) {
     const updatedAnnouncement = new Announcement(announcementData);
-
-    const newAnnouncement = this.repository.updateOneByAnnouncementId(
-      announcementId,
-      updatedAnnouncement,
-    );
-
-    return newAnnouncement;
+    if (!updatedAnnouncement) {
+      throw new NotFoundError('Announcement');
+    }
+    return this.repository.updateOneByAnnouncementId(announcementId, updatedAnnouncement);
   }
 }
