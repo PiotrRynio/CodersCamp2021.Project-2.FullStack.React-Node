@@ -30,6 +30,7 @@ export class InMemoryBoardsRepository {
     this.entities[boardID]?.announcements.push(announcementID);
     return this.entities[boardID];
   }
+
   getBoardAnnouncements(boardID) {
     const foundBoardAnnouncements = this.entities[boardID]?.announcements;
     return foundBoardAnnouncements;

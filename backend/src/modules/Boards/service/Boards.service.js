@@ -57,10 +57,6 @@ export class BoardsService {
   }
 
   async getBoardAnnouncementsList(boardId) {
-    if (!mongoose.isValidObjectId(boardId) && this.repository.constructor.name == 'MONGO') {
-      throw new Error('Sent id is not an ObjectId');
-    }
-
     if (!boardId) {
       throw new Error('No board ID');
     }
@@ -73,8 +69,8 @@ export class BoardsService {
   }
 
   async deleteAnnouncement(announcementId) {
-    if (!mongoose.isValidObjectId(announcementId) && this.repository.constructor.name == 'MONGO') {
-      throw new Error('Sent id is not an ObjectId');
+    if (!announcementId) {
+      throw new Error('No announcement ID!');
     }
 
     const deletedAnnouncement = await this.repository.deleteBoardAnnouncement(announcementId);
