@@ -74,7 +74,6 @@ export class BoardsService {
     }
 
     const deletedAnnouncement = await this.repository.deleteBoardAnnouncement(announcementId);
-
     return deletedAnnouncement;
   }
 }

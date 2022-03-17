@@ -1,6 +1,5 @@
 import { MongoBoardsModel } from './MongoBoardsModel.js';
 import { Board } from '../../service/Board.js';
-import announcement from '../../../Announcements/service/Announcement.js';
 
 export class MongoBoardsRepository {
   constructor() {}
@@ -17,9 +16,6 @@ export class MongoBoardsRepository {
 
   async findBoardByID(boardId) {
     const mongoFindResult = await MongoBoardsModel.findById(boardId).exec();
-    if (!mongoFindResult) {
-      throw new Error('Board not found!');
-    }
 
     return mongoDocumentToDomain(mongoFindResult);
   }

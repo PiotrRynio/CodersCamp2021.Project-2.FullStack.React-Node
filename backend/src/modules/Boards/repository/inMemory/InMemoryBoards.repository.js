@@ -27,6 +27,13 @@ export class InMemoryBoardsRepository {
   }
 
   addNewAnnouncementId(boardID, announcementID) {
+    if (!boardID) {
+      throw new Error('No board ID!');
+    }
+    if (!announcementID) {
+      throw new Error('No announcement ID!');
+    }
+
     this.entities[boardID]?.announcements.push(announcementID);
     return this.entities[boardID];
   }
@@ -37,22 +44,24 @@ export class InMemoryBoardsRepository {
   }
 
   deleteBoardAnnouncement(announcementId) {
+    if (!announcementId) {
+      throw new Error('No announcement ID!');
+    }
     let deletedAnnouncementId = undefined;
     for (const board in this.entities) {
       if (this.entities[board].announcements.includes(announcementId)) {
         const indexOfAnnouncementToDelete =
           this.entities[board].announcements.indexOf(announcementId);
-        this.entities.announcements.splice(indexOfAnnouncementToDelete, 1);
+        this.entities[board].announcements.splice(indexOfAnnouncementToDelete, 1);
         deletedAnnouncementId = announcementId;
-        break;
+        return this.entities[board];
       }
     }
     if (!deletedAnnouncementId) {
-      throw new Error('Board not found!');
-      ('Not found specified announcement id');
+      throw new Error('Not found specified announcement id');
     }
-    return deletedAnnouncementId;
   }
+
   getAll() {
     return this.entities;
   }

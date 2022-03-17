@@ -36,7 +36,20 @@ describe('InMemoryRepository |', () => {
     id: uuidv4(),
   });
 
-  const testAnnouncementID = uuidv4();
+  const testBoard4 = new Board({
+    boardName: 'SampleBoardName3',
+    mapCoordinates: { latitude: 51.88569995139321, longitude: 17.02390643626451 },
+    accessType: 'public',
+    adminId: '507f191e810c19729de860ea',
+    description: 'sample description 1',
+    avatarUrl: 'https://firebasestorage.googleapis.com/samplenewatarurl',
+    announcements: [],
+    id: uuidv4(),
+  });
+
+  const testAnnouncementID1 = uuidv4();
+  const testAnnouncementID2 = uuidv4();
+  const testAnnouncementID3 = uuidv4();
 
   test('properly adds new board to repository', () => {
     //GIVEN
@@ -65,28 +78,95 @@ describe('InMemoryRepository |', () => {
     //THEN
     expect(foundBoards).toContain(testBoard1);
   });
-  test(`throw an error when found board by id don't exist`, () => {
-    //GIVEN
-    const testRepository = new InMemoryBoardsRepository();
 
-    //WHEN
-    const tryFindNotExistingBoard = () => {
-      testRepository.findBoardByID(testBoard1.id);
-    };
-
-    //THEN
-    expect(tryFindNotExistingBoard).toThrowError();
-  });
-
-  test('properly add announcement id to board', () => {
+  test('properly add announcement id to board', async () => {
     //GIVEN
     const testRepository = new InMemoryBoardsRepository();
 
     //WHEN
     testRepository.createNewBoard(testBoard1);
-    const updatedBoard = testRepository.addNewAnnouncementId(testBoard1.id, testAnnouncementID);
+    await testRepository.addNewAnnouncementId(testBoard1.id, testAnnouncementID1);
+    await testRepository.addNewAnnouncementId(testBoard1.id, testAnnouncementID2);
+    const updatedBoard = await testRepository.addNewAnnouncementId(
+      testBoard1.id,
+      testAnnouncementID3,
+    );
 
     //THEN
-    expect(updatedBoard.announcements.includes(testAnnouncementID)).toBeTruthy();
+    expect(updatedBoard.announcements.includes(testAnnouncementID1)).toBeTruthy();
+    expect(updatedBoard.announcements.length === 3).toBeTruthy();
+  });
+
+  test('when try add announcements without board id, then error is thrown', () => {
+    //GIVEN
+    const testRepository = new InMemoryBoardsRepository();
+
+    //WHEN
+    const tryToAddAnnouncementWithoutBoardID = async () => {
+      await testRepository.addNewAnnouncementId(undefined, testAnnouncementID1);
+    };
+
+    //THEN
+    expect(tryToAddAnnouncementWithoutBoardID).rejects.toThrowError('No board ID!');
+  });
+
+  test('when try add announcements without announcement id, then error is thrown', () => {
+    //GIVEN
+    const testRepository = new InMemoryBoardsRepository();
+
+    //WHEN
+    const tryToAddAnnouncementWithoutAnnouncementId = async () => {
+      await testRepository.addNewAnnouncementId(testBoard1, undefined);
+    };
+
+    //THEN
+    expect(tryToAddAnnouncementWithoutAnnouncementId).rejects.toThrowError('No announcement ID!');
+  });
+
+  test('properly delete an announcement', async () => {
+    //GIVEN
+    function randomValue(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    const testRepository = new InMemoryBoardsRepository();
+
+    //WHEN
+    testRepository.createNewBoard(testBoard4);
+    const announcementsIDsToAdd = Array(randomValue(2, 10)).fill(uuidv4());
+    for (const announcementID of announcementsIDsToAdd) {
+      await testRepository.addNewAnnouncementId(testBoard4.id, announcementID);
+    }
+    const updatedBoard = await testRepository.deleteBoardAnnouncement(announcementsIDsToAdd[0]);
+
+    //THEN
+    expect(updatedBoard.announcements.length == announcementsIDsToAdd.length - 1).toBeTruthy();
+  });
+  test('when try delete announcements without announcement id, then error is thrown', () => {
+    //GIVEN
+    const testRepository = new InMemoryBoardsRepository();
+
+    //WHEN
+    const tryToDeleteAnnouncementWithoutAnnouncementId = async () => {
+      await testRepository.addNewAnnouncementId(testBoard1, undefined);
+    };
+
+    //THEN
+    expect(tryToDeleteAnnouncementWithoutAnnouncementId).rejects.toThrowError(
+      'No announcement ID!',
+    );
+  });
+  test('when try delete announcements that not exist, then error is thrown', () => {
+    //GIVEN
+    const testRepository = new InMemoryBoardsRepository();
+
+    //WHEN
+    const tryToDeleteAnnouncementThatNotExist = async () => {
+      await testRepository.deleteBoardAnnouncement(testAnnouncementID1);
+    };
+
+    //THEN
+    expect(tryToDeleteAnnouncementThatNotExist).rejects.toThrowError(
+      'Not found specified announcement id',
+    );
   });
 });
