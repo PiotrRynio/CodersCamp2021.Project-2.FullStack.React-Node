@@ -4,6 +4,9 @@ export class CommentService {
   }
 
   async addComment(newComment) {
+    if (!newComment.content) {
+      throw new Error('No comment!');
+    }
     await this.repository.createNewComment(newComment);
 
     return newComment.content;
