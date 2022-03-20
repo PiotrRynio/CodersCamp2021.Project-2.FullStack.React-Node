@@ -2,7 +2,7 @@ export const usersRegistrationSwagger = {
   '/rest-api/sign-up': {
     post: {
       tags: ['Users registration'],
-      description: 'Users registration module.',
+      description: 'Sign up user',
       responses: {
         200: {
           description: 'OK',
