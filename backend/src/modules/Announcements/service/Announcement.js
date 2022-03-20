@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 class Announcement {
   constructor(props) {
     const { error } = validateAnnouncement(props);
+
     if (error) {
       throw new Error(error.details[0].message);
     }
