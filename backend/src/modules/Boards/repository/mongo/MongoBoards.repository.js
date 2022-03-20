@@ -16,9 +16,7 @@ export class MongoBoardsRepository {
 
   async findBoardByID(boardId) {
     const mongoFindResult = await MongoBoardsModel.findById(boardId).exec();
-    if (!mongoFindResult) {
-      throw new Error('Board not found!');
-    }
+
     return mongoDocumentToDomain(mongoFindResult);
   }
 
@@ -30,6 +28,36 @@ export class MongoBoardsRepository {
     );
     return mongoDocumentToDomain(updatedBoard);
   }
+
+  async getBoardAnnouncements(boardID) {
+    const returnedData = await MongoBoardsModel.findById(boardID).select('announcements').exec();
+    const foundBoardAnnouncements = returnedData?.announcements?.map((announcement) =>
+      announcement.valueOf(),
+    );
+    return foundBoardAnnouncements;
+  }
+
+  async deleteBoardAnnouncement(announcementId) {
+    const foundBoardToUpdateAnnouncements = await MongoBoardsModel.findOne({
+      announcements: announcementId,
+    });
+    if (!foundBoardToUpdateAnnouncements) {
+      throw new Error('Board not found!');
+    }
+
+    const indexOfAnnouncementToDelete =
+      foundBoardToUpdateAnnouncements.announcements.indexOf(announcementId);
+
+    foundBoardToUpdateAnnouncements.announcements.splice(indexOfAnnouncementToDelete, 1);
+
+    await MongoBoardsModel.findOneAndUpdate(
+      { announcements: announcementId },
+      { announcements: foundBoardToUpdateAnnouncements.announcements },
+      { upsert: true, new: true },
+    );
+
+    return announcementId;
+  }
 }
 
 function mongoDocumentToDomain(mongoDocument) {
@@ -38,7 +66,6 @@ function mongoDocumentToDomain(mongoDocument) {
     boardName: mongoDocument.boardName,
     mapCoordinates: mongoDocument.mapCoordinates,
     accessType: mongoDocument.accessType,
-    adminId: mongoDocument.adminId,
     dateCreated: mongoDocument.dateCreated,
     announcements: mongoDocument.announcements,
     avatarUrl: mongoDocument.avatarUrl,

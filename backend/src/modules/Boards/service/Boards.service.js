@@ -54,4 +54,25 @@ export class BoardsService {
     const updatedBoard = await this.repository.addNewAnnouncementId(boardId, announcementId);
     return updatedBoard;
   }
+
+  async getBoardAnnouncementsList(boardId) {
+    if (!boardId) {
+      throw new Error('No board ID');
+    }
+    const boardFromGetAnnouncements = await this.repository.findBoardByID(boardId);
+    if (!boardFromGetAnnouncements) {
+      throw new Error('Board not found!');
+    }
+    const announcementsList = await this.repository.getBoardAnnouncements(boardId);
+    return announcementsList;
+  }
+
+  async deleteAnnouncement(announcementId) {
+    if (!announcementId) {
+      throw new Error('No announcement ID!');
+    }
+
+    const deletedAnnouncement = await this.repository.deleteBoardAnnouncement(announcementId);
+    return deletedAnnouncement;
+  }
 }
