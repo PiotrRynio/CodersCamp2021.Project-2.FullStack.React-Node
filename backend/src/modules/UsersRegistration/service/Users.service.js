@@ -17,7 +17,6 @@ export class UsersService {
 
     const userEmail = userRegistrationDetails.email;
     const foundUser = await this.repository.findUser(userEmail);
-    console.log(foundUser);
     const isUserExist = !!foundUser;
 
     if (isUserExist) {

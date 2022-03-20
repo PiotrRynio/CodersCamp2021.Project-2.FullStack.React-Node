@@ -3,10 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { connectToMongoDb } from './common/repository/mongo/mongoDB.js';
-import { UsersRegistrationController } from './modules/UsersRegistration/controller/UsersRegistration.controller.js';
+import { UsersController } from './modules/UsersRegistration/controller/Users.controller.js';
 import { UsersService } from './modules/UsersRegistration/service/Users.service.js';
-import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
-import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
+import { MongoUsersRepository } from './modules/UsersRegistration/repository/mongo/MongoUsers.repository.js';
+import { InMemoryUsersRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsers.repository.js';
 import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
 import { boardsModule } from './modules/Boards/boardsModule.js';
 import { commentModule } from './modules/AddComment/CommentModule.js';
@@ -19,9 +19,7 @@ export const app = async () => {
   const userRegistrationRepository = userRegistrationDetailRepository(repositoryType);
 
   const userRegistrationDetailsService = new UsersService(userRegistrationRepository);
-  const userRegistrationDetailsController = new UsersRegistrationController(
-    userRegistrationDetailsService,
-  );
+  const userRegistrationDetailsController = new UsersController(userRegistrationDetailsService);
   const [boardsController, boardsService] = boardsModule(repositoryType);
   const [announcementController] = announcementsModule(repositoryType, boardsService);
 
@@ -40,7 +38,7 @@ export const app = async () => {
 
 function userRegistrationDetailRepository(inMemoryRepositoryType) {
   if (inMemoryRepositoryType === 'MONGO') {
-    return new MongoUsersRegistrationRepository();
+    return new MongoUsersRepository();
   }
-  return new InMemoryUsersRegistrationRepository();
+  return new InMemoryUsersRepository();
 }

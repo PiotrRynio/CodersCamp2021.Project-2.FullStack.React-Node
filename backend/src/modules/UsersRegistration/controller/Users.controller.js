@@ -3,7 +3,7 @@ import { Router } from 'express';
 import { UserRegistration } from '../service/UserRegistration.js';
 import { UserLogIn } from '../service/UserLogIn.js';
 
-export class UsersRegistrationController {
+export class UsersController {
   constructor(service) {
     this.service = service;
     this.router = Router();
@@ -38,7 +38,7 @@ export class UsersRegistrationController {
         .then((email) => {
           const returnedData = { email: email };
           const payload = returnedData;
-          const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+          const token = jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: 1200 });
           response.header('auth-token', token).status(200).send(email);
         })
         .catch((error) => {
