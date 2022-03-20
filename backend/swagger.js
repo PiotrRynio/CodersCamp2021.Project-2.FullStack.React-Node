@@ -1,4 +1,4 @@
-import { usersRegistrationDocumentation } from './src/modules/UsersRegistration/controller/usersRegistration.documentation.js';
+import { usersRegistrationSwagger } from './src/modules/UsersRegistration/controller/usersRegistration.swagger.js';
 
 export const swaggerDocumentation = {
   openapi: '3.0.0',
@@ -9,5 +9,5 @@ export const swaggerDocumentation = {
   },
   tags: [{ name: 'Registrations', description: 'User route' }],
   servers: [{ url: 'http://localhost:5000', description: 'Local dev' }],
-  paths: usersRegistrationDocumentation,
+  paths: usersRegistrationSwagger,
 };

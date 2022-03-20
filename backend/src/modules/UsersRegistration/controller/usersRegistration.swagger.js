@@ -1,4 +1,4 @@
-export const usersRegistrationDocumentation = {
+export const usersRegistrationSwagger = {
   '/rest-api/sign-up': {
     post: {
       tags: ['Users registration'],
