@@ -1,0 +1,34 @@
+export const usersRegistrationDocumentation = {
+  '/rest-api/sign-up': {
+    post: {
+      tags: ['Users registration'],
+      description: 'Users registration module.',
+      responses: {
+        200: {
+          description: 'OK',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                example: {
+                  email: 'pwrynio@gmail.com',
+                },
+              },
+            },
+          },
+        },
+        405: {
+          description: 'Validation exception',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                example: { message: 'data and salt arguments required' },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+};
