@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { Board } from '../service/Board.js';
+import { authMiddleware } from '../../../middlewares/auth.js';
 
 export class BoardsController {
   constructor(service) {

@@ -1,19 +1,21 @@
 import mongoose from 'mongoose';
 import { UserRegistration } from '../../service/UserRegistration.js';
 
-export class MongoUsersRegistrationRepository {
+export class MongoUsersRepository {
   constructor() {}
 
   async findUser(email) {
-    const mongoFindResult = await MongoUserRegistrationDetails.find({
-      email: email,
-    });
+    const mongoFindResult = await MongoUserRegistrationDetails.findOne({ email: email });
+    if (!mongoFindResult) {
+      return;
+    }
 
-    return mongoFindResult.map((mongoDocument) => mongoDocumentToDomain(mongoDocument));
+    return mongoDocumentToDomain(mongoFindResult);
   }
 
   async createNewUser(userRegistrationDetails) {
-    await MongoUserRegistrationDetails.create(userRegistrationDetails);
+    const createdUser = await MongoUserRegistrationDetails.create(userRegistrationDetails);
+    return createdUser;
   }
 }
 
@@ -42,10 +44,7 @@ const userRegistrationDetailsSchema = new mongoose.Schema({
   },
 });
 
-const MongoUserRegistrationDetails = mongoose.model(
-  'userRegistrationDetails',
-  userRegistrationDetailsSchema,
-);
+const MongoUserRegistrationDetails = mongoose.model('users', userRegistrationDetailsSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   return new UserRegistration({
