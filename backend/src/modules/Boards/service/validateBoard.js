@@ -10,7 +10,7 @@ export const validateBoard = (newBoard) => {
     mapCoordinates: joi.object().required(),
     accessType: joi.string().required(),
     adminId: myJoiObjectId(),
-    announcements: joi.array(),
+    announcements: joi.array().required(),
     dateCreated: joi.date(),
     avatarUrl: joi.string().required(),
   });
