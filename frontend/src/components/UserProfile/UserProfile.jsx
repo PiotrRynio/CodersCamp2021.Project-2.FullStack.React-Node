@@ -8,28 +8,23 @@ import {
   UserAvatarContainer,
   UserAvatarEditButton,
   UserName,
-  UserBoardsAmount,
-  TextBold,
   BoardListHeader,
   EditBackgroundButton,
 } from 'components/UserProfile/UserProfile.styled';
 
-const UserProfile = () => {
+const UserProfile = ({author, avatar}) => {
   return (
     <Container>
       <UserBackground>
         <EditBackgroundButton>Edit background picture&nbsp;<FaCamera /></EditBackgroundButton>
       </UserBackground>
       <UserAvatarContainer>
-        <UserAvatar />
+        <UserAvatar avatar={avatar}/>
         <UserAvatarEditButton>
           <FaCamera />
         </UserAvatarEditButton>
       </UserAvatarContainer>
-      <UserName>User_Name</UserName>
-      <UserBoardsAmount>
-        <TextBold>8</TextBold>&nbsp;Boards Followed
-      </UserBoardsAmount>
+      <UserName user={author}></UserName>
       <BoardListHeader>Boards</BoardListHeader>
       <SubscribedBoardsList />
     </Container>

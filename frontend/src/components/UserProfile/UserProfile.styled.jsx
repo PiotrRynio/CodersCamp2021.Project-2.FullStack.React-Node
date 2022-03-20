@@ -111,15 +111,6 @@ export const UserName = styled.h2`
   padding: 10px 10px 0 0;
 `;
 
-export const UserBoardsAmount = styled.h4`
-  display: flex;
-  align-self: flex-end;
-  padding: 5px 10px 40px 0;
-  margin: 0;
-  opacity: 0.5;
-  font-weight: normal;
-`;
-
 export const TextBold = styled.span`
   font-weight: bold;
 `;
@@ -128,7 +119,7 @@ export const BoardListHeader = styled.h1`
   display: flex;
   align-self: flex-start;
   padding: 10px 80px 10px 80px;
-  margin: 40px 15px 10px 0px;
+  margin: 80px 15px 10px 0px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background: ${({ theme }) => theme.colors.primary};
