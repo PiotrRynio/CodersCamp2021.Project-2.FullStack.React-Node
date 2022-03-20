@@ -7,6 +7,8 @@ import { UsersRegistrationController } from './modules/UsersRegistration/control
 import { UserRegistrationService } from './modules/UsersRegistration/service/UserRegistration.service.js';
 import { MongoUsersRegistrationRepository } from './modules/UsersRegistration/repository/mongo/MongoUsersRegistration.repository.js';
 import { InMemoryUsersRegistrationRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsersRegistration.repository.js';
+import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
+import { boardsModule } from './modules/Boards/boardsModule.js';
 import { commentModule } from './modules/AddComment/CommentModule.js';
 
 dotenv.config();
@@ -20,6 +22,8 @@ export const app = async () => {
   const userRegistrationDetailsController = new UsersRegistrationController(
     userRegistrationDetailsService,
   );
+  const [boardsController, boardsService] = boardsModule(repositoryType);
+  const [announcementController] = announcementsModule(repositoryType, boardsService);
 
   const restApiServer = express();
   restApiServer.use(cors());
@@ -28,6 +32,8 @@ export const app = async () => {
   restApiServer.use(morgan('combined'));
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
   restApiServer.use('/rest-api', commentModule(repositoryType));
+  restApiServer.use('/rest-api', announcementController.router);
+  restApiServer.use('/rest-api', boardsController.router);
 
   return restApiServer;
 };

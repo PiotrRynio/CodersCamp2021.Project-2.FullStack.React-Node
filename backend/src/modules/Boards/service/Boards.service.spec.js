@@ -139,3 +139,45 @@ describe('Boards service | add new annoucements', () => {
     expect(updatedBoard.announcements.includes(testAnnouncementID)).toBeTruthy();
   });
 });
+describe('Boards service | get board announcements list ', () => {
+  const testAnnouncementID1 = '622a38a4e30a4ba39ee75a40';
+  const testAnnouncementID2 = '199a38a4e30a4ba39ee90a50';
+  const testAnnouncementID3 = '199a32a4e32a2ba34ee80a10';
+
+  const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+  const boardsService = new BoardsService(inMemoryBoardsRepository);
+  const testBoard = new Board({
+    boardName: 'Wroclaw',
+    mapCoordinates: {
+      latitude: 51.88569995139321,
+      longitude: 17.02390643626451,
+    },
+    accessType: 'public',
+    adminId: '507f191e810c19729de860ea',
+    description: 'sample description',
+    avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
+    announcements: [testAnnouncementID1, testAnnouncementID2, testAnnouncementID3],
+  });
+
+  test('properly returns announcements list', async () => {
+    //Given
+    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+    const boardsService = new BoardsService(inMemoryBoardsRepository);
+    const addedBoard = await boardsService.addBoard(testBoard);
+
+    //When
+    const returnedList = await boardsService.getBoardAnnouncementsList(addedBoard.id);
+    expect(returnedList).toHaveLength(testBoard.announcements.length);
+  });
+  test('if board with sent id not exist then error is thrown', async () => {
+    //Given
+    const inMemoryBoardsRepository = new InMemoryBoardsRepository();
+    const boardsService = new BoardsService(inMemoryBoardsRepository);
+    //When
+    const tryGetAnnouncementsFromBoardThatNotExist = async () => {
+      await boardsService.getBoardAnnouncementsList(testBoard.id);
+    };
+
+    await expect(tryGetAnnouncementsFromBoardThatNotExist).rejects.toThrowError('Board not found');
+  });
+});
