@@ -2,7 +2,6 @@ import validateBoard from './validateBoard.js';
 import { getDistanceFromCoordinatesInKilometers } from './getDistanceFromCoordinatesInKilometers.js';
 import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans/values.js';
 import validateAddingAnnouncement from './validateAddingAnnouncement.js';
-import mongoose from 'mongoose';
 
 export class BoardsService {
   constructor(repository) {

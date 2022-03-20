@@ -82,9 +82,9 @@ describe('InMemoryRepository |', () => {
   test('properly add announcement id to board', async () => {
     //GIVEN
     const testRepository = new InMemoryBoardsRepository();
+    testRepository.createNewBoard(testBoard1);
 
     //WHEN
-    testRepository.createNewBoard(testBoard1);
     await testRepository.addNewAnnouncementId(testBoard1.id, testAnnouncementID1);
     await testRepository.addNewAnnouncementId(testBoard1.id, testAnnouncementID2);
     const updatedBoard = await testRepository.addNewAnnouncementId(
@@ -93,8 +93,8 @@ describe('InMemoryRepository |', () => {
     );
 
     //THEN
-    expect(updatedBoard.announcements.includes(testAnnouncementID1)).toBeTruthy();
-    expect(updatedBoard.announcements.length === 3).toBeTruthy();
+    expect(updatedBoard.announcements).toContain(testAnnouncementID1);
+    expect(updatedBoard.announcements).toHaveLength(3);
   });
 
   test('when try add announcements without board id, then error is thrown', () => {
@@ -139,7 +139,7 @@ describe('InMemoryRepository |', () => {
     const updatedBoard = await testRepository.deleteBoardAnnouncement(announcementsIDsToAdd[0]);
 
     //THEN
-    expect(updatedBoard.announcements.length == announcementsIDsToAdd.length - 1).toBeTruthy();
+    expect(updatedBoard.announcements).toHaveLength(announcementsIDsToAdd.length - 1);
   });
   test('when try delete announcements without announcement id, then error is thrown', () => {
     //GIVEN

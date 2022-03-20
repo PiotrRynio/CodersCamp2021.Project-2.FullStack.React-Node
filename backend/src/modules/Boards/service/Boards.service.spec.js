@@ -167,7 +167,7 @@ describe('Boards service | get board announcements list ', () => {
 
     //When
     const returnedList = await boardsService.getBoardAnnouncementsList(addedBoard.id);
-    expect(returnedList.length).toBe(testBoard.announcements.length);
+    expect(returnedList).toHaveLength(testBoard.announcements.length);
   });
   test('if board with sent id not exist then error is thrown', async () => {
     //Given

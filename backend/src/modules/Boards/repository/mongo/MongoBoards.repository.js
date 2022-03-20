@@ -46,9 +46,9 @@ export class MongoBoardsRepository {
     }
 
     const indexOfAnnouncementToDelete =
-      foundBoardToUpdateAnnouncements.announcements?.indexOf(announcementId);
+      foundBoardToUpdateAnnouncements.announcements.indexOf(announcementId);
 
-    foundBoardToUpdateAnnouncements?.announcements?.splice(indexOfAnnouncementToDelete, 1);
+    foundBoardToUpdateAnnouncements.announcements.splice(indexOfAnnouncementToDelete, 1);
 
     await MongoBoardsModel.findOneAndUpdate(
       { announcements: announcementId },
