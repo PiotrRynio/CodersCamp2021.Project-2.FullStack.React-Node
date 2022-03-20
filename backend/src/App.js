@@ -1,6 +1,6 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from '../swagger.js';
+import { swaggerDocumentation } from '../swagger.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
@@ -28,11 +28,15 @@ export const app = async () => {
   restApiServer.use(cors());
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
+
   restApiServer.use(morgan('combined'));
+
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
   restApiServer.use('/rest-api', CommentModule(repositoryType));
   restApiServer.use('/rest-api', boardsModule(repositoryType));
-  restApiServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+  restApiServer.use('/rest-api-documentation', swaggerUi.serve);
+  restApiServer.use('/rest-api-documentation', swaggerUi.setup(swaggerDocumentation));
 
   return restApiServer;
 };
