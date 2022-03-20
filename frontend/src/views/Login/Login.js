@@ -31,27 +31,27 @@ const LogIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { mutate } = useMutation((loginData) => {
+  const { mutate } = useMutation(async (loginData) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData),
     };
     const loginUrl = `${REST_API_URL}/log-in`;
-
-    console.log('HERE');
+    const response = await fetch(loginUrl, requestOptions);
+    const jsonRes = await response.json();
+    if (response) {
+      console.log(jsonRes.email);
+      console.log(response.headers['Content-Length']);
+    }
   });
 
   const onSubmitButtonClick = () => {
-    console.log({ password });
-    if (user.loggedIn) {
-      return;
-    }
-
     const loginData = {
       password: password,
-      login: login,
+      email: login,
     };
+
     mutate(loginData);
   };
 

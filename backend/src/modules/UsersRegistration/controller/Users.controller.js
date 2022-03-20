@@ -39,11 +39,22 @@ export class UsersController {
           const returnedData = { email: email };
           const payload = returnedData;
           const token = jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: 1200 });
-          response.header('auth-token', token).status(200).send(email);
+          const tokenOptions = {
+            httpOnly: true,
+            expiresIn: process.env.EXPIRE_TOKEN,
+          };
+
+          response.cookie('auth-token', token, tokenOptions).status(200).send({
+            authorized: true,
+            email: email,
+          });
         })
         .catch((error) => {
           console.log(error);
-          response.status(400).send({ message: error.message });
+          response.status(400).send({
+            authorized: false,
+            message: error.message,
+          });
         });
     });
   }
