@@ -1,4 +1,5 @@
-import { usersRegistrationSwagger } from './src/modules/UsersRegistration/controller/usersRegistration.swagger.js';
+import { usersRegistrationSwagger } from './src/modules/UsersRegistration/controller/UsersRegistration.swagger.js';
+import { announcementsSwagger } from './src/modules/Announcements/controller/Announcements.swagger.js';
 
 export const swaggerDocumentation = {
   openapi: '3.0.0',
@@ -7,7 +8,10 @@ export const swaggerDocumentation = {
     title: 'BoardMap',
     description: 'Server for BoardMap - social App for connecting people at the local level',
   },
-  tags: [{ name: 'Registrations', description: 'User route' }],
+  tags: [
+    { name: 'Users registration', description: 'User route' },
+    { name: 'Announcements', description: 'Announcements route' },
+  ],
   servers: [{ url: 'http://localhost:5000', description: 'Local dev' }],
-  paths: usersRegistrationSwagger,
+  paths: { ...usersRegistrationSwagger, ...announcementsSwagger },
 };

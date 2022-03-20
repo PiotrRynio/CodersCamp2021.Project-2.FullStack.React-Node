@@ -4,15 +4,6 @@ export const usersRegistrationSwagger = {
       tags: ['Users registration'],
       description: 'Sign up user',
       summary: 'sign up',
-      // parameters: [
-      //   {
-      //     name: 'id',
-      //     in: 'query',
-      //     description: 'id of the user',
-      //     type: 'string',
-      //     example: '1234-5678-9012-3456',
-      //   },
-      // ],
       requestBody: {
         content: {
           'application/json': {
