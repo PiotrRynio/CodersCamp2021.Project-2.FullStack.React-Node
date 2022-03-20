@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
-export const authMiddleware = (req, res, next) => {
-  const token = req.headers['authorization']?.split('')[1];
+export const authMiddleware = (request, response, next) => {
+  const token = request.headers['auth-token'];
   if (!token) {
-    return res.sendStatus(401);
+    return res.status(401).send('Access Denied');
   }
-  jwt.verify(token, process.env.ACCES_TOKEN, (err, data) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN, (err, data) => {
     if (err) {
-      return res.sendStatus(403);
+      return res.status(403).send('Invalid token!');
     }
-    req.UserLogIn = data;
+    request.user = data.email;
     next();
   });
 };

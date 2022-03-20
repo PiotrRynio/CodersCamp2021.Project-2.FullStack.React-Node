@@ -1,15 +1,15 @@
-import { UserRegistration } from './UserRegistration.js';
 import bcrypt from 'bcrypt';
-import { validateLogin } from './ValidateLogIn.js';
-import { validateRegistration } from './ValidateRegistration.js';
+import { UserRegistration } from './UserRegistration.js';
+import { validateLoginData } from './ValidateLoginData.js';
+import { validateRegistrationData } from './ValidateRegistrationData.js';
 
-export class UserRegistrationService {
+export class UsersService {
   constructor(repository) {
     this.repository = repository;
   }
 
   async signUp(userRegistrationDetails) {
-    const { error } = validateRegistration(userRegistrationDetails);
+    const { error } = validateRegistrationData(userRegistrationDetails);
     if (error) {
       console.log(error.details[0].message);
       throw new Error(error.details[0].message);
@@ -37,30 +37,27 @@ export class UserRegistrationService {
     });
 
     const newUser = await this.repository.createNewUser(userRegistrationDetailWithHashPassword);
-
     return newUser.email;
   }
 
   async logIn(userLogIn) {
-    const { error } = validateLogin(userLogIn);
+    const { error } = validateLoginData(userLogIn);
     if (error) {
       throw new Error(error.details[0].message);
     }
 
-    const findUserEmail = userLogIn.email;
+    const foundUser = await this.repository.findUser(userLogIn.email);
 
-    const foundUserDetails = await this.repository.findUser(findUserEmail);
-
-    if (!foundUserDetails) {
+    if (!foundUser) {
       throw new Error('Email or password is wrong');
     }
 
-    const isUserValidPassword = await bcrypt.compare(userLogIn.password, foundUserDetails.password);
+    const isUserPasswordValid = await bcrypt.compare(userLogIn.password, foundUser.password);
 
-    if (!isUserValidPassword) {
+    if (!isUserPasswordValid) {
       throw new Error('Invalid password');
     }
 
-    return 'Success logIn';
+    return foundUser.email;
   }
 }

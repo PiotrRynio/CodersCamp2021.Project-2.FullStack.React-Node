@@ -5,12 +5,12 @@ export class MongoUsersRegistrationRepository {
   constructor() {}
 
   async findUser(email) {
-    const mongoFindResult = await MongoUserRegistrationDetails.find({ email: email });
-    if (!mongoFindResult.length) {
+    const mongoFindResult = await MongoUserRegistrationDetails.findOne({ email: email });
+    if (!mongoFindResult) {
       return;
     }
 
-    return mongoDocumentToDomain(mongoFindResult[0]);
+    return mongoDocumentToDomain(mongoFindResult);
   }
 
   async createNewUser(userRegistrationDetails) {
@@ -44,10 +44,7 @@ const userRegistrationDetailsSchema = new mongoose.Schema({
   },
 });
 
-const MongoUserRegistrationDetails = mongoose.model(
-  'userRegistrationDetails',
-  userRegistrationDetailsSchema,
-);
+const MongoUserRegistrationDetails = mongoose.model('users', userRegistrationDetailsSchema);
 
 function mongoDocumentToDomain(mongoDocument) {
   return new UserRegistration({

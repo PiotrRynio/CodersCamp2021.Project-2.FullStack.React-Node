@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { Board } from '../service/Board.js';
+import { authMiddleware } from '../../../middlewares/auth.js';
 
 export class BoardsController {
   constructor(service) {
     this.service = service;
     this.router = Router();
 
-    this.router.route('/boards').post((request, response) => {
+    this.router.route('/boards').post(authMiddleware, (request, response) => {
       this.service
         .addBoard(
           new Board({

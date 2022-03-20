@@ -1,5 +1,5 @@
 import { InMemoryUsersRegistrationRepository } from '../repository/inMemory/InMemoryUsersRegistration.repository.js';
-import { UserRegistrationService } from './UserRegistration.service.js';
+import { UsersService } from './Users.service.js';
 import { UserRegistration } from './UserRegistration.js';
 
 describe('UsersRegistrationRepository |', () => {
@@ -14,9 +14,7 @@ describe('UsersRegistrationRepository |', () => {
   test('when correct user is being signed up, then email is returned', async () => {
     //Given
     const inMemoryUsersRegistrationRepository = new InMemoryUsersRegistrationRepository();
-    const userRegistrationDetailsService = new UserRegistrationService(
-      inMemoryUsersRegistrationRepository,
-    );
+    const userRegistrationDetailsService = new UsersService(inMemoryUsersRegistrationRepository);
 
     //When
     const returnedEmail = await userRegistrationDetailsService.signUp(defaultUserRegistration);
