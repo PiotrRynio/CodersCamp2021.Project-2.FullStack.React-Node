@@ -24,7 +24,7 @@ export const app = async () => {
   const [announcementController] = announcementsModule(repositoryType, boardsService);
 
   const restApiServer = express();
-  restApiServer.use(cors());
+  restApiServer.use(cors({ credentials: true }));
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
   restApiServer.use(morgan('combined'));

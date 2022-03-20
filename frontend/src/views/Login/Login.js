@@ -36,6 +36,7 @@ const LogIn = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData),
+      credentials: 'same-origin',
     };
     const loginUrl = `${REST_API_URL}/log-in`;
     const response = await fetch(loginUrl, requestOptions);

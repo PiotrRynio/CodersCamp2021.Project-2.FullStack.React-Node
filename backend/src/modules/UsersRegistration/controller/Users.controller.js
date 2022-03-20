@@ -38,13 +38,12 @@ export class UsersController {
         .then((email) => {
           const returnedData = { email: email };
           const payload = returnedData;
-          const token = jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: 1200 });
-          const tokenOptions = {
-            httpOnly: true,
-            expiresIn: process.env.EXPIRE_TOKEN,
-          };
+          const token = jwt.sign(payload, process.env.ACCESS_TOKEN, {
+            expiresIn: 12000,
+          });
 
-          response.cookie('auth-token', token, tokenOptions).status(200).send({
+          console.log(token);
+          response.cookie('auth-token', token).status(200).send({
             authorized: true,
             email: email,
           });
