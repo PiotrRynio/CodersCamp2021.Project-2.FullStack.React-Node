@@ -1,5 +1,3 @@
-import { NotFoundError } from '../../../../utils/NotFoundError.js';
-
 export class InMemoryAnnouncementRepository {
   constructor() {
     this.entities = {};
@@ -14,8 +12,33 @@ export class InMemoryAnnouncementRepository {
     const announcement = this.entities[announcementId];
 
     if (!announcement) {
-      throw new NotFoundError('Announcement');
+      return;
     }
     return announcement;
+  }
+
+  async deleteOneByAnnouncementId(announcementId) {
+    const announcement = this.entities[announcementId];
+
+    if (!announcement) {
+      return;
+    }
+    delete this.entities[announcementId];
+    return announcement;
+  }
+
+  async updateOneByAnnouncementId(announcementId, newAnnouncementBody) {
+    const announcement = this.entities[announcementId];
+
+    if (!announcement) {
+      return;
+    }
+    const updatedAnnouncement = {
+      ...announcement,
+      ...newAnnouncementBody,
+      id: announcement.id,
+    };
+    this.entities[updatedAnnouncement.id] = updatedAnnouncement;
+    return this.entities[updatedAnnouncement.id];
   }
 }
