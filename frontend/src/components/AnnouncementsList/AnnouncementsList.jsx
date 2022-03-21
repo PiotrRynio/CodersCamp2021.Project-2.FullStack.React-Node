@@ -6,11 +6,9 @@ import { REST_API_URL } from '../../constants/restApiPaths';
 
 const AnnouncementsList = ({ boardsIds, announcementsNumber, showBoardNames }) => {
   const { data, isLoading, isError } = useQuery('boardAnnouncements', async () => {
-    return await fetch(`${REST_API_URL}/boards/${boardsIds[0]}/announcements`)
-      .then((response) => response.json())
-      .then((data) => {
-        return data;
-      });
+    return await fetch(`${REST_API_URL}/boards/${boardsIds[0]}/announcements`).then((response) =>
+      response.json(),
+    );
   });
 
   const [announcements, setAnnouncements] = useState([]);

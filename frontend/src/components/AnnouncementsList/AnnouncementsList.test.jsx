@@ -1,10 +1,12 @@
 import { render, screen, waitForElementToBeRemoved } from 'test-utils';
 import AnnouncementsList from './AnnouncementsList';
 import {
+  getBoardsAnnouncementsWillReturn,
   getBoardsWillReturn,
   getBoardsWillReturnFail,
 } from 'mocks/msw/rest-api/boards/mockEndpoints/boardsAnnouncementsMockEndpoints';
 import { boardsResponse } from 'mocks/msw/rest-api/boards/responses/boardsResponse';
+import { announcementsResponse } from '../../mocks/msw/rest-api/announcements/responses/announcementResponse';
 
 describe('AnnouncementList', () => {
   const boardsIds = [0, 1];
@@ -21,14 +23,15 @@ describe('AnnouncementList', () => {
   it('Should show data after query', async () => {
     //given
     getBoardsWillReturn(boardsResponse);
+    getBoardsAnnouncementsWillReturn(announcementsResponse);
 
     //when
-    render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={announcementsNumber} />);
+    render(<AnnouncementsList boardsIds={boardsIds} announcementsNumber={2} />);
     await waitForElementToBeRemoved(screen.queryByText(/Loading/i));
 
     // then
     const headings = screen.getAllByRole('heading', { level: 3 });
-    expect(headings).toHaveLength(4);
+    expect(headings).toHaveLength(2);
     headings.forEach((heading) => {
       expect(heading).toBeInTheDocument();
     });
