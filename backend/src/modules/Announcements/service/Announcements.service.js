@@ -11,7 +11,6 @@ export class AnnouncementsService {
     const boardAnnouncementsIds = await this.boardsService.getBoardAnnouncementsList(boardId);
 
     const newAnnouncement = new Announcement(announcementData);
-    console.log(newAnnouncement);
     const createdAnnouncement = await this.repository.addAnnouncement(newAnnouncement);
 
     await this.boardsService.addNewAnnouncement(boardId, createdAnnouncement.id);
