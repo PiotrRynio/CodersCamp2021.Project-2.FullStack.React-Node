@@ -36,14 +36,18 @@ const LogIn = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData),
-      credentials: 'same-origin',
+      credentials: 'include',
     };
     const loginUrl = `${REST_API_URL}/log-in`;
     const response = await fetch(loginUrl, requestOptions);
     const jsonRes = await response.json();
-    if (response) {
-      console.log(jsonRes.email);
-      console.log(response.headers['Content-Length']);
+    if (response.ok) {
+      console.log(jsonRes);
+      setUser({
+        userEmail: jsonRes.email,
+        loggedIn: jsonRes.authorized,
+        avatarUrl: jsonRes.avatarUrl,
+      });
     }
   });
 

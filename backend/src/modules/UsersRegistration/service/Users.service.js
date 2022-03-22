@@ -57,6 +57,6 @@ export class UsersService {
       throw new Error('Invalid password');
     }
 
-    return foundUser.email;
+    return foundUser;
   }
 }

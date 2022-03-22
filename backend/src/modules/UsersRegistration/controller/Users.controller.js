@@ -35,18 +35,19 @@ export class UsersController {
             password: request.body.password,
           }),
         )
-        .then((email) => {
-          const returnedData = { email: email };
-          const payload = returnedData;
-          const token = jwt.sign(payload, process.env.ACCESS_TOKEN, {
-            expiresIn: 12000,
-          });
-
-          console.log(token);
-          response.cookie('auth-token', token).status(200).send({
-            authorized: true,
-            email: email,
-          });
+        .then((data) => {
+          const payload = { email: data.email };
+          const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+          console.log(data);
+          response
+            .cookie('auth_token', token, { httpOnly: true, maxAge: 36000000, secure: false })
+            .status(200)
+            .send({
+              tokenString: token,
+              authorized: true,
+              email: data.email,
+              avatarUrl: data.avatarUrl,
+            });
         })
         .catch((error) => {
           console.log(error);
