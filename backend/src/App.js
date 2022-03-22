@@ -11,7 +11,7 @@ import { MongoUsersRepository } from './modules/UsersRegistration/repository/mon
 import { InMemoryUsersRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsers.repository.js';
 import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
 import { boardsModule } from './modules/Boards/boardsModule.js';
-import { commentModule } from './modules/AddComment/CommentModule.js';
+import { commentModule } from './modules/Comments/CommentModule.js';
 
 dotenv.config();
 
@@ -23,7 +23,11 @@ export const app = async () => {
   const userRegistrationDetailsService = new UsersService(userRegistrationRepository);
   const userRegistrationDetailsController = new UsersController(userRegistrationDetailsService);
   const [boardsController, boardsService] = boardsModule(repositoryType);
-  const [announcementController] = announcementsModule(repositoryType, boardsService);
+  const [announcementController, announcementService] = announcementsModule(
+    repositoryType,
+    boardsService,
+  );
+  const [commentsController] = commentModule(repositoryType, announcementService);
 
   const restApiServer = express();
   restApiServer.use(cors());
@@ -33,9 +37,9 @@ export const app = async () => {
   restApiServer.use(morgan('combined'));
 
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api', commentModule(repositoryType));
-  restApiServer.use('/rest-api', announcementController.router);
   restApiServer.use('/rest-api', boardsController.router);
+  restApiServer.use('/rest-api', announcementController.router);
+  restApiServer.use('/rest-api', commentsController.router);
 
   restApiServer.use('/rest-api-documentation', swaggerUi.serve);
   restApiServer.use('/rest-api-documentation', swaggerUi.setup(swaggerDocumentation));
