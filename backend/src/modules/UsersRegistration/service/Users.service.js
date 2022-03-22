@@ -59,4 +59,9 @@ export class UsersService {
 
     return foundUser;
   }
+
+  logOut(data) {
+    data.clearCookie('auth_token');
+    return data;
+  }
 }
