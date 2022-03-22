@@ -39,7 +39,7 @@ export class UsersController {
           const payload = { email: data.email };
           const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
           response
-            .cookie('auth_token', token, { httpOnly: true, maxAge: 36000000, secure: false })
+            .cookie('auth_token', token, { httpOnly: true, maxAge: 3600000, secure: false })
             .status(200)
             .send({
               tokenString: token,
