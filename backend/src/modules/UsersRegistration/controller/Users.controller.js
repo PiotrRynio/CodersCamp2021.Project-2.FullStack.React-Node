@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { request, response, Router } from 'express';
+import { Router } from 'express';
 import { UserRegistration } from '../service/UserRegistration.js';
 import { UserLogIn } from '../service/UserLogIn.js';
 
@@ -42,7 +42,8 @@ export class UsersController {
             .cookie('auth_token', token, { httpOnly: true, maxAge: 36000000, secure: false })
             .status(200)
             .send({
-              tokenString: token,
+              userId: data.userId,
+              loggedIn: true,
               authorized: true,
               email: data.email,
               avatarUrl: data.avatarUrl,

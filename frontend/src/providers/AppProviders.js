@@ -3,7 +3,6 @@ import { createContext, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
-import avatar1 from 'mocks/images/avatars/sample-avatar1.jpg';
 
 export const UserContext = createContext({});
 

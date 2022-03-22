@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
 export const authorization = (request, response, next) => {
   const token = request.cookies.auth_token;
-  console.log('MIDDLEWARE');
-  console.log(request.cookies.auth_token);
+
   if (!token) {
     return response.status(401).send('Access Denied');
   }

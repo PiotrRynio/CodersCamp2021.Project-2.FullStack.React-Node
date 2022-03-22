@@ -15,7 +15,6 @@ export class MongoUsersRepository {
 
   async createNewUser(userRegistrationDetails) {
     const createdUser = await MongoUserRegistrationDetails.create(userRegistrationDetails);
-    console.log(createdUser);
     return createdUser;
   }
 }

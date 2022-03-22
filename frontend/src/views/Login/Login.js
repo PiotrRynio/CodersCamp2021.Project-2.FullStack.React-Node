@@ -22,7 +22,6 @@ import { useLocation, useNavigate } from 'react-router';
 import { UserContext } from 'providers/AppProviders';
 import { useMutation } from 'react-query';
 import { REST_API_URL } from '../../constants/restApiPaths';
-import { Navigate } from 'react-router-dom';
 
 const LogIn = () => {
   const { user, setUser } = useContext(UserContext);
@@ -43,11 +42,9 @@ const LogIn = () => {
     const response = await fetch(loginUrl, requestOptions);
     const jsonRes = await response.json();
     if (response.ok) {
-      console.log(jsonRes.authorized);
       setUser({
-        userEmail: jsonRes.email,
+        id: jsonRes.userId,
         loggedIn: jsonRes.authorized,
-        avatarUrl: jsonRes.avatarUrl,
       });
       navigate(`/`);
     } else {

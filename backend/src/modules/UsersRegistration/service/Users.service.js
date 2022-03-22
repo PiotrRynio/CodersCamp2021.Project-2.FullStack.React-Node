@@ -56,7 +56,6 @@ export class UsersService {
     if (!isUserPasswordValid) {
       throw new Error('Invalid password');
     }
-
     return foundUser;
   }
 
