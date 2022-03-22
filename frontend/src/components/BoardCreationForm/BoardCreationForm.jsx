@@ -50,6 +50,7 @@ const BoardCreationForm = () => {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(newBoard),
+              credentials: 'include',
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
             return await fetch(postBoardUrl, requestOptions).then(async (response) => {
