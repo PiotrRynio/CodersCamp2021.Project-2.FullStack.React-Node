@@ -11,7 +11,7 @@ import { MongoUsersRepository } from './modules/UsersRegistration/repository/mon
 import { InMemoryUsersRepository } from './modules/UsersRegistration/repository/inMemory/InMemoryUsers.repository.js';
 import { announcementsModule } from './modules/Announcements/AnnouncementsModule.js';
 import { boardsModule } from './modules/Boards/boardsModule.js';
-import { commentModule } from './modules/AddComment/CommentModule.js';
+import { commentModule } from './modules/Comment/CommentModule.js';
 
 dotenv.config();
 

@@ -6,12 +6,12 @@ describe('AddCommentRepository|', () => {
   const defaultComment = new Comment({
     userId: '8a4a5d2d-af04-4f3a-87d1-ef8130f8bbb1',
     content: 'tresc komentarza',
-    date: 'dzis',
+    date: Date.now(),
   });
 
   const commentWithoutContent = {
     userId: '8a4a5d2d-af04-4f3a-87d1-ef8130f8bbb1',
-    date: 'dzis',
+    date: Date.now(),
   }
 
   test('When the correct comment is added return content of the comment', async () => {
