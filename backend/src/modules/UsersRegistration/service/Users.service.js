@@ -60,8 +60,8 @@ export class UsersService {
     return foundUser;
   }
 
-  logOut(data) {
-    data.clearCookie('auth_token');
+  async logOut(data) {
+    await data.clearCookie('auth_token');
     return data;
   }
 }
