@@ -7,6 +7,7 @@ export const validateRegistrationData = (data) => {
     lastName: joi.string().min(4).max(15).required(),
     email: joi.string().min(6).max(254).email().required(),
     password: joi.string().min(6).max(15).required(),
+    avatarUrl: joi.string().min(10).max(100),
   });
   return validateRegistrationSchema.validate(data);
 };

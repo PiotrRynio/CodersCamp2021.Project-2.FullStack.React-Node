@@ -4,6 +4,7 @@ import { swaggerDocumentation } from '../swagger.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import { connectToMongoDb } from './common/repository/mongo/mongoDB.js';
 import { UsersController } from './modules/UsersRegistration/controller/Users.controller.js';
 import { UsersService } from './modules/UsersRegistration/service/Users.service.js';
@@ -30,7 +31,13 @@ export const app = async () => {
   const [commentsController] = commentModule(repositoryType, announcementService);
 
   const restApiServer = express();
-  restApiServer.use(cors());
+  restApiServer.use(
+    cors({
+      origin: ['http://localhost:3000'],
+      credentials: true,
+    }),
+  );
+  restApiServer.use(cookieParser());
   restApiServer.use(express.json());
   restApiServer.use(express.urlencoded({ extended: true }));
 

@@ -9,6 +9,7 @@ describe('UsersRegistrationRepository |', () => {
     lastName: 'Nowak',
     email: 'adamNowak@test123.com',
     password: 'admin123',
+    avatarUrl: 'sampleavatarpath',
   });
 
   test('when correct user is being signed up, then email is returned', async () => {

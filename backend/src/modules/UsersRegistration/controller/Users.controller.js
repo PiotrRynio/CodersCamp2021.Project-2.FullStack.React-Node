@@ -35,15 +35,35 @@ export class UsersController {
             password: request.body.password,
           }),
         )
-        .then((email) => {
-          const returnedData = { email: email };
-          const payload = returnedData;
-          const token = jwt.sign(payload, process.env.ACCESS_TOKEN, { expiresIn: 1200 });
-          response.header('auth-token', token).status(200).send(email);
+        .then((data) => {
+          const payload = { email: data.email };
+          const token = jwt.sign(payload, process.env.ACCESS_TOKEN);
+          response
+            .cookie('auth_token', token, { httpOnly: true, maxAge: 36000000, secure: false })
+            .status(200)
+            .send({
+              userId: data.userId,
+              loggedIn: true,
+              authorized: true,
+              email: data.email,
+              avatarUrl: data.avatarUrl,
+            });
         })
         .catch((error) => {
-          console.log(error);
-          response.status(400).send({ message: error.message });
+          response.status(400).send({
+            authorized: false,
+            message: error.message,
+          });
+        });
+    });
+    this.router.route('/logout').post((request, response) => {
+      this.service
+        .logOut(response)
+        .then(() => {
+          response.status(200).send('Successfully logged out!');
+        })
+        .catch((error) => {
+          response.status(400).send();
         });
     });
   }

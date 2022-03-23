@@ -43,18 +43,21 @@ const BoardCreationForm = () => {
       () => {},
       (err) => console.log(err),
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(async (firebaseAvatarUrl) => {
-          newBoard.avatarUrl = firebaseAvatarUrl;
-          const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newBoard),
-          };
-          const postBoardUrl = `${REST_API_URL}/boards`;
-          return await fetch(postBoardUrl, requestOptions)
-            .then(async (response) => {
+        const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
+          async (firebaseAvatarUrl) => {
+            newBoard.avatarUrl = firebaseAvatarUrl;
+            const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newBoard),
+              credentials: 'include',
+            };
+            const postBoardUrl = `${REST_API_URL}/boards`;
+            return await fetch(postBoardUrl, requestOptions).then(async (response) => {
               if (response.ok) {
-                return response.json();
+                await response.json();
+                window.alert('Board added correctly!');
+                navigate(`/board/${response.returnedData._id}`);
               } else {
                 const jsonResponse = await response.json();
                 window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
@@ -63,7 +66,8 @@ const BoardCreationForm = () => {
             .then(({ returnedData }) => {
               navigate(`/board/${returnedData._id}`);
             });
-        });
+          },
+        );
       },
     );
   });
