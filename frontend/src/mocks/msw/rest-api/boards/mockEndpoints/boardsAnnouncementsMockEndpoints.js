@@ -20,7 +20,7 @@ export function getBoardsIsLoading() {
 
 export function getBoardsWillReturnFail() {
   server.use(
-    rest.get(`/boards`, (req, res, ctx) => {
+    rest.get(`${REST_API_URL}/boards`, (req, res, ctx) => {
       return res(ctx.status(404));
     }),
   );
@@ -30,6 +30,14 @@ export function getBoardsAnnouncementsWillReturn(announcements) {
   server.use(
     rest.get(`${REST_API_URL}${BOARD_ANNOUNCEMENTS_PATH}`, (req, res, ctx) => {
       return res(ctx.status(200), ctx.json(announcements));
+    }),
+  );
+}
+
+export function getBoardsAnnouncementsWillReturnFail() {
+  server.use(
+    rest.get(`${REST_API_URL}${BOARD_ANNOUNCEMENTS_PATH}`, (req, res, ctx) => {
+      return res(ctx.status(404));
     }),
   );
 }

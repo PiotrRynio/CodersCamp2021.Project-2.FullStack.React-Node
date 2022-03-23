@@ -7,7 +7,7 @@ describe('UserComment', () => {
   const fakeComment = {
     commentId: 10,
     content: 'I agree.',
-    createDate: '2021-06-20T15:48:21.000',
+    date: '2021-06-20T15:48:21.000',
     author: {
       userId: 10,
       avatarUrl: avatar1,
@@ -15,7 +15,7 @@ describe('UserComment', () => {
       lastName: 'Kowalski',
     },
   };
-  const fakeDate = new Date(fakeComment.createDate).toLocaleString([], {
+  const fakeDate = new Date(fakeComment.date).toLocaleString([], {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
