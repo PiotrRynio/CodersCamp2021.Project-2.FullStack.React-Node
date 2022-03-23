@@ -9,7 +9,7 @@ export class BoardsService {
   }
 
   async getBoards() {
-    return this.repository.getAll();
+    return await this.repository.getAll();
   }
 
   async getOneBoardById(boardId) {

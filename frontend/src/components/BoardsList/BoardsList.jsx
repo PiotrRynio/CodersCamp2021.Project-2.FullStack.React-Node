@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import Board from 'components/Board/Board';
 import { BoardWrapper } from './BoardList.styled';
 import { useState } from 'react';
+import { REST_API_URL } from '../../constants/restApiPaths';
 
 const BoardsList = () => {
   const [userCords, setUserCords] = useState({ isSet: false });
@@ -11,7 +12,7 @@ const BoardsList = () => {
     isLoading,
     isError,
   } = useQuery('boards', async () => {
-    return await fetch('/boards').then((response) => response.json());
+    return await fetch(`${REST_API_URL}/boards`).then((response) => response.json());
   });
 
   if (isLoading || isError) {

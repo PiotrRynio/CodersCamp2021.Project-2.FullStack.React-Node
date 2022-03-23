@@ -7,6 +7,15 @@ export class AnnouncementsService {
     this.boardsService = boardsService;
   }
 
+  async addCommentIdToAnnouncement(announcementId, commentId) {
+    const announcement = await this.findAnnouncement(announcementId);
+    if (!announcement) {
+      throw new NotFoundError('Announcement');
+    }
+    announcement.commentsIds.push(commentId);
+    return await this.updateAnnouncement(announcementId, announcement);
+  }
+
   async addAnnouncement(announcementData, boardId) {
     const boardAnnouncementsIds = await this.boardsService.getBoardAnnouncementsList(boardId);
 
@@ -42,6 +51,14 @@ export class AnnouncementsService {
       returnedAnnouncements.push(announcement);
     }
     return returnedAnnouncements;
+  }
+
+  async getCommentsIdsByAnnouncementId(announcementId) {
+    const announcement = await this.repository.findOneByAnnouncementId(announcementId);
+    if (!announcement) {
+      throw new NotFoundError('Announcement');
+    }
+    return announcement.commentsIds;
   }
 
   async deleteAnnouncement(announcementId) {

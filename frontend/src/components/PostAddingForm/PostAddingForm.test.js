@@ -1,5 +1,5 @@
 import PostAddingForm from './PostAddingForm';
-import { render, screen, waitForElementToBeRemoved, waitFor } from 'test-utils';
+import { render, screen, waitForElementToBeRemoved } from 'test-utils';
 import {
   getBoardsWillReturnFail,
   getBoardsWillReturn,

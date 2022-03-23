@@ -24,7 +24,11 @@ export const app = async () => {
   const userRegistrationDetailsService = new UsersService(userRegistrationRepository);
   const userRegistrationDetailsController = new UsersController(userRegistrationDetailsService);
   const [boardsController, boardsService] = boardsModule(repositoryType);
-  const [announcementController] = announcementsModule(repositoryType, boardsService);
+  const [announcementController, announcementService] = announcementsModule(
+    repositoryType,
+    boardsService,
+  );
+  const [commentsController] = commentModule(repositoryType, announcementService);
 
   const restApiServer = express();
   restApiServer.use(
@@ -40,9 +44,9 @@ export const app = async () => {
   restApiServer.use(morgan('combined'));
 
   restApiServer.use('/rest-api', userRegistrationDetailsController.router);
-  restApiServer.use('/rest-api', commentModule(repositoryType));
-  restApiServer.use('/rest-api', announcementController.router);
   restApiServer.use('/rest-api', boardsController.router);
+  restApiServer.use('/rest-api', announcementController.router);
+  restApiServer.use('/rest-api', commentsController.router);
 
   restApiServer.use('/rest-api-documentation', swaggerUi.serve);
   restApiServer.use('/rest-api-documentation', swaggerUi.setup(swaggerDocumentation));
