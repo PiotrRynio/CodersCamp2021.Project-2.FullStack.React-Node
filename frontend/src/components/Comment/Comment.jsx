@@ -14,7 +14,6 @@ export const Comment = ({ comment }) => {
       <UserAvatar userAvatarImage={comment.author.avatarUrl} />
       <RightSection>
         <UserName>
-          {console.log(comment)}
           {comment.author.firstName} {comment.author.lastName}
         </UserName>
         <CreateDate>{date}</CreateDate>
