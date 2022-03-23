@@ -30,9 +30,14 @@ export class BoardsController {
           });
       })
       .get((request, response) => {
-        this.service.getBoards().then((returnedData) => {
-          response.status(200).send({ boards: returnedData });
-        });
+        this.service
+          .getBoards()
+          .then((returnedData) => {
+            response.status(200).send({ boards: returnedData });
+          })
+          .catch((error) => {
+            response.status(400).send({ message: error.message });
+          });
       });
 
     this.router.route('/boards/:id').get((request, response) => {

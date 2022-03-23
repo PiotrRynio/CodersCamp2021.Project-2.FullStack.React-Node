@@ -32,6 +32,9 @@ const commentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  author: {
+    type: Object,
+  },
 });
 
 const MongoCommentDetails = mongoose.model('Comments', commentSchema);

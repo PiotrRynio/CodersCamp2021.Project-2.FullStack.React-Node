@@ -72,7 +72,6 @@ export class AnnouncementsService {
 
   async updateAnnouncement(announcementId, announcementData) {
     const updatedAnnouncement = new Announcement(announcementData);
-    console.log(updatedAnnouncement);
     if (!updatedAnnouncement) {
       throw new NotFoundError('Announcement');
     }
