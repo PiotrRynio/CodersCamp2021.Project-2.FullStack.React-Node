@@ -8,7 +8,7 @@ export class InMemoryUsersRepository {
     return this.entities[userRegistrationDetails.email];
   }
 
-  async findUser(email) {
+  async findUserByEmail(email) {
     return this.entities[email];
   }
 }
