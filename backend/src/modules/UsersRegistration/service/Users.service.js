@@ -56,7 +56,11 @@ export class UsersService {
     if (!isUserPasswordValid) {
       throw new Error('Invalid password');
     }
+    return foundUser;
+  }
 
-    return foundUser.email;
+  async logOut(data) {
+    await data.clearCookie('auth_token');
+    return data;
   }
 }

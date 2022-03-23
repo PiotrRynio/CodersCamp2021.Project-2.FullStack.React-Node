@@ -42,6 +42,9 @@ const userRegistrationDetailsSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  avatarUrl: {
+    type: String,
+  },
 });
 
 const MongoUserRegistrationDetails = mongoose.model('users', userRegistrationDetailsSchema);
