@@ -53,6 +53,8 @@ const usersSchema = new mongoose.Schema({
   avatarUrl: {
     type: String,
   },
+
+  subscribedBoards: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 
 const MongoUser = mongoose.model('users', usersSchema);
@@ -64,5 +66,6 @@ function mongoDocumentToDomain(mongoDocument) {
     lastName: mongoDocument.lastName,
     email: mongoDocument.email,
     password: mongoDocument.password,
+    subscribedBoards: mongoDocument.subscribedBoards,
   });
 }

@@ -80,5 +80,16 @@ export class UsersController {
           response.status(400).send();
         });
     });
+    this.router.route('/users/:id/boards').get(authorization, (request, response) => {
+      const id = request.params.id;
+      this.service
+        .getUserBoards(id)
+        .then((returnedUser) => {
+          response.status(200).send(returnedUser);
+        })
+        .catch((error) => {
+          response.status(400).send();
+        });
+    });
   }
 }

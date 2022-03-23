@@ -8,7 +8,7 @@ export const SubscribedBoardsList = () => {
   const { user } = useContext(UserContext);
 
   const { data, isLoading, isError } = useQuery('subscribedBoards', async () => {
-    return await fetch(`user/${user?.userId}/boards`)
+    return await fetch(`user/${user.id}/boards`)
       .then((response) => response.json())
       .then((data) => {
         return data.boards;
