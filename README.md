@@ -1,5 +1,4 @@
 # BoardMap 
-[![codecov](https://codecov.io/gh/PiotrRynio/CodersCamp2021.Project-1.JavaScript/branch/main/graph/badge.svg?token=UF79DJ2XLN)](https://codecov.io/gh/PiotrRynio/CodersCamp2021.Project-1.JavaScript)
 
 Second team project of CodersCamp2021. It is a single page web application. Our motivation was to learn how to work as a group on a project and improve our skills in web technologies. 
 

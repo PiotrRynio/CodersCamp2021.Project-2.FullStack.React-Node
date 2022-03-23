@@ -62,6 +62,9 @@ const BoardCreationForm = () => {
                 const jsonResponse = await response.json();
                 window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
               }
+            })
+            .then(({ returnedData }) => {
+              navigate(`/board/${returnedData._id}`);
             });
           },
         );

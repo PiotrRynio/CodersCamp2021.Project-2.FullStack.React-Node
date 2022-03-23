@@ -4,6 +4,10 @@ import { Board } from '../../service/Board.js';
 export class MongoBoardsRepository {
   constructor() {}
 
+  async getAll() {
+    return MongoBoardsModel.find();
+  }
+
   async createNewBoard(newBoard) {
     const createdBoard = await MongoBoardsModel.create(newBoard);
     return createdBoard;
