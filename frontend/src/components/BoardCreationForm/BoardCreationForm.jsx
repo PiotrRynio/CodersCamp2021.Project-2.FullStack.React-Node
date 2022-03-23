@@ -54,20 +54,16 @@ const BoardCreationForm = () => {
               credentials: 'include',
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
-            return await fetch(postBoardUrl, requestOptions)
-              .then(async (response) => {
-                if (response.ok) {
-                  await response.json();
-                  window.alert('Board added correctly!');
-                  navigate(`/board/${response.returnedData._id}`);
-                } else {
-                  const jsonResponse = await response.json();
-                  window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
-                }
-              })
-              .then(({ returnedData }) => {
-                navigate(`/board/${returnedData._id}`);
-              });
+            return await fetch(postBoardUrl, requestOptions).then(async (response) => {
+              if (response.ok) {
+                await response.json();
+                window.alert('Board added correctly!');
+                navigate(`/board/${response.returnedData._id}`);
+              } else {
+                const jsonResponse = await response.json();
+                window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
+              }
+            });
           },
         );
       },

@@ -3,7 +3,6 @@ import Board from 'components/Board/Board';
 import { BoardWrapper } from './BoardList.styled';
 import { useState } from 'react';
 import { REST_API_URL } from '../../constants/restApiPaths';
-import { response } from 'msw';
 
 const BoardsList = () => {
   const [userCords, setUserCords] = useState({ isSet: false });
@@ -13,7 +12,6 @@ const BoardsList = () => {
     isLoading: isBoardDataLoading,
     isError,
   } = useQuery('getboards', async () => {
-    console.log('FIRST QUERY');
     return await fetch(`${REST_API_URL}/boards`).then((response) => response.json());
   });
 
