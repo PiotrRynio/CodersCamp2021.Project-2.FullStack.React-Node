@@ -7,5 +7,6 @@ export class UserRegistration {
     this.lastName = props.lastName;
     this.email = props.email;
     this.password = props.password;
+    this.avatarUrl = props.avatarUrl || 'sampleAvatarUrl';
   }
 }

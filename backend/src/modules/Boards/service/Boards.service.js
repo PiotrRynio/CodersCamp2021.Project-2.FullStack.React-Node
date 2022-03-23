@@ -8,6 +8,14 @@ export class BoardsService {
     this.repository = repository;
   }
 
+  async getBoards() {
+    return await this.repository.getAll();
+  }
+
+  async getOneBoardById(boardId) {
+    return this.repository.findBoardByID(boardId);
+  }
+
   async addBoard(newBoard) {
     const { error } = validateBoard(newBoard);
     if (error) {
@@ -64,6 +72,7 @@ export class BoardsService {
       throw new Error('Board not found!');
     }
     const announcementsList = await this.repository.getBoardAnnouncements(boardId);
+
     return announcementsList;
   }
 

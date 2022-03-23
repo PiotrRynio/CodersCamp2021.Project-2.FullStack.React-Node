@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from 'views/Home/Home';
 import Notifications from 'views/Notifications/Notifications';
 import Subscribed from 'views/Subscribed/Subscribed';
@@ -29,7 +29,7 @@ function App() {
               <Route path="subscribed" element={<Subscribed />} />
               <Route path="add-post" element={<AddPost />} />
               <Route path="profile" element={<Profile />} />
-              <Route path="announcement/:id" element={<AnnouncementDetails />} />
+              <Route path="announcements/:id" element={<AnnouncementDetails />} />
               <Route path="board/:id" element={<BoardDetails />} />
             </Route>
           </Route>

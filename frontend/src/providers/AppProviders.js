@@ -9,7 +9,13 @@ export const UserContext = createContext({});
 
 export const AppProviders = ({ children }) => {
   const queryClient = new QueryClient();
-  const [user, setUser] = useState({ userId: 1, loggedIn: true, avatarUrl: avatar1 });
+  const [user, setUser] = useState({
+    userId: 1,
+    loggedIn: true,
+    avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg',
+    firstName: 'John',
+    lastName: 'Doe',
+  });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

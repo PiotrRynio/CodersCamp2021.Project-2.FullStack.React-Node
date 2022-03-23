@@ -2,6 +2,7 @@ import { useQuery, useMutation } from 'react-query';
 import { Section } from 'components/CommentsSection/CommentsSection.styled';
 import { CommentForm } from '../CommentForm/CommentForm';
 import { CommentList } from '../CommentList/CommentList';
+import { REST_API_URL } from '../../constants/restApiPaths';
 
 export const CommentsSection = ({ announcementId }) => {
   const {
@@ -10,9 +11,11 @@ export const CommentsSection = ({ announcementId }) => {
     isError,
     refetch,
   } = useQuery('commentList', async () => {
-    return await fetch(`/announcements/${announcementId}/comments`).then((response) =>
-      response.json(),
-    );
+    return await fetch(`${REST_API_URL}/announcements/${announcementId}/comments`)
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
   });
 
   if (isLoading) {
@@ -25,7 +28,7 @@ export const CommentsSection = ({ announcementId }) => {
   return (
     <Section>
       <CommentForm announcementId={announcementId} refetchCallback={refetch} />
-      <CommentList comments={dataQuery.commentList} />
+      <CommentList comments={dataQuery.comments} />
     </Section>
   );
 };

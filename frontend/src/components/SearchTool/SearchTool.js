@@ -10,7 +10,8 @@ import {
   StyledOptions,
 } from './SearchTool.styled';
 import { UserAvatar } from 'components/UserAvatar/UserAvatar';
-import StyledLink from '../StyledLink/StyledLink';
+import StyledLink from 'components/StyledLink/StyledLink';
+import { BOARDS_PATH, REST_API_URL } from 'constants/restApiPaths';
 
 export const SearchTool = (callback, userID) => {
   const {
@@ -18,15 +19,15 @@ export const SearchTool = (callback, userID) => {
     isLoadingAvailableBoards,
     isErrorAvailableBoards,
   } = useQuery('AvailableBoardsSearchTool', async () => {
-    return await fetch('/boards?isNearUser=true')
+    return await fetch(`${REST_API_URL}${BOARDS_PATH}`)
       .then((response) => response.json())
       .then((data) =>
         data.boards.map((board) => {
           return {
-            id: board.id,
+            id: board._id,
             value: board.boardName,
             label: board.boardName,
-            boardIcon: board.avatar,
+            boardIcon: board.avatarUrl,
           };
         }),
       );
@@ -45,7 +46,7 @@ export const SearchTool = (callback, userID) => {
             id: board.id,
             value: board.boardName,
             label: board.boardName,
-            boardIcon: board.boardIcon,
+            boardIcon: board.avatarUrl,
           };
         }),
       );

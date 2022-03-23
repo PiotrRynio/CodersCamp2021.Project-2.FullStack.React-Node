@@ -14,6 +14,7 @@ import {
   Button,
   ErrorText,
 } from './CommentForm.styled';
+import { REST_API_URL } from '../../constants/restApiPaths';
 
 export const CommentForm = ({ announcementId, refetchCallback }) => {
   const { user } = useContext(UserContext);
@@ -29,7 +30,7 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newComment),
     };
-    return fetch(`/announcements/${announcementId}/comments`, requestOptions)
+    return fetch(`${REST_API_URL}/announcements/${announcementId}/comments`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         refetchCallback();
@@ -41,8 +42,11 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
   const submitHandler = ({ commentText }) => {
     const newComment = {
       content: commentText,
-      createDate: new Date(),
-      author: user,
+      author: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        avatarUrl: user.avatarUrl,
+      },
     };
     mutate(newComment);
   };

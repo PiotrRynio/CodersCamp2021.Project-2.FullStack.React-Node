@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   LogoSection,
@@ -20,21 +20,45 @@ import {
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { UserContext } from 'providers/AppProviders';
+import { useMutation } from 'react-query';
+import { REST_API_URL } from '../../constants/restApiPaths';
 
 const LogIn = () => {
   const { user, setUser } = useContext(UserContext);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  const onSubmitButtonClick = () => {
-    if (user.loggedIn) {
-      return;
+  const { mutate } = useMutation(async (loginData) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(loginData),
+      credentials: 'include',
+    };
+    const loginUrl = `${REST_API_URL}/log-in`;
+    const response = await fetch(loginUrl, requestOptions);
+    const jsonRes = await response.json();
+    if (response.ok) {
+      setUser({
+        id: jsonRes.userId,
+        loggedIn: jsonRes.authorized,
+      });
+      navigate(`/`);
+    } else {
+      window.alert(`Wrong email or password. Try again!`);
     }
-    setUser({ userId: 1, loggedIn: true });
+  });
 
-    if (location.state?.from) {
-      navigate(location.state.from);
-    }
+  const onSubmitButtonClick = () => {
+    const loginData = {
+      password: password,
+      email: login,
+    };
+
+    mutate(loginData);
   };
 
   return (
@@ -50,8 +74,18 @@ const LogIn = () => {
           Please log in.
         </FormText>
         <InputsWrapper>
-          <FormEmail type="text" name="email" placeholder="Email" />
-          <FormPassword type="password" name="password" placeholder="Password" />
+          <FormEmail
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={(e) => setLogin(e.target.value)}
+          />
+          <FormPassword
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
           <FormButtons>
             <FormSubmit onClick={onSubmitButtonClick}>Submit!</FormSubmit>
