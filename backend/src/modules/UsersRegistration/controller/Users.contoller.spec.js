@@ -1,8 +1,8 @@
 import { agent } from 'supertest';
-import { UsersRegistrationController } from './UsersRegistration.controller.js';
+import { UsersController } from './Users.controller.js';
 import { testApi } from '../../../testsUtils/testApi.js';
 
-describe('UsersRegistrationController |', () => {
+describe('UsersController |', () => {
   const postCreateUserRegistrationRequestBody = {
     firstName: 'Adam',
     lastName: 'Nowak',
@@ -16,7 +16,7 @@ describe('UsersRegistrationController |', () => {
       signUp: async (postCreateUserRegistrationRequestBody) =>
         postCreateUserRegistrationRequestBody.email,
     };
-    const usersRegistrationController = new UsersRegistrationController(testService);
+    const usersRegistrationController = new UsersController(testService);
     const app = testApi('/rest-api', usersRegistrationController.router);
 
     // WHEN

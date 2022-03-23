@@ -18,6 +18,8 @@ import {
   ErrorText,
   BottomFormSection,
 } from './PostAddingForm.styled';
+import { REST_API_URL } from '../../constants/restApiPaths';
+import { useNavigate } from 'react-router';
 
 const PostAddingForm = () => {
   const {
@@ -26,46 +28,53 @@ const PostAddingForm = () => {
     control,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const {
     data: dataAvailableUserBoards,
     isLoading,
     isError,
   } = useQuery('AvailableBoardsPostAddingForm', async () => {
-    return await fetch('/boards?isNearUser=true').then((response) =>
+    return await fetch(`${REST_API_URL}/boards`).then((response) =>
       response.json().then((data) => {
         return data.boards.map((board) => {
-          return { value: board.boardName, label: board.boardName };
+          return { value: board.boardName, label: board.boardName, id: board._id };
         });
       }),
     );
   });
 
-  const { mutate } = useMutation((newComment) => {
+  const { mutate } = useMutation(({ newAnnouncement, boardId }) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newComment),
+      body: JSON.stringify(newAnnouncement),
     };
-    return fetch('/boards/1/announcements', requestOptions).then((response) => response.json());
+    return fetch(`${REST_API_URL}/boards/${boardId}/announcements`, requestOptions)
+      .then((response) => response.json())
+      .then(({ announcements }) => {
+        const lastIndex = announcements.length - 1;
+        navigate(`/announcements/${announcements[lastIndex].id}`);
+      });
   });
 
   const iconOptions = [
     { value: 'water', label: <FaTint /> },
     { value: 'electricity', label: <FaBolt /> },
     { value: 'pets', label: <FaDog /> },
-    { value: '', label: <FaBullhorn /> },
+    { value: 'default', label: <FaBullhorn /> },
   ];
 
   const onSubmit = (data) => {
-    let newAnnouncement = {
+    const newAnnouncement = {
       title: data.title,
       boardName: data.boardName.value,
       iconType: data.iconType.value,
       content: data.content,
       date: new Date(),
     };
-    mutate(newAnnouncement);
+    const boardId = data.boardName.id;
+    mutate({ newAnnouncement, boardId });
   };
 
   if (isLoading) {

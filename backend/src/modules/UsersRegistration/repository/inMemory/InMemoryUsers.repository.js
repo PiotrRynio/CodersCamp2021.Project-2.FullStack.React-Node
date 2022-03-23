@@ -1,13 +1,14 @@
-export class InMemoryUsersRegistrationRepository {
+export class InMemoryUsersRepository {
   constructor() {
     this.entities = {};
   }
 
   async createNewUser(userRegistrationDetails) {
     this.entities[userRegistrationDetails.email] = userRegistrationDetails;
+    return this.entities[userRegistrationDetails.email];
   }
 
   async findUser(email) {
-    return Promise.resolve(Object.keys(this.entities).map((email) => this.entities[email]));
+    return this.entities[email];
   }
 }

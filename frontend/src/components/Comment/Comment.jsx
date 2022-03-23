@@ -2,7 +2,7 @@ import { UserAvatar } from 'components/UserAvatar/UserAvatar';
 import { CommentContainer, RightSection, UserName, Content, CreateDate } from './Comment.styled';
 
 export const Comment = ({ comment }) => {
-  const date = new Date(comment.createDate).toLocaleString([], {
+  const date = new Date(comment.date).toLocaleString([], {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',

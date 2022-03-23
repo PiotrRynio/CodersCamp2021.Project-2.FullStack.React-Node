@@ -21,7 +21,7 @@ export class UsersRegistrationController {
           response.status(200).send(returnedData);
         })
         .catch((error) => {
-          response.status(400).send({ message: error.message });
+          response.status(405).send({ message: error.message });
         });
     });
   }
