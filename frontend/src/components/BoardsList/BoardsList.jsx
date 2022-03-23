@@ -1,21 +1,23 @@
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import Board from 'components/Board/Board';
 import { BoardWrapper } from './BoardList.styled';
 import { useState } from 'react';
 import { REST_API_URL } from '../../constants/restApiPaths';
+import { response } from 'msw';
 
 const BoardsList = () => {
   const [userCords, setUserCords] = useState({ isSet: false });
 
   const {
     data: boardsData,
-    isLoading,
+    isLoading: isBoardDataLoading,
     isError,
-  } = useQuery('boards', async () => {
+  } = useQuery('getboards', async () => {
+    console.log('FIRST QUERY');
     return await fetch(`${REST_API_URL}/boards`).then((response) => response.json());
   });
 
-  if (isLoading || isError) {
+  if (isBoardDataLoading || isError) {
     return <></>;
   }
 
@@ -41,12 +43,15 @@ const BoardsList = () => {
 
   return (
     <>
-      {boardsData.boards.map((board) => (
+      {boardsData?.boards.map((board) => (
         <BoardWrapper key={board.id}>
           {userCords.isSet ? (
             <Board
               boardData={board}
-              distanceFromUser={getDistanceFromCoordinatesInKilometers(board.coords, userCords)}
+              distanceFromUser={getDistanceFromCoordinatesInKilometers(
+                board.mapCoordinates,
+                userCords,
+              )}
             />
           ) : (
             <Board boardData={board} />

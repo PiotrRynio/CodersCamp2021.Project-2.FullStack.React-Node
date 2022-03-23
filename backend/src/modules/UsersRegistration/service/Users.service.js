@@ -16,7 +16,7 @@ export class UsersService {
     }
 
     const userEmail = userRegistrationDetails.email;
-    const foundUser = await this.repository.findUser(userEmail);
+    const foundUser = await this.repository.findUserByEmail(userEmail);
     const isUserExist = !!foundUser;
 
     if (isUserExist) {
@@ -45,7 +45,7 @@ export class UsersService {
       throw new Error(error.details[0].message);
     }
 
-    const foundUser = await this.repository.findUser(userLogIn.email);
+    const foundUser = await this.repository.findUserByEmail(userLogIn.email);
 
     if (!foundUser) {
       throw new Error('Email or password is wrong');
@@ -62,5 +62,13 @@ export class UsersService {
   async logOut(data) {
     await data.clearCookie('auth_token');
     return data;
+  }
+
+  async getUser(userId) {
+    if (!userId) {
+      throw new Error('No user Id!');
+    }
+    const returnedUser = await this.repository.findUserById(userId);
+    return returnedUser;
   }
 }

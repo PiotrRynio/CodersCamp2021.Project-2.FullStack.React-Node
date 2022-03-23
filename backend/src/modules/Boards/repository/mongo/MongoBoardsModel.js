@@ -30,6 +30,15 @@ const BoardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  authorFirstName: {
+    type: String,
+  },
+
+  authorLastName: {
+    type: String,
+  },
+
   announcements: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 

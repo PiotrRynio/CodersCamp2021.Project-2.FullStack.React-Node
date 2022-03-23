@@ -4,12 +4,22 @@ import { ADMISSIBLE_DISTANCE_BETWEEN_SAME_NAMES_BOARDS } from '../../../constans
 import validateAddingAnnouncement from './validateAddingAnnouncement.js';
 
 export class BoardsService {
-  constructor(repository) {
+  constructor(repository, userService) {
     this.repository = repository;
+    this.userService = userService;
   }
 
   async getBoards() {
-    return await this.repository.getAll();
+    const returnedBoards = await this.repository.getAll();
+    for (const board of returnedBoards) {
+      const authorId = board.adminId?.valueOf();
+      if (authorId) {
+        const user = await this.userService.getUser(authorId);
+        board.authorFirstName = user.firstName;
+        board.authorLastName = user.lastName;
+      }
+    }
+    return returnedBoards;
   }
 
   async getOneBoardById(boardId) {

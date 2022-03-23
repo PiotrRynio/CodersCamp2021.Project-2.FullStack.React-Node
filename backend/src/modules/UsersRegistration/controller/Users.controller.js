@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { Router } from 'express';
 import { UserRegistration } from '../service/UserRegistration.js';
 import { UserLogIn } from '../service/UserLogIn.js';
+import { authorization } from '../../../middlewares/authorization.js';
 
 export class UsersController {
   constructor(service) {
@@ -56,11 +57,24 @@ export class UsersController {
           });
         });
     });
-    this.router.route('/logout').post((request, response) => {
+
+    this.router.route('/logout').post(authorization, (request, response) => {
       this.service
         .logOut(response)
         .then(() => {
           response.status(200).send('Successfully logged out!');
+        })
+        .catch((error) => {
+          response.status(400).send();
+        });
+    });
+
+    this.router.route('/users/:id').get(authorization, (request, response) => {
+      const id = request.params.id;
+      this.service
+        .getUser(id)
+        .then((returnedUser) => {
+          response.status(200).send(returnedUser);
         })
         .catch((error) => {
           response.status(400).send();

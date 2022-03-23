@@ -2,8 +2,9 @@ import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
 import BoardDescription from 'components/BoardDescription/BoardDescription';
 
 const Board = ({ boardData, distanceFromUser, isOpen = false }) => {
-  const { boardName, author, avatarUrl, description, announcements, id } = boardData;
-
+  console.log(boardData);
+  const { boardName, authorLastName, avatarUrl, description, announcements, id } = boardData;
+  const author = boardData.authorFirstName + ' ' + boardData.authorLastName;
   return (
     <>
       <BoardTitleSection boardTitle={boardName} user={author} boardImg={avatarUrl} boardId={id} />

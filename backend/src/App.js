@@ -19,11 +19,11 @@ dotenv.config();
 export const app = async () => {
   await connectToMongoDb();
   const repositoryType = 'MONGO';
-  const userRegistrationRepository = userRegistrationDetailRepository(repositoryType);
+  const userRepository = userRegistrationDetailRepository(repositoryType);
+  const usersService = new UsersService(userRepository);
+  const usersController = new UsersController(usersService);
+  const [boardsController, boardsService] = boardsModule(repositoryType, usersService);
 
-  const userRegistrationDetailsService = new UsersService(userRegistrationRepository);
-  const userRegistrationDetailsController = new UsersController(userRegistrationDetailsService);
-  const [boardsController, boardsService] = boardsModule(repositoryType);
   const [announcementController, announcementService] = announcementsModule(
     repositoryType,
     boardsService,
@@ -43,7 +43,7 @@ export const app = async () => {
 
   restApiServer.use(morgan('combined'));
 
-  restApiServer.use('/rest-api', userRegistrationDetailsController.router);
+  restApiServer.use('/rest-api', usersController.router);
   restApiServer.use('/rest-api', boardsController.router);
   restApiServer.use('/rest-api', announcementController.router);
   restApiServer.use('/rest-api', commentsController.router);
