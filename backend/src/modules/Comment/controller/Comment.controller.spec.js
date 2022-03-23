@@ -8,21 +8,6 @@ describe('CommentController |', () => {
     date: Date.now(),
   };
 
-  test('POST /rest-api/add-comment | when returns comment content', async () => {
-    const testService = {
-      addComment: async (postCreateCommentRequestBody) => postCreateCommentRequestBody.content,
-    };
-    const commentController = new CommentController(testService);
-    const app = testApi('/rest-api', commentController.router);
-
-    const { body, status } = await agent(app)
-      .post('/rest-api/add-comment')
-      .send(postCreateCommentRequestBody);
-
-    expect(status).toEqual(200);
-    expect(body).toEqual({ content: postCreateCommentRequestBody.content });
-  });
-
   test('POST /rest-api/borders/add-comment| when service throw error', async () => {
     const testService = {
       addComment: async () => {
@@ -36,7 +21,6 @@ describe('CommentController |', () => {
       .post('/rest-api/add-comment')
       .send(postCreateCommentRequestBody);
 
-    expect(status).toEqual(400);
-    expect(body).toEqual({ message: 'Error message' });
+    expect(status).toEqual(404);
   });
 });
