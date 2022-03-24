@@ -15,7 +15,5 @@ export class Board {
     this.announcements = props.announcements || [];
     this.avatarUrl = props.avatarUrl;
     this.description = props.description;
-    this.adminFirstName = props.adminFirstName || '';
-    this.adminLastName = props.adminLastName || '';
   }
 }

@@ -7,7 +7,7 @@ import { REST_API_URL } from '../../constants/restApiPaths';
 
 export const SubscribedBoardsList = () => {
   const { user } = useContext(UserContext);
-  const id = user.id;
+  const id = user?.id;
   const path = `${REST_API_URL}/users/${id}/boards`;
   const { data, isLoading, isError } = useQuery('subscribedBoards', async () => {
     return await fetch(path, { credentials: 'include' })
