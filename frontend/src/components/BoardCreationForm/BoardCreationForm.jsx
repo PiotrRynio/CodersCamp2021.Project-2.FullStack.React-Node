@@ -56,9 +56,7 @@ const BoardCreationForm = () => {
             return await fetch(postBoardUrl, requestOptions)
               .then(async (response) => {
                 if (response.ok) {
-                  await response.json();
-                  window.alert('Board added correctly!');
-                  navigate(`/board/${response.returnedData._id}`);
+                  return response.json();
                 } else {
                   const jsonResponse = await response.json();
                   window.alert(`Board was not added! Reason: ${jsonResponse.message}`);

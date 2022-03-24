@@ -15,7 +15,6 @@ const BoardsList = () => {
     console.log('FIRST QUERY');
     return await fetch(`${REST_API_URL}/boards`).then((response) => response.json());
   });
-  console.log(boardsData);
   if (isBoardDataLoading || isError) {
     return <></>;
   }

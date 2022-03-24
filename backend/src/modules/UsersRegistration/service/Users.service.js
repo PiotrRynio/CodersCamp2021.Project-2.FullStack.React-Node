@@ -83,6 +83,8 @@ export class UsersService {
     for (const boardId of userSubscribedBoardsId) {
       if (boardId) {
         const board = await this.boardsService.getOneBoardById(boardId);
+        board.adminFirstName = returnedUser.firstName;
+        board.adminLastName = returnedUser.lastName;
         userSubscribedBoards.push(board);
       }
     }

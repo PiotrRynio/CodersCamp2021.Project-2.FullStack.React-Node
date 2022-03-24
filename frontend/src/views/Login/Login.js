@@ -45,7 +45,9 @@ const LogIn = () => {
       setUser({
         id: jsonRes.userId,
         loggedIn: jsonRes.authorized,
+        avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg',
       });
+
       navigate(`/`);
     } else {
       window.alert(`Wrong email or password. Try again!`);

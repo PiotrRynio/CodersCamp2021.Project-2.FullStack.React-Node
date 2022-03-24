@@ -31,7 +31,7 @@ export const SubscribedBoardsList = () => {
           <BoardTitleSection
             boardTitle={board.boardName}
             user={board.adminFirstName + ' ' + board.adminLastName}
-            boardImg={board.avatar}
+            boardImg={board.avatarUrl}
             boardId={board.id}
           />
         </BoardWrapper>
