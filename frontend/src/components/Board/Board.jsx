@@ -3,7 +3,8 @@ import BoardDescription from 'components/BoardDescription/BoardDescription';
 
 const Board = ({ boardData, distanceFromUser, isOpen = false }) => {
   console.log(boardData);
-  const { boardName, authorLastName, avatarUrl, description, announcements, id } = boardData;
+  const { boardName, authorLastName, avatarUrl, description, announcements } = boardData;
+  const id = boardData._id;
   const author = boardData.authorFirstName + ' ' + boardData.authorLastName;
   return (
     <>
