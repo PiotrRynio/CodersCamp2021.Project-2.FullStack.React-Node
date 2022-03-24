@@ -13,6 +13,7 @@ const Profile = () => {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
     };
+    console.log('HERE');
     const logoutUrl = `${REST_API_URL}/logout`;
     return await fetch(logoutUrl, requestOptions).then(async (response) => {
       if (response.ok) {
