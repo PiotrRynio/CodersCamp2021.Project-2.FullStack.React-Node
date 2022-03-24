@@ -9,6 +9,7 @@ export const Comment = ({ comment }) => {
     hour: '2-digit',
     minute: '2-digit',
   });
+
   return (
     <CommentContainer data-testid="comment">
       <UserAvatar userAvatarImage={comment.author.avatarUrl} />
