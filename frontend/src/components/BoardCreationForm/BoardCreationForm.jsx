@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storage } from '../../firebase/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -27,7 +27,6 @@ const BoardCreationForm = () => {
   const { user, setUser } = useContext(UserContext);
   const [avatarAsFile, setAvatarAsFile] = useState();
   const [mapCoordinates, setMapCoordinates] = useState(null);
-
   const {
     register,
     handleSubmit,
@@ -35,6 +34,7 @@ const BoardCreationForm = () => {
   } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
+  console.log(user);
   const { mutate } = useMutation((newBoard) => {
     const uploadFileName = uuidv4();
     const storageRef = ref(storage, `/images/${uploadFileName}`);
@@ -44,7 +44,7 @@ const BoardCreationForm = () => {
       () => {},
       (err) => console.log(err),
       () => {
-         getDownloadURL(uploadTask.snapshot.ref).then(
+        const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
           async (firebaseAvatarUrl) => {
             newBoard.avatarUrl = firebaseAvatarUrl;
             const requestOptions = {
@@ -54,18 +54,16 @@ const BoardCreationForm = () => {
               credentials: 'include',
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
-            return await fetch(postBoardUrl, requestOptions)
-              .then(async (response) => {
-                if (response.ok) {
-                  return response.json();
-                } else {
-                  const jsonResponse = await response.json();
-                  window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
-                }
-              })
-              .then(({ returnedData }) => {
-                navigate(`/board/${returnedData._id}`);
-              });
+            return await fetch(postBoardUrl, requestOptions).then(async (response) => {
+              if (response.ok) {
+                await response.json();
+                window.alert('Board added correctly!');
+                navigate(`/board/${response.returnedData._id}`);
+              } else {
+                const jsonResponse = await response.json();
+                window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
+              }
+            });
           },
         );
       },
@@ -83,6 +81,7 @@ const BoardCreationForm = () => {
       description: newBoardData.description,
       boardName: newBoardData.boardName,
       mapCoordinates: newBoardData.mapCoordinates,
+      adminId: user.id,
     };
     newBoard.mapCoordinates = mapCoordinates;
     mutate(newBoard);

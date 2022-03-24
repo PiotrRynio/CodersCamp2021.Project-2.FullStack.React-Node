@@ -2,16 +2,14 @@ import { useQuery } from 'react-query';
 import { Container, Title, TitleMainColor } from 'components/PinnedBoards/PinnedBoards.styled';
 import PinnedBoardEntry from 'components/PinnedBoardsEntry/PinnedBoardsEntry';
 import StyledLink from 'components/StyledLink/StyledLink';
-import { REST_API_URL } from '../../constants/restApiPaths';
 
 const PinnedBoards = () => {
-  const url = `${REST_API_URL}/boards`;
   const {
     data: boardsData,
     isLoading,
     isError,
   } = useQuery('boards', async () => {
-    return await fetch(url, { credentials: 'include' }).then((response) => response.json());
+    return await fetch('/boards').then((response) => response.json());
   });
 
   if (isLoading) {
@@ -29,7 +27,7 @@ const PinnedBoards = () => {
       {boardsData.boards.map((board) => {
         return (
           <StyledLink key={board.boardName} to={`/board/${board.id}`}>
-            <PinnedBoardEntry boardName={board.boardName} avatar={board.avatarUrl} />
+            <PinnedBoardEntry boardName={board.boardName} avatar={board.avatar} />
           </StyledLink>
         );
       })}

@@ -23,7 +23,6 @@ export const app = async () => {
   const usersService = new UsersService(userRepository);
   const usersController = new UsersController(usersService);
   const [boardsController, boardsService] = boardsModule(repositoryType, usersService);
-  usersService.boardsService = boardsService;
 
   const [announcementController, announcementService] = announcementsModule(
     repositoryType,
