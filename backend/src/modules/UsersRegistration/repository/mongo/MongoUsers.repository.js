@@ -6,6 +6,7 @@ export class MongoUsersRepository {
 
   async findUserByEmail(email) {
     const foundUser = await MongoUser.findOne({ email: email });
+
     if (!foundUser) {
       return;
     }
@@ -14,7 +15,9 @@ export class MongoUsersRepository {
   }
 
   async findUserById(userId) {
-    const foundUser = await MongoUser.findById(userId);
+    console.log(userId);
+
+    const foundUser = await MongoUser.findById(userId).exec();
     if (!foundUser) {
       return;
     }
@@ -28,6 +31,7 @@ export class MongoUsersRepository {
 }
 
 const usersSchema = new mongoose.Schema({
+  id: { type: String },
   firstName: {
     type: String,
     required: true,
@@ -54,7 +58,9 @@ const usersSchema = new mongoose.Schema({
     type: String,
   },
 
-  subscribedBoards: [{ type: mongoose.Schema.Types.ObjectId }],
+  subscribedBoards: {
+    type: Array,
+  },
 });
 
 const MongoUser = mongoose.model('users', usersSchema);

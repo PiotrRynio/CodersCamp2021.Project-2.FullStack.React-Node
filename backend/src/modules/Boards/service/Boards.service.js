@@ -13,7 +13,7 @@ export class BoardsService {
     const returnedBoards = await this.repository.getAll();
     for (const board of returnedBoards) {
       const authorId = board.adminId?.valueOf();
-      if (authorId) {
+      if (!!authorId) {
         const user = await this.userService.getUser(authorId);
         board.authorFirstName = user.firstName;
         board.authorLastName = user.lastName;
@@ -23,7 +23,8 @@ export class BoardsService {
   }
 
   async getOneBoardById(boardId) {
-    return this.repository.findBoardByID(boardId);
+    const foundBoard = await this.repository.findBoardByID(boardId);
+    return foundBoard;
   }
 
   async addBoard(newBoard) {

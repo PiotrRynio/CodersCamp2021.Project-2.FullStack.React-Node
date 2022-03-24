@@ -75,6 +75,7 @@ function mongoDocumentToDomain(mongoDocument) {
     announcements: mongoDocument.announcements,
     avatarUrl: mongoDocument.avatarUrl,
     description: mongoDocument.description,
-    adminId: mongoDocument.adminId,
+    adminId: mongoDocument.adminId.valueOf(),
   });
+  lo;
 }

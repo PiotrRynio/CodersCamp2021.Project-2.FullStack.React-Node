@@ -9,7 +9,7 @@ export const validateBoard = (newBoard) => {
     description: joi.string().min(5).required(),
     mapCoordinates: joi.object().required(),
     accessType: joi.string().required(),
-    adminId: myJoiObjectId(),
+    adminId: joi.string(),
     announcements: joi.array().required(),
     dateCreated: joi.date(),
     avatarUrl: joi.string().required(),

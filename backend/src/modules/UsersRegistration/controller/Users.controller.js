@@ -83,9 +83,10 @@ export class UsersController {
     this.router.route('/users/:id/boards').get(authorization, (request, response) => {
       const id = request.params.id;
       this.service
-        .getUserBoards(id)
-        .then((returnedUser) => {
-          response.status(200).send(returnedUser);
+        .getUserSubscribedBoards(id)
+        .then((returnedUserSubscribedBoards) => {
+          console.log(returnedUserSubscribedBoards);
+          response.status(200).send(returnedUserSubscribedBoards);
         })
         .catch((error) => {
           response.status(400).send();

@@ -6,6 +6,7 @@ import { validateRegistrationData } from './ValidateRegistrationData.js';
 export class UsersService {
   constructor(repository) {
     this.repository = repository;
+    this.boardsService = {};
   }
 
   async signUp(userRegistrationDetails) {
@@ -70,5 +71,21 @@ export class UsersService {
     }
     const returnedUser = await this.repository.findUserById(userId);
     return returnedUser;
+  }
+
+  async getUserSubscribedBoards(userId) {
+    if (!userId) {
+      throw new Error('No user Id!');
+    }
+    const returnedUser = await this.repository.findUserById(userId);
+    const userSubscribedBoardsId = returnedUser.subscribedBoards;
+    const userSubscribedBoards = [];
+    for (const boardId of userSubscribedBoardsId) {
+      if (boardId) {
+        const board = await this.boardsService.getOneBoardById(boardId);
+        userSubscribedBoards.push(board);
+      }
+    }
+    return userSubscribedBoards;
   }
 }
