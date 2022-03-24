@@ -34,7 +34,6 @@ const BoardCreationForm = () => {
   } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
-  console.log(user);
   const { mutate } = useMutation((newBoard) => {
     const uploadFileName = uuidv4();
     const storageRef = ref(storage, `/images/${uploadFileName}`);
