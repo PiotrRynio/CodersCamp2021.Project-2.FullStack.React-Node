@@ -6,7 +6,6 @@ import { validateRegistrationData } from './ValidateRegistrationData.js';
 export class UsersService {
   constructor(repository) {
     this.repository = repository;
-    this.boardsService = {};
   }
 
   async signUp(userRegistrationDetails) {

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storage } from '../../firebase/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
@@ -27,6 +27,7 @@ const BoardCreationForm = () => {
   const { user, setUser } = useContext(UserContext);
   const [avatarAsFile, setAvatarAsFile] = useState();
   const [mapCoordinates, setMapCoordinates] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -43,7 +44,7 @@ const BoardCreationForm = () => {
       () => {},
       (err) => console.log(err),
       () => {
-        const returnedFirebaseUrl = getDownloadURL(uploadTask.snapshot.ref).then(
+         getDownloadURL(uploadTask.snapshot.ref).then(
           async (firebaseAvatarUrl) => {
             newBoard.avatarUrl = firebaseAvatarUrl;
             const requestOptions = {
@@ -82,7 +83,6 @@ const BoardCreationForm = () => {
       description: newBoardData.description,
       boardName: newBoardData.boardName,
       mapCoordinates: newBoardData.mapCoordinates,
-      adminId: user.id,
     };
     newBoard.mapCoordinates = mapCoordinates;
     mutate(newBoard);

@@ -5,8 +5,7 @@ export class MongoBoardsRepository {
   constructor() {}
 
   async getAll() {
-    const foundBoards = await MongoBoardsModel.find();
-    return foundBoards;
+    return MongoBoardsModel.find();
   }
 
   async createNewBoard(newBoard) {
@@ -75,7 +74,6 @@ function mongoDocumentToDomain(mongoDocument) {
     announcements: mongoDocument.announcements,
     avatarUrl: mongoDocument.avatarUrl,
     description: mongoDocument.description,
-    adminId: mongoDocument.adminId.valueOf(),
+    adminId: mongoDocument.adminId,
   });
-  lo;
 }

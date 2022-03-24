@@ -23,12 +23,10 @@ export class BoardsService {
   }
 
   async getOneBoardById(boardId) {
-    const foundBoard = await this.repository.findBoardByID(boardId);
-    return foundBoard;
+    return this.repository.findBoardByID(boardId);
   }
 
   async addBoard(newBoard) {
-    console.log(newBoard);
     const { error } = validateBoard(newBoard);
     if (error) {
       throw new Error(error.details[0].message);

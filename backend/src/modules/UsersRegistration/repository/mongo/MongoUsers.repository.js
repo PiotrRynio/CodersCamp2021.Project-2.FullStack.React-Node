@@ -15,7 +15,6 @@ export class MongoUsersRepository {
   }
 
   async findUserById(userId) {
-    console.log(userId);
 
     const foundUser = await MongoUser.findById(userId).exec();
     if (!foundUser) {
