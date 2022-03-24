@@ -71,4 +71,22 @@ export class UsersService {
     const returnedUser = await this.repository.findUserById(userId);
     return returnedUser;
   }
+
+  async getUserSubscribedBoards(userId) {
+    if (!userId) {
+      throw new Error('No user Id!');
+    }
+    const returnedUser = await this.repository.findUserById(userId);
+    const userSubscribedBoardsId = returnedUser.subscribedBoards;
+    const userSubscribedBoards = [];
+    for (const boardId of userSubscribedBoardsId) {
+      if (boardId) {
+        const board = await this.boardsService.getOneBoardById(boardId);
+        board.adminFirstName = returnedUser.firstName;
+        board.adminLastName = returnedUser.lastName;
+        userSubscribedBoards.push(board);
+      }
+    }
+    return userSubscribedBoards;
+  }
 }

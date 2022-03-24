@@ -3,6 +3,7 @@ export const authorization = (request, response, next) => {
   const token = request.cookies.auth_token;
 
   if (!token) {
+    console.log('TOKEN PROBLEM');
     return response.status(401).send('Access Denied');
   }
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, data) => {

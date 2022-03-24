@@ -5,8 +5,7 @@ export class MongoBoardsRepository {
   constructor() {}
 
   async getAll() {
-    const foundBoards = await MongoBoardsModel.find();
-    return foundBoards;
+    return MongoBoardsModel.find();
   }
 
   async createNewBoard(newBoard) {
