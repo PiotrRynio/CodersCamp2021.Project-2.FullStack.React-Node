@@ -8,5 +8,6 @@ export class UserRegistration {
     this.email = props.email;
     this.password = props.password;
     this.avatarUrl = props.avatarUrl || 'sampleAvatarUrl';
+    this.subscribedBoards = props.subscribedBoards || [];
   }
 }

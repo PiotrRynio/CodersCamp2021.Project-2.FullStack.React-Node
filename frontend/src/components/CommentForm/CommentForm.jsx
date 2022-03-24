@@ -38,6 +38,7 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
         return data;
       });
   });
+  console.log(user);
 
   const submitHandler = ({ commentText }) => {
     const newComment = {

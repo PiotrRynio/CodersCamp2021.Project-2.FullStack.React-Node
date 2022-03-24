@@ -11,6 +11,8 @@ describe('Board service | add new board', () => {
     description: 'sample description',
     avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
     announcements: [],
+    adminFirstName: 'SampleFirstName',
+    adminLastName: 'SampleLastName',
   });
 
   test('when correct board is being added, then body is returned', async () => {
@@ -50,6 +52,8 @@ describe('Board service | add new board', () => {
       description: 'another sample description',
       avatarUrl: 'https://firebasestorage.googleapis.com/samplenewatarurl',
       announcements: [],
+      adminFirstName: 'SampleFirstName',
+      adminLastName: 'SampleLastName',
     });
 
     //When
@@ -78,6 +82,8 @@ describe('Boards service | add new annoucements', () => {
     description: 'sample description',
     avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
     announcements: [],
+    adminFirstName: 'SampleFirstName',
+    adminLastName: 'SampleLastName',
   });
 
   beforeEach(() => {
@@ -157,6 +163,8 @@ describe('Boards service | get board announcements list ', () => {
     description: 'sample description',
     avatarUrl: 'https://firebasestorage.googleapis.com/sampleavatarurl',
     announcements: [testAnnouncementID1, testAnnouncementID2, testAnnouncementID3],
+    adminFirstName: 'SampleFirstName',
+    adminLastName: 'SampleLastName',
   });
 
   test('properly returns announcements list', async () => {

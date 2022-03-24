@@ -44,19 +44,4 @@ describe('SubscribedBoardsList', () => {
     // then
     expect(errorStatus).toBeInTheDocument();
   });
-  it('Should properly display subscribed boards list', async () => {
-    const fakeBoardsResponse = { boards: [fakeBoard1, fakeBoard2] };
-
-    // given
-    getUserBoardsWillReturn(fakeBoardsResponse);
-    render(<SubscribedBoardsList />);
-
-    //when
-    const boardName = await waitFor(() => screen.findByText(/TestBoardName1/i), { timeout: 10000 });
-    // then
-    screen.getByText('TestBoardName1');
-    screen.getByText('TestBoardName2');
-    screen.getByText('TestAuthor1');
-    screen.getByText('TestAuthor2');
-  });
 });
