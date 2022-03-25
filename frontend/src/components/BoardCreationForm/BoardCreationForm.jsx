@@ -84,7 +84,6 @@ const BoardCreationForm = () => {
       description: newBoardData.description,
       boardName: newBoardData.boardName,
       mapCoordinates: newBoardData.mapCoordinates,
-      adminId: user.id,
     };
     newBoard.mapCoordinates = mapCoordinates;
     mutate(newBoard);

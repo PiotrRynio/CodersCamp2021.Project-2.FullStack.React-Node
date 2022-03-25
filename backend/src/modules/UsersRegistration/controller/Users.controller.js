@@ -57,7 +57,6 @@ export class UsersController {
           });
         });
     });
-
     this.router.route('/logout').post(authorization, (request, response) => {
       this.service
         .logOut(response)
@@ -68,7 +67,6 @@ export class UsersController {
           response.status(400).send();
         });
     });
-
     this.router.route('/users/:id').get(authorization, (request, response) => {
       const id = request.params.id;
       this.service

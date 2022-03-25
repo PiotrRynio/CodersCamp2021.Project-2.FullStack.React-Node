@@ -15,8 +15,6 @@ export class MongoUsersRepository {
   }
 
   async findUserById(userId) {
-    console.log(userId);
-
     const foundUser = await MongoUser.findById(userId).exec();
     if (!foundUser) {
       return;
@@ -25,7 +23,7 @@ export class MongoUsersRepository {
   }
 
   async createNewUser(userRegistrationDetails) {
-    const createdUser = await MongoUser.create(userRegistrationDetails);
+    const createdUser = await MongoUserRegistrationDetails.create(userRegistrationDetails);
     return createdUser;
   }
 }
@@ -56,10 +54,6 @@ const usersSchema = new mongoose.Schema({
   },
   avatarUrl: {
     type: String,
-  },
-
-  subscribedBoards: {
-    type: Array,
   },
 });
 

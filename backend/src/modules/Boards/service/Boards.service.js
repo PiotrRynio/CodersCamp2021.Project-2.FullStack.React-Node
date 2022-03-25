@@ -28,7 +28,6 @@ export class BoardsService {
   }
 
   async addBoard(newBoard) {
-    console.log(newBoard);
     const { error } = validateBoard(newBoard);
     if (error) {
       throw new Error(error.details[0].message);

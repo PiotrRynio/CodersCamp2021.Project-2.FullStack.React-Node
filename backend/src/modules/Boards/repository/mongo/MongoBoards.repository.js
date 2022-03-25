@@ -77,5 +77,4 @@ function mongoDocumentToDomain(mongoDocument) {
     description: mongoDocument.description,
     adminId: mongoDocument.adminId.valueOf(),
   });
-  lo;
 }
