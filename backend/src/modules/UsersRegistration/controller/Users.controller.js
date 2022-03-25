@@ -83,7 +83,6 @@ export class UsersController {
       this.service
         .getUserSubscribedBoards(id)
         .then((returnedUserSubscribedBoards) => {
-          console.log(returnedUserSubscribedBoards);
           response.status(200).send(returnedUserSubscribedBoards);
         })
         .catch((error) => {

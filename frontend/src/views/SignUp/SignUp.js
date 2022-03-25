@@ -21,8 +21,12 @@ import {
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { ErrorMessage } from '@hookform/error-message';
+import { REST_API_URL } from '../../constants/restApiPaths';
+import { useNavigate } from 'react-router';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -34,9 +38,13 @@ const SignUp = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUserData),
     };
-    return fetch(`http://localhost:5000/rest-api/sign-up`, requestOptions).then((response) =>
-      response.json(),
-    );
+    return fetch(`${REST_API_URL}/sign-up`, requestOptions).then(async (response) => {
+      await response.json();
+      if (response.ok) {
+        window.alert("Account created correctly! Let's logIn!");
+        navigate(`/log-in`);
+      }
+    });
   });
 
   const submitHandler = (formData) => {

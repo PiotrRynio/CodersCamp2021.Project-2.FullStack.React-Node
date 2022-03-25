@@ -15,11 +15,9 @@ export class UsersService {
       console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
-
     const userEmail = userRegistrationDetails.email;
     const foundUser = await this.repository.findUserByEmail(userEmail);
     const isUserExist = !!foundUser;
-
     if (isUserExist) {
       throw new Error('User with this email exists');
     }
@@ -83,6 +81,8 @@ export class UsersService {
     for (const boardId of userSubscribedBoardsId) {
       if (boardId) {
         const board = await this.boardsService.getOneBoardById(boardId);
+        board.adminFirstName = returnedUser.firstName;
+        board.adminLastName = returnedUser.lastName;
         userSubscribedBoards.push(board);
       }
     }

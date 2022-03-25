@@ -23,7 +23,7 @@ export class MongoUsersRepository {
   }
 
   async createNewUser(userRegistrationDetails) {
-    const createdUser = await MongoUserRegistrationDetails.create(userRegistrationDetails);
+    const createdUser = await MongoUser.create(userRegistrationDetails);
     return createdUser;
   }
 }
@@ -54,6 +54,10 @@ const usersSchema = new mongoose.Schema({
   },
   avatarUrl: {
     type: String,
+  },
+
+  subscribedBoards: {
+    type: Array,
   },
 });
 
