@@ -7,7 +7,7 @@ import { REST_API_URL } from '../../constants/restApiPaths';
 
 export const SubscribedBoardsList = () => {
   const { user, setUser } = useContext(UserContext);
-  const id = user.id;
+  const id = user?.id;
   console.log(id);
   const path = `${REST_API_URL}/users/${id}/boards`;
   console.log(path);

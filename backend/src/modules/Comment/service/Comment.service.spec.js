@@ -12,16 +12,8 @@ describe('AddCommentRepository|', () => {
   const commentWithoutContent = {
     userId: '8a4a5d2d-af04-4f3a-87d1-ef8130f8bbb1',
     date: Date.now(),
-  }
+  };
 
-  test('When the correct comment is added return content of the comment', async () => {
-    const inMemoryCommentRepository = new InMemoryCommentRepository();
-    const addCommentService = new CommentService(inMemoryCommentRepository);
-
-    const returnedContent = await addCommentService.addComment(defaultComment);
-
-    expect(returnedContent).toBe(defaultComment.content);
-  });
   test('when comment data is not valid then throw error', async () => {
     const inMemoryCommentRepository = new InMemoryCommentRepository();
     const addCommentService = new CommentService(inMemoryCommentRepository);
