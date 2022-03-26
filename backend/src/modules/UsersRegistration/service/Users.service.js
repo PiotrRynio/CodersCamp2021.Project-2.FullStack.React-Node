@@ -6,6 +6,7 @@ import { validateRegistrationData } from './ValidateRegistrationData.js';
 export class UsersService {
   constructor(repository) {
     this.repository = repository;
+    this.boardsService = {};
   }
 
   async signUp(userRegistrationDetails) {
@@ -14,11 +15,9 @@ export class UsersService {
       console.log(error.details[0].message);
       throw new Error(error.details[0].message);
     }
-
     const userEmail = userRegistrationDetails.email;
     const foundUser = await this.repository.findUserByEmail(userEmail);
     const isUserExist = !!foundUser;
-
     if (isUserExist) {
       throw new Error('User with this email exists');
     }
@@ -70,5 +69,23 @@ export class UsersService {
     }
     const returnedUser = await this.repository.findUserById(userId);
     return returnedUser;
+  }
+
+  async getUserSubscribedBoards(userId) {
+    if (!userId) {
+      throw new Error('No user Id!');
+    }
+    const returnedUser = await this.repository.findUserById(userId);
+    const userSubscribedBoardsId = returnedUser.subscribedBoards;
+    const userSubscribedBoards = [];
+    for (const boardId of userSubscribedBoardsId) {
+      if (boardId) {
+        const board = await this.boardsService.getOneBoardById(boardId);
+        board.adminFirstName = returnedUser.firstName;
+        board.adminLastName = returnedUser.lastName;
+        userSubscribedBoards.push(board);
+      }
+    }
+    return userSubscribedBoards;
   }
 }

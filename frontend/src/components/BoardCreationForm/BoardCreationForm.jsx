@@ -34,7 +34,6 @@ const BoardCreationForm = () => {
   } = useForm();
   const fileInput = useRef(null);
   const navigate = useNavigate();
-  console.log(user);
   const { mutate } = useMutation((newBoard) => {
     const uploadFileName = uuidv4();
     const storageRef = ref(storage, `/images/${uploadFileName}`);
@@ -54,16 +53,20 @@ const BoardCreationForm = () => {
               credentials: 'include',
             };
             const postBoardUrl = `${REST_API_URL}/boards`;
-            return await fetch(postBoardUrl, requestOptions).then(async (response) => {
-              if (response.ok) {
-                await response.json();
-                window.alert('Board added correctly!');
-                navigate(`/board/${response.returnedData._id}`);
-              } else {
-                const jsonResponse = await response.json();
-                window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
-              }
-            });
+            return await fetch(postBoardUrl, requestOptions)
+              .then(async (response) => {
+                if (response.ok) {
+                  await response.json();
+                  window.alert('Board added correctly!');
+                  navigate(`/board/${response.returnedData._id}`);
+                } else {
+                  const jsonResponse = await response.json();
+                  window.alert(`Board was not added! Reason: ${jsonResponse.message}`);
+                }
+              })
+              .then(({ returnedData }) => {
+                navigate(`/board/${returnedData._id}`);
+              });
           },
         );
       },
@@ -81,7 +84,6 @@ const BoardCreationForm = () => {
       description: newBoardData.description,
       boardName: newBoardData.boardName,
       mapCoordinates: newBoardData.mapCoordinates,
-      adminId: user.id,
     };
     newBoard.mapCoordinates = mapCoordinates;
     mutate(newBoard);

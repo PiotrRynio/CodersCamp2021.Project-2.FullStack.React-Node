@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import Board from 'components/Board/Board';
 import { BoardWrapper } from './BoardList.styled';
 import { useState } from 'react';
@@ -14,7 +14,6 @@ const BoardsList = () => {
   } = useQuery('getboards', async () => {
     return await fetch(`${REST_API_URL}/boards`).then((response) => response.json());
   });
-
   if (isBoardDataLoading || isError) {
     return <></>;
   }
@@ -41,7 +40,7 @@ const BoardsList = () => {
 
   return (
     <>
-      {boardsData?.boards.map((board) => (
+      {boardsData?.boards?.map((board) => (
         <BoardWrapper key={board.id}>
           {userCords.isSet ? (
             <Board

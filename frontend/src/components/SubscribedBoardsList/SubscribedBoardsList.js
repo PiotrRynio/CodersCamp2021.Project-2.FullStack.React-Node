@@ -3,17 +3,22 @@ import { useContext } from 'react';
 import { UserContext } from 'providers/AppProviders';
 import BoardTitleSection from 'components/BoardTitleSection/BoardTitleSection';
 import { BoardWrapper } from './SubscribedBoardsList.styled';
+import { REST_API_URL } from '../../constants/restApiPaths';
 
 export const SubscribedBoardsList = () => {
-  const { user } = useContext(UserContext);
-
+  const { user, setUser } = useContext(UserContext);
+  const id = user?.id;
+  console.log(id);
+  const path = `${REST_API_URL}/users/${id}/boards`;
+  console.log(path);
   const { data, isLoading, isError } = useQuery('subscribedBoards', async () => {
-    return await fetch(`user/${user?.userId}/boards`)
+    return await fetch(path, { credentials: 'include' })
       .then((response) => response.json())
       .then((data) => {
-        return data.boards;
+        return data;
       });
   });
+
   if (isLoading) {
     return <>Loading...</>;
   }
@@ -23,12 +28,12 @@ export const SubscribedBoardsList = () => {
 
   return (
     <>
-      {data.map((board) => (
+      {data?.map((board) => (
         <BoardWrapper key={board.boardsIds}>
           <BoardTitleSection
             boardTitle={board.boardName}
-            user={board.author}
-            boardImg={board.avatar}
+            user={board.adminFirstName + ' ' + board.adminLastName}
+            boardImg={board.avatarUrl}
             boardId={board.id}
           />
         </BoardWrapper>

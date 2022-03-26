@@ -45,7 +45,7 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
       author: {
         firstName: user.firstName,
         lastName: user.lastName,
-        avatarUrl: user.avatarUrl,
+        avatarUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg',
       },
     };
     mutate(newComment);
@@ -55,7 +55,11 @@ export const CommentForm = ({ announcementId, refetchCallback }) => {
     <>
       <FormContainer>
         <AvatarContainer>
-          <UserAvatar userAvatarImage={user.avatarUrl} />
+          <UserAvatar
+            userAvatarImage={
+              'https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg'
+            }
+          />
         </AvatarContainer>
         <Form onSubmit={handleSubmit(submitHandler)}>
           <TextArea
