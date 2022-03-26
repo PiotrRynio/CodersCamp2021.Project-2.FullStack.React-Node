@@ -66,7 +66,7 @@ export class AnnouncementsService {
     if (!deletedAnnouncement) {
       throw new NotFoundError('Announcement');
     }
-    this.boardsService.deleteAnnouncementId(announcementId);
+    this.boardsService.deleteAnnouncement(announcementId);
     return deletedAnnouncement;
   }
 
