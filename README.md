@@ -15,11 +15,9 @@ BoardMap is a solution for sharing information and announcements in notice-board
 ## Project structure 
 Project is divided into frontend and backend part.
 
-### Frontend
-Repo: [CodersCamp2021.Project-2.React](https://github.com/PiotrRynio/CodersCamp2021.Project-2.React)
+### Frontend and Backend
+Repo: [CodersCamp2021.Project-2.React](https://github.com/PiotrRynio/CodersCamp2021.Project-2.FullStack.React-Node)
 
-### Backend
-Coming soon...
 ## Our Crew
 Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 
@@ -48,6 +46,17 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 
 
 **Backend**
+- bcrypt
+- express
+- joi
+- Json Web Token
+- Morgan
+- Swagger
+- Cookie Parser
+- Cors
+- uuid
+- morgan
+
 
 **Others**
 - Husky
@@ -55,6 +64,7 @@ Mentor: [Piotr Rynio](https://github.com/PiotrRynio)
 - Prettier
 - Codecov
 - Lint-staged
+- Nodemon
 
 
 ## Running the project
@@ -66,7 +76,8 @@ Running this project locally
 1. Clone this project locally
 2. Run `npm install` in your bash/command line
 3. Run `npm run start-fe` in your bash/command line
-4. Go to `http://localhost:3000` in your browser (or other from your bash/command line info).
+4. Run `npm run start-be` in your bash/command line
+5. Go to `http://localhost:3000` in your browser (or other from your bash/command line info).
 
 Others:
 - Compile and minify for production - `npm build`
